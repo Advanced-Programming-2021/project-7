@@ -27,7 +27,7 @@
       </counter>
       <counter>
         <item-type type-id="" type="AbstractElementGroup" />
-        <value>172</value>
+        <value>12</value>
       </counter>
     </entity-ids>
     <diagrams>
@@ -97,10 +97,10 @@
     <item id="di171249423900770059" cid="C001" type="class" name="DuelProgramControler" style-class="" visibility="package" change-tracking-state="added" creation-date="04/15/2021 12:12:48">
       <style class="default" />
       <attributes>
-        <attribute id="a64d1a60fb32f4c849cccd31d23cfab7d879" cid="ELEM125" name="turn" type="Integer" type-id="Uml.Integer" visibility="private">
+        <attribute id="a682b0611eed5442f914f7136693366ce270" cid="ELEM126" name="gameDecks" type="ArrayList&lt;GameDeck&gt;" type-id="ArrayList&lt;GameDeck&gt;" visibility="private">
           <style class="default" />
         </attribute>
-        <attribute id="a682b0611eed5442f914f7136693366ce270" cid="ELEM126" name="gameDecks" type="ArrayList&lt;GameDeck&gt;" type-id="ArrayList&lt;GameDeck&gt;" visibility="private">
+        <attribute id="a64d1a60fb32f4c849cccd31d23cfab7d879" cid="ELEM125" name="turn" type="Integer" type-id="Uml.Integer" visibility="private">
           <style class="default" />
         </attribute>
       </attributes>
@@ -264,7 +264,7 @@
       </meta>
       <abstract-items />
       <sub-models />
-      <diagram type="uml-class" id="pc223f6724fdc48c3a946cffddb122ba9_835396811" name="ClassDiagram3" order-index="3" overview-order-index="1" show-id="false" show-name="true" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false" view-location="-350,-37" zoom="0.5">
+      <diagram type="uml-class" id="pc223f6724fdc48c3a946cffddb122ba9_835396811" name="ClassDiagram3" order-index="3" overview-order-index="1" show-id="false" show-name="true" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false" view-location="-186,-354" zoom="0.7">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -319,56 +319,12 @@
               </attribute>
             </attributes>
             <operations>
-              <operation id="o7d099e4a66844db8831c1d2011216ebf604" cid="ELEM008" name="getScore" type="Integer" type-id="Uml.Integer" visibility="public">
-                <style class="default" />
-              </operation>
-              <operation id="o15a979055da44c8497c3d9dbc0409bd2268" cid="ELEM009" name="getUsername" type="String" type-id="Uml.String" visibility="public">
-                <style class="default" />
-              </operation>
-              <operation id="o864aeb40eedf474a82ca8970361e00cb52" cid="ELEM010" name="isPasswordCurrect" type="Boolean" type-id="Uml.Boolean" visibility="public">
+              <operation id="o83fcc77e47eb4999910faf0abbe06c3a90" cid="ELEM117" name="Player" type="&lt;&lt;construcrot&gt;&gt;" type-id="&lt;&lt;construcrot&gt;&gt;" visibility="public">
                 <style class="default" />
                 <parameters>
-                  <parameter id="pf51d2db61f1149d29c2dd0692eb5c579" name="username" type="String" type-id="Uml.String" />
-                  <parameter id="p7d76b24fa9ac479cbc5a2e55d36f350c" name="password" type="String" type-id="Uml.String" />
-                </parameters>
-              </operation>
-              <operation id="o5540f3f3ac1242b7bd0a200659bf22fc436" cid="ELEM011" name="getNickname" type="String" type-id="Uml.String" visibility="public">
-                <style class="default" />
-              </operation>
-              <operation id="o97dee11bde1849059dfbb465e7b5146d164" cid="ELEM012" name="addCard" type="void" type-id="void" visibility="public">
-                <style class="default" />
-                <parameters>
-                  <parameter id="pebe91a668d91439e8151c8e8393f8944" name="card" type="Card" type-id="Card" />
-                </parameters>
-              </operation>
-              <operation id="oa99f4045249b41c7bcf27876a084ce3d804" cid="ELEM013" name="removeCard" type="void" type-id="void" visibility="public">
-                <style class="default" />
-                <parameters>
-                  <parameter id="p9efc6b8a4650471f9ff1fff9befd6e85" name="card" type="Card" type-id="Card" />
-                </parameters>
-              </operation>
-              <operation id="o4df56d558a044012aecfb558f0a6a5ad307" cid="ELEM014" name="getCard" type="Card" type-id="Card" visibility="public">
-                <style class="default" />
-                <parameters>
-                  <parameter id="p334e31b5245c4ebba52fcb28f0d36dad" name="cardName" type="String" type-id="Uml.String" />
-                </parameters>
-              </operation>
-              <operation id="o3cdb7d100e1c4191b0e0825eb374d1c6300" cid="ELEM015" name="getDeck" type="Deck" type-id="Deck" visibility="public">
-                <style class="default" />
-                <parameters>
-                  <parameter id="p3fd3fab91b9b4339a1be398c0bc2c71c" name="deckName" type="String" type-id="Uml.String" />
-                </parameters>
-              </operation>
-              <operation id="o4de89e4ec7b44fe5a10ca04817a538ca964" cid="ELEM016" name="addDeck" type="void" type-id="void" visibility="public">
-                <style class="default" />
-                <parameters>
-                  <parameter id="p8820cdc3a2ba4a1085dddb56a000c8f5" name="deck" type="Deck" type-id="Deck" />
-                </parameters>
-              </operation>
-              <operation id="o33ec1e2567de419bb9f3f1e3c7726f44643" cid="ELEM017" name="removeDeck" type="void" type-id="void" visibility="public">
-                <style class="default" />
-                <parameters>
-                  <parameter id="p8c1877d7f6184510adb60c572f108c3c" name="deck" type="Deck" type-id="Deck" />
+                  <parameter id="pdfe5efb981c543e682c40709d28614fa" name="username" type="String" type-id="Uml.String" />
+                  <parameter id="p23d93ee70d564fb199264ad29ec2cbf0" name="password" type="String" type-id="Uml.String" />
+                  <parameter id="p0b1ad3e45eee4311b2fc2663707e0f50" name="nickname" type="String" type-id="Uml.String" />
                 </parameters>
               </operation>
               <operation id="o05770a4e15784570b499153f3658999e12" cid="ELEM018" name="getPlayerByUsername" type="Player" type-id="Class:di573405116586329522" visibility="public">
@@ -383,6 +339,37 @@
                   <parameter id="p33bc3c3b81b8436fba24ba9f8816dbee" name="username" type="String" type-id="Uml.String" />
                 </parameters>
               </operation>
+              <operation id="o864aeb40eedf474a82ca8970361e00cb52" cid="ELEM010" name="isPasswordCurrect" type="Boolean" type-id="Uml.Boolean" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pf51d2db61f1149d29c2dd0692eb5c579" name="username" type="String" type-id="Uml.String" />
+                  <parameter id="p7d76b24fa9ac479cbc5a2e55d36f350c" name="password" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o97dee11bde1849059dfbb465e7b5146d164" cid="ELEM012" name="addCard" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pebe91a668d91439e8151c8e8393f8944" name="card" type="Card" type-id="Card" />
+                </parameters>
+              </operation>
+              <operation id="oa99f4045249b41c7bcf27876a084ce3d804" cid="ELEM013" name="removeCard" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p9efc6b8a4650471f9ff1fff9befd6e85" name="card" type="Card" type-id="Card" />
+                </parameters>
+              </operation>
+              <operation id="o4de89e4ec7b44fe5a10ca04817a538ca964" cid="ELEM016" name="addDeck" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p8820cdc3a2ba4a1085dddb56a000c8f5" name="deck" type="Deck" type-id="Deck" />
+                </parameters>
+              </operation>
+              <operation id="o33ec1e2567de419bb9f3f1e3c7726f44643" cid="ELEM017" name="removeDeck" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p8c1877d7f6184510adb60c572f108c3c" name="deck" type="Deck" type-id="Deck" />
+                </parameters>
+              </operation>
               <operation id="o0b6991ddbba84478a04a11fa389abc60217" cid="ELEM051" name="increaseMoney" type="void" type-id="void" visibility="public">
                 <style class="default" />
                 <parameters>
@@ -395,6 +382,33 @@
                   <parameter id="ped5c0de974d04eb6a0861e9ebfb7fcc8" name="money" type="Integer" type-id="Uml.Integer" />
                 </parameters>
               </operation>
+              <operation id="o8dd0b19f52c64095887f180781585c95485" cid="ELEM119" name="setNickName" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p17d665b2c5f348fe94881257318e31d7" name="nickname" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o7d099e4a66844db8831c1d2011216ebf604" cid="ELEM008" name="getScore" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o15a979055da44c8497c3d9dbc0409bd2268" cid="ELEM009" name="getUsername" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o5540f3f3ac1242b7bd0a200659bf22fc436" cid="ELEM011" name="getNickname" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o4df56d558a044012aecfb558f0a6a5ad307" cid="ELEM014" name="getCard" type="Card" type-id="Card" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p334e31b5245c4ebba52fcb28f0d36dad" name="cardName" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o3cdb7d100e1c4191b0e0825eb374d1c6300" cid="ELEM015" name="getDeck" type="Deck" type-id="Deck" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p3fd3fab91b9b4339a1be398c0bc2c71c" name="deckName" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
               <operation id="o05f2bb191e9d47e99759159ebb38440a831" cid="ELEM065" name="getDeckByName" type="Deck" type-id="Deck" visibility="public">
                 <style class="default" />
                 <parameters>
@@ -403,20 +417,6 @@
               </operation>
               <operation id="oe31716931c5e468387c11064e044878d523" cid="ELEM071" name="getMoney" type="Integer" type-id="Uml.Integer" visibility="public">
                 <style class="default" />
-              </operation>
-              <operation id="o83fcc77e47eb4999910faf0abbe06c3a90" cid="ELEM117" name="Player" type="&lt;&lt;construcrot&gt;&gt;" type-id="&lt;&lt;construcrot&gt;&gt;" visibility="public">
-                <style class="default" />
-                <parameters>
-                  <parameter id="pdfe5efb981c543e682c40709d28614fa" name="username" type="String" type-id="Uml.String" />
-                  <parameter id="p23d93ee70d564fb199264ad29ec2cbf0" name="password" type="String" type-id="Uml.String" />
-                  <parameter id="p0b1ad3e45eee4311b2fc2663707e0f50" name="nickname" type="String" type-id="Uml.String" />
-                </parameters>
-              </operation>
-              <operation id="o8dd0b19f52c64095887f180781585c95485" cid="ELEM119" name="setNickName" type="" type-id="" visibility="public">
-                <style class="default" />
-                <parameters>
-                  <parameter id="p17d665b2c5f348fe94881257318e31d7" name="nickname" type="String" type-id="Uml.String" />
-                </parameters>
               </operation>
             </operations>
           </item>
@@ -513,13 +513,13 @@
               </attribute>
             </attributes>
             <operations>
-              <operation id="o7bfd01ff1d6b43108f8740128b1e6246167" cid="ELEM029" name="getInstance" type="Scoreboard" type-id="Class:di544111923460947265" visibility="public">
-                <style class="default" />
-              </operation>
               <operation id="o0aae088ba7d14aedaf8793b39dbea999159" cid="ELEM030" name="showBoard" type="void" type-id="void" visibility="public">
                 <style class="default" />
               </operation>
               <operation id="ocb2a69cbbb2f458fb92988a8f0b40f5214" cid="ELEM031" name="run" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o7bfd01ff1d6b43108f8740128b1e6246167" cid="ELEM029" name="getInstance" type="Scoreboard" type-id="Class:di544111923460947265" visibility="public">
                 <style class="default" />
               </operation>
             </operations>
@@ -665,6 +665,12 @@
               </attribute>
             </attributes>
             <operations>
+              <operation id="oab90503300f54691b9dc33b0f7dd2f5c926" cid="ELEM118" name="Deck" type="&lt;&lt;construcrot&gt;&gt;" type-id="&lt;&lt;construcrot&gt;&gt;" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p62458dba6e48413ab560ef6310b7658b" name="name" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
               <operation id="ob71d20ccd67249f3a6c4a407d9131579727" cid="ELEM056" name="addCardToMain" type="" type-id="" visibility="public">
                 <style class="default" />
                 <parameters>
@@ -692,9 +698,6 @@
               <operation id="o81d8e61f5ed548868cc869e2ec003213567" cid="ELEM061" name="isDeckValid" type="Boolean" type-id="Uml.Boolean" visibility="public">
                 <style class="default" />
               </operation>
-              <operation id="o0dcaa8e31951477397b9ac040dc2cb6d919" cid="ELEM063" name="getDeckName" type="String" type-id="Uml.String" visibility="public">
-                <style class="default" />
-              </operation>
               <operation id="o99a0638fab004e7b9bd0aae6509a18ea111" cid="ELEM066" name="isMainFull" type="Boolean" type-id="Uml.Boolean" visibility="public">
                 <style class="default" />
               </operation>
@@ -710,11 +713,8 @@
               <operation id="oa92848e571cc49d2bfd6637dcb571b6b174" cid="ELEM070" name="toString" type="String" type-id="Uml.String" visibility="public">
                 <style class="default" />
               </operation>
-              <operation id="oab90503300f54691b9dc33b0f7dd2f5c926" cid="ELEM118" name="Deck" type="&lt;&lt;construcrot&gt;&gt;" type-id="&lt;&lt;construcrot&gt;&gt;" visibility="public">
+              <operation id="o0dcaa8e31951477397b9ac040dc2cb6d919" cid="ELEM063" name="getDeckName" type="String" type-id="Uml.String" visibility="public">
                 <style class="default" />
-                <parameters>
-                  <parameter id="p62458dba6e48413ab560ef6310b7658b" name="name" type="String" type-id="Uml.String" />
-                </parameters>
               </operation>
             </operations>
           </item>
@@ -795,6 +795,15 @@
               </attribute>
             </attributes>
             <operations>
+              <operation id="o75de5c997c14437d9eeb70f38d4c1255918" cid="ELEM120" name="Card" type="&lt;&lt;construcrot&gt;&gt;" type-id="&lt;&lt;construcrot&gt;&gt;" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p4a3d8a48ae3142ad905d73a36844b0ea" name="name" type="String" type-id="Uml.String" />
+                  <parameter id="pf9719141ea6b41d9b8470ea7c9c6bc80" name="description" type="String" type-id="Uml.String" />
+                  <parameter id="p6a3a33bf31124425b6bc846fa5e7b673" name="type" type="String" type-id="Uml.String" />
+                  <parameter id="p8a7d1d20c0424fa09ff0c059add0c115" name="cardNumber" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
               <operation id="o05857058180746f59e0061b1029de838698" cid="ELEM031" name="getCardByName" type="Card" type-id="Card" visibility="public">
                 <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-color="#32000000" wrap-name-text="true" wrap-other-text="true" glow-color="#FFFFFFFF" accuracy="0.9">
                   <text-style type="name" use-defaults="false" color="#FF000000" font="Verdana;9;U" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
@@ -819,15 +828,6 @@
               <operation id="o4ce96bc44ba84028b4b42fad0c96ff38811" cid="ELEM048" name="getDescription" type="String" type-id="Uml.String" visibility="public">
                 <style class="default" />
               </operation>
-              <operation id="o75de5c997c14437d9eeb70f38d4c1255918" cid="ELEM120" name="Card" type="&lt;&lt;construcrot&gt;&gt;" type-id="&lt;&lt;construcrot&gt;&gt;" visibility="public">
-                <style class="default" />
-                <parameters>
-                  <parameter id="p4a3d8a48ae3142ad905d73a36844b0ea" name="name" type="String" type-id="Uml.String" />
-                  <parameter id="pf9719141ea6b41d9b8470ea7c9c6bc80" name="description" type="String" type-id="Uml.String" />
-                  <parameter id="p6a3a33bf31124425b6bc846fa5e7b673" name="type" type="String" type-id="Uml.String" />
-                  <parameter id="p8a7d1d20c0424fa09ff0c059add0c115" name="cardNumber" type="String" type-id="Uml.String" />
-                </parameters>
-              </operation>
             </operations>
           </item>
           <item id="di630294434463946837" cid="C008" type="class" name="Monster" style-class="" visibility="package" change-tracking-state="added" creation-date="04/16/2021 15:28:03">
@@ -850,60 +850,6 @@
               </attribute>
             </attributes>
             <operations>
-              <operation id="oe44489f073fa4f788e3c75551134b2b941" cid="ELEM085" name="getAttackPonit" type="Integer" type-id="Uml.Integer" visibility="public">
-                <style class="default" />
-              </operation>
-              <operation id="o6729995aacd340ef8a8b425ab609fda5304" cid="ELEM086" name="setAttackPonit" type="" type-id="" visibility="public">
-                <style class="default" />
-                <parameters>
-                  <parameter id="p400c0a721db94f7980aa7d27b4d53099" name="attackpoint" type="Integer" type-id="Uml.Integer" />
-                </parameters>
-              </operation>
-              <operation id="o22514848246c4060842b7a547a8f4375720" cid="ELEM087" name="getDefensePonit" type="Integer" type-id="Uml.Integer" visibility="public">
-                <style class="default" />
-              </operation>
-              <operation id="ode2db6cb1e0245568478abba3a450d5492" cid="ELEM088" name="setDefensePoint" type="" type-id="" visibility="public">
-                <style class="default" />
-                <parameters>
-                  <parameter id="p91645348e2cb433597e57b28dfae85cd" name="defensePoint" type="Integer" type-id="Uml.Integer" />
-                </parameters>
-              </operation>
-              <operation id="oe589ba135e374070a3daed29ab9c2092537" cid="ELEM089" name="getLevel" type="Integer" type-id="Uml.Integer" visibility="public">
-                <style class="default" />
-              </operation>
-              <operation id="obb51ed4f78394868ad720cb626d6a740645" cid="ELEM090" name="setLevel" type="" type-id="" visibility="public">
-                <style class="default" />
-                <parameters>
-                  <parameter id="pf9abab3527a646ceb4e3b6dbea034ba3" name="level" type="Integer" type-id="Uml.Integer" />
-                </parameters>
-              </operation>
-              <operation id="o1fc1dac150ed4e87a60106dc42d3c2f4167" cid="ELEM091" name="getAttribute" type="String" type-id="Uml.String" visibility="public">
-                <style class="default" />
-              </operation>
-              <operation id="o372b6ef486cb40a582a9ff9dd5c24786766" cid="ELEM092" name="setAttribute" type="" type-id="" visibility="public">
-                <style class="default" />
-                <parameters>
-                  <parameter id="p66b5e2586b7847b1979e06c9cdd5e247" name="attribute" type="String" type-id="Uml.String" />
-                </parameters>
-              </operation>
-              <operation id="o24a96668e0d74f789f1674f035cbef72728" cid="ELEM093" name="getMonsterType" type="String" type-id="Uml.String" visibility="public">
-                <style class="default" />
-              </operation>
-              <operation id="ofc0340b8484e4a77bffc88303c4bea48875" cid="ELEM094" name="setMonsterType" type="" type-id="" visibility="public">
-                <style class="default" />
-                <parameters>
-                  <parameter id="p050fac0014dc4deca20951dc17c8f473" name="type" type="String" type-id="Uml.String" />
-                </parameters>
-              </operation>
-              <operation id="od140c17f5fbd439ab84ff6d895611238872" cid="ELEM095" name="getName" type="String" type-id="Uml.String" visibility="public">
-                <style class="default" />
-              </operation>
-              <operation id="o3bb69b1142bb4fdcb2e0bbf21fe8c98c859" cid="ELEM096" name="getDescription" type="String" type-id="Uml.String" visibility="public">
-                <style class="default" />
-              </operation>
-              <operation id="o24d985bf0455406083d5eda018d4d3d3103" cid="ELEM098" name="getCardNumber" type="String" type-id="Uml.String" visibility="public">
-                <style class="default" />
-              </operation>
               <operation id="oa0dd84676e06437ba2d85168b4888fb4245" cid="ELEM121" name="Monster" type="&lt;&lt;construcrot&gt;&gt;" type-id="&lt;&lt;construcrot&gt;&gt;" visibility="public">
                 <style class="default" />
                 <parameters>
@@ -918,6 +864,60 @@
                   <parameter id="p8066e60a4a5148cb95d44f66cadf1740" name="type" type="String" type-id="Uml.String" />
                 </parameters>
               </operation>
+              <operation id="o6729995aacd340ef8a8b425ab609fda5304" cid="ELEM086" name="setAttackPonit" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p400c0a721db94f7980aa7d27b4d53099" name="attackpoint" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="ode2db6cb1e0245568478abba3a450d5492" cid="ELEM088" name="setDefensePoint" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p91645348e2cb433597e57b28dfae85cd" name="defensePoint" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="obb51ed4f78394868ad720cb626d6a740645" cid="ELEM090" name="setLevel" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pf9abab3527a646ceb4e3b6dbea034ba3" name="level" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o372b6ef486cb40a582a9ff9dd5c24786766" cid="ELEM092" name="setAttribute" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p66b5e2586b7847b1979e06c9cdd5e247" name="attribute" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="ofc0340b8484e4a77bffc88303c4bea48875" cid="ELEM094" name="setMonsterType" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p050fac0014dc4deca20951dc17c8f473" name="type" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="oe44489f073fa4f788e3c75551134b2b941" cid="ELEM085" name="getAttackPonit" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o22514848246c4060842b7a547a8f4375720" cid="ELEM087" name="getDefensePonit" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="oe589ba135e374070a3daed29ab9c2092537" cid="ELEM089" name="getLevel" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o1fc1dac150ed4e87a60106dc42d3c2f4167" cid="ELEM091" name="getAttribute" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o24a96668e0d74f789f1674f035cbef72728" cid="ELEM093" name="getMonsterType" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="od140c17f5fbd439ab84ff6d895611238872" cid="ELEM095" name="getName" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o3bb69b1142bb4fdcb2e0bbf21fe8c98c859" cid="ELEM096" name="getDescription" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o24d985bf0455406083d5eda018d4d3d3103" cid="ELEM098" name="getCardNumber" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
             </operations>
           </item>
           <item id="di144924873985857128" cid="C009" type="class" name="SpellTrap" style-class="" visibility="package" change-tracking-state="added" creation-date="04/16/2021 15:29:54">
@@ -931,11 +931,16 @@
               </attribute>
             </attributes>
             <operations>
-              <operation id="of8dccf3bfb084a719a5957d8204ca748279" cid="ELEM102" name="getType" type="String" type-id="Uml.String" visibility="public">
+              <operation id="oba6bec9eb95544dbaa67d3107f95672d989" cid="ELEM123" name="SpellTrap" type="&lt;&lt;construcrot&gt;&gt;" type-id="&lt;&lt;construcrot&gt;&gt;" visibility="public">
                 <style class="default" />
-              </operation>
-              <operation id="o2d599fc627dc4aafa1c866c48e115976983" cid="ELEM103" name="getIcon" type="String" type-id="Uml.String" visibility="public">
-                <style class="default" />
+                <parameters>
+                  <parameter id="p59b0b3799e4f4307963a7617a5f38d53" name="name" type="String" type-id="Uml.String" />
+                  <parameter id="p55443fc3a09945adb44caba04874727b" name="description" type="String" type-id="Uml.String" />
+                  <parameter id="p95f88c414cd2426097edf8cb460a0cbd" name="type" type="String" type-id="Uml.String" />
+                  <parameter id="p79aef0b97aac4a8baca2a666a988783e" name="cardNumber" type="String" type-id="Uml.String" />
+                  <parameter id="p82c954985daf4c5bac8f99c5633274fb" name="type" type="String" type-id="Uml.String" />
+                  <parameter id="pa31d0692fced46bebaa0a5ed396df26b" name="icon" type="String" type-id="Uml.String" />
+                </parameters>
               </operation>
               <operation id="o791c97e6dcd34a3cb68a64d0650aace5127" cid="ELEM104" name="setType" type="" type-id="" visibility="public">
                 <style class="default" />
@@ -949,6 +954,15 @@
                   <parameter id="pec93f4daa641450588197b56343ceb83" name="icon" type="String" type-id="Uml.String" />
                 </parameters>
               </operation>
+              <operation id="oda2d0f17d340450aabc16b256492824262" cid="ELEM122" name="NewOperation8" type="" type-id="" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="of8dccf3bfb084a719a5957d8204ca748279" cid="ELEM102" name="getType" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o2d599fc627dc4aafa1c866c48e115976983" cid="ELEM103" name="getIcon" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
               <operation id="o8641a56ca6a04adb969fd925f9328941351" cid="ELEM106" name="getName" type="String" type-id="Uml.String" visibility="public">
                 <style class="default" />
               </operation>
@@ -957,20 +971,6 @@
               </operation>
               <operation id="o061c1b458a4a4c988302864cd28225c8382" cid="ELEM108" name="getCardNumber" type="String" type-id="Uml.String" visibility="public">
                 <style class="default" />
-              </operation>
-              <operation id="oda2d0f17d340450aabc16b256492824262" cid="ELEM122" name="NewOperation8" type="" type-id="" visibility="public">
-                <style class="default" />
-              </operation>
-              <operation id="oba6bec9eb95544dbaa67d3107f95672d989" cid="ELEM123" name="SpellTrap" type="&lt;&lt;construcrot&gt;&gt;" type-id="&lt;&lt;construcrot&gt;&gt;" visibility="public">
-                <style class="default" />
-                <parameters>
-                  <parameter id="p59b0b3799e4f4307963a7617a5f38d53" name="name" type="String" type-id="Uml.String" />
-                  <parameter id="p55443fc3a09945adb44caba04874727b" name="description" type="String" type-id="Uml.String" />
-                  <parameter id="p95f88c414cd2426097edf8cb460a0cbd" name="type" type="String" type-id="Uml.String" />
-                  <parameter id="p79aef0b97aac4a8baca2a666a988783e" name="cardNumber" type="String" type-id="Uml.String" />
-                  <parameter id="p82c954985daf4c5bac8f99c5633274fb" name="type" type="String" type-id="Uml.String" />
-                  <parameter id="pa31d0692fced46bebaa0a5ed396df26b" name="icon" type="String" type-id="Uml.String" />
-                </parameters>
               </operation>
             </operations>
           </item>
@@ -1214,8 +1214,14 @@
           <item id="di443043243423841741" cid="C013" type="class" name="Main" style-class="" visibility="package" change-tracking-state="added" creation-date="04/16/2021 16:34:22">
             <style class="default" />
             <operations>
-              <operation id="o3fdcfcce955244d2aac6b8af6b30db0b373" cid="ELEM124" name="main" type="" type-id="" visibility="public">
-                <style class="default" />
+              <operation id="o3fdcfcce955244d2aac6b8af6b30db0b373" cid="ELEM124" name="main" type="void" type-id="void" visibility="public">
+                <style style-name="" shadow-type="smooth" shadow-offset="1,1" shadow-color="#32000000" wrap-name-text="true" wrap-other-text="true" glow-color="#FFFFFFFF" accuracy="0.9">
+                  <text-style type="name" use-defaults="false" color="#FF000000" font="Verdana;9;U" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+                  <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="text" use-defaults="true" color="#FF000000" font="Verdana;9;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+                  <text-style type="tagged-value" use-defaults="true" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="stereotype" use-defaults="true" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                </style>
               </operation>
             </operations>
           </item>
