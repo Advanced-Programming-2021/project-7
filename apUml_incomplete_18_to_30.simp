@@ -1,0 +1,439 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<sim-project version="10.3" multi-file="no">
+  <meta>
+    <name>apUml</name>
+    <authors> </authors>
+    <description />
+  </meta>
+  <counters models="1">
+    <entity-names>
+      <counter>
+        <item-type type-id="class" type="UmlClass" />
+        <value>3</value>
+      </counter>
+    </entity-names>
+    <entity-ids>
+      <counter>
+        <item-type type-id="class" type="UmlClass" />
+        <value>4</value>
+      </counter>
+      <counter>
+        <item-type type-id="relationship" type="UmlAssociation" />
+        <value>4</value>
+      </counter>
+      <counter>
+        <item-type type-id="" type="AbstractElementGroup" />
+        <value>20</value>
+      </counter>
+    </entity-ids>
+    <diagrams>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.Diagrams.UmlDiagrams.UmlClassDiagram</type>
+        <value>1</value>
+      </counter>
+    </diagrams>
+    <fields>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.DiagramItems.Fields.AttributeField</type>
+        <value>64</value>
+      </counter>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.DiagramItems.Fields.OperationField</type>
+        <value>69</value>
+      </counter>
+    </fields>
+  </counters>
+  <alias-groups />
+  <management>
+    <persons>
+      <person id="Pbce0b15dc581452c8aea7ea204017026">
+        <first-name />
+        <last-name />
+        <role />
+        <e-mail />
+        <phone-number />
+        <description />
+        <color>#00000000</color>
+      </person>
+    </persons>
+    <tasks />
+    <requirements />
+    <issues />
+    <to-dos />
+  </management>
+  <glossary />
+  <types default="UML">
+    <type-sets>
+      <type-set file="UmlTypes.xml" />
+    </type-sets>
+    <custom-types>
+      <type id="ArrayList&lt; User&gt;" tid="" name="ArrayList&lt; User&gt;" description="" nullable="false" />
+      <type id="ArrayList&lt; Deck &gt;" tid="" name="ArrayList&lt; Deck &gt;" description="" nullable="false" />
+      <type id="void" tid="" name="void" description="" nullable="false" />
+      <type id="ArrayList&lt;Card&gt;" tid="" name="ArrayList&lt;Card&gt;" description="" nullable="false" />
+      <type id="HashMap&lt;Ineger, ArrayList&lt;Card&gt;&gt;" tid="" name="HashMap&lt;Ineger, ArrayList&lt;Card&gt;&gt;" description="" nullable="false" />
+      <type id="Integer ()" tid="" name="Integer ()" description="" nullable="false" />
+      <type id="&lt;&lt;constructor&gt;&gt;" tid="" name="&lt;&lt;constructor&gt;&gt;" description="" nullable="false" />
+      <type id="Card" tid="" name="Card" description="" nullable="false" />
+      <type id="Array&lt; Char&gt;" tid="" name="Array&lt; Char&gt;" description="" nullable="false" />
+    </custom-types>
+  </types>
+  <filters />
+  <macros />
+  <items />
+  <models>
+    <model id="p94761c9dc3c64860b7392f1917dc423f_898861258" name="Model 1" namespace="" order-index="1">
+      <meta>
+        <authors>
+          <author> </author>
+        </authors>
+        <description />
+        <creation-date>04/15/2021 15:17:54</creation-date>
+        <change-date>01/01/0001 00:00:00</change-date>
+        <revision-count>0</revision-count>
+        <version />
+      </meta>
+      <abstract-items />
+      <sub-models />
+      <diagram type="uml-class" id="pd5e81f05967448a19958045da46de77c_867941211" name="ClassDiagram1" order-index="1" show-id="false" show-name="true" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="solid" />
+        </style>
+        <meta>
+          <authors>
+            <author> </author>
+          </authors>
+          <description />
+          <creation-date>04/15/2021 15:17:54</creation-date>
+          <change-date>04/16/2021 11:35:33</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <abstract-items>
+          <item id="di965735210792987078" cid="C001" type="class" name="User" style-class="" visibility="package" change-tracking-state="added" creator="Pbce0b15dc581452c8aea7ea204017026" creation-date="04/15/2021 15:22:32">
+            <style class="default" />
+            <attributes>
+              <attribute id="a6182bd5e9d8249ffb2f57a4769e0e43e235" cid="ELEM001" name="username" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a06b4200f37e341dbac20ee6f186002eb322" cid="ELEM002" name="users" type="ArrayList&lt; User&gt;" type-id="ArrayList&lt; User&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="aa0988a2cf3b54d32b10192b778b123f3422" cid="ELEM007" name="decks" type="ArrayList&lt; Deck &gt;" type-id="ArrayList&lt; Deck &gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="o3df2423d8bcb4f96ad263e29651c5605576" cid="ELEM003" name="checkUsername" type="Boolean" type-id="Uml.Boolean" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pbaa4c222f7244ea78ae5ffaf058fbed9" name="username" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="od2d4648aea304183ab2d231f0157c27d580" cid="ELEM005" name="checkActiveDeck" type="Boolean" type-id="Uml.Boolean" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p8443eb20b3e7451888fcacf65b8d2887" name="username" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="of092de2127864bcaafd5d210f4722baa813" cid="ELEM006" name="checkActiveDeckValid" type="Boolean" type-id="Uml.Boolean" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p3093ebf434134480afd1a09b9a887cf1" name="username" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+            </operations>
+          </item>
+          <item id="di155241474384660001" cid="C002" type="class" name="GameMat" style-class="" visibility="package" change-tracking-state="added" creator="Pbce0b15dc581452c8aea7ea204017026" creation-date="04/15/2021 15:52:05">
+            <style class="default" />
+            <attributes>
+              <attribute id="a85417229518a41068f469d54fac2281f782" cid="ELEM008" name="graveyard" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="ada1dc4851ac648f89e3ba3c3866ec9b5866" cid="ELEM009" name="opponentGraveyard" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a21beb1ae691d439bb34c5288b9725306366" cid="ELEM010" name="monster" type="HashMap&lt;Ineger, ArrayList&lt;Card&gt;&gt;" type-id="HashMap&lt;Ineger, ArrayList&lt;Card&gt;&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a59b9c0d68df242508126fab4165835fb736" cid="ELEM011" name="opponentMonster" type="HashMap&lt;Ineger, ArrayList&lt;Card&gt;&gt;" type-id="HashMap&lt;Ineger, ArrayList&lt;Card&gt;&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a6b2a75fa73a14bd28aa6438bd9e1cb86564" cid="ELEM015" name="spellAndTrap" type="HashMap&lt;Ineger, ArrayList&lt;Card&gt;&gt;" type-id="HashMap&lt;Ineger, ArrayList&lt;Card&gt;&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="ab006ae400e7547959ab773e81d2ac8bb186" cid="ELEM016" name="opponentSpellAndTrap" type="HashMap&lt;Ineger, ArrayList&lt;Card&gt;&gt;" type-id="HashMap&lt;Ineger, ArrayList&lt;Card&gt;&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a4c0975265e834ad7b9fdc86dd9c5c0ca711" cid="ELEM018" name="deckZone" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a705a3b312ac644698e1e36e9c7efcfb5843" cid="ELEM019" name="fieldZone" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a4070a8116f15470a891d89894240896e233" cid="ELEM035" name="matPosition" type="Integer" type-id="Uml.Integer" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="aecfdf9acdfb74436a6c1cb493d4db378364" cid="ELEM039" name="turn" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a83320397a9e64a61abc80caace744896231" cid="ELEM063" name="mat" type="Array&lt; Char&gt;" type-id="Array&lt; Char&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="o15f49d041cea4b4ea9a72ae79f7ee79f23" cid="ELEM062" name="gameMat" type="&lt;&lt;constructor&gt;&gt;" type-id="&lt;&lt;constructor&gt;&gt;" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p4c0f34e2f08a41fab95b07689aab56ab" name="username" type="String" type-id="Uml.String" />
+                  <parameter id="pb73be04f221849bb85e229a8e796b369" name="opponentUsername" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="ob658e659e473480795a3d2c29534e7e8260" cid="ELEM013" name="selectOpponentMonster" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p48f0936408db45119c60533b8fa32ae1" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o92c59a71a1694313bf75144cb7f41f76838" cid="ELEM012" name="selectMonster" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p05a8b697f27b4c08b7e8b9702d5ffd29" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o5f99f60fc63043ae83da5d313928d503348" cid="ELEM014" name="selectSpell" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p68b3f0fd355947efa23acabf83aa3b94" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o6942f9db30704e19bdb3827b13a724c6785" cid="ELEM017" name="selectOpponentSpell" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pd2883102b2d44fa3a290ea6fef4fb457" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o2311b696272540cbb966277cc85b5e3b220" cid="ELEM020" name="selectField" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="ob18fd33360d94a5bab26fce1c66023b6946" cid="ELEM021" name="selectOpponentField" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="ob713bc77c6d04c30937c7af217148ed781" cid="ELEM022" name="selectHand" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pec45182be78144b4af0a6c7b77261761" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="oa3bba8307d894a2886d06c02fa181d31431" cid="ELEM054" name="getSelectedCard" type="Card" type-id="Card" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o7f5c883ce18e4200863c6d82c8eaf5b2691" cid="ELEM023" name="numberOfDeckCards" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="oa9cd0851980444f594475a6f6627437f30" cid="ELEM024" name="numberOfOpponentDeckCards" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o5b2efca77a5744c3afd29c7b1c9e379c586" cid="ELEM025" name="numberOfGraveCards" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o6f8cef03f22d4b508cddac4c1f3a3be852" cid="ELEM026" name="numberOfOpponentGraveCards" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="oc1c775e4ae8a4639a36749f98b4ece60178" cid="ELEM027" name="numberOfFieldCards" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o0a0fc594249344b39b4512bd63767cef511" cid="ELEM028" name="numberOfOpponentFieldCards" type="Integer ()" type-id="Integer ()" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="of8732bed90904175abbd6720a6313fe8390" cid="ELEM029" name="monsterState" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pd3579c128bfc483abd86613dce9b5658" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o1e19e9f47ad94c82ab7988b828a504e0721" cid="ELEM030" name="opponentMonsterState" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p3e620646b1f94c26b8466bce43fe5bd1" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o470066fe0399412bb9cfe6dda302a85c518" cid="ELEM031" name="spellState" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p6b22f3a57b4a414dbdb404d34973a0b7" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o8af3ea1ca17840ad9972aeffc68e1baf696" cid="ELEM032" name="opponentMonsterState" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p0c05b40a174b4f2ab0b603793fc821fa" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o43393f18587146e29532b3cb78dd889555" cid="ELEM033" name="numberOfHandCards" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o53c5cfda076f46449ff3c01afd5a5eee946" cid="ELEM034" name="numberOfOpponentHandCards" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o5bd599a3d8e145e18443e41e7cc84959414" cid="ELEM036" name="showBoard" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o28688617235e4672858a35fd7ee5b1c7252" cid="ELEM037" name="checkSelectValidity" type="Boolean" type-id="Uml.Boolean" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p20e2f074a0af4763a812ddb73bc66b7e" name="field" type="String" type-id="Uml.String" />
+                  <parameter id="p5c0e1811a1e24ded8991d093890b78cd" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="oe4c50d821b7444e5a8b0b8908e183237871" cid="ELEM038" name="checkOpponentSelectValidity" type="Boolean" type-id="Uml.Boolean" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p9fa7a038df4646d9a8b8bac4d2c4c926" name="field" type="String" type-id="Uml.String" />
+                  <parameter id="p0ae7f34ff07d4d12af8a5cafa670da57" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o00e62d4e5f4f411197d6d1367709ed15776" cid="ELEM040" name="deselct" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o41a910c1f636459d9d8d1cba963247b925" cid="ELEM041" name="opponentDeselect" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o9336938781e3424bb4dfc20e996e99a4586" cid="ELEM060" name="setPosition" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pb6ceeec036df4286bd9ebf3d585c8fe2" name="card" type="Card" type-id="Card" />
+                  <parameter id="pbac4be48b79643469bcc43c3181799ee" name="position" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o1a8a767e93f94962bf8f9933d2723f06906" cid="ELEM061" name="setPositionOpponent" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p2d6a03f0f068485ab5477b5ac21bdb07" name="card" type="Card" type-id="Card" />
+                  <parameter id="p2f3d17cf501c451fa0191d320ededd06" name="position" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o660648978a6a469095ea77ab4689d74b60" cid="ELEM064" name="setMat" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+            </operations>
+          </item>
+          <item id="di268387515410982370" cid="REL003" type="relationship" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pbce0b15dc581452c8aea7ea204017026" creation-date="04/15/2021 15:56:12" from="di965735210792987078" to="di155241474384660001">
+            <style class="default" />
+            <relation from="di965735210792987078" to="di155241474384660001">
+              <start-role id="" name="" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di135657292316723001" cid="C003" type="class" name="Game" style-class="" visibility="package" change-tracking-state="added" creator="Pbce0b15dc581452c8aea7ea204017026" creation-date="04/16/2021 11:35:33">
+            <style class="default" />
+            <attributes>
+              <attribute id="abc362946b46c488c9518d67bad083d4e393" cid="ELEM043" name="phase" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a13adc54149ac4b2498b7d11c23b975ac768" cid="ELEM055" name="turn" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="o95cc95dfda774d5897d7f569ab27f9e4814" cid="ELEM042" name="Game" type="&lt;&lt;constructor&gt;&gt;" type-id="&lt;&lt;constructor&gt;&gt;" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pe4278f07098c42399b0e61134ffbe86e" name="username" type="String" type-id="Uml.String" />
+                  <parameter id="p5f7eb95b6647405189e25641ae342c57" name="opponentUsername" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="odc20af54eb2f4433bc386bfeeb5f59ad804" cid="ELEM044" name="setPhase" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pf98a88e3311e4dfa90597a8cd2f56472" name="newPhase" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o6f1c1102101645df8eaf473a57402973605" cid="ELEM045" name="addToHand" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p5ae353e118954e068c8d94ebf0aa6c24" name="cardName" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o6d27086ef31a411186eac2121a1ac3cf723" cid="ELEM046" name="addToOpponentHand" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p251352c4c620452ba2bc0ea174908dab" name="cardName" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o18da9080771e4683b2436808782ac984117" cid="ELEM047" name="stanbyPhase" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="oa7e205aadba94b098f07accf626bf5b853" cid="ELEM048" name="mainPhase1" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="oa7d02017c81f46ba9a3de097f99cb57f463" cid="ELEM049" name="endPhase" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o210c94c524674bdcb15ccaf4c468faf1902" cid="ELEM050" name="sommon" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o0e8c827867a14ab092d1bf9d3bf3b4a0362" cid="ELEM051" name="sommonOpponent" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o9d50bb46293c4176a70ce60279df06c2367" cid="ELEM052" name="checkSommonCard" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p4066d163c6ba43958540b197efab2d6f" name="card" type="Card" type-id="Card" />
+                </parameters>
+              </operation>
+              <operation id="oe3ec42a0b9e94a2590ce77c00855739a952" cid="ELEM053" name="checkAtributeCard" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p6144ee11a5e64eda9ba40881710e00cb" name="card" type="Card" type-id="Card" />
+                </parameters>
+              </operation>
+              <operation id="oa9ef01eb37c648e2826db907bd0b4b8f16" cid="ELEM056" name="set" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="oe66442d460f34197befc36eb44af72d2234" cid="ELEM057" name="setOpponent" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o93e1a20d0e7d4a0390edb93af83e0cc115" cid="ELEM058" name="checkSetCard" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pbd7bb20dc6c04ea78f6b0120c667c331" name="card" type="Card" type-id="Card" />
+                </parameters>
+              </operation>
+              <operation id="o5a035f19a08243ce9c229f25485a09ac374" cid="ELEM065" name="flipSommon" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="odf7fe1c14b1240579c212034cf3788c6460" cid="ELEM066" name="flipSommonOpoonent" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="of9fbc20bd47b4c2ea3c323e8c142f45b960" cid="ELEM067" name="attack" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="of8f58d93f849458e9aa5dd5534def475407" cid="ELEM068" name="attackOpponent" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+            </operations>
+          </item>
+        </abstract-items>
+        <layer name="Default" visible="true" enabled="true" locked="false">
+          <item id="di965735210792987078" iid="df90089913484fbd8f6e36fce077ddec" creation-date="04/15/2021 15:22:32" order-index="0" type="entity">
+            <layout ax="65" ay="47" awidth="365" aheight="160" x="65" y="47" width="365" height="160" />
+            <class />
+          </item>
+          <item id="di155241474384660001" iid="ef2d0a6ec6ff4c81a1e5135a8ae91de2" creation-date="04/15/2021 15:52:05" order-index="1" type="entity">
+            <layout ax="1022" ay="41" awidth="525" aheight="765" x="1022" y="41" width="525" height="765" />
+            <class />
+          </item>
+          <item id="di135657292316723001" iid="4eebded2eeea414480808690b0c0b546" creation-date="04/16/2021 11:35:33" order-index="2" type="entity">
+            <layout ax="478" ay="47" awidth="496" aheight="443" x="478" y="47" width="496" height="443" />
+            <class />
+          </item>
+        </layer>
+      </diagram>
+    </model>
+  </models>
+  <documents />
+  <document-templates />
+</sim-project>
