@@ -1,0 +1,1432 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<sim-project version="10.3" multi-file="no">
+  <meta>
+    <name>apUML</name>
+    <authors> </authors>
+    <description />
+  </meta>
+  <counters models="1">
+    <entity-names>
+      <counter>
+        <item-type type-id="class" type="UmlClass" />
+        <value>13</value>
+      </counter>
+    </entity-names>
+    <entity-ids>
+      <counter>
+        <item-type type-id="class" type="UmlClass" />
+        <value>14</value>
+      </counter>
+      <counter>
+        <item-type type-id="relationship" type="UmlAssociation" />
+        <value>15</value>
+      </counter>
+      <counter>
+        <item-type type-id="comment" type="UmlComment" />
+        <value>2</value>
+      </counter>
+      <counter>
+        <item-type type-id="" type="AbstractElementGroup" />
+        <value>172</value>
+      </counter>
+    </entity-ids>
+    <diagrams>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.Diagrams.UmlDiagrams.UmlClassDiagram</type>
+        <value>5</value>
+      </counter>
+    </diagrams>
+    <fields>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.DiagramItems.Fields.AttributeField</type>
+        <value>127</value>
+      </counter>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.DiagramItems.Fields.OperationField</type>
+        <value>128</value>
+      </counter>
+    </fields>
+  </counters>
+  <alias-groups />
+  <management>
+    <persons>
+      <person id="Pe5215af8a35a4338b34a227f90499228">
+        <first-name />
+        <last-name />
+        <role />
+        <e-mail />
+        <phone-number />
+        <description />
+        <color>#00000000</color>
+      </person>
+    </persons>
+    <tasks />
+    <requirements />
+    <issues />
+    <to-dos />
+  </management>
+  <glossary />
+  <types default="UML">
+    <type-sets>
+      <type-set file="UmlTypes.xml" />
+    </type-sets>
+    <custom-types>
+      <type id="ArrayList&lt;Players&gt;" tid="" name="ArrayList&lt;Players&gt;" description="" nullable="false" />
+      <type id="void" tid="" name="void" description="" nullable="false" />
+      <type id="ArrayList&lt;Deck&gt;" tid="" name="ArrayList&lt;Deck&gt;" description="" nullable="false" />
+      <type id="HashMap&lt;Card&gt;" tid="" name="HashMap&lt;Card&gt;" description="" nullable="false" />
+      <type id="Card" tid="" name="Card" description="" nullable="false" />
+      <type id="Deck" tid="" name="Deck" description="" nullable="false" />
+      <type id="Class:di573405116586329522" tid="" name="Player" description="" nullable="false" class-ref="di573405116586329522" />
+      <type id="Class:di544111923460947265" tid="" name="Scoreboard" description="" nullable="false" class-ref="di544111923460947265" />
+      <type id="Matcher" tid="" name="Matcher" description="" nullable="false" />
+      <type id="Class:di388488719589039100" tid="" name="MainMenu" description="" nullable="false" class-ref="di388488719589039100" />
+      <type id="Scanner" tid="" name="Scanner" description="" nullable="false" />
+      <type id="GameDeck" tid="Class:di988447826342627063" name="GameDeck" description="" nullable="false" class-ref="di988447826342627063" />
+      <type id="ArrayList&lt;Card&gt;" tid="" name="ArrayList&lt;Card&gt;" description="" nullable="false" />
+      <type id="Array&lt; Char&gt;" tid="" name="Array&lt; Char&gt;" description="" nullable="false" />
+      <type id="HashMap&lt;Ineger, ArrayList&lt;Card&gt;&gt;" tid="" name="HashMap&lt;Ineger, ArrayList&lt;Card&gt;&gt;" description="" nullable="false" />
+      <type id="&lt;&lt;constructor&gt;&gt;" tid="" name="&lt;&lt;constructor&gt;&gt;" description="" nullable="false" />
+      <type id="&lt;&lt;construcrot&gt;&gt;" tid="" name="&lt;&lt;construcrot&gt;&gt;" description="" nullable="false" />
+      <type id="ArrayList&lt;GameDeck&gt;" tid="" name="ArrayList&lt;GameDeck&gt;" description="" nullable="false" />
+    </custom-types>
+  </types>
+  <filters />
+  <macros />
+  <items>
+    <item id="di171249423900770059" cid="C001" type="class" name="DuelProgramControler" style-class="" visibility="package" change-tracking-state="added" creation-date="04/15/2021 12:12:48">
+      <style class="default" />
+      <attributes>
+        <attribute id="a64d1a60fb32f4c849cccd31d23cfab7d879" cid="ELEM125" name="turn" type="Integer" type-id="Uml.Integer" visibility="private">
+          <style class="default" />
+        </attribute>
+        <attribute id="a682b0611eed5442f914f7136693366ce270" cid="ELEM126" name="gameDecks" type="ArrayList&lt;GameDeck&gt;" type-id="ArrayList&lt;GameDeck&gt;" visibility="private">
+          <style class="default" />
+        </attribute>
+      </attributes>
+      <operations>
+        <operation id="o35232c3ac8fe4eefa4fd9ade0a13e059787" cid="ELEM001" name="run" type="void" type-id="void" visibility="public">
+          <style class="default" />
+          <parameters>
+            <parameter id="p432c24ec051643ba942564005255ecd3" name="scanner" type="Scanner" type-id="Scanner" />
+            <parameter id="p91d599172ed24ed2a061cd0c3b6f9f99" name="firstPlayer" type="Player" type-id="Class:di573405116586329522" />
+            <parameter id="pc5d4046264134aba88777cf2e2429ce5" name="secondPlayer" type="Player" type-id="Class:di573405116586329522" />
+          </parameters>
+        </operation>
+        <operation id="oeb80670d6e53489bafa4fe615c6f9129862" cid="ELEM002" name="whichCommand" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p86184e49ed494fa995e4cb34ddff4b12" name="input" type="String" type-id="Uml.String" />
+            <parameter id="p0fbf34e3eb6c4d9c899b5cc9facb6dac" name="playerDeck" type="GameDeck" type-id="GameDeck" />
+            <parameter id="pb885cc12aeca46c98ab532afe495ddd2" name="enemyDeck" type="GameDeck" type-id="GameDeck" />
+          </parameters>
+        </operation>
+        <operation id="o1987cecd557a4d888221304f2f2eb3d2333" cid="ELEM079" name="setPhase" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p9423c2fcab3f4daba283c1e6f2bcd15f" name="newPhase" type="String" type-id="Uml.String" />
+            <parameter id="pabac2f5bf3544f3a9b838d0729560101" name="playerDeck" type="GameDeck" type-id="GameDeck" />
+          </parameters>
+        </operation>
+        <operation id="o36fa7d4337e3476bb23625801d220c24985" cid="ELEM080" name="addToHand" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p1e5a0b092e004dbfb43cb6470a98c738" name="cardName" type="String" type-id="Uml.String" />
+            <parameter id="pc00d715a9cf94a299ef2d2e0c0ef5750" name="playerDeck" type="GameDeck" type-id="GameDeck" />
+          </parameters>
+        </operation>
+        <operation id="oa3720a219c1f4cba91502a5f15a7960e842" cid="ELEM082" name="stanbyPhase" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p33e77f53999840c9b0112de004842523" name="playerDeck" type="GameDeck" type-id="GameDeck" />
+          </parameters>
+        </operation>
+        <operation id="o98954160ef3545e099fc88799169c8b9434" cid="ELEM083" name="mainPhase1" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="pcd24ec1d315f4abaa6723bc293091f0a" name="playerDeck" type="GameDeck" type-id="GameDeck" />
+          </parameters>
+        </operation>
+        <operation id="ob3ec11e664994490816cee990d1f6952393" cid="ELEM084" name="endPhase" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p71f38074508246f988eac5d74c517a2d" name="playerDeck" type="GameDeck" type-id="GameDeck" />
+          </parameters>
+        </operation>
+        <operation id="oc796213f119c47bd9d7caba9af7db726289" cid="ELEM085" name="sommon" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p0c649d88f91e48028f715ff0ae2bd4b4" name="playerDeck" type="GameDeck" type-id="GameDeck" />
+          </parameters>
+        </operation>
+        <operation id="o26d28a4748954225a86396d1f43b9d0c836" cid="ELEM087" name="checkSommonCard" type="String" type-id="Uml.String" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="pc0f5f66647004d128cb5deb9990854ba" name="card" type="Card" type-id="Card" />
+            <parameter id="p0a9131973ac344ccb45ed46708032ecf" name="playerDeck" type="GameDeck" type-id="GameDeck" />
+          </parameters>
+        </operation>
+        <operation id="o75631899eff04116b25ec57be6c0b458505" cid="ELEM088" name="checkAtributeCard" type="String" type-id="Uml.String" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="pb5783c2618b649558ce5c522e75533d3" name="card" type="Card" type-id="Card" />
+            <parameter id="paa9b9dbff5ac40afb91ab932056c51ba" name="playerDeck" type="GameDeck" type-id="GameDeck" />
+          </parameters>
+        </operation>
+        <operation id="odc745cea326b4c96a02ba1e4b0ee44bf533" cid="ELEM091" name="checkSetCard" type="String" type-id="Uml.String" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p965bd070baac4428ab4685ed05d54e05" name="card" type="Card" type-id="Card" />
+            <parameter id="pc05c157441094b358fbb0647c0c5bb2c" name="playerDeck" type="GameDeck" type-id="GameDeck" />
+          </parameters>
+        </operation>
+        <operation id="odc2903ab73ac406c8f1660c5fea128da810" cid="ELEM092" name="flipSommon" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p552134be4e7840ecb50585c7b959ab82" name="playerDeck" type="GameDeck" type-id="GameDeck" />
+          </parameters>
+        </operation>
+        <operation id="o80e94b8d45d74337af23c114222f7fae326" cid="ELEM003" name="attackCard" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p8089ab9150e64c549b608d37f5e114a9" name="playerDeck" type="GameDeck" type-id="GameDeck" />
+            <parameter id="pdc16457ba69f4c0fadb2722d7c239038" name="enemyDeck" type="GameDeck" type-id="GameDeck" />
+          </parameters>
+        </operation>
+        <operation id="o4d1665805d9943e4a03411725e131634669" cid="ELEM005" name="attackDirect" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p24ec9fceb052461cb4b95fc52244988f" name="playerDeck" type="GameDeck" type-id="GameDeck" />
+            <parameter id="pb4a449e9a5364181b14966c7962a5000" name="enemyDeck" type="GameDeck" type-id="GameDeck" />
+          </parameters>
+        </operation>
+        <operation id="o2d81c658f743497898689778c78a9da8606" cid="ELEM006" name="activateEffect" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p735c8cc308934493a545c2e9d2130f6b" name="playerDeck" type="GameDeck" type-id="GameDeck" />
+          </parameters>
+        </operation>
+        <operation id="ob016cfe1c7dd4e4392d5d48ee2f8883f757" cid="ELEM007" name="set" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="peb4a7c9be58d44d3be1bda30ff12cbbe" name="playerDeck" type="GameDeck" type-id="GameDeck" />
+          </parameters>
+        </operation>
+        <operation id="o1bafcc53775e436898ef958703db53ab166" cid="ELEM008" name="showGraveyard" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p8b757183fabf40f498ef30e1d443a542" name="playerDeck" type="GameDeck" type-id="GameDeck" />
+            <parameter id="pe982b7a470f64c9b859749355f2806b2" name="scanner" type="Scanner" type-id="Scanner" />
+          </parameters>
+        </operation>
+        <operation id="o1fe5ca953c5d4b0c8b8f4ff20c406ff2574" cid="ELEM009" name="cardShow" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p7e7058130d134562aeb08301b1ce9271" name="playerDeck" type="GameDeck" type-id="GameDeck" />
+            <parameter id="p4ee2295c548341cb86c487c853871e48" name="enemyDeck" type="GameDeck" type-id="GameDeck" />
+          </parameters>
+        </operation>
+        <operation id="o3895b259dac44f93933c86584c1ebed1325" cid="ELEM010" name="surrender" type="void" type-id="void" visibility="private">
+          <style class="default" />
+        </operation>
+        <operation id="o5d2a493cdf8c46c8b9188e5a4b826527565" cid="ELEM011" name="increaseLP" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p1175d62eac4846299ad31c67d2dffed3" name="playerDeck" type="GameDeck" type-id="GameDeck" />
+          </parameters>
+        </operation>
+        <operation id="of04bce676e1143e48ef7aaf51592b396646" cid="ELEM012" name="duelSetWinner" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p9a94e2acd3f64a1aa2150b385c3b8f35" name="playerDeck" type="GameDeck" type-id="GameDeck" />
+          </parameters>
+        </operation>
+        <operation id="odb18c1a98b674b44833c85ebb5154fa8333" cid="ELEM127" name="changeTurn" type="Integer" type-id="Uml.Integer" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p86c2a45122f340b6a4950d0c4cfe5b25" name="turn" type="Integer" type-id="Uml.Integer" />
+          </parameters>
+        </operation>
+      </operations>
+    </item>
+  </items>
+  <models>
+    <model id="p1dffaf20917f441dbcb060f2b757fac3_839737643" name="Model 1" namespace="" order-index="1" expanded="true">
+      <meta>
+        <authors>
+          <author> </author>
+        </authors>
+        <description />
+        <creation-date>04/15/2021 11:17:53</creation-date>
+        <change-date>01/01/0001 00:00:00</change-date>
+        <revision-count>0</revision-count>
+        <version />
+      </meta>
+      <abstract-items />
+      <sub-models />
+      <diagram type="uml-class" id="pc223f6724fdc48c3a946cffddb122ba9_835396811" name="ClassDiagram3" order-index="3" overview-order-index="1" show-id="false" show-name="true" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false" view-location="-350,-37" zoom="0.5">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="solid" />
+        </style>
+        <meta>
+          <authors>
+            <author> </author>
+          </authors>
+          <description />
+          <creation-date>04/15/2021 11:18:16</creation-date>
+          <change-date>04/16/2021 16:34:44</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <abstract-items>
+          <item id="di573405116586329522" cid="C001" type="class" name="Player" style-class="" visibility="package" change-tracking-state="added" creator="Pe5215af8a35a4338b34a227f90499228" creation-date="04/15/2021 11:18:39">
+            <style class="default" />
+            <attributes>
+              <attribute id="a2d207de1f79e4008a92a9a3e5bd8b98558" cid="ELEM001" name="players" type="ArrayList&lt;Players&gt;" type-id="ArrayList&lt;Players&gt;" visibility="private">
+                <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-color="#32000000" wrap-name-text="true" wrap-other-text="true" glow-color="#FFFFFFFF" accuracy="0.9">
+                  <text-style type="name" use-defaults="false" color="#FF000000" font="Verdana;9;U" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+                  <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="text" use-defaults="true" color="#FF000000" font="Verdana;9;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+                  <text-style type="tagged-value" use-defaults="true" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="stereotype" use-defaults="true" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                </style>
+              </attribute>
+              <attribute id="aa16a521a1ce544a5ada603d0b0fe2582452" cid="ELEM002" name="username" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a8f86a6e0f6de4b08920cf3f08120aaea901" cid="ELEM003" name="password" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a34e0d51065404523b137cdbb5ca6be47236" cid="ELEM004" name="nickname" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="ac1a797ad403d469c82fd04e5b21e6043573" cid="ELEM005" name="score" type="Integer" type-id="Uml.Integer" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a8fe239f125b34615a01a76918f362d75341" cid="ELEM006" name="cards" type="HashMap&lt;Card&gt;" type-id="HashMap&lt;Card&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a8bfe2a174dae4248a71fca3ef4f465e7948" cid="ELEM007" name="decks" type="ArrayList&lt;Deck&gt;" type-id="ArrayList&lt;Deck&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a8ed06f5bfcc14f22bbed7827d557a842395" cid="ELEM050" name="money" type="Integer" type-id="Uml.Integer" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a8e44a7d2d7894d6b8423f79f8763f58d326" cid="ELEM064" name="activeDeck" type="Deck" type-id="Deck" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="o7d099e4a66844db8831c1d2011216ebf604" cid="ELEM008" name="getScore" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o15a979055da44c8497c3d9dbc0409bd2268" cid="ELEM009" name="getUsername" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o864aeb40eedf474a82ca8970361e00cb52" cid="ELEM010" name="isPasswordCurrect" type="Boolean" type-id="Uml.Boolean" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pf51d2db61f1149d29c2dd0692eb5c579" name="username" type="String" type-id="Uml.String" />
+                  <parameter id="p7d76b24fa9ac479cbc5a2e55d36f350c" name="password" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o5540f3f3ac1242b7bd0a200659bf22fc436" cid="ELEM011" name="getNickname" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o97dee11bde1849059dfbb465e7b5146d164" cid="ELEM012" name="addCard" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pebe91a668d91439e8151c8e8393f8944" name="card" type="Card" type-id="Card" />
+                </parameters>
+              </operation>
+              <operation id="oa99f4045249b41c7bcf27876a084ce3d804" cid="ELEM013" name="removeCard" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p9efc6b8a4650471f9ff1fff9befd6e85" name="card" type="Card" type-id="Card" />
+                </parameters>
+              </operation>
+              <operation id="o4df56d558a044012aecfb558f0a6a5ad307" cid="ELEM014" name="getCard" type="Card" type-id="Card" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p334e31b5245c4ebba52fcb28f0d36dad" name="cardName" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o3cdb7d100e1c4191b0e0825eb374d1c6300" cid="ELEM015" name="getDeck" type="Deck" type-id="Deck" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p3fd3fab91b9b4339a1be398c0bc2c71c" name="deckName" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o4de89e4ec7b44fe5a10ca04817a538ca964" cid="ELEM016" name="addDeck" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p8820cdc3a2ba4a1085dddb56a000c8f5" name="deck" type="Deck" type-id="Deck" />
+                </parameters>
+              </operation>
+              <operation id="o33ec1e2567de419bb9f3f1e3c7726f44643" cid="ELEM017" name="removeDeck" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p8c1877d7f6184510adb60c572f108c3c" name="deck" type="Deck" type-id="Deck" />
+                </parameters>
+              </operation>
+              <operation id="o05770a4e15784570b499153f3658999e12" cid="ELEM018" name="getPlayerByUsername" type="Player" type-id="Class:di573405116586329522" visibility="public">
+                <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-color="#32000000" wrap-name-text="true" wrap-other-text="true" glow-color="#FFFFFFFF" accuracy="0.9">
+                  <text-style type="name" use-defaults="false" color="#FF000000" font="Verdana;9;U" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+                  <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="text" use-defaults="true" color="#FF000000" font="Verdana;9;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+                  <text-style type="tagged-value" use-defaults="true" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="stereotype" use-defaults="true" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                </style>
+                <parameters>
+                  <parameter id="p33bc3c3b81b8436fba24ba9f8816dbee" name="username" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o0b6991ddbba84478a04a11fa389abc60217" cid="ELEM051" name="increaseMoney" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pb95894cec95d4b42b38de6966df53824" name="money" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o88d9fd00a443432a81bc337bd331308b609" cid="ELEM052" name="decreaseMoney" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="ped5c0de974d04eb6a0861e9ebfb7fcc8" name="money" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o05f2bb191e9d47e99759159ebb38440a831" cid="ELEM065" name="getDeckByName" type="Deck" type-id="Deck" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pff15560b32bc4db68ea9f37ff094a434" name="deckName" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="oe31716931c5e468387c11064e044878d523" cid="ELEM071" name="getMoney" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o83fcc77e47eb4999910faf0abbe06c3a90" cid="ELEM117" name="Player" type="&lt;&lt;construcrot&gt;&gt;" type-id="&lt;&lt;construcrot&gt;&gt;" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pdfe5efb981c543e682c40709d28614fa" name="username" type="String" type-id="Uml.String" />
+                  <parameter id="p23d93ee70d564fb199264ad29ec2cbf0" name="password" type="String" type-id="Uml.String" />
+                  <parameter id="p0b1ad3e45eee4311b2fc2663707e0f50" name="nickname" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o8dd0b19f52c64095887f180781585c95485" cid="ELEM119" name="setNickName" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p17d665b2c5f348fe94881257318e31d7" name="nickname" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+            </operations>
+          </item>
+          <item id="di388488719589039100" cid="C005" type="class" name="MainMenu" style-class="" visibility="package" change-tracking-state="added" creator="Pe5215af8a35a4338b34a227f90499228" creation-date="04/15/2021 12:52:15">
+            <style class="default" />
+            <attributes>
+              <attribute id="ada5b7af55e2b4062a327a03b824c0c039" cid="ELEM024" name="loggedInUsername" type="Player" type-id="Class:di573405116586329522" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="ocae99a6f5cec4a51ba99457d83a2767a144" cid="ELEM025" name="run" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="oee344898f5f646cc942e820041df22b5864" cid="ELEM026" name="logout" type="void" type-id="void" visibility="private">
+                <style class="default" />
+              </operation>
+              <operation id="o14240f0c6e3e4c88be8e0bdb5201f92a591" cid="ELEM027" name="goToMenu" type="void" type-id="void" visibility="private">
+                <style class="default" />
+              </operation>
+            </operations>
+          </item>
+          <item id="di530158797256336006" cid="C004" type="class" name="LoginMenu" style-class="" visibility="package" change-tracking-state="added" creator="Pe5215af8a35a4338b34a227f90499228" creation-date="04/15/2021 11:51:41">
+            <style class="default" />
+            <attributes>
+              <attribute id="aff29a260f9754b74b5010f2ff851bfc9492" cid="ELEM020" name="loggedInUsername" type="Player" type-id="Class:di573405116586329522" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="o0c1b16a6a5c048abb6f7184e77b9b980924" cid="ELEM021" name="run" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="oc2c94769c9d549478c0f87e5e6d43845907" cid="ELEM022" name="createPlayer" type="void" type-id="void" visibility="private">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pc442638662074e24871fe4eee402b071" name="matcher" type="Matcher" type-id="Matcher" />
+                </parameters>
+              </operation>
+              <operation id="oc1f5076f9d4a4cb88399d937940bab33267" cid="ELEM023" name="login" type="void" type-id="void" visibility="private">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pefd15fd97e0e4abdaae32972fe0b83d4" name="matcher" type="Matcher" type-id="Matcher" />
+                </parameters>
+              </operation>
+            </operations>
+          </item>
+          <item id="di607742256402408042" cid="REL001" type="relationship" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe5215af8a35a4338b34a227f90499228" creation-date="04/15/2021 13:35:58" from="di530158797256336006" to="di388488719589039100">
+            <style class="default" />
+            <relation from="di530158797256336006" to="di388488719589039100">
+              <start-role id="" name="" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di496103753198646880" cid="REL002" type="relationship" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe5215af8a35a4338b34a227f90499228" creation-date="04/15/2021 13:36:19" from="di530158797256336006" to="di573405116586329522">
+            <style class="default" />
+            <relation from="di530158797256336006" to="di573405116586329522">
+              <start-role id="" name="" navigability="" association-type="composition" visibility="private" />
+              <end-role id="" name="" navigability="" association-type="association" visibility="private" attribute-ref="a8f86a6e0f6de4b08920cf3f08120aaea901" />
+            </relation>
+          </item>
+          <item id="di544111923460947265" cid="C006" type="class" name="Scoreboard" style-class="" visibility="package" change-tracking-state="added" creator="Pe5215af8a35a4338b34a227f90499228" creation-date="04/15/2021 13:37:25">
+            <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-visible="true" shadow-color="#32000000" gloss-effect="true" wrap-name-text="true" wrap-other-text="true" padding="1" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+              <text-style type="name" use-defaults="false" color="#FF000000" font="Verdana;10;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+              <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+              <text-style type="text" use-defaults="false" color="#FF000000" font="Verdana;9;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+              <text-style type="tagged-value" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+              <text-style type="stereotype" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+              <background type="forward-diagonal" color="#FFFFFFFF" color2="#FFEBEBEB" />
+              <border color="#FF000000" width="1" dash-style="Solid" />
+              <label-connector color="#80000000" width="1" dash-style="Dash" />
+              <alternate-styles>
+                <alternate-style style-name="Alternate" shadow-type="smooth" shadow-offset="1,1" shadow-color="#32000000" gloss-effect="true" wrap-name-text="true" padding="1" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+                  <text-style type="name" use-defaults="false" color="#FF000000" font="Verdana;10;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="text" use-defaults="false" color="#FF000000" font="Verdana;9;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+                  <text-style type="tagged-value" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="stereotype" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <background type="vertical-linear" color="#FF1E90FF" color2="#FF87CEFA" />
+                  <border color="#FF00008B" width="1" dash-style="Solid" />
+                  <label-connector color="#FF000000" width="1" dash-style="Solid" />
+                </alternate-style>
+              </alternate-styles>
+            </style>
+            <attributes>
+              <attribute id="a52d5b45dabf741798958f84428786292415" cid="ELEM028" name="instance" type="Scoreboard" type-id="Class:di544111923460947265" visibility="public">
+                <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-color="#32000000" wrap-name-text="true" wrap-other-text="true" glow-color="#FFFFFFFF" accuracy="0.9">
+                  <text-style type="name" use-defaults="false" color="#FF000000" font="Verdana;9;U" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+                  <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="text" use-defaults="true" color="#FF000000" font="Verdana;9;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+                  <text-style type="tagged-value" use-defaults="true" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="stereotype" use-defaults="true" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                </style>
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="o7bfd01ff1d6b43108f8740128b1e6246167" cid="ELEM029" name="getInstance" type="Scoreboard" type-id="Class:di544111923460947265" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o0aae088ba7d14aedaf8793b39dbea999159" cid="ELEM030" name="showBoard" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="ocb2a69cbbb2f458fb92988a8f0b40f5214" cid="ELEM031" name="run" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+            </operations>
+          </item>
+          <item id="di630205786752825871" cid="REL003" type="relationship" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe5215af8a35a4338b34a227f90499228" creation-date="04/15/2021 13:39:35" from="di388488719589039100" to="di544111923460947265">
+            <style class="default" />
+            <relation from="di388488719589039100" to="di544111923460947265">
+              <start-role id="" name="" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di293640901541144558" cid="C007" type="class" name="Profile" style-class="" visibility="package" change-tracking-state="added" creator="Pe5215af8a35a4338b34a227f90499228" creation-date="04/15/2021 13:39:45">
+            <style class="default" />
+            <attributes>
+              <attribute id="a485698d50de24cce924fc130ba7356fe599" cid="ELEM032" name="loggedInUser" type="Player" type-id="Class:di573405116586329522" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="oe622970615a844f3a2251b94916e95be454" cid="ELEM034" name="run" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o80b253f628834773b7336bbbecb2af22806" cid="ELEM035" name="changeNickname" type="void" type-id="void" visibility="private">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p1472fa05336c460cb3fa8cd0abfe47a7" name="matcher" type="Matcher" type-id="Matcher" />
+                </parameters>
+              </operation>
+              <operation id="o8ad02e52c2f5430a851d677cfe3375c639" cid="ELEM036" name="changePassword" type="void" type-id="void" visibility="private">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p5950d77fe4de4870b9f76ef725917dfc" name="matcher" type="Matcher" type-id="Matcher" />
+                </parameters>
+              </operation>
+            </operations>
+          </item>
+          <item id="di969835426827274284" cid="REL004" type="relationship" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe5215af8a35a4338b34a227f90499228" creation-date="04/15/2021 13:48:36" from="di388488719589039100" to="di293640901541144558">
+            <style class="default" />
+            <relation from="di388488719589039100" to="di293640901541144558">
+              <start-role id="" name="" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di191707132644289046" cid="C008" type="class" name="DeckMenu" style-class="" visibility="package" change-tracking-state="added" creator="Pe5215af8a35a4338b34a227f90499228" creation-date="04/15/2021 13:48:50">
+            <style class="default" />
+            <attributes>
+              <attribute id="a73557eabe0ec49b0893d45d28eec7aea213" cid="ELEM037" name="loggedInUser" type="Player" type-id="Class:di573405116586329522" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="oc16d970275974a5aaed6797b932bc4c0590" cid="ELEM038" name="run" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o67cb0b2361b54f049113ae66e9320114110" cid="ELEM039" name="createDeck" type="void" type-id="void" visibility="private">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p96104a375dde43d1acf38ca73e431d25" name="matcher" type="Matcher" type-id="Matcher" />
+                </parameters>
+              </operation>
+              <operation id="o104b2a4a57f9436c9c5e346b77053a00309" cid="ELEM040" name="deleteDeck" type="void" type-id="void" visibility="private">
+                <style class="default" />
+                <parameters>
+                  <parameter id="paf9141d5e5dc4b739ea332cdf392d6ce" name="matcher" type="Matcher" type-id="Matcher" />
+                </parameters>
+              </operation>
+              <operation id="o27dd179b8baf4e8b8b941f9c6efdff12205" cid="ELEM041" name="addCardToDeck" type="void" type-id="void" visibility="private">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p36bc12aef67c4def9d22e9873c44276d" name="matcher" type="Matcher" type-id="Matcher" />
+                </parameters>
+              </operation>
+              <operation id="o1db325802e4e42f8896c6004c464144c600" cid="ELEM042" name="removeCardFromDeck" type="void" type-id="void" visibility="private">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p0dc8b5a179a14e11885ddf9d4cab7085" name="matcher" type="MainMenu" type-id="Class:di388488719589039100" />
+                </parameters>
+              </operation>
+              <operation id="o5407733a0aca4d9aab0bd92e70552d1a983" cid="ELEM043" name="showAllDecks" type="void" type-id="void" visibility="private">
+                <style class="default" />
+              </operation>
+              <operation id="o45b1ada068dc4db3a9b7bdb828bf147a702" cid="ELEM044" name="showDeck" type="void" type-id="void" visibility="private">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p932f051fcafb40d59ec8b0137d2abfa8" name="matcher" type="Matcher" type-id="Matcher" />
+                </parameters>
+              </operation>
+              <operation id="o447d84cc08e04bd391c6230288f8b30a598" cid="ELEM045" name="showCards" type="" type-id="" visibility="private">
+                <style class="default" />
+              </operation>
+            </operations>
+          </item>
+          <item id="di224866297897966111" cid="REL005" type="relationship" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe5215af8a35a4338b34a227f90499228" creation-date="04/15/2021 13:59:58" from="di388488719589039100" to="di191707132644289046">
+            <style class="default" />
+            <relation from="di388488719589039100" to="di191707132644289046">
+              <start-role id="" name="" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di157240786327675495" cid="C009" type="class" name="Shop" style-class="" visibility="package" change-tracking-state="added" creator="Pe5215af8a35a4338b34a227f90499228" creation-date="04/15/2021 14:00:05">
+            <style class="default" />
+            <attributes>
+              <attribute id="a508e7ca14240499caa815979306f694d646" cid="ELEM046" name="loggedInUser" type="Player" type-id="Class:di573405116586329522" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="o42044c09c60e4379807a3c2261075807942" cid="ELEM047" name="run" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o03ee283b264348fd89c3a2f8bf8989da877" cid="ELEM048" name="showAllCards" type="void" type-id="void" visibility="private">
+                <style class="default" />
+              </operation>
+              <operation id="o194d881ed6ff4454b03da1f246679c1729" cid="ELEM049" name="buyCard" type="void" type-id="void" visibility="private">
+                <style class="default" />
+                <parameters>
+                  <parameter id="peb8d3ea6915242439080452e29d7f5fd" name="matcher" type="Matcher" type-id="Matcher" />
+                </parameters>
+              </operation>
+            </operations>
+          </item>
+          <item id="di174631531792283842" cid="REL006" type="relationship" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe5215af8a35a4338b34a227f90499228" creation-date="04/15/2021 14:02:16" from="di388488719589039100" to="di157240786327675495">
+            <style class="default" />
+            <relation from="di388488719589039100" to="di157240786327675495">
+              <start-role id="" name="" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di541216165486714462" cid="C010" type="class" name="Deck" style-class="" visibility="package" change-tracking-state="added" creation-date="04/16/2021 13:00:54">
+            <style class="default" />
+            <attributes>
+              <attribute id="a982ffb0f6aea4d1fa753480d86aa08dd191" cid="ELEM054" name="mainDeck" type="HashMap&lt;Card&gt;" type-id="HashMap&lt;Card&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="acd6ebb5e71c74a4897dfe267cc20663c270" cid="ELEM055" name="sideDeck" type="HashMap&lt;Card&gt;" type-id="HashMap&lt;Card&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a23ebd4694a554662adde71b57025fad8734" cid="ELEM060" name="deckIsValid" type="Boolean" type-id="Uml.Boolean" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="abfc6e8b5941c4b46840e40796692e09b24" cid="ELEM062" name="deckName" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="ob71d20ccd67249f3a6c4a407d9131579727" cid="ELEM056" name="addCardToMain" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p6c49bdd3088540b3aeaebb15f206461c" name="card" type="Card" type-id="Card" />
+                </parameters>
+              </operation>
+              <operation id="oa6ad0cb91a3e430cb890edd246c6cb36575" cid="ELEM057" name="addCardToSide" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pfc36240060ea46d5952770a105710cb2" name="card" type="Card" type-id="Card" />
+                </parameters>
+              </operation>
+              <operation id="oc6a13a89376248f899a1d220a8c1605d38" cid="ELEM058" name="removeCardFromMain" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p4fa40886a5f847b69d59d8911ecc93ba" name="card" type="Card" type-id="Card" />
+                </parameters>
+              </operation>
+              <operation id="oc62b7ac86575459e97291a89fd02018d807" cid="ELEM059" name="removeCardFromSide" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pb4aa61e706a349cf85625497f0e1a55c" name="card" type="Card" type-id="Card" />
+                </parameters>
+              </operation>
+              <operation id="o81d8e61f5ed548868cc869e2ec003213567" cid="ELEM061" name="isDeckValid" type="Boolean" type-id="Uml.Boolean" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o0dcaa8e31951477397b9ac040dc2cb6d919" cid="ELEM063" name="getDeckName" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o99a0638fab004e7b9bd0aae6509a18ea111" cid="ELEM066" name="isMainFull" type="Boolean" type-id="Uml.Boolean" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o512b31e640e747d489a23cb658612fca926" cid="ELEM067" name="isSideFull" type="Boolean" type-id="Uml.Boolean" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o2624e55eae324fc5aff1dee755142024774" cid="ELEM068" name="isThereThreeCards" type="Boolean" type-id="Uml.Boolean" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p94127ed272c04742ad3fb6a15a050275" name="card" type="Card" type-id="Card" />
+                </parameters>
+              </operation>
+              <operation id="oa92848e571cc49d2bfd6637dcb571b6b174" cid="ELEM070" name="toString" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="oab90503300f54691b9dc33b0f7dd2f5c926" cid="ELEM118" name="Deck" type="&lt;&lt;construcrot&gt;&gt;" type-id="&lt;&lt;construcrot&gt;&gt;" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p62458dba6e48413ab560ef6310b7658b" name="name" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+            </operations>
+          </item>
+          <item id="di985865106351554823" cid="REL007" type="relationship" name="" style-class="" visibility="package" change-tracking-state="added" creation-date="04/16/2021 13:09:48" from="di573405116586329522" to="di541216165486714462">
+            <style class="default" />
+            <relation from="di573405116586329522" to="di541216165486714462">
+              <start-role id="" name="" navigability="" association-type="composition" visibility="private" />
+              <end-role id="" name="" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di843208232560519271" cid="REL009" type="relationship" name="" style-class="" visibility="package" change-tracking-state="added" creation-date="04/16/2021 15:16:31" from="di388488719589039100" to="di324793262314236753">
+            <style class="default" />
+            <relation from="di388488719589039100" to="di324793262314236753">
+              <start-role id="" name="" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di324793262314236753" cid="C012" type="class" name="PlayMenu" style-class="" visibility="package" change-tracking-state="added" creation-date="04/16/2021 15:16:11">
+            <style class="default" />
+            <attributes>
+              <attribute id="a9cc6221c968845e28bb1bb737410a507870" cid="ELEM072" name="loggedInUser" type="Player" type-id="Class:di573405116586329522" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="o0c5c753cd321494aa39968a8b910fbf6130" cid="ELEM073" name="run" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o64448e0ca2c74f659de8401b12b31d98409" cid="ELEM074" name="newDuel" type="void" type-id="void" visibility="private">
+                <style class="default" />
+              </operation>
+            </operations>
+          </item>
+          <item id="di303516733466673194" cid="C006" type="class" name="Card" style-class="" visibility="package" change-tracking-state="added" creation-date="04/15/2021 12:43:01">
+            <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-visible="true" shadow-color="#32000000" gloss-effect="true" wrap-name-text="true" wrap-other-text="true" padding="1" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+              <text-style type="name" use-defaults="false" color="#FF000000" font="Verdana;10;BU" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+              <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+              <text-style type="text" use-defaults="false" color="#FF000000" font="Verdana;9;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+              <text-style type="tagged-value" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+              <text-style type="stereotype" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+              <background type="forward-diagonal" color="#FFFFFFFF" color2="#FFEBEBEB" />
+              <border color="#FF000000" width="1" dash-style="Solid" />
+              <label-connector color="#80000000" width="1" dash-style="Dash" />
+              <alternate-styles>
+                <alternate-style style-name="Alternate" shadow-type="smooth" shadow-offset="1,1" shadow-color="#32000000" gloss-effect="true" wrap-name-text="true" padding="1" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+                  <text-style type="name" use-defaults="false" color="#FF000000" font="Verdana;10;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="text" use-defaults="false" color="#FF000000" font="Verdana;9;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+                  <text-style type="tagged-value" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="stereotype" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <background type="vertical-linear" color="#FF1E90FF" color2="#FF87CEFA" />
+                  <border color="#FF00008B" width="1" dash-style="Solid" />
+                  <label-connector color="#FF000000" width="1" dash-style="Solid" />
+                </alternate-style>
+              </alternate-styles>
+            </style>
+            <attributes>
+              <attribute id="aa3f4251d3a5a405ea9c634bd3a0bb27f901" cid="ELEM021" name="cards" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="private">
+                <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-color="#32000000" wrap-name-text="true" wrap-other-text="true" glow-color="#FFFFFFFF" accuracy="0.9">
+                  <text-style type="name" use-defaults="false" color="#FF000000" font="Verdana;9;U" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+                  <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="text" use-defaults="true" color="#FF000000" font="Verdana;9;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+                  <text-style type="tagged-value" use-defaults="true" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="stereotype" use-defaults="true" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                </style>
+              </attribute>
+              <attribute id="a67438356b7f449b79bb4aeddd38d57e0557" cid="ELEM018" name="name" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a7438df8021924016af5e1537b2cfdf55236" cid="ELEM019" name="description" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="ae4cfb29f30f64cd4bd78423fc1ca01d3795" cid="ELEM079" name="type" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a87423a26da334bb8af44ee5e730a66db368" cid="ELEM097" name="cardNumber" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="o05857058180746f59e0061b1029de838698" cid="ELEM031" name="getCardByName" type="Card" type-id="Card" visibility="public">
+                <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-color="#32000000" wrap-name-text="true" wrap-other-text="true" glow-color="#FFFFFFFF" accuracy="0.9">
+                  <text-style type="name" use-defaults="false" color="#FF000000" font="Verdana;9;U" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+                  <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="text" use-defaults="true" color="#FF000000" font="Verdana;9;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+                  <text-style type="tagged-value" use-defaults="true" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="stereotype" use-defaults="true" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                </style>
+                <parameters>
+                  <parameter id="pc07b09b3731246d49332ef9a58ad6bfe" name="name" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o90c5d371bce24aefbf0e87a0545e0d62459" cid="ELEM062" name="serCardDescription" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p2c3a2161040f43b1ac8a76e08e72c8e3" name="String decsription" type="" type-id="" />
+                </parameters>
+              </operation>
+              <operation id="odccef435f8454de29dc5ef0660b4383e787" cid="ELEM045" name="getName" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o4ce96bc44ba84028b4b42fad0c96ff38811" cid="ELEM048" name="getDescription" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o75de5c997c14437d9eeb70f38d4c1255918" cid="ELEM120" name="Card" type="&lt;&lt;construcrot&gt;&gt;" type-id="&lt;&lt;construcrot&gt;&gt;" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p4a3d8a48ae3142ad905d73a36844b0ea" name="name" type="String" type-id="Uml.String" />
+                  <parameter id="pf9719141ea6b41d9b8470ea7c9c6bc80" name="description" type="String" type-id="Uml.String" />
+                  <parameter id="p6a3a33bf31124425b6bc846fa5e7b673" name="type" type="String" type-id="Uml.String" />
+                  <parameter id="p8a7d1d20c0424fa09ff0c059add0c115" name="cardNumber" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+            </operations>
+          </item>
+          <item id="di630294434463946837" cid="C008" type="class" name="Monster" style-class="" visibility="package" change-tracking-state="added" creation-date="04/16/2021 15:28:03">
+            <style class="default" />
+            <attributes>
+              <attribute id="afe8bb70b6ff94a08b00b4d2422b1779b944" cid="ELEM080" name="attackPoint" type="Integer" type-id="Uml.Integer" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a7b5beca029cd41c88f77c16a3c89e28e88" cid="ELEM081" name="defensePoint" type="" type-id="" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a298928cbd48f439aaebae9c94992a00196" cid="ELEM082" name="level" type="Integer" type-id="Uml.Integer" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a5d1281727af347bda5b06b16113f9b67720" cid="ELEM083" name="attribue" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a00f3e58c83bd4064867e258907245e60320" cid="ELEM084" name="type" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="oe44489f073fa4f788e3c75551134b2b941" cid="ELEM085" name="getAttackPonit" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o6729995aacd340ef8a8b425ab609fda5304" cid="ELEM086" name="setAttackPonit" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p400c0a721db94f7980aa7d27b4d53099" name="attackpoint" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o22514848246c4060842b7a547a8f4375720" cid="ELEM087" name="getDefensePonit" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="ode2db6cb1e0245568478abba3a450d5492" cid="ELEM088" name="setDefensePoint" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p91645348e2cb433597e57b28dfae85cd" name="defensePoint" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="oe589ba135e374070a3daed29ab9c2092537" cid="ELEM089" name="getLevel" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="obb51ed4f78394868ad720cb626d6a740645" cid="ELEM090" name="setLevel" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pf9abab3527a646ceb4e3b6dbea034ba3" name="level" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o1fc1dac150ed4e87a60106dc42d3c2f4167" cid="ELEM091" name="getAttribute" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o372b6ef486cb40a582a9ff9dd5c24786766" cid="ELEM092" name="setAttribute" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p66b5e2586b7847b1979e06c9cdd5e247" name="attribute" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o24a96668e0d74f789f1674f035cbef72728" cid="ELEM093" name="getMonsterType" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="ofc0340b8484e4a77bffc88303c4bea48875" cid="ELEM094" name="setMonsterType" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p050fac0014dc4deca20951dc17c8f473" name="type" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="od140c17f5fbd439ab84ff6d895611238872" cid="ELEM095" name="getName" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o3bb69b1142bb4fdcb2e0bbf21fe8c98c859" cid="ELEM096" name="getDescription" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o24d985bf0455406083d5eda018d4d3d3103" cid="ELEM098" name="getCardNumber" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="oa0dd84676e06437ba2d85168b4888fb4245" cid="ELEM121" name="Monster" type="&lt;&lt;construcrot&gt;&gt;" type-id="&lt;&lt;construcrot&gt;&gt;" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p78aff09efe1843a6863c545c2ece2e43" name="name" type="String" type-id="Uml.String" />
+                  <parameter id="p8a9e1006304048799a22a807c3f2f6fd" name="description" type="String" type-id="Uml.String" />
+                  <parameter id="p8066e60a4a5148cb95d44f66cadf1740" name="type" type="String" type-id="Uml.String" />
+                  <parameter id="pab6be1a25ea44599830c7968f1f920ad" name="cardNumber" type="String" type-id="Uml.String" />
+                  <parameter id="p1323d1a9c0f4446999083c1504179fb8" name="attackPoint" type="Integer" type-id="Uml.Integer" />
+                  <parameter id="pca9b0795f29945218f62d42f98b2eeec" name="defensePoint" type="Integer" type-id="Uml.Integer" />
+                  <parameter id="p5874b7befaf049be92b3710175d3d114" name="level" type="Integer" type-id="Uml.Integer" />
+                  <parameter id="p8fee630650174699b29484ff240ca4a5" name="attribute" type="String" type-id="Uml.String" />
+                  <parameter id="p8066e60a4a5148cb95d44f66cadf1740" name="type" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+            </operations>
+          </item>
+          <item id="di144924873985857128" cid="C009" type="class" name="SpellTrap" style-class="" visibility="package" change-tracking-state="added" creation-date="04/16/2021 15:29:54">
+            <style class="default" />
+            <attributes>
+              <attribute id="acc7d4cf8576848edb6ba6438d7967190231" cid="ELEM100" name="type" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a7a6fc47295b64ff1bb5a0808107b1ffe15" cid="ELEM101" name="icon" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="of8dccf3bfb084a719a5957d8204ca748279" cid="ELEM102" name="getType" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o2d599fc627dc4aafa1c866c48e115976983" cid="ELEM103" name="getIcon" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o791c97e6dcd34a3cb68a64d0650aace5127" cid="ELEM104" name="setType" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p5059814257904acd9d0cfef75239c433" name="type" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o7f60c0ce5eb542e697064666f365dc22844" cid="ELEM105" name="setIcon" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pec93f4daa641450588197b56343ceb83" name="icon" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o8641a56ca6a04adb969fd925f9328941351" cid="ELEM106" name="getName" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o06b121290d354617be3e096e1105ea5f182" cid="ELEM107" name="getDescription" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o061c1b458a4a4c988302864cd28225c8382" cid="ELEM108" name="getCardNumber" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="oda2d0f17d340450aabc16b256492824262" cid="ELEM122" name="NewOperation8" type="" type-id="" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="oba6bec9eb95544dbaa67d3107f95672d989" cid="ELEM123" name="SpellTrap" type="&lt;&lt;construcrot&gt;&gt;" type-id="&lt;&lt;construcrot&gt;&gt;" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p59b0b3799e4f4307963a7617a5f38d53" name="name" type="String" type-id="Uml.String" />
+                  <parameter id="p55443fc3a09945adb44caba04874727b" name="description" type="String" type-id="Uml.String" />
+                  <parameter id="p95f88c414cd2426097edf8cb460a0cbd" name="type" type="String" type-id="Uml.String" />
+                  <parameter id="p79aef0b97aac4a8baca2a666a988783e" name="cardNumber" type="String" type-id="Uml.String" />
+                  <parameter id="p82c954985daf4c5bac8f99c5633274fb" name="type" type="String" type-id="Uml.String" />
+                  <parameter id="pa31d0692fced46bebaa0a5ed396df26b" name="icon" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+            </operations>
+          </item>
+          <item id="di638284790821606515" cid="GNR004" type="generalization" name="" style-class="" visibility="package" change-tracking-state="added" creation-date="04/16/2021 15:30:45" from="di630294434463946837" to="di303516733466673194">
+            <style class="default" />
+          </item>
+          <item id="di579433696978644400" cid="GNR005" type="generalization" name="" style-class="" visibility="package" change-tracking-state="added" creation-date="04/16/2021 15:30:48" from="di144924873985857128" to="di303516733466673194">
+            <style class="default" />
+          </item>
+          <item id="di939180031807584462" cid="REL011" type="relationship" name="" style-class="" visibility="package" change-tracking-state="added" creation-date="04/16/2021 16:03:13" from="di324793262314236753" to="di171249423900770059">
+            <style class="default" />
+            <relation from="di324793262314236753" to="di171249423900770059">
+              <start-role id="" name="" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di140226784361933059" cid="REL010" type="relationship" name="" style-class="" visibility="package" change-tracking-state="added" creation-date="04/16/2021 15:54:19" from="di573405116586329522" to="di303516733466673194">
+            <style class="default" />
+            <relation from="di573405116586329522" to="di303516733466673194">
+              <start-role id="" name="" navigability="" association-type="composition" visibility="private" />
+              <end-role id="" name="" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di988447826342627063" cid="C003" type="class" name="GameDeck" style-class="" visibility="package" change-tracking-state="added" creation-date="04/15/2021 12:37:46">
+            <style class="default" />
+            <attributes>
+              <attribute id="a67e3e34e68974ab886a8140a1e3ae009542" cid="ELEM004" name="attackPositionCards" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a45ad0ec8ebf4492e90288e007dc1c143595" cid="ELEM100" name="defencePositionCards" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a24c5d86d1063407d921fa31d6f8f5866627" cid="ELEM065" name="inhandCards" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="ac52e7c6819c442aeaac1eac38c373a3f426" cid="ELEM044" name="graveyardCards" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a6a1bf189ea6843d2a70eb34934a32dee339" cid="ELEM068" name="mainDeck" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="acc8ef346e3f04db7b34926c8ea11b3df68" cid="ELEM069" name="sideDeck" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="ab12c7a87c0274e4685c520a20573b007370" cid="ELEM096" name="deckZone" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="ad7b92266fab34c72866208ab8485f20e443" cid="ELEM097" name="fieldZone" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="ae5630f2dd7664de5b6b365b279f9b53b106" cid="ELEM099" name="mat" type="Array&lt; Char&gt;" type-id="Array&lt; Char&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="ac0e4c07a38ea494390086dba2daa9f23635" cid="ELEM094" name="monster" type="HashMap&lt;Ineger, ArrayList&lt;Card&gt;&gt;" type-id="HashMap&lt;Ineger, ArrayList&lt;Card&gt;&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="ae222622eed5d48068b36d0c322c1b54d931" cid="ELEM095" name="spellAndTrap" type="HashMap&lt;Ineger, ArrayList&lt;Card&gt;&gt;" type-id="HashMap&lt;Ineger, ArrayList&lt;Card&gt;&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="affb7ca120e9d4fdba96adbe25d137782589" cid="ELEM066" name="playerName" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a6c89317b68ca4386afa9f10845f73ee7641" cid="ELEM026" name="board" type="String" type-id="Uml.String" visibility="private" multiplicity="*">
+                <style class="default" />
+              </attribute>
+              <attribute id="aeb96dabceaf94755ae588aa6d66de00f618" cid="ELEM039" name="playerLP" type="Integer" type-id="Uml.Integer" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a6cab9bddb00a4d429dea7648ac00f5fa940" cid="ELEM098" name="matPosition" type="Integer" type-id="Uml.Integer" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="ob175196b11834578b5b3517f2513b7b9747" cid="ELEM075" name="GameDeck" type="&lt;&lt;constructor&gt;&gt;" type-id="&lt;&lt;constructor&gt;&gt;" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p2b6fe682bbdb4994b602a362316f7d32" name="playerName" type="String" type-id="Uml.String" />
+                  <parameter id="p053b54ec090745029007c09d9477d7c0" name="mainDeck" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" />
+                  <parameter id="p814c59d58e544f3096315bd84c94c639" name="sideDeck" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" />
+                </parameters>
+              </operation>
+              <operation id="o4613661049a04dcd9e45188bdedde665203" cid="ELEM073" name="drawCard" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pe7943cc034574e8f96db2dbc912b5588" name="cardName" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o9dc0e98726cf47dd986cbba1d6630754588" cid="ELEM072" name="summonCard" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pdd82db5c3f2348b4a2f9e7996902148e" name="cardName" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="oda1d0bdf63a74fd6a41480289aaf364920" cid="ELEM074" name="activateCard" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p945924cee71449a7a8083d1c7d656a1d" name="cardName" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o4b35b783940942a4af3e69da97762d7d484" cid="ELEM014" name="destroyCard" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p3176d482e76a4a9fa449f20928cb8627" name="cardName" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="oe544e95a6a6b43d18044697814c30cb377" cid="ELEM013" name="decreaseCardHP" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pfc88db30ab4144fba21018a8ac168fd1" name="cardName" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="oc14b7171c9074a9cb967cf597d56ff30747" cid="ELEM038" name="decreaseLP" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p35452c408a564ffbba7931ba5d2b4d73" name="value" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="off03147cef9742bfb256652c53144d63349" cid="ELEM037" name="increaseLP" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pa9e2e4243fbc4bcab56c956e41f7f321" name="value" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="oe6352ca7326543e8bd845e564ef55d28217" cid="ELEM030" name="editBoardCell" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p7373bf2688664a53abaf4a1bbcc97681" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o7c8ad6e1198849538e3b1a4cfdd2aa6e393" cid="ELEM028" name="showBoard" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o10ffaae253394111857d66b82d3f8f5f694" cid="ELEM101" name="selectMonster" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p165d92ce6fc54fa49a1d2669d543c7c1" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o89329404b92248a68db38f20e9744f65485" cid="ELEM116" name="selectOpponentMonster" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pd26f566a7e2b46379730630faada6bba" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o85076cdc6fe447c0a59691943fdd1380959" cid="ELEM102" name="selectSpell" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p85046c873211417ba957620ee4cb2534" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o193787c169eb4155a23b35d26627002939" cid="ELEM103" name="selectField" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o916042e5c669492c89bddeb5898b990a665" cid="ELEM104" name="selectHand" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p14f75130917b40cfbe1a42f4c4e5e150" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o601f0dc35be44ff29f3554e8e7759bfd81" cid="ELEM112" name="checkSelectValidity" type="Boolean" type-id="Uml.Boolean" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pc4ec6d40df3f4fe8ab2084a5eda9f505" name="field" type="String" type-id="Uml.String" />
+                  <parameter id="p66f660a8024b40069ff8ab06a79ba5b4" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o9618d9ed4add4591b694f191e214c25f715" cid="ELEM113" name="deselct" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o980d786fdc914b0eab5c5dd2fb59dfd8771" cid="ELEM114" name="setPosition" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p8e431c9f0a094a03ac248fce845f2269" name="card" type="Card" type-id="Card" />
+                  <parameter id="p1d4be4152e294b53825be9c8ab859e0a" name="position" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o1d4a4cdb0730418abe904d6ae89d71c3658" cid="ELEM115" name="setMat" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="od44ab5ffdb684da2a1671fb5901541bd817" cid="ELEM029" name="getBoardCellByPosition" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p227836b1f7024625950476c147c1a049" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o84707a729c9f4dc0b465d55ffea2b735484" cid="ELEM067" name="getPlayerName" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o8db9fbc0dce94cab98f15461d61e8a47100" cid="ELEM076" name="getActiveCards" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o0056139dd10f418f953253f35e1e31c1604" cid="ELEM077" name="getInhandCards" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o0fce3dd96a8a4d9a8c0f33c5184877b960" cid="ELEM078" name="getdestroyedCards" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o5f8e55478e724df389c628d02efca08a196" cid="ELEM105" name="getSelectedCard" type="Card" type-id="Card" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o75b022cc83744119a6bb672d1dde6af4779" cid="ELEM106" name="getNumberOfDeckCards" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o4f5828eb430a44e9a7408aedc8b9869a338" cid="ELEM107" name="getNumberOfGraveCards" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="oaf69718df83b45d7a880f9ab8c3ffd52461" cid="ELEM108" name="getNumberOfFieldCards" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o30e62819334c4818ad171ed278f5f18b473" cid="ELEM109" name="getMonsterState" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p5e8e6fafad754784a1956e0fc4e06f14" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o1c4f31f3d41044a6850b2196097d23676" cid="ELEM110" name="getSpellState" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pf9f37d898b0e4a40b03875febf98d5be" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o24c6dfe18a0948a095355c706c6f6c20810" cid="ELEM111" name="getNumberOfHandCards" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+            </operations>
+          </item>
+          <item id="di794267576397167813" cid="REL012" type="relationship" name="" style-class="" visibility="package" change-tracking-state="added" creation-date="04/16/2021 16:03:40" from="di171249423900770059" to="di988447826342627063">
+            <style class="default" />
+            <relation from="di171249423900770059" to="di988447826342627063">
+              <start-role id="" name="" navigability="" association-type="composition" visibility="private" />
+              <end-role id="" name="" navigability="" association-type="association" visibility="private" attribute-ref="a6a1bf189ea6843d2a70eb34934a32dee339" />
+            </relation>
+          </item>
+          <item id="di160310872105515046" cid="REL013" type="relationship" name="" style-class="" visibility="package" change-tracking-state="added" creation-date="04/16/2021 16:31:45" from="di541216165486714462" to="di303516733466673194">
+            <style class="default" />
+            <relation from="di541216165486714462" to="di303516733466673194">
+              <start-role id="" name="" navigability="" association-type="composition" visibility="private" />
+              <end-role id="" name="" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di443043243423841741" cid="C013" type="class" name="Main" style-class="" visibility="package" change-tracking-state="added" creation-date="04/16/2021 16:34:22">
+            <style class="default" />
+            <operations>
+              <operation id="o3fdcfcce955244d2aac6b8af6b30db0b373" cid="ELEM124" name="main" type="" type-id="" visibility="public">
+                <style class="default" />
+              </operation>
+            </operations>
+          </item>
+          <item id="di134140259814012322" cid="REL014" type="relationship" name="" style-class="" visibility="package" change-tracking-state="added" creation-date="04/16/2021 16:34:44" from="di443043243423841741" to="di530158797256336006">
+            <style class="default" />
+            <relation from="di443043243423841741" to="di530158797256336006">
+              <start-role id="" name="" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+        </abstract-items>
+        <layer name="Default" visible="true" enabled="true" locked="false">
+          <item id="di530158797256336006" iid="dd5f8cc96d554f9ebec25a2246cbfeca" creation-date="04/15/2021 11:51:41" order-index="2" type="entity">
+            <layout ax="596" ay="70" awidth="399" aheight="160" x="596" y="70" width="399" height="160" />
+            <class />
+          </item>
+          <item id="di496103753198646880" iid="cdd07743ca344bb4be93102a950850ce" creation-date="04/15/2021 13:36:19" order-index="5" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="true" auto-path="" x1="596" y1="120" x2="439" y2="87" start-border-pos="0.921875" end-border-pos="0.284441233140655" name-position="0,0">
+              <points>
+                <point x="596" y="120" />
+                <point x="439" y="87" />
+              </points>
+            </layout>
+            <relation from="di530158797256336006" from-iid="dd5f8cc96d554f9ebec25a2246cbfeca" to="di573405116586329522" to-iid="19ba7fffc8b0492db96a66c8f2daf664" to-field="a8f86a6e0f6de4b08920cf3f08120aaea901" />
+          </item>
+          <item id="di544111923460947265" iid="9d9f1b2d78aa4ca29c77da8c83ccc7ff" creation-date="04/15/2021 13:37:25" order-index="6" type="entity">
+            <layout ax="197" ay="598" awidth="243" aheight="160" x="197" y="598" width="243" height="160" />
+            <class />
+          </item>
+          <item id="di293640901541144558" iid="2325936d7afa44b0bf8a92b0ec7368fd" creation-date="04/15/2021 13:39:45" order-index="8" type="entity">
+            <layout ax="528" ay="627" awidth="345" aheight="160" x="528" y="627" width="345" height="160" />
+            <class />
+          </item>
+          <item id="di191707132644289046" iid="7436bb8b90574ef5a1262c3b707bfc10" creation-date="04/15/2021 13:48:50" order-index="10" type="entity">
+            <layout ax="894" ay="499" awidth="334" aheight="202" x="894" y="499" width="334" height="202" />
+            <class />
+          </item>
+          <item id="di224866297897966111" iid="9c93aa8c2c2d4d4591b69182703d1562" creation-date="04/15/2021 13:59:58" order-index="11" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="891" y1="425" x2="951" y2="499" start-border-pos="0.56516290726817" end-border-pos="0.0426646706586826" name-position="0,0">
+              <points>
+                <point x="891" y="425" />
+                <point x="951" y="499" />
+              </points>
+            </layout>
+            <relation from="di388488719589039100" from-iid="3bd375297b69439d87b542a3c4f00668" to="di191707132644289046" to-iid="7436bb8b90574ef5a1262c3b707bfc10" />
+          </item>
+          <item id="di157240786327675495" iid="68d1d710329e4c1ba7de3fb1670fe324" creation-date="04/15/2021 14:00:05" order-index="12" type="entity">
+            <layout ax="1063" ay="250" awidth="308" aheight="160" x="1063" y="250" width="308" height="160" />
+            <class />
+          </item>
+          <item id="di174631531792283842" iid="dd532644050c4bac9d044f9a2e576542" creation-date="04/15/2021 14:02:16" order-index="13" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="true" auto-path="" x1="995" y1="344" x2="1063" y2="338" start-border-pos="0.37265625" end-border-pos="0.8625" name-position="0,0">
+              <points>
+                <point x="995" y="344" />
+                <point x="1063" y="338" />
+              </points>
+            </layout>
+            <relation from="di388488719589039100" from-iid="3bd375297b69439d87b542a3c4f00668" from-field="oee344898f5f646cc942e820041df22b5864" to="di157240786327675495" to-iid="68d1d710329e4c1ba7de3fb1670fe324" />
+          </item>
+          <item id="di541216165486714462" iid="fdb2eca4e9414db3a907b2cea7984825" creation-date="04/16/2021 13:00:54" order-index="14" type="entity">
+            <layout ax="-371" ay="70" awidth="308" aheight="304" x="-371" y="70" width="308" height="304" />
+            <class />
+          </item>
+          <item id="di985865106351554823" iid="825c9e202e9f4d179894df4e67aad237" creation-date="04/16/2021 13:09:48" order-index="15" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="40" y1="176" x2="-63" y2="206" start-border-pos="0.922356828193833" end-border-pos="0.361471861471861" name-position="0,0">
+              <points>
+                <point x="40" y="176" />
+                <point x="-63" y="206" />
+              </points>
+            </layout>
+            <relation from="di573405116586329522" from-iid="19ba7fffc8b0492db96a66c8f2daf664" to="di541216165486714462" to-iid="fdb2eca4e9414db3a907b2cea7984825" />
+          </item>
+          <item id="di324793262314236753" iid="344993ff2b8c48d6ac406266d31b8602" creation-date="04/16/2021 15:16:11" order-index="16" type="entity">
+            <layout ax="1292" ay="499" awidth="334" aheight="160" x="1292" y="499" width="334" height="160" />
+            <class />
+          </item>
+          <item id="di843208232560519271" iid="b5ab9ef9837e40bbbf341e96c6ddc43f" creation-date="04/16/2021 15:16:31" order-index="17" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="995" y1="425" x2="1301" y2="499" start-border-pos="0.5" end-border-pos="0.00673652694610778" name-position="0,0">
+              <points>
+                <point x="995" y="425" />
+                <point x="1301" y="499" />
+              </points>
+            </layout>
+            <relation from="di388488719589039100" from-iid="3bd375297b69439d87b542a3c4f00668" to="di324793262314236753" to-iid="344993ff2b8c48d6ac406266d31b8602" />
+          </item>
+          <item id="di573405116586329522" iid="19ba7fffc8b0492db96a66c8f2daf664" creation-date="04/15/2021 11:18:39" order-index="0" type="entity">
+            <layout ax="40" ay="15" awidth="399" aheight="519" x="40" y="15" width="399" height="519" />
+            <class />
+          </item>
+          <item id="di388488719589039100" iid="3bd375297b69439d87b542a3c4f00668" creation-date="04/15/2021 12:52:15" order-index="3" type="entity">
+            <layout ax="596" ay="265" awidth="399" aheight="160" x="596" y="265" width="399" height="160" />
+            <class />
+          </item>
+          <item id="di607742256402408042" iid="9890527694814605811e28826486f054" creation-date="04/15/2021 13:35:58" order-index="4" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="762" y1="230" x2="763" y2="265" start-border-pos="0.645989974937343" end-border-pos="0.104636591478697" name-position="0,0">
+              <points>
+                <point x="762" y="230" />
+                <point x="763" y="265" />
+              </points>
+            </layout>
+            <relation from="di530158797256336006" from-iid="dd5f8cc96d554f9ebec25a2246cbfeca" to="di388488719589039100" to-iid="3bd375297b69439d87b542a3c4f00668" />
+          </item>
+          <item id="di630205786752825871" iid="1a01efc9502f47be977f49e50c8a6e86" creation-date="04/15/2021 13:39:35" order-index="7" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="596" y1="425" x2="440" y2="598" start-border-pos="0.75" end-border-pos="0.25" name-position="0,0">
+              <points>
+                <point x="596" y="425" />
+                <point x="440" y="598" />
+              </points>
+            </layout>
+            <relation from="di388488719589039100" from-iid="3bd375297b69439d87b542a3c4f00668" to="di544111923460947265" to-iid="9d9f1b2d78aa4ca29c77da8c83ccc7ff" />
+          </item>
+          <item id="di303516733466673194" iid="ae38d580bd394bc399aa77679f9f900b" creation-date="04/15/2021 12:43:01" order-index="3" type="entity">
+            <layout ax="-729" ay="486" awidth="516" aheight="267" x="-729" y="486" width="516" height="267" />
+            <class />
+          </item>
+          <item id="di969835426827274284" iid="c7cdbe39867b430b9e77f272b29b5655" creation-date="04/15/2021 13:48:36" order-index="9" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="667" y1="425" x2="668" y2="627" start-border-pos="0.705513784461153" end-border-pos="0.101449275362319" name-position="0,0">
+              <points>
+                <point x="667" y="425" />
+                <point x="668" y="627" />
+              </points>
+            </layout>
+            <relation from="di388488719589039100" from-iid="3bd375297b69439d87b542a3c4f00668" to="di293640901541144558" to-iid="2325936d7afa44b0bf8a92b0ec7368fd" />
+          </item>
+          <item id="di630294434463946837" iid="606644d81f09426fb8c90fecee19bad5" creation-date="04/16/2021 15:28:03" order-index="4" type="entity">
+            <layout ax="-1044" ay="815" awidth="462" aheight="415" x="-1044" y="815" width="462" height="415" />
+            <class />
+          </item>
+          <item id="di140226784361933059" iid="d4e53078f1f64ca2b3db5180fbf75b8f" creation-date="04/16/2021 15:54:19" order-index="18" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="40" y1="534" x2="-236" y2="486" start-border-pos="0.75" end-border-pos="0.238856589147287" name-position="0,0" name-width="50">
+              <points>
+                <point x="40" y="534" />
+                <point x="-236" y="486" />
+              </points>
+            </layout>
+            <relation from="di573405116586329522" from-iid="19ba7fffc8b0492db96a66c8f2daf664" to="di303516733466673194" to-iid="ae38d580bd394bc399aa77679f9f900b" />
+          </item>
+          <item id="di171249423900770059" iid="004d97fab6f340c1baca220334b3a1e9" creation-date="04/15/2021 12:12:48" order-index="0" type="entity">
+            <layout ax="1145" ay="758" awidth="516" aheight="594" x="1145" y="758" width="516" height="594" />
+            <class />
+          </item>
+          <item id="di144924873985857128" iid="794d38a38e98407e9d8bed2101bb133a" creation-date="04/16/2021 15:29:54" order-index="5" type="entity">
+            <layout ax="-297" ay="809" awidth="462" aheight="355" x="-297" y="809" width="462" height="355" />
+            <class />
+          </item>
+          <item id="di939180031807584462" iid="98a9b797d9b7479abe4b86281a6eb004" creation-date="04/16/2021 16:03:13" order-index="19" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="1373" y1="659" x2="1321" y2="758" start-border-pos="0.68937125748503" end-border-pos="0.0852713178294574" name-position="0,0">
+              <points>
+                <point x="1373" y="659" />
+                <point x="1321" y="758" />
+              </points>
+            </layout>
+            <relation from="di324793262314236753" from-iid="344993ff2b8c48d6ac406266d31b8602" to="di171249423900770059" to-iid="004d97fab6f340c1baca220334b3a1e9" />
+          </item>
+          <item id="di638284790821606515" iid="ba15ad0629c94364ab4a7e5b40825884" creation-date="04/16/2021 15:30:45" order-index="6" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="-696" y1="815" x2="-674" y2="753" start-border-pos="0.188311688311688" end-border-pos="0.723352713178295" name-position="0,0">
+              <points>
+                <point x="-696" y="815" />
+                <point x="-674" y="753" />
+              </points>
+            </layout>
+            <relation from="di630294434463946837" from-iid="606644d81f09426fb8c90fecee19bad5" to="di303516733466673194" to-iid="ae38d580bd394bc399aa77679f9f900b" />
+          </item>
+          <item id="di988447826342627063" iid="3919742627384a77a0c88ac221a5f8c1" creation-date="04/15/2021 12:37:46" order-index="1" type="entity">
+            <layout ax="419" ay="944" awidth="516" aheight="850" x="419" y="944" width="516" height="850" />
+            <class />
+          </item>
+          <item id="di579433696978644400" iid="158f462f383f454788dad0e950b599ab" creation-date="04/16/2021 15:30:48" order-index="7" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="-233" y1="809" x2="-309" y2="753" start-border-pos="0.0346320346320346" end-border-pos="0.546511627906977" name-position="0,0">
+              <points>
+                <point x="-233" y="809" />
+                <point x="-309" y="753" />
+              </points>
+            </layout>
+            <relation from="di144924873985857128" from-iid="794d38a38e98407e9d8bed2101bb133a" to="di303516733466673194" to-iid="ae38d580bd394bc399aa77679f9f900b" />
+          </item>
+          <item id="di794267576397167813" iid="069e555c9dd44b92be039271465193a8" creation-date="04/16/2021 16:03:40" order-index="20" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="true" auto-path="" x1="1145" y1="1151" x2="935" y2="1050" start-border-pos="0.834659090909091" end-border-pos="0.281029411764706" name-position="0,0">
+              <points>
+                <point x="1145" y="1151" />
+                <point x="935" y="1050" />
+              </points>
+            </layout>
+            <relation from="di171249423900770059" from-iid="004d97fab6f340c1baca220334b3a1e9" to="di988447826342627063" to-iid="3919742627384a77a0c88ac221a5f8c1" to-field="a6a1bf189ea6843d2a70eb34934a32dee339" />
+          </item>
+          <item id="di160310872105515046" iid="c44400e3dbb84c38b88605d7faf34223" creation-date="04/16/2021 16:31:45" order-index="21" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="-300" y1="374" x2="-318" y2="486" start-border-pos="0.69237012987013" end-border-pos="0.199127906976744" name-position="0,0">
+              <points>
+                <point x="-300" y="374" />
+                <point x="-318" y="486" />
+              </points>
+            </layout>
+            <relation from="di541216165486714462" from-iid="fdb2eca4e9414db3a907b2cea7984825" to="di303516733466673194" to-iid="ae38d580bd394bc399aa77679f9f900b" />
+          </item>
+          <item id="di443043243423841741" iid="785294824b204beda7179e1d08320c4e" creation-date="04/16/2021 16:34:22" order-index="22" type="entity">
+            <layout ax="711" ay="-155" awidth="140" aheight="160" x="711" y="-155" width="140" height="160" />
+            <class />
+          </item>
+          <item id="di134140259814012322" iid="5bf343a020b444d7a6efcd15a69bbc10" creation-date="04/16/2021 16:34:44" order-index="23" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="783" y1="5" x2="781" y2="70" start-border-pos="0.621428571428571" end-border-pos="0.115914786967419" name-position="0,0">
+              <points>
+                <point x="783" y="5" />
+                <point x="781" y="70" />
+              </points>
+            </layout>
+            <relation from="di443043243423841741" from-iid="785294824b204beda7179e1d08320c4e" to="di530158797256336006" to-iid="dd5f8cc96d554f9ebec25a2246cbfeca" />
+          </item>
+        </layer>
+      </diagram>
+    </model>
+  </models>
+  <documents />
+  <document-templates />
+</sim-project>
