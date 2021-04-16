@@ -1,0 +1,694 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<sim-project version="10.3" multi-file="no">
+  <meta>
+    <name>Project</name>
+    <authors> </authors>
+    <description />
+  </meta>
+  <counters models="1">
+    <entity-names>
+      <counter>
+        <item-type type-id="class" type="UmlClass" />
+        <value>7</value>
+      </counter>
+    </entity-names>
+    <entity-ids>
+      <counter>
+        <item-type type-id="class" type="UmlClass" />
+        <value>8</value>
+      </counter>
+      <counter>
+        <item-type type-id="generalization" type="UmlGeneralization" />
+        <value>3</value>
+      </counter>
+      <counter>
+        <item-type type-id="relationship" type="UmlAssociation" />
+        <value>2</value>
+      </counter>
+      <counter>
+        <item-type type-id="" type="AbstractElementGroup" />
+        <value>3</value>
+      </counter>
+    </entity-ids>
+    <diagrams>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.Diagrams.UmlDiagrams.UmlClassDiagram</type>
+        <value>1</value>
+      </counter>
+    </diagrams>
+    <fields>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.DiagramItems.Fields.OperationField</type>
+        <value>117</value>
+      </counter>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.DiagramItems.Fields.AttributeField</type>
+        <value>101</value>
+      </counter>
+    </fields>
+  </counters>
+  <alias-groups />
+  <management>
+    <persons>
+      <person id="P28af1c78bf2541c4a4a8b2232ba961dd">
+        <first-name />
+        <last-name />
+        <role />
+        <e-mail />
+        <phone-number />
+        <description />
+        <color>#00000000</color>
+      </person>
+    </persons>
+    <tasks />
+    <requirements />
+    <issues />
+    <to-dos />
+  </management>
+  <glossary />
+  <types default="UML">
+    <type-sets>
+      <type-set file="UmlTypes.xml" />
+    </type-sets>
+    <custom-types>
+      <type id="UserDeck" tid="" name="UserDeck" description="" nullable="false" />
+      <type id="void" tid="" name="void" description="" nullable="false" />
+      <type id="Scanner" tid="" name="Scanner" description="" nullable="false" />
+      <type id="User" tid="" name="User" description="" nullable="false" />
+      <type id="playerDeck" tid="" name="playerDeck" description="" nullable="false" />
+      <type id="Player" tid="" name="Player" description="" nullable="false" />
+      <type id="PlayerDeck" tid="" name="PlayerDeck" description="" nullable="false" />
+      <type id="PlayerDeck scanner : Scanner" tid="" name="PlayerDeck scanner : Scanner" description="" nullable="false" />
+      <type id="ArrayList&lt;Card&gt;" tid="" name="ArrayList&lt;Card&gt;" description="" nullable="false" />
+      <type id="ArrayList&lt;Player&gt;" tid="" name="ArrayList&lt;Player&gt;" description="" nullable="false" />
+      <type id="Class:di303516733466673194" tid="" name="Card" description="" nullable="false" class-ref="di303516733466673194" />
+      <type id="&lt;&lt;constructor&gt;&gt;" tid="" name="&lt;&lt;constructor&gt;&gt;" description="" nullable="false" />
+      <type id="Class:di988447826342627063" tid="" name="GameDeck" description="" nullable="false" class-ref="di988447826342627063" />
+      <type id="HashMap&lt;Ineger, ArrayList&lt;Card&gt;&gt;" tid="" name="HashMap&lt;Ineger, ArrayList&lt;Card&gt;&gt;" description="" nullable="false" />
+      <type id="Array&lt; Char&gt;" tid="" name="Array&lt; Char&gt;" description="" nullable="false" />
+    </custom-types>
+  </types>
+  <filters />
+  <macros />
+  <items>
+    <item id="di171249423900770059" cid="C001" type="class" name="DuelProgramControler" style-class="" visibility="package" change-tracking-state="added" creator="P28af1c78bf2541c4a4a8b2232ba961dd" creation-date="04/15/2021 12:12:48">
+      <style class="default" />
+      <operations>
+        <operation id="o35232c3ac8fe4eefa4fd9ade0a13e059787" cid="ELEM001" name="run" type="void" type-id="void" visibility="public">
+          <style class="default" />
+          <parameters>
+            <parameter id="p432c24ec051643ba942564005255ecd3" name="scanner" type="Scanner" type-id="Scanner" />
+            <parameter id="p91d599172ed24ed2a061cd0c3b6f9f99" name="firstPlayer" type="Player" type-id="Player" />
+            <parameter id="pc5d4046264134aba88777cf2e2429ce5" name="secondPlayer" type="Player" type-id="Player" />
+          </parameters>
+        </operation>
+        <operation id="oeb80670d6e53489bafa4fe615c6f9129862" cid="ELEM002" name="whichCommand" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p86184e49ed494fa995e4cb34ddff4b12" name="input" type="String" type-id="Uml.String" />
+            <parameter id="p0fbf34e3eb6c4d9c899b5cc9facb6dac" name="playerDeck" type="GameDeck" type-id="Class:di988447826342627063" />
+            <parameter id="pb885cc12aeca46c98ab532afe495ddd2" name="enemyDeck" type="GameDeck" type-id="Class:di988447826342627063" />
+          </parameters>
+        </operation>
+        <operation id="o1987cecd557a4d888221304f2f2eb3d2333" cid="ELEM079" name="setPhase" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p9423c2fcab3f4daba283c1e6f2bcd15f" name="newPhase" type="String" type-id="Uml.String" />
+            <parameter id="pabac2f5bf3544f3a9b838d0729560101" name="playerDeck" type="GameDeck" type-id="Class:di988447826342627063" />
+          </parameters>
+        </operation>
+        <operation id="o36fa7d4337e3476bb23625801d220c24985" cid="ELEM080" name="addToHand" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p1e5a0b092e004dbfb43cb6470a98c738" name="cardName" type="String" type-id="Uml.String" />
+            <parameter id="pc00d715a9cf94a299ef2d2e0c0ef5750" name="playerDeck" type="GameDeck" type-id="Class:di988447826342627063" />
+          </parameters>
+        </operation>
+        <operation id="oa3720a219c1f4cba91502a5f15a7960e842" cid="ELEM082" name="stanbyPhase" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p33e77f53999840c9b0112de004842523" name="playerDeck" type="GameDeck" type-id="Class:di988447826342627063" />
+          </parameters>
+        </operation>
+        <operation id="o98954160ef3545e099fc88799169c8b9434" cid="ELEM083" name="mainPhase1" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="pcd24ec1d315f4abaa6723bc293091f0a" name="playerDeck" type="GameDeck" type-id="Class:di988447826342627063" />
+          </parameters>
+        </operation>
+        <operation id="ob3ec11e664994490816cee990d1f6952393" cid="ELEM084" name="endPhase" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p71f38074508246f988eac5d74c517a2d" name="playerDeck" type="GameDeck" type-id="Class:di988447826342627063" />
+          </parameters>
+        </operation>
+        <operation id="oc796213f119c47bd9d7caba9af7db726289" cid="ELEM085" name="sommon" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p0c649d88f91e48028f715ff0ae2bd4b4" name="playerDeck" type="GameDeck" type-id="Class:di988447826342627063" />
+          </parameters>
+        </operation>
+        <operation id="o26d28a4748954225a86396d1f43b9d0c836" cid="ELEM087" name="checkSommonCard" type="String" type-id="Uml.String" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="pc0f5f66647004d128cb5deb9990854ba" name="card" type="Card" type-id="Class:di303516733466673194" />
+            <parameter id="p0a9131973ac344ccb45ed46708032ecf" name="playerDeck" type="GameDeck" type-id="Class:di988447826342627063" />
+          </parameters>
+        </operation>
+        <operation id="o75631899eff04116b25ec57be6c0b458505" cid="ELEM088" name="checkAtributeCard" type="String" type-id="Uml.String" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="pb5783c2618b649558ce5c522e75533d3" name="card" type="Card" type-id="Class:di303516733466673194" />
+            <parameter id="paa9b9dbff5ac40afb91ab932056c51ba" name="playerDeck" type="GameDeck" type-id="Class:di988447826342627063" />
+          </parameters>
+        </operation>
+        <operation id="odc745cea326b4c96a02ba1e4b0ee44bf533" cid="ELEM091" name="checkSetCard" type="String" type-id="Uml.String" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p965bd070baac4428ab4685ed05d54e05" name="card" type="Card" type-id="Class:di303516733466673194" />
+            <parameter id="pc05c157441094b358fbb0647c0c5bb2c" name="playerDeck" type="GameDeck" type-id="Class:di988447826342627063" />
+          </parameters>
+        </operation>
+        <operation id="odc2903ab73ac406c8f1660c5fea128da810" cid="ELEM092" name="flipSommon" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p552134be4e7840ecb50585c7b959ab82" name="playerDeck" type="GameDeck" type-id="Class:di988447826342627063" />
+          </parameters>
+        </operation>
+        <operation id="o80e94b8d45d74337af23c114222f7fae326" cid="ELEM003" name="attackCard" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p8089ab9150e64c549b608d37f5e114a9" name="playerDeck" type="GameDeck" type-id="Class:di988447826342627063" />
+            <parameter id="pdc16457ba69f4c0fadb2722d7c239038" name="enemyDeck" type="GameDeck" type-id="Class:di988447826342627063" />
+          </parameters>
+        </operation>
+        <operation id="o4d1665805d9943e4a03411725e131634669" cid="ELEM005" name="attackDirect" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p24ec9fceb052461cb4b95fc52244988f" name="playerDeck" type="GameDeck" type-id="Class:di988447826342627063" />
+            <parameter id="pb4a449e9a5364181b14966c7962a5000" name="enemyDeck" type="GameDeck" type-id="Class:di988447826342627063" />
+          </parameters>
+        </operation>
+        <operation id="o2d81c658f743497898689778c78a9da8606" cid="ELEM006" name="activateEffect" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p735c8cc308934493a545c2e9d2130f6b" name="playerDeck" type="GameDeck" type-id="Class:di988447826342627063" />
+          </parameters>
+        </operation>
+        <operation id="ob016cfe1c7dd4e4392d5d48ee2f8883f757" cid="ELEM007" name="set" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="peb4a7c9be58d44d3be1bda30ff12cbbe" name="playerDeck" type="GameDeck" type-id="Class:di988447826342627063" />
+          </parameters>
+        </operation>
+        <operation id="o1bafcc53775e436898ef958703db53ab166" cid="ELEM008" name="showGraveyard" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p8b757183fabf40f498ef30e1d443a542" name="playerDeck" type="GameDeck" type-id="Class:di988447826342627063" />
+            <parameter id="pe982b7a470f64c9b859749355f2806b2" name="scanner" type="Scanner" type-id="Scanner" />
+          </parameters>
+        </operation>
+        <operation id="o1fe5ca953c5d4b0c8b8f4ff20c406ff2574" cid="ELEM009" name="cardShow" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p7e7058130d134562aeb08301b1ce9271" name="playerDeck" type="GameDeck" type-id="Class:di988447826342627063" />
+            <parameter id="p4ee2295c548341cb86c487c853871e48" name="enemyDeck" type="GameDeck" type-id="Class:di988447826342627063" />
+          </parameters>
+        </operation>
+        <operation id="o3895b259dac44f93933c86584c1ebed1325" cid="ELEM010" name="surrender" type="void" type-id="void" visibility="private">
+          <style class="default" />
+        </operation>
+        <operation id="o5d2a493cdf8c46c8b9188e5a4b826527565" cid="ELEM011" name="increaseLP" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p1175d62eac4846299ad31c67d2dffed3" name="playerDeck" type="GameDeck" type-id="Class:di988447826342627063" />
+          </parameters>
+        </operation>
+        <operation id="of04bce676e1143e48ef7aaf51592b396646" cid="ELEM012" name="duelSetWinner" type="void" type-id="void" visibility="private">
+          <style class="default" />
+          <parameters>
+            <parameter id="p9a94e2acd3f64a1aa2150b385c3b8f35" name="playerDeck" type="GameDeck" type-id="Class:di988447826342627063" />
+          </parameters>
+        </operation>
+      </operations>
+    </item>
+  </items>
+  <models>
+    <model id="ped1cfba669674754b9363edd845aa2d6_192194616" name="Model 1" namespace="" order-index="1">
+      <meta>
+        <authors>
+          <author> </author>
+        </authors>
+        <description />
+        <creation-date>04/15/2021 12:05:38</creation-date>
+        <change-date>01/01/0001 00:00:00</change-date>
+        <revision-count>0</revision-count>
+        <version />
+      </meta>
+      <abstract-items />
+      <sub-models />
+      <diagram type="uml-class" id="p275bcb2074744553b388e61a3b2903d5_115980521" name="ClassDiagram1" order-index="1" show-id="false" show-name="true" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false" view-location="0,220">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="solid" />
+        </style>
+        <meta>
+          <authors>
+            <author> </author>
+          </authors>
+          <description />
+          <creation-date>04/15/2021 12:05:38</creation-date>
+          <change-date>04/16/2021 15:29:30</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <abstract-items>
+          <item id="di276741850207328216" cid="C005" type="class" name="Player" style-class="" visibility="package" change-tracking-state="added" creator="P28af1c78bf2541c4a4a8b2232ba961dd" creation-date="04/15/2021 12:42:38">
+            <style class="default" />
+            <attributes>
+              <attribute id="a74ad0e8175764081bfdc092bc7ed403a153" cid="ELEM024" name="players" type="ArrayList&lt;Player&gt;" type-id="ArrayList&lt;Player&gt;" visibility="private">
+                <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-color="#32000000" wrap-name-text="true" wrap-other-text="true" glow-color="#FFFFFFFF" accuracy="0.9">
+                  <text-style type="name" use-defaults="false" color="#FF000000" font="Verdana;9;U" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+                  <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="text" use-defaults="true" color="#FF000000" font="Verdana;9;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+                  <text-style type="tagged-value" use-defaults="true" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="stereotype" use-defaults="true" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                </style>
+              </attribute>
+              <attribute id="a01a5ea60d7034852888f33497b26c84d342" cid="ELEM015" name="mainDeck" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="ab65cd6e4e22149f298bb48d063b381c6148" cid="ELEM020" name="sideDeck" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a7544972de9624a21be663d8a69ded4ae956" cid="ELEM022" name="username" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="abc1dbd23e6cb4011b9253416b4783c2517" cid="ELEM023" name="password" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a0d176675823a4c57b0f1b5b68738c143778" cid="ELEM032" name="money" type="Integer" type-id="Uml.Integer" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="ad760997bb84945e18f9a3dc21017135311" cid="ELEM042" name="score" type="Integer" type-id="Uml.Integer" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="o653b3bc03190491ca068ce636b9868ec460" cid="ELEM063" name="Player" type="&lt;&lt;constructor&gt;&gt;" type-id="&lt;&lt;constructor&gt;&gt;" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p34dc4453d6e74302a56e16a116853023" name="username" type="String" type-id="Uml.String" />
+                  <parameter id="p54cdcd8b41144bf9919bef39ba5b56a2" name="password" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o438f43962c224cd5a4fec1ad0f7b7502666" cid="ELEM025" name="getPlayerByUsername" type="Player" type-id="Player" visibility="public">
+                <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-color="#32000000" wrap-name-text="true" wrap-other-text="true" glow-color="#FFFFFFFF" accuracy="0.9">
+                  <text-style type="name" use-defaults="false" color="#FF000000" font="Verdana;9;U" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+                  <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="text" use-defaults="true" color="#FF000000" font="Verdana;9;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+                  <text-style type="tagged-value" use-defaults="true" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="stereotype" use-defaults="true" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                </style>
+                <parameters>
+                  <parameter id="pc117ac05c5034eb7812fa90e3a359a47" name="username" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o98000a30848040c1a1c026d979816930227" cid="ELEM035" name="increaseMoney" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p064c19fb69dd4c87a4f702ce1c8471db" name="value" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o7b4509876f3f4ced8f3aaee74cc1e24b498" cid="ELEM036" name="decreaseMoney" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p93195d031b93467aa2c73de19645a1df" name="value" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o9eead5726ecd4f358c50a4e3239ebac8738" cid="ELEM040" name="increaseScore" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p661d65b00bc44efb9123e1e0209217a2" name="value" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="oda8bac4111ab4a2cb2fb2c7801425dbb235" cid="ELEM041" name="decreaseScore" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pe890aab83b6848d7bc7dc6a3f36786ba" name="value" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o826d552990c545e7887e048addb45a55499" cid="ELEM059" name="setMainDeck" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p144e503d1a194720a5b16afbf2938ed2" name="mainDeck" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" />
+                </parameters>
+              </operation>
+              <operation id="oef0b49ae1b4b49ce9a3fbe57f676f539619" cid="ELEM060" name="setSideDeck" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p6789a6af211e41f5b1b12144ad0fba7d" name="sideDeck" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" />
+                </parameters>
+              </operation>
+              <operation id="oeced3f1a939d47938b161c80f7a079cb835" cid="ELEM052" name="sortPlayers" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="oc6ca896287a546deb9001054bad7d09f211" cid="ELEM053" name="getPlayers" type="ArrayList&lt;Player&gt;" type-id="ArrayList&lt;Player&gt;" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o96cf8c3dc42e403c93ac0aacf48d50dd267" cid="ELEM049" name="getMoney" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o3c60d7b260794a83acb4fab6674ff042371" cid="ELEM054" name="getUsername" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o2704dc4ffa3642b1b9220d33fb4bcbdb214" cid="ELEM055" name="getPassword" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o5818ee6429154ba18c92e9774cd49d4a489" cid="ELEM056" name="getScore" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o5fbcdb4266214528acd938ccef5d0383555" cid="ELEM057" name="getMainDeck" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o3a815fc3372c4fcebba4718a94e2e3e5963" cid="ELEM058" name="getSIdeDeck" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="public">
+                <style class="default" />
+              </operation>
+            </operations>
+          </item>
+          <item id="di988447826342627063" cid="C003" type="class" name="GameDeck" style-class="" visibility="package" change-tracking-state="added" creator="P28af1c78bf2541c4a4a8b2232ba961dd" creation-date="04/15/2021 12:37:46">
+            <style class="default" />
+            <attributes>
+              <attribute id="a67e3e34e68974ab886a8140a1e3ae009542" cid="ELEM004" name="attackPositionCards" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a45ad0ec8ebf4492e90288e007dc1c143595" cid="ELEM100" name="defencePositionCards" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a24c5d86d1063407d921fa31d6f8f5866627" cid="ELEM065" name="inhandCards" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="ac52e7c6819c442aeaac1eac38c373a3f426" cid="ELEM044" name="graveyardCards" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a6a1bf189ea6843d2a70eb34934a32dee339" cid="ELEM068" name="mainDeck" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="acc8ef346e3f04db7b34926c8ea11b3df68" cid="ELEM069" name="sideDeck" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="ab12c7a87c0274e4685c520a20573b007370" cid="ELEM096" name="deckZone" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="ad7b92266fab34c72866208ab8485f20e443" cid="ELEM097" name="fieldZone" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="ae5630f2dd7664de5b6b365b279f9b53b106" cid="ELEM099" name="mat" type="Array&lt; Char&gt;" type-id="Array&lt; Char&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="ac0e4c07a38ea494390086dba2daa9f23635" cid="ELEM094" name="monster" type="HashMap&lt;Ineger, ArrayList&lt;Card&gt;&gt;" type-id="HashMap&lt;Ineger, ArrayList&lt;Card&gt;&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="ae222622eed5d48068b36d0c322c1b54d931" cid="ELEM095" name="spellAndTrap" type="HashMap&lt;Ineger, ArrayList&lt;Card&gt;&gt;" type-id="HashMap&lt;Ineger, ArrayList&lt;Card&gt;&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="affb7ca120e9d4fdba96adbe25d137782589" cid="ELEM066" name="playerName" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a6c89317b68ca4386afa9f10845f73ee7641" cid="ELEM026" name="board" type="String" type-id="Uml.String" visibility="private" multiplicity="*">
+                <style class="default" />
+              </attribute>
+              <attribute id="aeb96dabceaf94755ae588aa6d66de00f618" cid="ELEM039" name="playerLP" type="Integer" type-id="Uml.Integer" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a6cab9bddb00a4d429dea7648ac00f5fa940" cid="ELEM098" name="matPosition" type="Integer" type-id="Uml.Integer" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="ob175196b11834578b5b3517f2513b7b9747" cid="ELEM075" name="GameDeck" type="&lt;&lt;constructor&gt;&gt;" type-id="&lt;&lt;constructor&gt;&gt;" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p2b6fe682bbdb4994b602a362316f7d32" name="playerName" type="String" type-id="Uml.String" />
+                  <parameter id="p053b54ec090745029007c09d9477d7c0" name="mainDeck" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" />
+                  <parameter id="p814c59d58e544f3096315bd84c94c639" name="sideDeck" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" />
+                </parameters>
+              </operation>
+              <operation id="o4613661049a04dcd9e45188bdedde665203" cid="ELEM073" name="drawCard" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pe7943cc034574e8f96db2dbc912b5588" name="cardName" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o9dc0e98726cf47dd986cbba1d6630754588" cid="ELEM072" name="summonCard" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pdd82db5c3f2348b4a2f9e7996902148e" name="cardName" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="oda1d0bdf63a74fd6a41480289aaf364920" cid="ELEM074" name="activateCard" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p945924cee71449a7a8083d1c7d656a1d" name="cardName" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o4b35b783940942a4af3e69da97762d7d484" cid="ELEM014" name="destroyCard" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p3176d482e76a4a9fa449f20928cb8627" name="cardName" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="oe544e95a6a6b43d18044697814c30cb377" cid="ELEM013" name="decreaseCardHP" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pfc88db30ab4144fba21018a8ac168fd1" name="cardName" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="oc14b7171c9074a9cb967cf597d56ff30747" cid="ELEM038" name="decreaseLP" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p35452c408a564ffbba7931ba5d2b4d73" name="value" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="off03147cef9742bfb256652c53144d63349" cid="ELEM037" name="increaseLP" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pa9e2e4243fbc4bcab56c956e41f7f321" name="value" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="oe6352ca7326543e8bd845e564ef55d28217" cid="ELEM030" name="editBoardCell" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p7373bf2688664a53abaf4a1bbcc97681" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o7c8ad6e1198849538e3b1a4cfdd2aa6e393" cid="ELEM028" name="showBoard" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o10ffaae253394111857d66b82d3f8f5f694" cid="ELEM101" name="selectMonster" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p165d92ce6fc54fa49a1d2669d543c7c1" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o89329404b92248a68db38f20e9744f65485" cid="ELEM116" name="selectOpponentMonster" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pd26f566a7e2b46379730630faada6bba" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o85076cdc6fe447c0a59691943fdd1380959" cid="ELEM102" name="selectSpell" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p85046c873211417ba957620ee4cb2534" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o193787c169eb4155a23b35d26627002939" cid="ELEM103" name="selectField" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o916042e5c669492c89bddeb5898b990a665" cid="ELEM104" name="selectHand" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p14f75130917b40cfbe1a42f4c4e5e150" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o601f0dc35be44ff29f3554e8e7759bfd81" cid="ELEM112" name="checkSelectValidity" type="Boolean" type-id="Uml.Boolean" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pc4ec6d40df3f4fe8ab2084a5eda9f505" name="field" type="String" type-id="Uml.String" />
+                  <parameter id="p66f660a8024b40069ff8ab06a79ba5b4" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o9618d9ed4add4591b694f191e214c25f715" cid="ELEM113" name="deselct" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o980d786fdc914b0eab5c5dd2fb59dfd8771" cid="ELEM114" name="setPosition" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p8e431c9f0a094a03ac248fce845f2269" name="card" type="Card" type-id="Class:di303516733466673194" />
+                  <parameter id="p1d4be4152e294b53825be9c8ab859e0a" name="position" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o1d4a4cdb0730418abe904d6ae89d71c3658" cid="ELEM115" name="setMat" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="od44ab5ffdb684da2a1671fb5901541bd817" cid="ELEM029" name="getBoardCellByPosition" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p227836b1f7024625950476c147c1a049" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o84707a729c9f4dc0b465d55ffea2b735484" cid="ELEM067" name="getPlayerName" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o8db9fbc0dce94cab98f15461d61e8a47100" cid="ELEM076" name="getActiveCards" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o0056139dd10f418f953253f35e1e31c1604" cid="ELEM077" name="getInhandCards" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o0fce3dd96a8a4d9a8c0f33c5184877b960" cid="ELEM078" name="getdestroyedCards" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o5f8e55478e724df389c628d02efca08a196" cid="ELEM105" name="getSelectedCard" type="Card" type-id="Class:di303516733466673194" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o75b022cc83744119a6bb672d1dde6af4779" cid="ELEM106" name="getNumberOfDeckCards" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o4f5828eb430a44e9a7408aedc8b9869a338" cid="ELEM107" name="getNumberOfGraveCards" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="oaf69718df83b45d7a880f9ab8c3ffd52461" cid="ELEM108" name="getNumberOfFieldCards" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o30e62819334c4818ad171ed278f5f18b473" cid="ELEM109" name="getMonsterState" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p5e8e6fafad754784a1956e0fc4e06f14" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o1c4f31f3d41044a6850b2196097d23676" cid="ELEM110" name="getSpellState" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pf9f37d898b0e4a40b03875febf98d5be" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o24c6dfe18a0948a095355c706c6f6c20810" cid="ELEM111" name="getNumberOfHandCards" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+            </operations>
+          </item>
+          <item id="di303516733466673194" cid="C006" type="class" name="Card" style-class="" visibility="package" change-tracking-state="added" creator="P28af1c78bf2541c4a4a8b2232ba961dd" creation-date="04/15/2021 12:43:01">
+            <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-visible="true" shadow-color="#32000000" gloss-effect="true" wrap-name-text="true" wrap-other-text="true" padding="1" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+              <text-style type="name" use-defaults="false" color="#FF000000" font="Verdana;10;BU" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+              <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+              <text-style type="text" use-defaults="false" color="#FF000000" font="Verdana;9;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+              <text-style type="tagged-value" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+              <text-style type="stereotype" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+              <background type="forward-diagonal" color="#FFFFFFFF" color2="#FFEBEBEB" />
+              <border color="#FF000000" width="1" dash-style="Solid" />
+              <label-connector color="#80000000" width="1" dash-style="Dash" />
+              <alternate-styles>
+                <alternate-style style-name="Alternate" shadow-type="smooth" shadow-offset="1,1" shadow-color="#32000000" gloss-effect="true" wrap-name-text="true" padding="1" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+                  <text-style type="name" use-defaults="false" color="#FF000000" font="Verdana;10;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="text" use-defaults="false" color="#FF000000" font="Verdana;9;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+                  <text-style type="tagged-value" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="stereotype" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <background type="vertical-linear" color="#FF1E90FF" color2="#FF87CEFA" />
+                  <border color="#FF00008B" width="1" dash-style="Solid" />
+                  <label-connector color="#FF000000" width="1" dash-style="Solid" />
+                </alternate-style>
+              </alternate-styles>
+            </style>
+            <attributes>
+              <attribute id="aa3f4251d3a5a405ea9c634bd3a0bb27f901" cid="ELEM021" name="cards" type="ArrayList&lt;Card&gt;" type-id="ArrayList&lt;Card&gt;" visibility="private">
+                <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-color="#32000000" wrap-name-text="true" wrap-other-text="true" glow-color="#FFFFFFFF" accuracy="0.9">
+                  <text-style type="name" use-defaults="false" color="#FF000000" font="Verdana;9;U" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+                  <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="text" use-defaults="true" color="#FF000000" font="Verdana;9;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+                  <text-style type="tagged-value" use-defaults="true" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="stereotype" use-defaults="true" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                </style>
+              </attribute>
+              <attribute id="a3d71f997b99142629e2f6812b312aeae60" cid="ELEM016" name="defenceHP" type="Integer" type-id="Uml.Integer" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="ac4fdfef7327144f5a008b1c36546902c933" cid="ELEM017" name="attackHP" type="Integer" type-id="Uml.Integer" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a67438356b7f449b79bb4aeddd38d57e0557" cid="ELEM018" name="name" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a7438df8021924016af5e1537b2cfdf55236" cid="ELEM019" name="description" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="od05ba860e374497e9325a27f3f1205ff418" cid="ELEM061" name="Card" type="&lt;&lt;constructor&gt;&gt;" type-id="&lt;&lt;constructor&gt;&gt;" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pc10d5b18284b436ebf53fa5b5a5e1204" name="name" type="String" type-id="Uml.String" />
+                  <parameter id="p5c002c1e97624609ad357d898a959357" name="attackHP" type="Integer" type-id="Uml.Integer" />
+                  <parameter id="pf37e447ff3d04c9cb9211996e16190cf" name="defenceHP" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o05857058180746f59e0061b1029de838698" cid="ELEM031" name="getCardByName" type="Card" type-id="Class:di303516733466673194" visibility="public">
+                <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-color="#32000000" wrap-name-text="true" wrap-other-text="true" glow-color="#FFFFFFFF" accuracy="0.9">
+                  <text-style type="name" use-defaults="false" color="#FF000000" font="Verdana;9;U" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+                  <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="text" use-defaults="true" color="#FF000000" font="Verdana;9;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+                  <text-style type="tagged-value" use-defaults="true" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="stereotype" use-defaults="true" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                </style>
+                <parameters>
+                  <parameter id="pc07b09b3731246d49332ef9a58ad6bfe" name="name" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o90c5d371bce24aefbf0e87a0545e0d62459" cid="ELEM062" name="serCardDescription" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p2c3a2161040f43b1ac8a76e08e72c8e3" name="String decsription" type="" type-id="" />
+                </parameters>
+              </operation>
+              <operation id="odccef435f8454de29dc5ef0660b4383e787" cid="ELEM045" name="getName" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o6eb923e4b4f941bcaffe1a5f2591b8be555" cid="ELEM046" name="getAttackHP" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o9e3b3621ca7142b8adf6021ae5f7a9b5507" cid="ELEM047" name="getDefenceHP" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o4ce96bc44ba84028b4b42fad0c96ff38811" cid="ELEM048" name="getDescription" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+            </operations>
+          </item>
+        </abstract-items>
+        <layer name="Default" visible="true" enabled="true" locked="false">
+          <item id="di988447826342627063" iid="a05185dab0f94ac194105570f6a03f00" creation-date="04/15/2021 12:37:46" order-index="1" type="entity">
+            <layout ax="229" ay="291" awidth="516" aheight="850" x="229" y="291" width="516" height="850" />
+            <class />
+          </item>
+          <item id="di276741850207328216" iid="e2f67a0291724891bf8727b988340dfe" creation-date="04/15/2021 12:42:38" order-index="2" type="entity">
+            <layout ax="229" ay="1182" awidth="516" aheight="440" x="229" y="1182" width="516" height="440" />
+            <class />
+          </item>
+          <item id="di303516733466673194" iid="01c5cba86fcf4169a975813c85305302" creation-date="04/15/2021 12:43:01" order-index="3" type="entity">
+            <layout ax="229" ay="1653" awidth="516" aheight="267" x="229" y="1653" width="516" height="267" />
+            <class />
+          </item>
+          <item id="di171249423900770059" iid="8910a0ab1a324fd78366553413145e78" creation-date="04/15/2021 12:12:48" order-index="0" type="entity">
+            <layout ax="229" ay="-199" awidth="516" aheight="440" x="229" y="-199" width="516" height="440" />
+            <class />
+          </item>
+        </layer>
+      </diagram>
+    </model>
+  </models>
+  <documents />
+  <document-templates />
+</sim-project>
