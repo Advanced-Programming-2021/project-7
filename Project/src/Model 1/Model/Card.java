@@ -19,28 +19,34 @@ public class Card {
         this.cardNumber = cardNumber;
         this.price = price;
         cards.add(this);
-        
     }		
     
     public Card getCardByName(String name) 		
     {
-        
-    }		
+        for (int i = 0; i < cards.size(); i++) {
+            Card card = cards.get(i);
+            if (card.name.equals(name)) return card;
+        }
+        return null;
+    }			
     
-    public void serCardDescription(String StringDecsription)
+    public void setCardDescription(Object StringDecsription) 		
     {
-        
+        if (StringDecsription == null) return;
+        if (!(StringDecsription instanceof String)) return;
+        String description = (String) StringDecsription;
+        this.description = description;
     }		
     
     public String getName() 		
     {
-        
+        return name;
     }		
     
     public String getDescription() 		
     {
-        
-    }
+        return description;
+    }		
     
     public void showCards(){
         ArrayList<String> namesAndDescriptions = new ArrayList<>();
