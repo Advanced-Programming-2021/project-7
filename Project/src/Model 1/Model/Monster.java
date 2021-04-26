@@ -65,21 +65,21 @@
     
     public String getMonsterType() 		
     {
-        
+        return monsterType;
     }		
     
     public String getName() 		
     {
-        
-    }		
+        return name;
+    }	
     
     public String getDescription() 		
     {
-        
+        return description;
     }		
     
     public String getCardNumber() 		
     {
-        
-    }		
+        return cardNumber;
+    }	
 }
