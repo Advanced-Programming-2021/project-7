@@ -20,22 +20,22 @@
     
     public void setAttackPonit(int attackpoint) 		
     {
-        
-    }		
+        this.attackPoint = attackpoint;
+    }	
     
     public void setDefensePoint(int defensePoint) 		
     {
-        
+        this.defensePoint = defensePoint;
     }		
     
     public void setLevel(int level) 		
     {
-        
-    }		
+        this.level = level;
+    }	
     
     public void setAttribute(String attribute) 		
     {
-        
+        this.attribue = attribute;
     }		
     
     public void setMonsterType(String type) 		
