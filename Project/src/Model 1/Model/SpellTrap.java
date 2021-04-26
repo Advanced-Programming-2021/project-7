@@ -19,31 +19,31 @@ public class SpellTrap extends Card {
     
     public void setIcon(String icon) 		
     {
-        
+        this.icon = icon;
     }		
     
-    public String getType() 		
+    public String getSpellType() 		
     {
-        
+        return spellType;
     }		
     
     public String getIcon() 		
     {
-        
+        return icon;
     }		
     
     public String getName() 		
     {
-        
+        return name;
     }		
     
     public String getDescription() 		
     {
-        
-    }		
+        return description;
+    }	
     
     public String getCardNumber() 		
     {
-        
+        return cardNumber;
     }		
 }
