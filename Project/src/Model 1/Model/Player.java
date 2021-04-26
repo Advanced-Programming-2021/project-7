@@ -35,6 +35,17 @@ public class Player implements Comparable<Player> {
         return null;
     }
 
+    public static Player getPlayerByNick(String nickname) {
+        Iterator<Player> playerIterator = players.iterator();
+        while (playerIterator.hasNext()) {
+            Player player = playerIterator.next();
+            if (player.getNickname().equals(nickname)) {
+                return player;
+            }
+        }
+        return null;
+    }
+
     public static boolean isPasswordCorrect(String username, String password) {
         if (getPlayerByUsername(username).password.equals(password)) {
             return true;
