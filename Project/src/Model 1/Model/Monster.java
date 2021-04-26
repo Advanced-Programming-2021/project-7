@@ -1,17 +1,21 @@
-﻿package Model 1;
+﻿package Model;
 
- class Monster extends Card
-{
+ public class Monster extends Card {
     private int attackPoint;		
     private int defensePoint;		
     private int level;		
     private String attribue;		
-    private String type;		
+    private String monsterType;		
 
     
-    public <<construcrot>> Monster(String name, String description, String type, String cardNumber, int attackPoint, int defensePoint, int level, String attribute, String type) 		
+    public Monster(String name, String description, String type, String cardNumber, int attackPoint, int defensePoint, int level, String attribute, String monsterType) 		
     {
-        
+        super(name, description, type, cardNumber);
+        this.attackPoint = attackPoint;
+        this.defensePoint = defensePoint;
+        this.level = level;
+        this.attribue = attribute;
+        this.monsterType = monsterType;
     }		
     
     public void setAttackPonit(int attackpoint) 		
