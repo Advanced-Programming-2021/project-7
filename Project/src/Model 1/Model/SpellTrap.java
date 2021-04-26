@@ -1,4 +1,4 @@
-﻿package Model 1;
+﻿package Model;
 
 public class SpellTrap extends Card {
     private String spellType;		
