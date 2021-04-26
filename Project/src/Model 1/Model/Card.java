@@ -2,24 +2,24 @@
 
 import java.util.ArrayList;
 
-class Card
-{
-    private ArrayList<Card> cards;
-    private String name;		
-    private String description;		
-    private String type;		
-    private String cardNumber;		
+public class Card {
+    protected static ArrayList<Card> cards = new ArrayList<>();		
+    protected String name;		
+    protected String description;		
+    protected String type;		
+    protected String cardNumber;	
+    protected int price;
 
     
-    public Card(){
-
-    }
-
-    public Card(String name, String description, int price){
+    public Card(String name, String description, String type, String cardNumber, int price) 		
+    {  
         this.name = name;
         this.description = description;
+        this.type = type;
+        this.cardNumber = cardNumber;
         this.price = price;
         cards.add(this);
+        
     }		
     
     public Card getCardByName(String name) 		
