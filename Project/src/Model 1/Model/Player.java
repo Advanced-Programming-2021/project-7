@@ -1,11 +1,11 @@
-﻿package Model;
+package Model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
 public class Player implements Comparable<Player> {
-    private static ArrayList<Player> players;
+    private static ArrayList<Player> players = new ArrayList<>();
     private String username;
     private String password;
     private String nickname;
@@ -22,10 +22,7 @@ public class Player implements Comparable<Player> {
         this.nickname = nickname;
         score = 0;
         money = 0;
-    }
-    
-    public Player(){
-
+        players.add(this);
     }
 
     public static Player getPlayerByUsername(String username) {
@@ -75,9 +72,9 @@ public class Player implements Comparable<Player> {
         decks.add(deck);
     }
 
-    public void removeDeck(String deckName) {
-        decks.removeIf(deck -> deck.getDeckName().equals(deckName));
-    }
+//    public void removeDeck(String deckName) {
+//        decks.removeIf(deck -> deck.getDeckName().equals(deckName));
+//    }
 
     public void increaseMoney(int money) {
         this.money += money;
@@ -103,16 +100,16 @@ public class Player implements Comparable<Player> {
         return nickname;
     }
 
-    public Deck getDeckByName(String deckName) {
-        Iterator<Deck> deckIterator = decks.iterator();
-        while (deckIterator.hasNext()) {
-            Deck deck = deckIterator.next();
-            if (deck.getDeckName().equals(deckName)) {
-                return deck;
-            }
-        }
-        return null;
-    }
+//    public Deck getDeckByName(String deckName) {
+//        Iterator<Deck> deckIterator = decks.iterator();
+//        while (deckIterator.hasNext()) {
+//            Deck deck = deckIterator.next();
+//            if (deck.getDeckName().equals(deckName)) {
+//                return deck;
+//            }
+//        }
+//        return null;
+//    }
 
     public int getMoney() {
         return money;
@@ -129,69 +126,5 @@ public class Player implements Comparable<Player> {
 
     public String toString(){
         return username + ": " + score;
-    }
-    
-    public boolean isUsernameExist(String username){
-        for(int i = 0; i < players.size(); i++){
-            if(players.get(i).username.equals(username)){
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    public boolean isNickNameExist(String nickName){
-        for(int i = 0; i < players.size(); i++){
-            if(players.get(i).nickName.equals(nickName)){
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    public void showScoreBoard(){
-        ArrayList<String> sorted = new ArrayList<>();
-        for(int i = 0; i < players.size(); i++){
-            String line = String.valueOf(players.get(i).score);
-            line = line + " ";
-            line = line + players.get(i).nickName;
-            sorted.add(line);
-        }
-        Collections.sort(sorted);
-        int previousScore = -1;
-        int rank = 0;
-        for(int i = 0; i < players.size(); i++){
-            String[] token = sorted.get(i).split(" ");
-            if(!(Integer.parseInt(token[0]) ==previousScore)){
-                rank = rank + 1;
-                previousScore = Integer.parseInt(token[0]);
-            }
-            System.out.printf("%d- %s: %s\n", rank, token[1], token[0]);
-        }
-    }
-    
-    public void setNickNameByUsername(String username, String newNickname){
-        for(int i = 0; i < players.size(); i++){
-            if(players.get(i).username.equals(username)){
-                players.get(i).nickName = nickName;
-            }
-        }
-    }
-
-    public void setPasswordByUsername(String username, String newPassword){
-        for(int i = 0; i < players.size(); i++){
-            if(players.get(i).username.equals(username)){
-                players.get(i).password = newPassword;
-            }
-        }
-    }
-
-    public int getMoneyByUsername(String username){
-        for(int i = 0; i < players.size(); i++){
-            if(players.get(i).username.equals(username)){
-                return players.get(i).money;
-            }
-        }
-        return 0;
     }
 }
