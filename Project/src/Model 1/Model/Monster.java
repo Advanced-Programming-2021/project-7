@@ -38,29 +38,29 @@
         this.attribue = attribute;
     }		
     
-    public void setMonsterType(String type) 		
+    public void setMonsterType(String monsterType) 		
     {
-        
+        this.monsterType = monsterType;
     }		
     
     public int getAttackPonit() 		
     {
-        
+        return attackPoint;
     }		
     
     public int getDefensePonit() 		
     {
-        
-    }		
+        return defensePoint;
+    }	
     
     public int getLevel() 		
     {
-        
-    }		
+        return level;
+    }	
     
     public String getAttribute() 		
     {
-        
+        return attribue;
     }		
     
     public String getMonsterType() 		
