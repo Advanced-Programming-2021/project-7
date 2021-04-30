@@ -121,9 +121,9 @@ public class Player implements Comparable<Player> {
 
     public int compareTo(Player player) {
         if (this.score > player.score) {
-            return 1;
-        } else if (this.score < player.score){
             return -1;
+        } else if (this.score < player.score){
+            return 1;
         }
         return this.username.compareTo(player.username);
     }
