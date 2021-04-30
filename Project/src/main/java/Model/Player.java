@@ -129,6 +129,6 @@ public class Player implements Comparable<Player> {
     }
 
     public String toString(){
-        return username + ": " + score;
+        return username + " " + score;
     }
 }
