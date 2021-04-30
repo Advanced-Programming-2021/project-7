@@ -52,7 +52,7 @@ public class LoginMenu {
             return;
         }
         if (Player.getPlayerByUsername(username) == null || !Player.isPasswordCorrect(username, password)) {
-            System.out.println("Username and password  didn't match!");
+            System.out.println("Username and password didn't match!");
         } else {
             System.out.println("user logged in successfully!");
             MainMenu mainMenu = new MainMenu();
