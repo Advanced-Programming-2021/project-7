@@ -37,8 +37,8 @@ class Profile {
     }
 
     private void changePassword(String username, String command) {
-        String newPass = CommonTools.takeNameOutOfCommand(command, "--current");
-        String oldPass = CommonTools.takeNameOutOfCommand(command, "--new");
+        String oldPass = CommonTools.takeNameOutOfCommand(command, "--current");
+        String newPass = CommonTools.takeNameOutOfCommand(command, "--new");
         if (oldPass == null || newPass == null) {
             System.out.println("invalid command");
         }
