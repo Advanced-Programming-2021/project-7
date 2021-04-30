@@ -54,6 +54,10 @@ public class Player implements Comparable<Player> {
         return false;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public static ArrayList<Player> getPlayers(){
         return players;
     }
@@ -72,9 +76,9 @@ public class Player implements Comparable<Player> {
         decks.add(deck);
     }
 
-//    public void removeDeck(String deckName) {
-//        decks.removeIf(deck -> deck.getDeckName().equals(deckName));
-//    }
+    public void removeDeck(String deckName) {
+        decks.removeIf(deck -> deck.getDeckName().equals(deckName));
+    }
 
     public void increaseMoney(int money) {
         this.money += money;
@@ -100,16 +104,16 @@ public class Player implements Comparable<Player> {
         return nickname;
     }
 
-//    public Deck getDeckByName(String deckName) {
-//        Iterator<Deck> deckIterator = decks.iterator();
-//        while (deckIterator.hasNext()) {
-//            Deck deck = deckIterator.next();
-//            if (deck.getDeckName().equals(deckName)) {
-//                return deck;
-//            }
-//        }
-//        return null;
-//    }
+    public Deck getDeckByName(String deckName) {
+        Iterator<Deck> deckIterator = decks.iterator();
+        while (deckIterator.hasNext()) {
+            Deck deck = deckIterator.next();
+            if (deck.getDeckName().equals(deckName)) {
+                return deck;
+            }
+        }
+        return null;
+    }
 
     public int getMoney() {
         return money;
