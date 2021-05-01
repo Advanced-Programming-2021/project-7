@@ -5,9 +5,10 @@ public class SpellTrap extends Card {
     private String icon;	
 
     
-    public SpellTrap(String name, String description, String type, String cardNumber, String spellType, String icon) 		
+    public SpellTrap(String name, String description, String type, String cardNumber,
+    String spellType, String icon, int price) 		
     {
-        super(name, description, type, cardNumber);
+        super(name, description, type, cardNumber, price);
         this.spellType = spellType;
         this.icon = icon;
     }		
