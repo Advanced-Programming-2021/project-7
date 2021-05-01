@@ -39,7 +39,6 @@ public class Deck
                 mainDeck.put(card, number);
                 break;
             }
-
         }
         mainDeck.put(card, 1);
     }		
@@ -52,19 +51,32 @@ public class Deck
                 sideDeck.put(card, number);
                 break;
             }
-
         }
         sideDeck.put(card, 1);
     }		
     
-    public void removeCardFromMain(Card card) 		
+    public void removeCardFromMainDeck(Card card) 		
     {
-        
+        for (Map.Entry <Card, Integer> e : mainDeck.entrySet()) {
+            if (e.getKey().equals(card)) {
+                int number = e.getValue() - 1;
+                if (number > 0) mainDeck.put(card, number);
+                else mainDeck.remove(card);
+                break;
+            }
+        }
     }		
     
-    public void removeCardFromSide(Card card) 		
+    public void removeCardFromSideDeck(Card card) 		
     {
-        
+        for (Map.Entry <Card, Integer> e : sideDeck.entrySet()) {
+            if (e.getKey().equals(card)) {
+                int number = e.getValue() - 1;
+                if (number > 0) sideDeck.put(card, number);
+                else sideDeck.remove(card);
+                break;
+            }
+        }
     }		
     
     public boolean isDeckValid() 		
