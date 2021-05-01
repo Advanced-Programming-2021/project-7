@@ -2,6 +2,7 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Deck
 {
@@ -18,16 +19,42 @@ public class Deck
         this.deckName = deckName;
         this.playerName = playerName;
         decks.add(this);
-    }		
+    }	
+    
+    public static Deck getDeckByNames(String deckName, String playerName) {
+        for (int i = 0; i < decks.size(); i++) {
+            Deck deck = decks.get(i);
+            if (!deck.deckName.equals(deckName)) continue;
+            if (!deck.playerName.equals(playerName)) continue;
+            return deck;
+        }
+        return null;
+    }
     
     public void addCardToMain(Card card) 		
     {
-        mainDeck.put(card, value);
+        for (Map.Entry <Card, Integer> e : mainDeck.entrySet()) {
+            if (e.getKey().equals(card)) {
+                int number = e.getValue() + 1;
+                mainDeck.put(card, number);
+                break;
+            }
+
+        }
+        mainDeck.put(card, 1);
     }		
     
     public void addCardToSide(Card card) 		
     {
-        
+        for (Map.Entry <Card, Integer> e : sideDeck.entrySet()) {
+            if (e.getKey().equals(card)) {
+                int number = e.getValue() + 1;
+                sideDeck.put(card, number);
+                break;
+            }
+
+        }
+        sideDeck.put(card, 1);
     }		
     
     public void removeCardFromMain(Card card) 		
