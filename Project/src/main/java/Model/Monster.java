@@ -8,9 +8,10 @@
     private String monsterType;		
 
     
-    public Monster(String name, String description, String type, String cardNumber, int attackPoint, int defensePoint, int level, String attribute, String monsterType) 		
+    public Monster(String name, String description, String type, String cardNumber, int attackPoint, 
+    int defensePoint, int level, String attribute, String monsterType, int price) 		
     {
-        super(name, description, type, cardNumber);
+        super(name, description, type, cardNumber, price);
         this.attackPoint = attackPoint;
         this.defensePoint = defensePoint;
         this.level = level;
