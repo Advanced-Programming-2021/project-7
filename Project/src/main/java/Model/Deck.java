@@ -84,12 +84,12 @@ public class Deck
         
     }		
     
-    public boolean isMainFull() 		
+    public boolean isMainDeckFull() 		
     {
         
     }		
     
-    public boolean isSideFull() 		
+    public boolean isSideDeckFull() 		
     {
         
     }		
@@ -99,13 +99,8 @@ public class Deck
         
     }		
     
-    public String toString() 		
-    {
-        
-    }		
-    
     public String getDeckName() 		
     {
-        
+        return this.deckName;
     }		
 }
