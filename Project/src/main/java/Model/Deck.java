@@ -1,23 +1,28 @@
-﻿package Model;
+package Model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
-class Deck
+public class Deck
 {
+    private static ArrayList<Deck> decks = new ArrayList<>();
     private HashMap<Card, Integer> mainDeck;
     private HashMap<Card, Integer> sideDeck;
     private boolean deckIsValid;		
-    private String deckName;		
+    private String deckName;
+    private String playerName;		
 
     
-    public Deck(String name)
+    public Deck(String deckName, String playerName) 
     {
-        
+        this.deckName = deckName;
+        this.playerName = playerName;
+        decks.add(this);
     }		
     
     public void addCardToMain(Card card) 		
     {
-        
+        mainDeck.put(card, value);
     }		
     
     public void addCardToSide(Card card) 		
