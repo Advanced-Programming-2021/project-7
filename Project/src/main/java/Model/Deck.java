@@ -31,7 +31,7 @@ public class Deck
         return null;
     }
     
-    public void addCardToMain(Card card) 		
+    public void addCardToMainDeck(Card card) 		
     {
         for (Map.Entry <Card, Integer> e : mainDeck.entrySet()) {
             if (e.getKey().equals(card)) {
@@ -44,7 +44,7 @@ public class Deck
         mainDeck.put(card, 1);
     }		
     
-    public void addCardToSide(Card card) 		
+    public void addCardToSideDeck(Card card) 		
     {
         for (Map.Entry <Card, Integer> e : sideDeck.entrySet()) {
             if (e.getKey().equals(card)) {
