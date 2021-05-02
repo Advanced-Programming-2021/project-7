@@ -19,6 +19,7 @@ public class Main {
             theDir.mkdirs();
         }
         new Initialize().importMonsterCardDate();
+        new Initialize().importSpellTrapCardData();
         new LoginMenu().run();
     }
 }

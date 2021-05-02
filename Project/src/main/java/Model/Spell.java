@@ -5,7 +5,7 @@ public class Spell extends Card {
     private String icon;
 
 
-    public Spell(String name, String description, String type, String spellType, String icon, int price) {
+    public Spell(String name, String type, String icon, String description, String trapType, int price) {
         super(name, description, type, price);
         this.spellType = spellType;
         this.icon = icon;
