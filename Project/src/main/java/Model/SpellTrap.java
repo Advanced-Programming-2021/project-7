@@ -1,50 +1,41 @@
-﻿package Model;
+package Model;
 
 public class SpellTrap extends Card {
     private String spellType;		
     private String icon;	
 
     
-    public SpellTrap(String name, String description, String type, String cardNumber,
-    String spellType, String icon, int price) 		
-    {
-        super(name, description, type, cardNumber, price);
+    public SpellTrap(String name, String description, String type, String spellType, String icon, int price) {
+        super(name, description, type, price);
         this.spellType = spellType;
         this.icon = icon;
-    }		
+    }
     
-    public void setSpellType(String spellType) 		
-    {
+    public void setSpellType(String spellType) {
         this.spellType = spellType;
-    }		
+    }
     
-    public void setIcon(String icon) 		
-    {
+    public void setSpellIcon(String icon) {
         this.icon = icon;
-    }		
+    }
     
-    public String getSpellType() 		
-    {
+    public String getSpellType() {
         return spellType;
-    }		
+    }
     
-    public String getIcon() 		
-    {
+    public String getSpellIcon() {
         return icon;
-    }		
+    }
     
-    public String getName() 		
-    {
+    public String getSpellName() {
         return name;
-    }		
+    }
     
-    public String getDescription() 		
-    {
+    public String getDescription() {
         return description;
-    }	
+    }
     
-    public String getCardNumber() 		
-    {
+    public String getCardNumber() {
         return cardNumber;
-    }		
+    }	
 }
