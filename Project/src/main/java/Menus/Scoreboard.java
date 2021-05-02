@@ -37,7 +37,7 @@ public class Scoreboard {
     }
 
     public void showBoard() {
-        ArrayList<Player> players = Player.getPlayers();
+        ArrayList<Player> players = new ArrayList<>(Player.getPlayers());
         Collections.sort(players);
         int lastScore = -1;
         int position = 0;

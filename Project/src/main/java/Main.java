@@ -1,21 +1,10 @@
-import Menus.LoginMenu;
+import Menus.Initialize;
 
 import java.io.File;
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) {
-        File theDir = new File("DataBase");
-        if (!theDir.exists()){
-            theDir.mkdirs();
-        }
-        theDir = new File("DataBase//Players");
-        if (!theDir.exists()){
-            theDir.mkdirs();
-        }
-        theDir = new File("DataBase//Cards");
-        if (!theDir.exists()){
-            theDir.mkdirs();
-        }
-        new LoginMenu().run();
+    public static void main(String[] args) throws IOException {
+        new Initialize().initializePlayers();
     }
 }

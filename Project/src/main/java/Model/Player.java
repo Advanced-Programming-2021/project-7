@@ -10,9 +10,9 @@ public class Player implements Comparable<Player> {
     private String password;
     private String nickname;
     private int score;
-    private HashMap<Card, Integer> cards;
-    private ArrayList<Deck> decks;
     private int money;
+    private HashMap<Card, Integer> cards = new HashMap<>();
+    private ArrayList<Deck> decks = new ArrayList<>();
     private Deck activeDeck = null;
 
 
@@ -60,6 +60,10 @@ public class Player implements Comparable<Player> {
 
     public static ArrayList<Player> getPlayers(){
         return players;
+    }
+
+    public static void setPlayers(ArrayList<Player> players1){
+        players = players1;
     }
 
     public void addCard(Card card) {

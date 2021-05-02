@@ -5,8 +5,8 @@ public class Trap extends Card {
     private String icon;	
 
     
-    public Trap(String name, String description, String type, String trapType, String icon, int price) {
-        super(name, description, type, price);
+    public Trap(String name, String description, String type, String trapType, String icon, int price, String cardNumber) {
+        super(name, description, type,cardNumber, price);
         this.trapType = trapType;
         this.icon = icon;
     }
