@@ -7,7 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Initialize {
-    public void importCardDate() throws IOException {
+    public void importMonsterCardDate() throws IOException {
         String filePath = "DataBase\\Cards\\Monster.csv";
         String line;
         BufferedReader csvReader = new BufferedReader(new FileReader(filePath));

@@ -18,8 +18,8 @@ public class Monster extends Card {
         this.monsterType = monsterType;
     }
 
-    public void setAttackPonit(int attackpoint) {
-        this.attackPoint = attackpoint;
+    public void setAttackPoint(int attackPoint) {
+        this.attackPoint = attackPoint;
     }
 
     public void setDefensePoint(int defensePoint) {
@@ -38,11 +38,11 @@ public class Monster extends Card {
         this.monsterType = monsterType;
     }
 
-    public int getAttackPonit() {
+    public int getAttackPoint() {
         return attackPoint;
     }
 
-    public int getDefensePonit() {
+    public int getDefensePoint() {
         return defensePoint;
     }
 

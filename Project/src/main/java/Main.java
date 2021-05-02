@@ -18,7 +18,7 @@ public class Main {
         if (!theDir.exists()){
             theDir.mkdirs();
         }
-        new Initialize().importCardDate();
+        new Initialize().importMonsterCardDate();
         new LoginMenu().run();
     }
 }
