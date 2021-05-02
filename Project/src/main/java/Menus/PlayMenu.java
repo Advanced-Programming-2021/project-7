@@ -1,8 +1,10 @@
-﻿package Menus 1;
+package Menus;
 
- class PlayMenu
+import Model.Player;
+
+class PlayMenu
 {
-    private Player loggedInUser;		
+    private Player loggedInUser;
 
     
     public void run() 		

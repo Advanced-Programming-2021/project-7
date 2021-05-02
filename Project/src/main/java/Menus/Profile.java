@@ -1,4 +1,4 @@
-﻿package Menus;
+package Menus;
 
 import Model.CommonTools;
 import Model.Player;

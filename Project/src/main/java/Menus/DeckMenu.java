@@ -1,8 +1,12 @@
-﻿package Menus 1;
+package Menus;
 
- class DeckMenu
+import Model.Player;
+
+import java.util.regex.Matcher;
+
+class DeckMenu
 {
-    private Player loggedInUser;		
+    private Player loggedInUser;
 
     
     public void run() 		
@@ -10,7 +14,7 @@
         
     }		
     
-    private void createDeck(Matcher matcher) 		
+    private void createDeck(Matcher matcher)
     {
         
     }		
