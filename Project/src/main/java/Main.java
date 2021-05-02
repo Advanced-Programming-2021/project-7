@@ -1,9 +1,11 @@
+import Menus.Initialize;
 import Menus.LoginMenu;
 
 import java.io.File;
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         File theDir = new File("DataBase");
         if (!theDir.exists()){
             theDir.mkdirs();
@@ -16,6 +18,7 @@ public class Main {
         if (!theDir.exists()){
             theDir.mkdirs();
         }
+        new Initialize().importCardDate();
         new LoginMenu().run();
     }
 }

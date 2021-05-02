@@ -4,16 +4,17 @@ public class Monster extends Card {
     private int attackPoint;
     private int defensePoint;
     private int level;
-    private String attribue;
+    private String attribute;
     private String monsterType;
+    private String cardType;
 
-    public Monster(String name, String description, String type, int attackPoint,
-                   int defensePoint, int level, String attribute, String monsterType, int price) {
+    public Monster(String name, int level, String attribute, String monsterType, String cardType, int attackPoint,
+                   int defensePoint, String description, int price, String type) {
         super(name, description, type, price);
         this.attackPoint = attackPoint;
         this.defensePoint = defensePoint;
         this.level = level;
-        this.attribue = attribute;
+        this.attribute = attribute;
         this.monsterType = monsterType;
     }
 
@@ -30,7 +31,7 @@ public class Monster extends Card {
     }
 
     public void setAttribute(String attribute) {
-        this.attribue = attribute;
+        this.attribute = attribute;
     }
 
     public void setMonsterType(String monsterType) {
@@ -50,7 +51,7 @@ public class Monster extends Card {
     }
 
     public String getAttribute() {
-        return attribue;
+        return attribute;
     }
 
     public String getMonsterType() {
