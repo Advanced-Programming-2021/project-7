@@ -31,7 +31,10 @@ public class Initialize {
         while (true) {
             line = csvReader.readLine();
             String[] data = line.split(",(?=\\S)");
-            if (data[ 1 ].equals("Spell")) break;
+            if (data[ 1 ].equals("Spell")) {
+                Spell spell = new Spell(data[ 0 ], data[ 1 ], data[ 2 ], data[ 3 ], data[ 4 ], Integer.parseInt(data[ 5 ]));
+                break;
+            }
             // date[ 0 ]:name date[ 1 ]:type data[ 2 ]:icon data[ 3 ]:Description data[ 4 ]:status
             // data[ 5 ]:price
             Trap trap = new Trap(data[ 0 ], data[ 1 ], data[ 2 ], data[ 3 ], data[ 4 ], Integer.parseInt(data[ 5 ]));
