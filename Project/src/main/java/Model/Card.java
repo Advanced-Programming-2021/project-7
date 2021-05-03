@@ -19,7 +19,7 @@ public class Card {
         cards.add(this);
     }
 
-    public Card getCardByName(String name) {
+    public static Card getCardByName(String name) {
         for (int i = 0; i < cards.size(); i++) {
             Card card = cards.get(i);
             if (card.name.equals(name)) return card;
@@ -42,7 +42,7 @@ public class Card {
         return description;
     }
 
-    public void showCards() {
+    public static void showCards() {
         ArrayList<String> namesAndDescriptions = new ArrayList<>();
         for(int i = 0; i < cards.size(); i++) {
             String line = cards.get(i).name;
@@ -65,7 +65,7 @@ public class Card {
         return false;
     }
 
-    public int getPriceByUsername(String name) {
+    public static int getPriceByUsername(String name) {
         for(int i = 0; i < cards.size(); i++) {
             if(cards.get(i).name.equals(name)) {
                 return cards.get(i).price;
