@@ -26,7 +26,8 @@ public class Initialize {
     public void run() throws IOException {
         makeFolders();
         initializePlayers();
-        // TODO: 2021-05-03  initializeCards();
+        importMonsterCardDate();
+        importSpellTrapCardData();
         new LoginMenu().run();
     }
 

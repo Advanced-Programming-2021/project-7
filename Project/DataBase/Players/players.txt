@@ -1,0 +1,20 @@
+[
+  {
+    "username": "armin",
+    "password": "ramz",
+    "nickname": "nick",
+    "score": 0,
+    "money": 0,
+    "cards": {},
+    "decks": []
+  },
+  {
+    "username": "ali",
+    "password": "ramz",
+    "nickname": "nick1",
+    "score": 0,
+    "money": 0,
+    "cards": {},
+    "decks": []
+  }
+]

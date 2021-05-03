@@ -14,12 +14,12 @@ public class Deck
     private String playerName;		
 
     
-    public Deck(String deckName, String playerName) {
+    public Deck(String deckName, String playerName) 
+    {
         this.deckName = deckName;
         this.playerName = playerName;
-        this.deckIsValid = false;
         decks.add(this);
-    }
+    }	
     
     public static Deck getDeckByNames(String deckName, String playerName) {
         for (int i = 0; i < decks.size(); i++) {
@@ -31,7 +31,8 @@ public class Deck
         return null;
     }
     
-    public void addCardToMainDeck(Card card) {
+    public void addCardToMainDeck(Card card) 		
+    {
         for (Map.Entry <Card, Integer> e : mainDeck.entrySet()) {
             if (e.getKey().equals(card)) {
                 int number = e.getValue() + 1;
@@ -40,9 +41,10 @@ public class Deck
             }
         }
         mainDeck.put(card, 1);
-    }
+    }		
     
-    public void addCardToSideDeck(Card card) {
+    public void addCardToSideDeck(Card card) 		
+    {
         for (Map.Entry <Card, Integer> e : sideDeck.entrySet()) {
             if (e.getKey().equals(card)) {
                 int number = e.getValue() + 1;
@@ -51,9 +53,10 @@ public class Deck
             }
         }
         sideDeck.put(card, 1);
-    }
+    }		
     
-    public void removeCardFromMainDeck(Card card) {
+    public void removeCardFromMainDeck(Card card) 		
+    {
         for (Map.Entry <Card, Integer> e : mainDeck.entrySet()) {
             if (e.getKey().equals(card)) {
                 int number = e.getValue() - 1;
@@ -62,9 +65,10 @@ public class Deck
                 break;
             }
         }
-    }
+    }		
     
-    public void removeCardFromSideDeck(Card card) {
+    public void removeCardFromSideDeck(Card card) 		
+    {
         for (Map.Entry <Card, Integer> e : sideDeck.entrySet()) {
             if (e.getKey().equals(card)) {
                 int number = e.getValue() - 1;
@@ -73,44 +77,30 @@ public class Deck
                 break;
             }
         }
-    }
+    }		
     
-    public boolean isDeckValid() {
-        int numberOfCards = 0;
-        for (Map.Entry <Card, Integer> e : mainDeck.entrySet()) {
-            numberOfCards += e.getValue();
-        }
-        this.deckIsValid = numberOfCards >= 40;
-        return deckIsValid;
-    }
+//    public boolean isDeckValid()
+//    {
+//
+//    }
+//
+//    public boolean isMainDeckFull()
+//    {
+//
+//    }
+//
+//    public boolean isSideDeckFull()
+//    {
+//
+//    }
+//
+//    public boolean isThereThreeCards(Card card)
+//    {
+//
+//    }
     
-    public boolean isMainDeckFull() {
-        int numberOfCards = 0;
-        for (Map.Entry <Card, Integer> e : mainDeck.entrySet()) {
-            numberOfCards += e.getValue();
-        }
-        return numberOfCards >= 60;
-    }
-    
-    public boolean isSideDeckFull() {
-        int numberOfCards = 0;
-        for (Map.Entry <Card, Integer> e : sideDeck.entrySet()) {
-            numberOfCards += e.getValue();
-        }
-        return numberOfCards >= 15;
-    }
-    
-    public boolean isThereThreeCards(Card card) {
-        for (Map.Entry <Card, Integer> e : mainDeck.entrySet()) {
-            if (e.getKey().equals(card)) {
-                if (e.getValue() >= 3) return true;
-                else return false;
-            }
-        }
-        return false;
-    }
-    
-    public String getDeckName() {
+    public String getDeckName() 		
+    {
         return this.deckName;
-    }
+    }		
 }
