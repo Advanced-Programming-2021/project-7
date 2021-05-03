@@ -30,7 +30,8 @@ class MainMenu {
     }
 
     public static void duel(String username) {
-
+        PlayMenu playMenu = new PlayMenu();
+        playMenu.run(username);
     }
 
     public static void deck(String username) {
