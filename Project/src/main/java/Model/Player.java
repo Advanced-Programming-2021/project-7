@@ -76,6 +76,19 @@ public class Player implements Comparable<Player> {
         }
     }
 
+    public static Deck getActiveDeckByUsername(String username){
+        Iterator<Player> playerIterator = players.iterator();
+        while (playerIterator.hasNext()) {
+            Player player = playerIterator.next();
+            if (player.getUsername().equals(username)) {
+                return player.activeDeck;
+            }
+        }
+        return null;
+    }
+
+
+
     public void addDeck(Deck deck) {
         decks.add(deck);
     }
