@@ -4,6 +4,7 @@ import Model.Card;
 import Model.CommonTools;
 import Model.Player;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,10 +24,28 @@ class Shop {
     }
 
     public static void buyCard(String username, String command) {
-        // TODO: 2021-04-30  
+        String pattern = "^shop buy ([^ ]+)$";
+        Pattern r = Pattern.compile(pattern);
+        Matcher m = r.matcher(command);
+        m.find();
+        String card = m.group(1);
+        if(Card.getCardByName(card) == null){
+            System.out.println("there is no card with this name");
+        }
+        else{
+            int money = Player.getPlayerByUsername(username).getMoney();
+            if(money < Card.getPriceByUsername(card)){
+                System.out.println("not enough money");
+            }
+            else{
+                Card addingCard = Card.getCardByName(card);
+                Player player = Player.getPlayerByUsername(username);
+                player.addCard(addingCard);
+            }
+        }
     }
 
     public static void showAll() {
-        // TODO: 2021-04-30  
+        Card.showCards();
     }
 }
