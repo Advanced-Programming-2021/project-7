@@ -41,6 +41,7 @@ class Shop {
                 Card addingCard = Card.getCardByName(card);
                 Player player = Player.getPlayerByUsername(username);
                 player.addCard(addingCard);
+                player.decreaseMoney(Card.getPriceByUsername(card));
             }
         }
     }
