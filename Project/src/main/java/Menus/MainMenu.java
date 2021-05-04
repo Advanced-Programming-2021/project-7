@@ -35,7 +35,8 @@ class MainMenu {
     }
 
     public static void deck(String username) {
-
+        DeckMenu deckMenu = new DeckMenu();
+        deckMenu.run(username);
     }
 
     public static void shop(String username) {
