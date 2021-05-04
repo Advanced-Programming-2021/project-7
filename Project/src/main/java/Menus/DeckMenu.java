@@ -1,33 +1,129 @@
 package Menus;
 
+import Model.Card;
+import Model.CommonTools;
+import Model.Deck;
 import Model.Player;
 
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 class DeckMenu
 {
     private Player loggedInUser;
 
-    
-    public void run() 		
+
+    public void run(String username)
     {
-        
+        while (true) {
+            String command = CommonTools.scan.nextLine();
+            if (command.matches("^deck create [^ ]+$")) createDeck(username, command);
+            else if (command.matches("^deck delete [^ ]+$")) deleteDeck(username, command);
+            else if (command.matches("^deck set-activate [^ ]+$")) setActiveDeck(username, command);
+            else if (command.matches("^deck add-card (?:(?:--card|--deck) ([^ ]+) (--side)*?){2,3}$"))
+                addCardToDeck(username, command);
+            else if (command.matches("^menu enter (profile|duel|deck|shop|scoreboard)$"))
+                System.out.println("menu navigation is not possible");
+            else if (command.matches("^menu show-current$")) System.out.println("duel");
+            else if (command.matches("^menu exit$")) {
+                return;
+            } else System.out.println("invalid command!");
+        }
     }		
     
-    private void createDeck(Matcher matcher)
-    {
-        
+    private void createDeck(String username, String command){
+        String pattern = "^deck create ([^ ]+)$";
+        Pattern r = Pattern.compile(pattern);
+        Matcher m = r.matcher(command);
+        m.find();
+        String deckName = m.group(1);
+        if(Deck.doesDeckExist(deckName)){
+            System.out.printf("deck with name %s already exists\n", deckName);
+            return;
+        }
+        System.out.println("deck created successfully!");
+        Deck deck = new Deck(deckName, username);
     }		
     
-    private void deleteDeck(Matcher matcher) 		
+    private void deleteDeck(String username, String command)
     {
-        
-    }		
+        String pattern = "^deck delete ([^ ]+)$";
+        Pattern r = Pattern.compile(pattern);
+        Matcher m = r.matcher(command);
+        m.find();
+        String deckName = m.group(1);
+        if(Deck.getDeckByNames(deckName, username) == null){
+            System.out.printf("deck with name %s does not exist\n", deckName);
+            return;
+        }
+        System.out.println("deck delete successfully!");
+        Player.getPlayerByUsername(username).removeDeck(deckName);
+    }
+
+    public void setActiveDeck(String username, String command){
+        String pattern = "^deck set-activate ([^ ]+)$";
+        Pattern r = Pattern.compile(pattern);
+        Matcher m = r.matcher(command);
+        m.find();
+        String deckName = m.group(1);
+        if(Deck.getDeckByNames(deckName, username) == null){
+            System.out.printf("deck with name %s does not exist\n", deckName);
+            return;
+        }
+        System.out.println("deck activated successfully");
+        Player.getPlayerByUsername(username).setActiveDeck(deckName);
+    }
     
-    private void addCardToDeck(Matcher matcher) 		
+    private void addCardToDeck(String username, String command)
     {
-        
-    }		
+        String cardName = CommonTools.takeNameOutOfCommand(command, "--card");
+        String deckName = CommonTools.takeNameOutOfCommand(command, "--deck");
+        if(!addCardValidity(cardName, deckName, username)) return;
+        Deck deck = Deck.getDeckByNames(deckName, username);
+        Player player = Player.getPlayerByUsername(username);
+        if(!command.contains("--side")){
+            if(deck.isMainDeckFull()){
+                System.out.println("main deck is full");
+                return;
+            }
+            if(deck.isThereThreeCards(Card.getCardByName(cardName))){
+                System.out.printf("there are already three cards with name %s in deck %s\n", cardName, deckName);
+                return;
+            }
+            deck.addCardToMainDeck(Card.getCardByName(cardName));
+        }
+        else{
+            if(deck.isSideDeckFull()){
+                System.out.println("side deck is full");
+                return;
+            }
+            if(deck.isThereThreeCards(Card.getCardByName(cardName))){
+                System.out.printf("there are already three cards with name %s in deck %s\n", cardName, deckName);
+                return;
+            }
+            deck.addCardToSideDeck(Card.getCardByName(cardName));
+        }
+        //TODO duplicate keys in hashmap
+        player.removeCard(Card.getCardByName(cardName));
+        System.out.println("card added to deck successfully");
+    }
+    
+    private boolean addCardValidity(String cardName, String deckName, String username){
+        if(cardName == null | deckName == null){
+            System.out.println("invalid command");
+            return false;
+        }
+        Player player = Player.getPlayerByUsername(username);
+        if(!player.doesCardExist(cardName)){
+            System.out.printf("card with name %s does not exist\n", cardName);
+            return false;
+        }
+        if(Deck.getDeckByNames(deckName, username) == null){
+            System.out.printf("deck with name %s does not exist\n", deckName);
+            return false;
+        }
+        return true;
+    }
     
     private void removeCardFromDeck(MainMenu matcher) 		
     {
