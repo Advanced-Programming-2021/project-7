@@ -132,6 +132,14 @@ public class Player implements Comparable<Player> {
         return null;
     }
 
+    public void setActiveDeck(String deckName){
+        for(int i = 0; i < decks.size(); i++){
+            if(decks.get(i).getDeckName().equals(deckName)){
+                activeDeck = decks.get(i);
+            }
+        }
+    }
+
     public int getMoney() {
         return money;
     }
