@@ -21,7 +21,7 @@ class GameDeck {
     private int matPosition;
 
 
-    public GameDeck(String playerName, ArrayList<Card> mainDeck, ArrayList<Card> sideDeck) {
+    public GameDeck(String playerName, HashMap<Card, Integer> mainDeck, HashMap<Card, Integer> sideDeck) {
 
     }
 
