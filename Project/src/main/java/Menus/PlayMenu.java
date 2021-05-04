@@ -34,13 +34,11 @@ class PlayMenu {
             return;
         }
         if(!isDuelValid(player1, player2, rounds)) return;
-        Player firstPlayer = Player.getPlayerByUsername(player1);
-        Player secondPlayer = Player.getPlayerByUsername(player2);
         int round = Integer.parseInt(rounds);
         DuelProgramControler duelProgramControler = new DuelProgramControler();
-        duelProgramControler.run(firstPlayer, secondPlayer, round);
+        duelProgramControler.run(player1, player2, round);
     }
-    
+
     private boolean isDuelValid(String player1, String player2, String rounds){
         if (Player.getPlayerByUsername(player2) == null) {
             System.out.println("there is no player with this username");
