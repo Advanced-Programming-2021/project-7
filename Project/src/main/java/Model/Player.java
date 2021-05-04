@@ -76,6 +76,20 @@ public class Player implements Comparable<Player> {
         }
     }
 
+    public void removeCard(Card card){
+        cards.remove(card);
+    }
+
+    public boolean doesCardExist(String cardName){
+        Card card = Card.getCardByName(cardName);
+        for(int i = 0; i < cards.size(); i++){
+            if(cards.containsKey(card)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static Deck getActiveDeckByUsername(String username){
         Iterator<Player> playerIterator = players.iterator();
         while (playerIterator.hasNext()) {
