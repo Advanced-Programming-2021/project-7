@@ -19,6 +19,7 @@ public class Deck
         this.playerName = playerName;
         this.deckIsValid = false;
         decks.add(this);
+        Player.getPlayerByUsername(playerName).addDeck(this);
     }
 
     public static Deck getDeckByNames(String deckName, String playerName) {
@@ -29,6 +30,24 @@ public class Deck
             return deck;
         }
         return null;
+    }
+
+    public static boolean doesDeckExist(String deckName){
+        for (int i = 0; i < decks.size(); i++) {
+            Deck deck = decks.get(i);
+            if(deck.getDeckName().equals(deckName)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static HashMap<Card, Integer>getMainDeckByDeck(Deck deck){
+        return deck.mainDeck;
+    }
+
+    public static HashMap<Card, Integer>getSideDeckByDeck(Deck deck){
+        return deck.sideDeck;
     }
 
     public void addCardToMainDeck(Card card) {
