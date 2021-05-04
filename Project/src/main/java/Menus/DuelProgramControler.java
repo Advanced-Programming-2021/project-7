@@ -1,9 +1,10 @@
 package Menus;
 
 import Model.Card;
+import Model.Deck;
 import Model.Player;
 
-;import java.util.ArrayList;
+import java.util.ArrayList;
 
 class DuelProgramControler
 {
@@ -12,10 +13,21 @@ class DuelProgramControler
     private ArrayList<Card> mainDeck;
 
     
-    public void run(Player firstPlayer, Player secondPlayer)
+    public void run(String firstPlayer, String secondPlayer, int round)
     {
-        
-    }		
+        Deck activeDeck1 = Player.getActiveDeckByUsername(firstPlayer);
+        Deck activeDeck2 = Player.getActiveDeckByUsername(secondPlayer);
+        GameDeck gameDeckFirst = new GameDeck(firstPlayer, Deck.getMainDeckByDeck(activeDeck1), Deck.getSideDeckByDeck(activeDeck1));
+        GameDeck gameDeckSecond = new GameDeck(secondPlayer, Deck.getMainDeckByDeck(activeDeck2), Deck.getSideDeckByDeck(activeDeck2));
+        while(true){
+
+            showGameDeck(turn);
+        }
+    }
+
+    private void showGameDeck(int turn){
+
+    }
     
     private void whichCommand(String input, GameDeck playerDeck, GameDeck enemyDeck) 		
     {
