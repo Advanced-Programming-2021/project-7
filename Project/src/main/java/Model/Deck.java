@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Deck
-{
+public class Deck implements Comparable<Deck> {
     private static ArrayList<Deck> decks = new ArrayList<>();
     private HashMap<Card, Integer> mainDeck;
     private HashMap<Card, Integer> sideDeck;
@@ -156,5 +155,9 @@ public class Deck
             numberOfCards += e.getValue();
         }
         return numberOfCards;
+    }
+
+    public int compareTo(Deck deck) {
+        return this.deckName.compareTo(deck.deckName);
     }
 }
