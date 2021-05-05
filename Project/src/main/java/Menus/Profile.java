@@ -1,13 +1,15 @@
 package Menus;
 
 import Model.CommonTools;
+import Model.FileHandler;
 import Model.Player;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 class Profile {
-    public void run(String username) {
+    public void run(String username) throws IOException {
         while (true) {
             String command = CommonTools.scan.nextLine();
             if (command.matches("^profile change --nickname [^ ]+$")) changeNickname(username, command);
@@ -22,7 +24,7 @@ class Profile {
         }
     }
 
-    public void changeNickname(String username, String command) {
+    public void changeNickname(String username, String command) throws IOException {
         String pattern = "^profile change --nickname ([^ ]+)$";
         Pattern r = Pattern.compile(pattern);
         Matcher m = r.matcher(command);
@@ -32,11 +34,12 @@ class Profile {
             System.out.printf("user with nickname %s already exists\n", newNickname);
         } else {
             Player.getPlayerByUsername(username).setNickName(newNickname);
+            FileHandler.updatePlayers();
             System.out.println("nickname changed successfully!");
         }
     }
 
-    private void changePassword(String username, String command) {
+    private void changePassword(String username, String command) throws IOException {
         String oldPass = CommonTools.takeNameOutOfCommand(command, "--current");
         String newPass = CommonTools.takeNameOutOfCommand(command, "--new");
         if (oldPass == null || newPass == null) {
@@ -49,6 +52,7 @@ class Profile {
                 System.out.println("please enter a new password");
             } else {
                 Player.getPlayerByUsername(username).setPassword(newPass);
+                FileHandler.updatePlayers();
                 System.out.println("password changed successfully!");
             }
         }

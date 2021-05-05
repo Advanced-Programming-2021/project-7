@@ -4,8 +4,10 @@ import Model.CommonTools;
 import Model.Deck;
 import Model.Player;
 
+import java.io.IOException;
+
 class MainMenu {
-    public void run(String username) {
+    public void run(String username) throws IOException {
         while (true) {
             String command = CommonTools.scan.nextLine();
             if (command.matches("^menu enter scoreboard$"))
@@ -24,7 +26,7 @@ class MainMenu {
         }
     }
 
-    public static void profile(String username) {
+    public static void profile(String username) throws IOException {
         Profile profile = new Profile();
         profile.run(username);
     }
@@ -34,12 +36,12 @@ class MainMenu {
         playMenu.run(username);
     }
 
-    public static void deck(String username) {
+    public static void deck(String username) throws IOException {
         DeckMenu deckMenu = new DeckMenu();
         deckMenu.run(username);
     }
 
-    public static void shop(String username) {
+    public static void shop(String username) throws IOException {
         Shop shop = new Shop();
         shop.run(username);
     }

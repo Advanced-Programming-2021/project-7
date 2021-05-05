@@ -1,10 +1,8 @@
 package Menus;
 
-import Model.Card;
-import Model.CommonTools;
-import Model.Deck;
-import Model.Player;
+import Model.*;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,8 +11,7 @@ class DeckMenu
     private Player loggedInUser;
 
 
-    public void run(String username)
-    {
+    public void run(String username) throws IOException {
         while (true) {
             String command = CommonTools.scan.nextLine();
             if (command.matches("^deck create [^ ]+$")) createDeck(username, command);
@@ -31,7 +28,7 @@ class DeckMenu
         }
     }		
     
-    private void createDeck(String username, String command){
+    private void createDeck(String username, String command) throws IOException {
         String pattern = "^deck create ([^ ]+)$";
         Pattern r = Pattern.compile(pattern);
         Matcher m = r.matcher(command);
@@ -42,11 +39,11 @@ class DeckMenu
             return;
         }
         System.out.println("deck created successfully!");
-        Deck deck = new Deck(deckName, username);
+        new Deck(deckName, username);
+        FileHandler.updatePlayers();
     }		
     
-    private void deleteDeck(String username, String command)
-    {
+    private void deleteDeck(String username, String command) throws IOException {
         String pattern = "^deck delete ([^ ]+)$";
         Pattern r = Pattern.compile(pattern);
         Matcher m = r.matcher(command);
@@ -58,9 +55,10 @@ class DeckMenu
         }
         System.out.println("deck delete successfully!");
         Player.getPlayerByUsername(username).removeDeck(deckName);
+        FileHandler.updatePlayers();
     }
 
-    public void setActiveDeck(String username, String command){
+    public void setActiveDeck(String username, String command) throws IOException {
         String pattern = "^deck set-activate ([^ ]+)$";
         Pattern r = Pattern.compile(pattern);
         Matcher m = r.matcher(command);
@@ -72,6 +70,7 @@ class DeckMenu
         }
         System.out.println("deck activated successfully");
         Player.getPlayerByUsername(username).setActiveDeck(deckName);
+        FileHandler.updatePlayers();
     }
     
     private void addCardToDeck(String username, String command)

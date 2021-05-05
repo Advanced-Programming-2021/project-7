@@ -1,14 +1,16 @@
 package Menus;
 
 import Model.CommonTools;
+import Model.FileHandler;
 import Model.Player;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LoginMenu {
 
-    public void run() {
+    public void run() throws IOException {
         while (true) {
             String command = CommonTools.scan.nextLine();
             if (command.matches("^user create (?:(?:--username|--nickname|--password) ([^ ]+) ?){3}$"))
@@ -23,7 +25,7 @@ public class LoginMenu {
         }
     }
 
-    public void createPlayer(String command) {
+    public void createPlayer(String command) throws IOException {
         String username = CommonTools.takeNameOutOfCommand(command, "--username");
         String nickname = CommonTools.takeNameOutOfCommand(command, "--nickname");
         String password = CommonTools.takeNameOutOfCommand(command, "--password");
@@ -37,14 +39,14 @@ public class LoginMenu {
             if (Player.getPlayerByNick(nickname) != null) {
                 System.out.printf("user with nickname %s already exists\n", nickname);
             } else {
-                // TODO: 2021-04-27  file
                 new Player(username, password, nickname);
+                FileHandler.updatePlayers();
                 System.out.println("user created successfully!");
             }
         }
     }
 
-    private void loginPlayer(String command) {
+    private void loginPlayer(String command) throws IOException {
         String username = CommonTools.takeNameOutOfCommand(command, "--username");
         String password = CommonTools.takeNameOutOfCommand(command, "--password");
         if (username == null || password == null) {

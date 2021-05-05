@@ -58,11 +58,11 @@ public class Player implements Comparable<Player> {
         this.password = password;
     }
 
-    public static ArrayList<Player> getPlayers(){
+    public static ArrayList<Player> getPlayers() {
         return players;
     }
 
-    public static void setPlayers(ArrayList<Player> players1){
+    public static void setPlayers(ArrayList<Player> players1) {
         players = players1;
     }
 
@@ -76,21 +76,21 @@ public class Player implements Comparable<Player> {
         }
     }
 
-    public void removeCard(Card card){
+    public void removeCard(Card card) {
         cards.remove(card);
     }
 
-    public boolean doesCardExist(String cardName){
+    public boolean doesCardExist(String cardName) {
         Card card = Card.getCardByName(cardName);
-        for(int i = 0; i < cards.size(); i++){
-            if(cards.containsKey(card)){
+        for (int i = 0; i < cards.size(); i++) {
+            if (cards.containsKey(card)) {
                 return true;
             }
         }
         return false;
     }
 
-    public static Deck getActiveDeckByUsername(String username){
+    public static Deck getActiveDeckByUsername(String username) {
         Iterator<Player> playerIterator = players.iterator();
         while (playerIterator.hasNext()) {
             Player player = playerIterator.next();
@@ -100,7 +100,6 @@ public class Player implements Comparable<Player> {
         }
         return null;
     }
-
 
 
     public void addDeck(Deck deck) {
@@ -146,9 +145,9 @@ public class Player implements Comparable<Player> {
         return null;
     }
 
-    public void setActiveDeck(String deckName){
-        for(int i = 0; i < decks.size(); i++){
-            if(decks.get(i).getDeckName().equals(deckName)){
+    public void setActiveDeck(String deckName) {
+        for (int i = 0; i < decks.size(); i++) {
+            if (decks.get(i).getDeckName().equals(deckName)) {
                 activeDeck = decks.get(i);
             }
         }
@@ -161,13 +160,13 @@ public class Player implements Comparable<Player> {
     public int compareTo(Player player) {
         if (this.score > player.score) {
             return -1;
-        } else if (this.score < player.score){
+        } else if (this.score < player.score) {
             return 1;
         }
         return this.username.compareTo(player.username);
     }
 
-    public String toString(){
+    public String toString() {
         return username + ": " + score;
     }
 }
