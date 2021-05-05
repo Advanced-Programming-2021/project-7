@@ -172,4 +172,30 @@ public class Player implements Comparable<Player> {
     public String toString() {
         return username + ": " + score;
     }
+
+    public void showDecks(){
+        System.out.println("Decks:");
+        System.out.println("Active Deck:");
+        if(activeDeck != null){
+            String validity;
+            if(activeDeck.isDeckValid()) validity = "valid";
+            else validity = "invalid";
+            System.out.printf("%s: main deck %d, side deck %d, %s\n",
+                    activeDeck.getDeckName(),
+                    activeDeck.getMainNumberOfCards(),
+                    activeDeck.getSideNumberOfCards(), validity);
+
+        }
+        for(int i = 0; i < decks.size(); i++){
+            if(!decks.get(i).getDeckName().equals(activeDeck.getDeckName())){
+                String validity;
+                if(decks.get(i).isDeckValid()) validity = "valid";
+                else validity = "invalid";
+                System.out.printf("%s: main deck %d, side deck %d, %s\n",
+                        decks.get(i).getDeckName(),
+                        decks.get(i).getMainNumberOfCards(),
+                        decks.get(i).getSideNumberOfCards(), validity);
+            }
+        }
+    }
 }
