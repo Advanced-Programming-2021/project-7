@@ -186,6 +186,7 @@ public class Player implements Comparable<Player> {
                     activeDeck.getSideNumberOfCards(), validity);
 
         }
+        System.out.println("Other Decks:");
         for(int i = 0; i < decks.size(); i++){
             if(!decks.get(i).getDeckName().equals(activeDeck.getDeckName())){
                 String validity;
