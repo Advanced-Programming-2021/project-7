@@ -34,16 +34,16 @@ public class Card implements Comparable<Card> {
         this.description = description;
     }
 
+    public String getType(){
+        return type;
+    }
+
     public String getName() {
         return name;
     }
 
     public String getDescription() {
         return description;
-    }
-    
-    public String getType(){
-        return type;
     }
 
     public static void showCards() {
