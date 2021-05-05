@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -187,6 +188,7 @@ public class Player implements Comparable<Player> {
 
         }
         System.out.println("Other Decks:");
+        if(decks != null) Collections.sort(decks);
         for(int i = 0; i < decks.size(); i++){
             if(!decks.get(i).getDeckName().equals(activeDeck.getDeckName())){
                 String validity;
