@@ -41,6 +41,10 @@ public class Card implements Comparable<Card> {
     public String getDescription() {
         return description;
     }
+    
+    public String getType(){
+        return type;
+    }
 
     public static void showCards() {
         ArrayList<String> namesAndDescriptions = new ArrayList<>();
