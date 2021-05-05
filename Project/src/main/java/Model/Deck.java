@@ -141,4 +141,20 @@ public class Deck
     public String getDeckName() {
         return this.deckName;
     }
+
+    public int getMainNumberOfCards(){
+        int numberOfCards = 0;
+        for (Map.Entry <Card, Integer> e : mainDeck.entrySet()) {
+            numberOfCards += e.getValue();
+        }
+        return numberOfCards;
+    }
+
+    public int getSideNumberOfCards(){
+        int numberOfCards = 0;
+        for (Map.Entry <Card, Integer> e : sideDeck.entrySet()) {
+            numberOfCards += e.getValue();
+        }
+        return numberOfCards;
+    }
 }
