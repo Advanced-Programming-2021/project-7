@@ -175,7 +175,7 @@ class DeckMenu
     
     private void showAllDecks(String username)
     {
-        
+        Player.getPlayerByUsername(username).showDecks();
     }		
     
     private void showDeck(Matcher matcher) 		
