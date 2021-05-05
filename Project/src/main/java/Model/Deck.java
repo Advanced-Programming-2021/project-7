@@ -54,6 +54,7 @@ public class Deck
         for (Map.Entry <Card, Integer> e : mainDeck.entrySet()) {
             if (e.getKey().equals(card)) {
                 int number = e.getValue() + 1;
+                mainDeck.remove(card);
                 mainDeck.put(card, number);
                 break;
             }
@@ -65,6 +66,7 @@ public class Deck
         for (Map.Entry <Card, Integer> e : sideDeck.entrySet()) {
             if (e.getKey().equals(card)) {
                 int number = e.getValue() + 1;
+                sideDeck.remove(card);
                 sideDeck.put(card, number);
                 break;
             }
