@@ -3,6 +3,7 @@ package Menus;
 import Model.*;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -178,10 +179,17 @@ class DeckMenu {
 
     private void showDeck(String username, String command) {
         String deckName = CommonTools.takeNameOutOfCommand(command, "--deck-name");
-
+        System.out.printf("Deck: %s\n", deckName);
+        if (command.contains(" --side")) {
+            System.out.println("Side deck");
+            Objects.requireNonNull(Player.getPlayerByUsername(username)).getDeckByName(deckName).showMainDeck();
+        } else {
+            System.out.println("Main deck");
+            Objects.requireNonNull(Player.getPlayerByUsername(username)).getDeckByName(deckName).showSideDeck();
+        }
     }
 
     private void showCards(String username) {
-        Player.getPlayerByUsername(username).showCards();
+        Objects.requireNonNull(Player.getPlayerByUsername(username)).showCards();
     }
 }
