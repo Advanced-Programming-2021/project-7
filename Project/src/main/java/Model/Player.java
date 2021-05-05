@@ -1,9 +1,6 @@
 package Model;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.*;
 
 public class Player implements Comparable<Player> {
     private static ArrayList<Player> players = new ArrayList<>();
@@ -102,7 +99,7 @@ public class Player implements Comparable<Player> {
         return null;
     }
 
-    public void removeActiveDeck(){
+    public void removeActiveDeck() {
         activeDeck = null;
     }
 
@@ -174,12 +171,12 @@ public class Player implements Comparable<Player> {
         return username + ": " + score;
     }
 
-    public void showDecks(){
+    public void showDecks() {
         System.out.println("Decks:");
         System.out.println("Active Deck:");
-        if(activeDeck != null){
+        if (activeDeck != null) {
             String validity;
-            if(activeDeck.isDeckValid()) validity = "valid";
+            if (activeDeck.isDeckValid()) validity = "valid";
             else validity = "invalid";
             System.out.printf("%s: main deck %d, side deck %d, %s\n",
                     activeDeck.getDeckName(),
@@ -188,17 +185,28 @@ public class Player implements Comparable<Player> {
 
         }
         System.out.println("Other Decks:");
-        if(decks != null) Collections.sort(decks);
-        for(int i = 0; i < decks.size(); i++){
-            if(!decks.get(i).getDeckName().equals(activeDeck.getDeckName())){
+        if (decks != null) Collections.sort(decks);
+        for (int i = 0; i < decks.size(); i++) {
+            if (!decks.get(i).getDeckName().equals(activeDeck.getDeckName())) {
                 String validity;
-                if(decks.get(i).isDeckValid()) validity = "valid";
+                if (decks.get(i).isDeckValid()) validity = "valid";
                 else validity = "invalid";
                 System.out.printf("%s: main deck %d, side deck %d, %s\n",
                         decks.get(i).getDeckName(),
                         decks.get(i).getMainNumberOfCards(),
                         decks.get(i).getSideNumberOfCards(), validity);
             }
+        }
+    }
+
+    public void showCards() {
+        ArrayList<Card> cardsArray = new ArrayList<Card>();
+        for (Map.Entry<Card, Integer> e : cards.entrySet()) {
+            cardsArray.add(e.getKey());
+        }
+        Collections.sort(cardsArray);
+        for (int i = 0; i < cardsArray.size(); i++) {
+            System.out.printf("%s:%s\n", cardsArray.get(i).getName(), cardsArray.get(i).getDescription());
         }
     }
 }
