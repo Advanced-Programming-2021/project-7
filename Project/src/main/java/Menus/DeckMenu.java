@@ -21,7 +21,7 @@ class DeckMenu
                 addCardToDeck(username, command);
             else if (command.matches("^menu enter (profile|duel|deck|shop|scoreboard)$"))
                 System.out.println("menu navigation is not possible");
-            else if (command.matches("^menu show-current$")) System.out.println("duel");
+            else if (command.matches("^menu show-current$")) System.out.println("deck");
             else if (command.matches("^menu exit$")) {
                 return;
             } else System.out.println("invalid command!");

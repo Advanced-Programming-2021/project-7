@@ -99,7 +99,7 @@ public class Deck
         for (Map.Entry <Card, Integer> e : mainDeck.entrySet()) {
             numberOfCards += e.getValue();
         }
-        this.deckIsValid = numberOfCards >= 40;
+        this.deckIsValid = numberOfCards >= 40 && numberOfCards <= 60;
         return deckIsValid;
     }
 
@@ -120,12 +120,19 @@ public class Deck
     }
 
     public boolean isThereThreeCards(Card card) {
+        int numberOfCards = 0;
         for (Map.Entry <Card, Integer> e : mainDeck.entrySet()) {
             if (e.getKey().equals(card)) {
-                if (e.getValue() >= 3) return true;
-                else return false;
+                numberOfCards += e.getValue();
             }
         }
+        for (Map.Entry <Card, Integer> e : sideDeck.entrySet()) {
+            if (e.getKey().equals(card)) {
+                numberOfCards += e.getValue();
+            }
+        }
+        if (numberOfCards >= 3)
+            return true;
         return false;
     }
 
