@@ -101,6 +101,9 @@ public class Player implements Comparable<Player> {
         return null;
     }
 
+    public void removeActiveDeck(){
+        activeDeck = null;
+    }
 
     public void addDeck(Deck deck) {
         decks.add(deck);
