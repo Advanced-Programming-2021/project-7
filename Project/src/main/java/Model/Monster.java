@@ -8,7 +8,8 @@ public class Monster extends Card {
     private String monsterType;
     private String cardType;
 
-    public Monster(String name, int level, String attribute, String monsterType, String cardType, int attackPoint,
+    public Monster(String name, int level, String attribute
+            , String monsterType, String cardType, int attackPoint,
                    int defensePoint, String description, int price, String type) {
         super(name, description, type, price);
         this.attackPoint = attackPoint;
@@ -16,6 +17,7 @@ public class Monster extends Card {
         this.level = level;
         this.attribute = attribute;
         this.monsterType = monsterType;
+        this.cardType = cardType;
     }
 
     public void setAttackPoint(int attackPoint) {
@@ -69,4 +71,9 @@ public class Monster extends Card {
     public String getCardNumber() {
         return cardNumber;
     }
+
+//    public Monster Clone1(){
+//        return new Monster(name, level, attribute, monsterType
+//                , cardType, attackPoint, defensePoint, description, price, type);
+//    }
 }

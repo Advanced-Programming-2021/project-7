@@ -48,21 +48,21 @@ public class Card implements Comparable<Card> {
 
     public static void showCards() {
         ArrayList<String> namesAndDescriptions = new ArrayList<>();
-        for(int i = 0; i < cards.size(); i++) {
+        for (int i = 0; i < cards.size(); i++) {
             String line = cards.get(i).name;
             line = line + ":";
             line = line + cards.get(i).description;
             namesAndDescriptions.add(line);
         }
         Collections.sort(namesAndDescriptions);
-        for(int i = 0; i < namesAndDescriptions.size(); i++) {
+        for (int i = 0; i < namesAndDescriptions.size(); i++) {
             System.out.println(namesAndDescriptions.get(i));
         }
     }
 
     public boolean isCardExist(String cardName) {
-        for(int i = 0; i < cards.size(); i++) {
-            if(cards.get(i).name.equals(cardName)) {
+        for (int i = 0; i < cards.size(); i++) {
+            if (cards.get(i).name.equals(cardName)) {
                 return true;
             }
         }
@@ -70,8 +70,8 @@ public class Card implements Comparable<Card> {
     }
 
     public static int getPriceByUsername(String name) {
-        for(int i = 0; i < cards.size(); i++) {
-            if(cards.get(i).name.equals(name)) {
+        for (int i = 0; i < cards.size(); i++) {
+            if (cards.get(i).name.equals(name)) {
                 return cards.get(i).price;
             }
         }
