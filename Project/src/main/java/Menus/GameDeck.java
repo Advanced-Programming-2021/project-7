@@ -1,28 +1,68 @@
 package Menus;
 
 import Model.Card;
+import Model.MonsterZone;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 class GameDeck {
-    private ArrayList<Card> attackPositionCards;
-    private ArrayList<Card> defencePositionCards;
-    private ArrayList<Card> inhandCards;
-    private ArrayList<Card> graveyardCards;
-    private ArrayList<Card> mainDeck;
-    private ArrayList<Card> sideDeck;
-    private ArrayList<Card> deckZone;
-    private ArrayList<Card> fieldZone;
-    private HashMap<Integer, ArrayList<Card>> monster;
-    private HashMap<Integer, ArrayList<Card>> spellAndTrap;
-    private String playerName;
-    private String[] board;
+    private ArrayList<MonsterZone> monsterZones = new ArrayList<>(5);
+    private ArrayList<Card> spellZones = new ArrayList<>(5);
+    private ArrayList<Card> inHandCards = new ArrayList<>();
+    private ArrayList<Card> deck = new ArrayList<>();
+    private Card fieldZone;
+    private ArrayList<Card> graveyardCards = new ArrayList<>();
+
+    private ArrayList<Card> mainDeck = new ArrayList<>();
+    private ArrayList<Card> sideDeck = new ArrayList<>();
+    
+    private String playerNickName;
     private int playerLP;
-    private int matPosition;
 
+    public GameDeck(String playerNickName, HashMap<Card, Integer> mainDeck, HashMap<Card, Integer> sideDeck) {
+        this.playerNickName = playerNickName;
+        for (Map.Entry<Card, Integer> cardEntry : mainDeck.entrySet()) {
+            for (Integer i = 0; i < cardEntry.getValue(); i++) {
+                // TODO clone
+            }
+        }
+        for (Map.Entry<Card, Integer> cardEntry : sideDeck.entrySet()) {
+            for (Integer i = 0; i < cardEntry.getValue(); i++) {
+                // TODO clone
+            }
+        }
+    }
 
-    public GameDeck(String playerName, HashMap<Card, Integer> mainDeck, HashMap<Card, Integer> sideDeck) {
+    public String getPlayerNickName() {
+        return playerNickName;
+    }
 
+    public int getPlayerLP() {
+        return playerLP;
+    }
+
+    public ArrayList<Card> getInHandCards() {
+        return inHandCards;
+    }
+
+    public ArrayList<Card> getDeck() {
+        return deck;
+    }
+
+    public ArrayList<MonsterZone> getMonsterZones() {
+        return monsterZones;
+    }
+
+    public ArrayList<Card> getGraveyardCards() {
+        return graveyardCards;
+    }
+
+    public String getFieldZone() {
+        if (fieldZone == null)
+            return "E";
+        return "O";
     }
 
     public void drawCard(String cardName) {
@@ -85,7 +125,7 @@ class GameDeck {
 //
 //    }
 
-    public void deselct() {
+    public void deselect() {
 
     }
 
@@ -109,11 +149,11 @@ class GameDeck {
 //
 //    }
 //
-//    public ArrayList<Card> getInhandCards() {
+//    public ArrayList<Card> getInHandCards() {
 //
 //    }
 //
-//    public ArrayList<Card> getdestroyedCards() {
+//    public ArrayList<Card> getDestroyedCards() {
 //
 //    }
 //
