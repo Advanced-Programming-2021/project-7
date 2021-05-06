@@ -1,6 +1,6 @@
 package Menus;
 
-import Model.Card.Card;
+import Model.Cards.*;
 import Model.Deck;
 import Model.Player;
 

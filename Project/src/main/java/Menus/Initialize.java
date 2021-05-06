@@ -14,8 +14,8 @@ import java.util.ArrayList;
 
 
 import Model.Monster;
-import Model.Card.Spell;
-import Model.Card.Trap;
+import Model.Cards.Spell;
+import Model.Cards.Trap;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

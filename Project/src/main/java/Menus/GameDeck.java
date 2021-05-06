@@ -1,8 +1,8 @@
 package Menus;
 
-import Model.Card.Card;
-import Model.Card.SpellZone;
-import Model.Card.MonsterZone;
+import Model.Cards.Card;
+import Model.Cards.SpellZone;
+import Model.Cards.MonsterZone;
 
 import java.util.ArrayList;
 import java.util.HashMap;

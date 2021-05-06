@@ -1,7 +1,7 @@
 package Menus;
 
 import Model.*;
-import Model.Card.Card;
+import Model.Cards.Card;
 
 import java.io.IOException;
 import java.util.Objects;
