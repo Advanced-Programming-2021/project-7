@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Card {
+public class Card implements Comparable<Card> {
     protected static ArrayList<Card> cards = new ArrayList<>();
     protected String name;
     protected String description;
@@ -32,6 +32,10 @@ public class Card {
         if (!(StringDecsription instanceof String)) return;
         String description = (String) StringDecsription;
         this.description = description;
+    }
+
+    public String getType(){
+        return type;
     }
 
     public String getName() {
@@ -76,5 +80,9 @@ public class Card {
 
     public void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
+    }
+
+    public int compareTo(Card card) {
+        return this.name.compareTo(card.name);
     }
 }

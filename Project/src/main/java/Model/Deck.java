@@ -1,11 +1,11 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Deck
-{
+public class Deck implements Comparable<Deck> {
     private static ArrayList<Deck> decks = new ArrayList<>();
     private HashMap<Card, Integer> mainDeck;
     private HashMap<Card, Integer> sideDeck;
@@ -156,5 +156,49 @@ public class Deck
             numberOfCards += e.getValue();
         }
         return numberOfCards;
+    }
+
+    public int compareTo(Deck deck) {
+        return this.deckName.compareTo(deck.deckName);
+    }
+
+    public void showMainDeck(){
+        ArrayList<Card> monsters = new ArrayList<>();
+        ArrayList<Card> spellsAndTraps = new ArrayList<>();
+        for (Map.Entry <Card, Integer> e : mainDeck.entrySet()) {
+            if(e.getKey().getType().equals("monster")) monsters.add(e.getKey());
+            else if(e.getKey().getType().equals("spell") ||
+                    e.getKey().getType().equals("trap")) spellsAndTraps.add(e.getKey());
+        }
+        Collections.sort(monsters);
+        Collections.sort(spellsAndTraps);
+        System.out.println("Monsters:");
+        for (int i = 0; i < monsters.size(); i++){
+            System.out.printf("%s: %s\n", monsters.get(i).getName(), monsters.get(i).getDescription());
+        }
+        System.out.println("Spell and Traps:");
+        for (int i = 0; i < monsters.size(); i++){
+            System.out.printf("%s: %s\n", spellsAndTraps.get(i).getName(), spellsAndTraps.get(i).getDescription());
+        }
+    }
+
+    public void showSideDeck(){
+        ArrayList<Card> monsters = new ArrayList<>();
+        ArrayList<Card> spellsAndTraps = new ArrayList<>();
+        for (Map.Entry <Card, Integer> e : sideDeck.entrySet()) {
+            if(e.getKey().getType().equals("monster")) monsters.add(e.getKey());
+            else if(e.getKey().getType().equals("spell") ||
+                    e.getKey().getType().equals("trap")) spellsAndTraps.add(e.getKey());
+        }
+        Collections.sort(monsters);
+        Collections.sort(spellsAndTraps);
+        System.out.println("Monsters:");
+        for (int i = 0; i < monsters.size(); i++){
+            System.out.printf("%s: %s\n", monsters.get(i).getName(), monsters.get(i).getDescription());
+        }
+        System.out.println("Spell and Traps:");
+        for (int i = 0; i < monsters.size(); i++){
+            System.out.printf("%s: %s\n", spellsAndTraps.get(i).getName(), spellsAndTraps.get(i).getDescription());
+        }
     }
 }
