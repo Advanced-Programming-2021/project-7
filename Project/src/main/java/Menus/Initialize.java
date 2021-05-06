@@ -14,12 +14,11 @@ import java.util.ArrayList;
 
 
 import Model.Monster;
-import Model.Spell;
-import Model.Trap;
+import Model.Card.Spell;
+import Model.Card.Trap;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 
 public class Initialize {
 

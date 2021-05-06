@@ -1,6 +1,6 @@
 package Menus;
 
-import Model.Card;
+import Model.Card.Card;
 import Model.CommonTools;
 import Model.FileHandler;
 import Model.Player;

@@ -1,6 +1,6 @@
 package Menus;
 
-import Model.Card;
+import Model.Card.Card;
 import Model.Deck;
 import Model.Player;
 
@@ -13,12 +13,8 @@ class DuelProgramControler {
 
 
     public void run(String firstPlayer, String secondPlayer, int round) {
-        Deck activeDeck1 = Player.getActiveDeckByUsername(firstPlayer);
-        Deck activeDeck2 = Player.getActiveDeckByUsername(secondPlayer);
-        GameDeck gameDeckFirst = new GameDeck(firstPlayer, Deck.getMainDeckByDeck(activeDeck1), Deck.getSideDeckByDeck(activeDeck1));
-        GameDeck gameDeckSecond = new GameDeck(secondPlayer, Deck.getMainDeckByDeck(activeDeck2), Deck.getSideDeckByDeck(activeDeck2));
+        setGameDecks(firstPlayer, secondPlayer);
         while (true) {
-
             showGameDeck(turn);
         }
     }
@@ -50,23 +46,37 @@ class DuelProgramControler {
         }
         System.out.printf("\n");
         System.out.println(enemyDeck.getDeck().size());
-        // TODO: 2021-05-06 spellZone
+
         System.out.printf("\t");
         for (int i = 4; i >= 0; i--) {
-            System.out.printf("%s\t", enemyDeck.getMonsterZones().get(i).getPositioning());
+            System.out.printf("%s\t", enemyDeck.getSpellZones().get(i).getStatus());
         }
         System.out.printf("\n");
-        System.out.println(enemyDeck.getGraveyardCards().size() + "\t\t\t\t\t\t" + enemyDeck.getFieldZone());
+
+        System.out.printf("\t");
+        for (int i = 4; i >= 0; i--) {
+            System.out.printf("%s\t", enemyDeck.getMonsterZones().get(i).getStatus());
+        }
+        System.out.printf("\n");
+
+        System.out.println(enemyDeck.getGraveyardCards().size() + "\t\t\t\t\t\t" + enemyDeck.getFieldZoneAsString());
     }
 
     private void showMyDeck(GameDeck myDeck) {
-        System.out.println(myDeck.getFieldZone() + "\t\t\t\t\t\t" + myDeck.getGraveyardCards().size());
+        System.out.println(myDeck.getFieldZoneAsString() + "\t\t\t\t\t\t" + myDeck.getGraveyardCards().size());
+
         System.out.printf("\t");
         for (int i = 0; i < 5; i++) {
-            System.out.printf("%s\t", myDeck.getMonsterZones().get(i).getPositioning());
+            System.out.printf("%s\t", myDeck.getMonsterZones().get(i).getStatus());
         }
         System.out.printf("\n");
-        // TODO: 2021-05-06 SpellZone
+
+        System.out.printf("\t");
+        for (int i = 0; i < 5; i++) {
+            System.out.printf("%s\t", myDeck.getSpellZones().get(i).getStatus());
+        }
+        System.out.printf("\n");
+
         for (int i = 0; i < myDeck.getInHandCards().size(); i++) {
             System.out.printf("c\t");
         }

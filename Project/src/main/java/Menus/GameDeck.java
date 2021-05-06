@@ -1,7 +1,8 @@
 package Menus;
 
-import Model.Card;
-import Model.MonsterZone;
+import Model.Card.Card;
+import Model.Card.SpellZone;
+import Model.Card.MonsterZone;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,7 +10,7 @@ import java.util.Map;
 
 class GameDeck {
     private ArrayList<MonsterZone> monsterZones = new ArrayList<>(5);
-    private ArrayList<Card> spellZones = new ArrayList<>(5);
+    private ArrayList<SpellZone> spellZones = new ArrayList<>(5);
     private ArrayList<Card> inHandCards = new ArrayList<>();
     private ArrayList<Card> deck = new ArrayList<>();
     private Card fieldZone;
@@ -55,11 +56,15 @@ class GameDeck {
         return monsterZones;
     }
 
+    public ArrayList<SpellZone> getSpellZones() {
+        return spellZones;
+    }
+
     public ArrayList<Card> getGraveyardCards() {
         return graveyardCards;
     }
 
-    public String getFieldZone() {
+    public String getFieldZoneAsString() {
         if (fieldZone == null)
             return "E";
         return "O";

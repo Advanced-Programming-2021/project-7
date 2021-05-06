@@ -1,5 +1,7 @@
 package Model;
 
+import Model.Card.Card;
+
 import java.util.*;
 
 public class Player implements Comparable<Player> {
