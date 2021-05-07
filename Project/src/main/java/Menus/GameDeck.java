@@ -134,9 +134,9 @@ class GameDeck {
         while (true) {
             String command = CommonTools.scan.nextLine();
             if (command.matches("^select -d$")) deselect();
-//            else if (command.matches("^surrender$")) surrender(turn);
-//            else if (command.matches("^select .*$")) selectCard(command);
-//            else if (command.matches("^select -d$")) System.out.println("no card is selected yet");
+//            else if (command.matches("^summon$")) summon();
+//            else if (command.matches("^set$")) set(command);
+//            else if (command.matches("^set --position")) setPosition();
             else System.out.println("invalid command");
         }
     }
@@ -149,9 +149,9 @@ class GameDeck {
         while (true) {
             String command = CommonTools.scan.nextLine();
             if (command.matches("^select -d$")) deselect();
-//            else if (command.matches("^surrender$")) surrender(turn);
-//            else if (command.matches("^select .*$")) selectCard(command);
-//            else if (command.matches("^select -d$")) System.out.println("no card is selected yet");
+//            else if (command.matches("^summon$")) summon();
+//            else if (command.matches("^set$")) set(command);
+//            else if (command.matches("^set --position")) setPosition();
             else System.out.println("invalid command");
         }
     }
@@ -164,9 +164,9 @@ class GameDeck {
         while (true) {
             String command = CommonTools.scan.nextLine();
             if (command.matches("^select -d$")) deselect();
-//            else if (command.matches("^surrender$")) surrender(turn);
-//            else if (command.matches("^select .*$")) selectCard(command);
-//            else if (command.matches("^select -d$")) System.out.println("no card is selected yet");
+//            else if (command.matches("^summon$")) summon();
+//            else if (command.matches("^set$")) set(command);
+//            else if (command.matches("^set --position")) setPosition();
             else System.out.println("invalid command");
         }
     }
