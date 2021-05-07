@@ -94,11 +94,24 @@ class DuelProgramControler {
             System.out.println("invalid selection");
             return;
         }
-        System.out.println("card selected");
+        int selectedSide = turn;
+        if (address.matches("^(?:(?:--monster|--spell|--field|--hand|--opponent)( (\\d+))* ?){3}$"))
+            selectedSide = changeTurn(turn);
+        if (command.matches("^(?:(?:--monster|--opponent)( (\\d+))* ?){2,3}$")) {
+            int position = Integer.parseInt(CommonTools.takeNameOutOfCommand(address, "--monster"));
+            gameDecks.get(selectedSide).selectMonster(position);
+        } else if (command.matches("^(?:(?:--spell|--opponent)( (\\d+))* ?){2,3}$")) {
+            int position = Integer.parseInt(CommonTools.takeNameOutOfCommand(address, "--spell"));
+            gameDecks.get(selectedSide).selectSpell(position);
+        } else if (command.matches("^(?:(?:--hand|--opponent)( (\\d+))* ?){2,3}$")) {
+            int position = Integer.parseInt(CommonTools.takeNameOutOfCommand(address, "--hand"));
+            gameDecks.get(selectedSide).selectHand(position);
+        } else if (command.matches("^(?:(?:--field|--opponent)( (\\d+))* ?){1,2}$"))
+            gameDecks.get(selectedSide).selectField();
     }
 
     private boolean isAddressValid(String address) {
-        if (!address.matches("^(?:(?:--monster|--spell|--field|--hand|--opponent)( (\\d+))* ?){2,3}$"))
+        if (!address.matches("^(?:(?:--monster|--spell|--field|--hand|--opponent)( (\\d+))* ?){1,3}$"))
             return false;
         String monster = CommonTools.takeNameOutOfCommand(address, "--monster");
         String spell = CommonTools.takeNameOutOfCommand(address, "--spell");
@@ -116,7 +129,6 @@ class DuelProgramControler {
             if (address.contains("--opponent")) return false;
             if (Integer.parseInt(hand) > gameDecks.get(turn).getInHandCards().size() || Integer.parseInt(hand) < 1)
                 return false;
-
         }
         return true;
     }
