@@ -20,6 +20,7 @@ class DuelProgramControler {
             if (command.matches("^show graveyard$")) showGraveyard(turn);
             else if (command.matches("^surrender$")) surrender(turn);
             else if (command.matches("^select .*$")) selectCard(command);
+            else if (command.matches("^select -d$")) System.out.println("no card is selected yet");
             else System.out.println("invalid command");
         }
     }
