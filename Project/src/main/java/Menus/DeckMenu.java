@@ -18,12 +18,12 @@ class DeckMenu {
             if (command.matches("^deck create [^ ]+$")) createDeck(username, command);
             else if (command.matches("^deck delete [^ ]+$")) deleteDeck(username, command);
             else if (command.matches("^deck set-activate [^ ]+$")) setActiveDeck(username, command);
-            else if (command.matches("^deck add-card (?:(?:--card|--deck) ([^ ]+) (--side)*?){2,3}$"))
+            else if (command.matches("^deck add-card (?:(?:--card|--deck|--side)( ([^ ]+))* ?){2,3}$"))
                 addCardToDeck(username, command);
-            else if (command.matches("^deck rm-card (?:(?:--card|--deck) ([^ ]+) (--side)*?){2,3}$"))
+            else if (command.matches("^deck rm-card (?:(?:--card|--deck|--side)( ([^ ]+))* ?){2,3}$"))
                 removeCardFromDeck(username, command);
             else if (command.matches("^deck show --all")) showAllDecks(username);
-            else if (command.matches("^deck show (?:(?:--deck-name) ([^ ]+) (--side)*?){1,2}$"))
+            else if (command.matches("^deck show (?:(?:--deck-name|--side)( ([^ ]+))* ?){1,2}$"))
                 showDeck(username, command);
             else if (command.matches("^deck show --cards$")) showCards(username);
             else if (command.matches("^menu enter (profile|duel|deck|shop|scoreboard)$"))
@@ -86,6 +86,11 @@ class DeckMenu {
     private void addCardToDeck(String username, String command) throws IOException {
         String cardName = CommonTools.takeNameOutOfCommand(command, "--card");
         String deckName = CommonTools.takeNameOutOfCommand(command, "--deck");
+        String side = CommonTools.takeNameOutOfCommand(command, "--side");
+        if(cardName == null || deckName == null || side != null){
+            System.out.println("invalid command");
+            return;
+        }
         if (!addCardValidity(cardName, deckName, username)) return;
         Deck deck = Deck.getDeckByNames(deckName, username);
         Player player = Player.getPlayerByUsername(username);
@@ -119,6 +124,11 @@ class DeckMenu {
     private void removeCardFromDeck(String username, String command) throws IOException {
         String cardName = CommonTools.takeNameOutOfCommand(command, "--card");
         String deckName = CommonTools.takeNameOutOfCommand(command, "--deck");
+        String afterSide = CommonTools.takeNameOutOfCommand(command, "--side");
+        if(cardName == null || deckName == null || afterSide != null){
+            System.out.println("invalid command");
+            return;
+        }
         boolean side = command.contains("--side");
         if (!removeCardValidity(cardName, deckName, username, side)) return;
         Deck deck = Deck.getDeckByNames(deckName, username);
@@ -180,6 +190,11 @@ class DeckMenu {
 
     private void showDeck(String username, String command) {
         String deckName = CommonTools.takeNameOutOfCommand(command, "--deck-name");
+        String afterSide = CommonTools.takeNameOutOfCommand(command, "--side");
+        if(deckName == null || afterSide != null){
+            System.out.println("invalid command");
+            return;
+        }
         System.out.printf("Deck: %s\n", deckName);
         if (command.contains(" --side")) {
             System.out.println("Side deck");
