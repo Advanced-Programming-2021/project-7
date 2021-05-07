@@ -14,8 +14,8 @@ class DuelProgramControler {
 
     public void run(String firstPlayer, String secondPlayer, int round) {
         setGameDecks(firstPlayer, secondPlayer);
-        String command = CommonTools.scan.nextLine();
         while (true) {
+            String command = CommonTools.scan.nextLine();
             showGameDeck(turn);
             if (command.matches("^show graveyard$")) showGraveyard(turn);
             else if (command.matches("^surrender$")) surrender(turn);
