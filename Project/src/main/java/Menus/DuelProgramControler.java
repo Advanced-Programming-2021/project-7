@@ -12,16 +12,14 @@ class DuelProgramControler {
     private int turn = 0; //0 : firstPlayer, 1 : secondPlayer
     private ArrayList<Card> mainDeck;
 
-
     public void run(String firstPlayer, String secondPlayer, int round) {
         setGameDecks(firstPlayer, secondPlayer);
         String command = CommonTools.scan.nextLine();
         while (true) {
             showGameDeck(turn);
-            if (command.matches("^show graveyard$"))
-                showGraveyard(turn);
-            else if (command.matches("^surrender$"))
-                surrender(turn);
+            if (command.matches("^show graveyard$")) showGraveyard(turn);
+            else if (command.matches("^surrender$")) surrender(turn);
+            else if (command.matches("^select .*$")) selectCard(command);
             else System.out.println("invalid command");
         }
     }
@@ -88,6 +86,39 @@ class DuelProgramControler {
             System.out.printf("c\t");
         }
         System.out.println(myDeck.getPlayerNickName() + " : " + myDeck.getPlayerLP());
+    }
+
+    private void selectCard(String command) {
+        String address = command.substring(7);
+        if (!isAddressValid(address)) {
+            System.out.println("invalid selection");
+            return;
+        }
+        System.out.println("card selected");
+    }
+
+    private boolean isAddressValid(String address) {
+        if (!address.matches("^(?:(?:--monster|--spell|--field|--hand|--opponent)( (\\d+))* ?){2,3}$"))
+            return false;
+        String monster = CommonTools.takeNameOutOfCommand(address, "--monster");
+        String spell = CommonTools.takeNameOutOfCommand(address, "--spell");
+        String field = CommonTools.takeNameOutOfCommand(address, "--field");
+        String hand = CommonTools.takeNameOutOfCommand(address, "--hand");
+        String opponent = CommonTools.takeNameOutOfCommand(address, "--opponent");
+        if ((monster == null && spell == null && field != null && hand == null) || opponent != null) return false;
+        if (monster != null) {
+            if (Integer.parseInt(monster) > 5 || Integer.parseInt(monster) < 1) return false;
+        }
+        if (spell != null) {
+            if (Integer.parseInt(spell) > 5 || Integer.parseInt(spell) < 1) return false;
+        }
+        if (hand != null) {
+            if (address.contains("--opponent")) return false;
+            if (Integer.parseInt(hand) > gameDecks.get(turn).getInHandCards().size() || Integer.parseInt(hand) < 1)
+                return false;
+
+        }
+        return true;
     }
 
     private void whichCommand(String input, GameDeck playerDeck, GameDeck enemyDeck) {
@@ -179,7 +210,8 @@ class DuelProgramControler {
             System.out.println("invalid command");
         }
     }
-//
+
+    //
 //    private void cardShow(GameDeck playerDeck, GameDeck enemyDeck)
 //    {
 //
@@ -188,7 +220,8 @@ class DuelProgramControler {
     private void surrender(int turn) {
 
     }
-//
+
+    //
 //    private void increaseLP(GameDeck playerDeck)
 //    {
 //
