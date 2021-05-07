@@ -1,6 +1,7 @@
 package Menus;
 
 import Model.Cards.*;
+import Model.CommonTools;
 import Model.Deck;
 import Model.Player;
 
@@ -14,8 +15,14 @@ class DuelProgramControler {
 
     public void run(String firstPlayer, String secondPlayer, int round) {
         setGameDecks(firstPlayer, secondPlayer);
+        String command = CommonTools.scan.nextLine();
         while (true) {
             showGameDeck(turn);
+            if (command.matches("^show graveyard$"))
+                showGraveyard();
+            else if (command.matches("^surrender$"))
+                surrender();
+            else System.out.println("invalid command");
         }
     }
 
@@ -151,20 +158,18 @@ class DuelProgramControler {
 //
 //    }
 //
-//    private void showGraveyard(GameDeck playerDeck, Scanner scanner)
-//    {
-//
-//    }
+    private void showGraveyard() {
+
+    }
 //
 //    private void cardShow(GameDeck playerDeck, GameDeck enemyDeck)
 //    {
 //
 //    }
 //
-//    private void surrender()
-//    {
-//
-//    }
+    private void surrender() {
+
+    }
 //
 //    private void increaseLP(GameDeck playerDeck)
 //    {

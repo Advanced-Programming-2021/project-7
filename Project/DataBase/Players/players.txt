@@ -21,5 +21,14 @@
       "deckName": "aliDeck",
       "playerName": "ali"
     }
+  },
+  {
+    "username": "shayan",
+    "password": "shayan1381",
+    "nickname": "shn",
+    "score": 0,
+    "money": 0,
+    "cards": {},
+    "decks": []
   }
 ]
