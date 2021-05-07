@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 class DuelProgramControler {
     private ArrayList<GameDeck> gameDecks = new ArrayList<>(2);
-    private int turn;
+    private int turn = 0; //0 : firstPlayer, 1 : secondPlayer
     private ArrayList<Card> mainDeck;
 
 
@@ -19,9 +19,9 @@ class DuelProgramControler {
         while (true) {
             showGameDeck(turn);
             if (command.matches("^show graveyard$"))
-                showGraveyard();
+                showGraveyard(turn);
             else if (command.matches("^surrender$"))
-                surrender();
+                surrender(turn);
             else System.out.println("invalid command");
         }
     }
@@ -158,7 +158,12 @@ class DuelProgramControler {
 //
 //    }
 //
-    private void showGraveyard() {
+    private void showGraveyard(int turn) {
+        GameDeck gameDeck;
+        if (turn == 0)
+            gameDeck = gameDecks.get(0);
+        else
+            gameDeck = gameDecks.get(1);
 
     }
 //
@@ -167,7 +172,7 @@ class DuelProgramControler {
 //
 //    }
 //
-    private void surrender() {
+    private void surrender(int turn) {
 
     }
 //
