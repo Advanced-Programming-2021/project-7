@@ -3,14 +3,15 @@ package Menus;
 import Model.Cards.Card;
 import Model.Cards.SpellZone;
 import Model.Cards.MonsterZone;
+import Model.CommonTools;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 class GameDeck {
-    private ArrayList<MonsterZone> monsterZones = new ArrayList<>(5);
-    private ArrayList<SpellZone> spellZones = new ArrayList<>(5);
+    private HashMap<Integer, MonsterZone> monsterZones = new HashMap<>();
+    private HashMap<Integer, MonsterZone> spellZones = new HashMap<>();
     private ArrayList<Card> inHandCards = new ArrayList<>();
     private ArrayList<Card> deck = new ArrayList<>();
     private Card fieldZone;
@@ -52,11 +53,11 @@ class GameDeck {
         return deck;
     }
 
-    public ArrayList<MonsterZone> getMonsterZones() {
+    public HashMap<Integer, MonsterZone> getMonsterZones() {
         return monsterZones;
     }
 
-    public ArrayList<SpellZone> getSpellZones() {
+    public HashMap<Integer, MonsterZone> getSpellZones() {
         return spellZones;
     }
 
@@ -107,7 +108,18 @@ class GameDeck {
     }
 
     public void selectMonster(int position) {
-
+        if(monsterZones.get(position) == null) {
+            System.out.println("no card found in the given position");
+            return;
+        }
+        while (true) {
+            String command = CommonTools.scan.nextLine();
+            if (command.matches("^select -d$")) deselect();
+//            else if (command.matches("^surrender$")) surrender(turn);
+//            else if (command.matches("^select .*$")) selectCard(command);
+//            else if (command.matches("^select -d$")) System.out.println("no card is selected yet");
+            else System.out.println("invalid command");
+        }
     }
 
     public void selectOpponentMonster(int position) {
@@ -115,23 +127,53 @@ class GameDeck {
     }
 
     public void selectSpell(int position) {
-
+        if(spellZones.get(position) == null) {
+            System.out.println("no card found in the given position");
+            return;
+        }
+        while (true) {
+            String command = CommonTools.scan.nextLine();
+            if (command.matches("^select -d$")) deselect();
+//            else if (command.matches("^surrender$")) surrender(turn);
+//            else if (command.matches("^select .*$")) selectCard(command);
+//            else if (command.matches("^select -d$")) System.out.println("no card is selected yet");
+            else System.out.println("invalid command");
+        }
     }
 
     public void selectField() {
-
+        if(fieldZone == null) {
+            System.out.println("no card found in the given position");
+            return;
+        }
+        while (true) {
+            String command = CommonTools.scan.nextLine();
+            if (command.matches("^select -d$")) deselect();
+//            else if (command.matches("^surrender$")) surrender(turn);
+//            else if (command.matches("^select .*$")) selectCard(command);
+//            else if (command.matches("^select -d$")) System.out.println("no card is selected yet");
+            else System.out.println("invalid command");
+        }
     }
 
     public void selectHand(int position) {
-
+        if(inHandCards.get(position - 1) == null) {
+            System.out.println("no card found in the given position");
+            return;
+        }
+        while (true) {
+            String command = CommonTools.scan.nextLine();
+            if (command.matches("^select -d$")) deselect();
+//            else if (command.matches("^surrender$")) surrender(turn);
+//            else if (command.matches("^select .*$")) selectCard(command);
+//            else if (command.matches("^select -d$")) System.out.println("no card is selected yet");
+            else System.out.println("invalid command");
+        }
     }
 
-//    public boolean checkSelectValidity(String field, int position) {
-//
-//    }
-
     public void deselect() {
-
+        System.out.println("card deselected");
+        return;
     }
 
     public void setPosition(Card card, String position) {
