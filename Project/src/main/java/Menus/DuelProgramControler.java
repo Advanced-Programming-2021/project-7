@@ -164,7 +164,20 @@ class DuelProgramControler {
             gameDeck = gameDecks.get(0);
         else
             gameDeck = gameDecks.get(1);
-
+        ArrayList<Card> graveyardCards = gameDeck.getGraveyardCards();
+        if (graveyardCards.size() == 0)
+            System.out.println("graveyard empty");
+        else {
+            for (int i = 0; i < graveyardCards.size(); i++) {
+                Card card = graveyardCards.get(i);
+                System.out.println(++i + ". " + card);
+            }
+        }
+        while (true) {
+            String command = CommonTools.scan.nextLine().trim();
+            if (command.equals("back")) return;
+            System.out.println("invalid command");
+        }
     }
 //
 //    private void cardShow(GameDeck playerDeck, GameDeck enemyDeck)

@@ -78,6 +78,10 @@ public class Card implements Comparable<Card> {
         return 0;
     }
 
+    public String toString() {
+        return this.name + ":" + this.description;
+    }
+
     public void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
     }
