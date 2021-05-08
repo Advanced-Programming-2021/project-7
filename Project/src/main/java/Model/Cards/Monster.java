@@ -1,6 +1,4 @@
-package Model;
-
-import Model.Cards.Card;
+package Model.Cards;
 
 public class Monster extends Card {
     private int attackPoint;

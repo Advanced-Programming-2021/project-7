@@ -1,16 +1,29 @@
 package Menus;
 
-import Model.Cards.*;
+import Model.Cards.Card;
+import Model.Cards.Monster;
 import Model.CommonTools;
 import Model.Deck;
 import Model.Player;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+
+enum Phase {
+    draw,
+    standby,
+    main1,
+    battle,
+    main2,
+    end
+}
 
 class DuelProgramControler {
     private ArrayList<GameDeck> gameDecks = new ArrayList<>(2);
     private int turn = 0; //0 : firstPlayer, 1 : secondPlayer
-    private ArrayList<Card> mainDeck;
+    private Card selectedCard = null;
+    private int selectedCardIndex = -1; // -1 means Empty
+    private Phase phase = Phase.draw;
 
     public void run(String firstPlayer, String secondPlayer, int round) {
         setGameDecks(firstPlayer, secondPlayer);
@@ -21,6 +34,8 @@ class DuelProgramControler {
             else if (command.matches("^surrender$")) surrender(turn);
             else if (command.matches("^select .*$")) selectCard(command);
             else if (command.matches("^select -d$")) System.out.println("no card is selected yet");
+            else if (command.matches("^attack ([1-5])$")) attackCard(command);
+            else if (command.matches("^attack direct$")) directAttack();
             else System.out.println("invalid command");
         }
     }
@@ -182,11 +197,130 @@ class DuelProgramControler {
 //
 //    }
 //
-//    private void attackCard(GameDeck playerDeck, GameDeck enemyDeck)
-//    {
-//
-//    }
-//
+    private void attackCard(String command) {
+        int selectDefender;
+        Matcher matcher = CommonTools.getMatcher(command, "(\\d)");
+        matcher.find();
+        selectDefender = Integer.parseInt(matcher.group(1));
+        GameDeck myDeck = gameDecks.get(turn);
+        GameDeck enemyDeck = gameDecks.get(changeTurn(turn));
+        if (selectedCard == null) {
+            System.out.println("no card is selected yet");
+            return;
+        } else if (!(selectedCard instanceof Monster)) {
+            System.out.println("you can’t attack with this card");
+            return;
+        } else if (phase != Phase.battle) {
+            System.out.println("you can’t do this action in this phase");
+            return;
+        } else if (myDeck.getMonsterZones().get(selectedCardIndex).getHasAttackedThisRound()) {
+            System.out.println("this card already attacked");
+            return;
+        } else if (enemyDeck.getMonsterZones().get(selectDefender).isEmpty()) {
+            System.out.println("there is no card to attack here");
+            return;
+        } else if (enemyDeck.getMonsterZones().get(selectDefender).getStatus().equals("OO")) {
+            attackOO(selectDefender);
+        } else if (enemyDeck.getMonsterZones().get(selectDefender).getStatus().equals("DO")) {
+            attackDO(selectDefender);
+        } else if (enemyDeck.getMonsterZones().get(selectDefender).getStatus().equals("DH")) {
+            attackDH(selectDefender);
+        }
+    }
+
+    public void attackOO(int selectDefender) {
+        Monster selectedMonster = (Monster) selectedCard;
+        GameDeck enemyDeck = gameDecks.get(changeTurn(turn));
+        GameDeck myDeck = gameDecks.get(turn);
+        int attackerDamage = selectedMonster.getAttackPoint();
+        int defenderDamage = ((Monster) enemyDeck.getMonsterZones()
+                .get(selectDefender).getCurrentMonster()).getAttackPoint();
+        if (attackerDamage > defenderDamage) {
+            Card card = enemyDeck.getMonsterZones().get(selectDefender).removeCard();
+            enemyDeck.getGraveyardCards().add(card);
+            enemyDeck.takeDamage(attackerDamage - defenderDamage);
+            // TODO: 2021-05-08 check if dead
+            System.out.printf("your opponent’s monster is destroyed and your opponent receives"
+                    + " %d battle damage\n", attackerDamage - defenderDamage);
+        } else if (attackerDamage == defenderDamage) {
+            Card card = myDeck.getMonsterZones().get(selectedCardIndex).removeCard();
+            myDeck.getGraveyardCards().add(card);
+            card = enemyDeck.getMonsterZones().get(selectDefender).removeCard();
+            enemyDeck.getGraveyardCards().add(card);
+            System.out.println("both you and your opponent monster cards are destroyed and no" +
+                    "one receives damage\n");
+        } else {
+            Card card = myDeck.getMonsterZones().get(selectedCardIndex).removeCard();
+            myDeck.getGraveyardCards().add(card);
+            myDeck.takeDamage(defenderDamage - attackerDamage);
+            // TODO: 2021-05-08 check if dead
+            System.out.printf("Your monster card is destroyed and you received %d battle" +
+                    "damage", defenderDamage - attackerDamage);
+        }
+    }
+
+    public void attackDO(int selectDefender) {
+        Monster selectedMonster = (Monster) selectedCard;
+        GameDeck enemyDeck = gameDecks.get(changeTurn(turn));
+        GameDeck myDeck = gameDecks.get(turn);
+        int attackerDamage = selectedMonster.getAttackPoint();
+        int defenderDamage = ((Monster) enemyDeck.getMonsterZones().get(selectDefender).getCurrentMonster()).getAttackPoint();
+        if (attackerDamage > defenderDamage) {
+            Card card = enemyDeck.getMonsterZones().get(selectDefender).removeCard();
+            enemyDeck.getGraveyardCards().add(card);
+            System.out.println("the defense position monster is destroyed");
+        } else if (attackerDamage == defenderDamage) {
+            System.out.println("no card is destroyed");
+        } else {
+            myDeck.takeDamage(defenderDamage - attackerDamage);
+            // TODO: 2021-05-08 check if dead
+            System.out.printf("no card is destroyed and you received %d battle damage\n", defenderDamage - attackerDamage);
+        }
+    }
+
+    public void attackDH(int selectDefender) {
+        Monster selectedMonster = (Monster) selectedCard;
+        GameDeck enemyDeck = gameDecks.get(changeTurn(turn));
+        GameDeck myDeck = gameDecks.get(turn);
+        String enemyCardName = enemyDeck.getMonsterZones()
+                .get(selectDefender).getCurrentMonster().getName();
+        int attackerDamage = selectedMonster.getAttackPoint();
+        int defenderDamage = ((Monster) enemyDeck.getMonsterZones().get(selectDefender).getCurrentMonster()).getAttackPoint();
+        if (attackerDamage > defenderDamage) {
+            Card card = enemyDeck.getMonsterZones().get(selectDefender).removeCard();
+            enemyDeck.getGraveyardCards().add(card);
+            System.out.printf("the defense position monster (%s) is destroyed\n", enemyCardName);
+        } else if (attackerDamage == defenderDamage) {
+            System.out.printf("enemy card was %s no card is destroyed\n", enemyCardName);
+        } else {
+            myDeck.takeDamage(defenderDamage - attackerDamage);
+            // TODO: 2021-05-08 check if dead
+            System.out.printf("enemy card was %s no card is destroyed and you received %d battle damage\n"
+                    , enemyCardName, defenderDamage - attackerDamage);
+        }
+    }
+
+    public void directAttack() {
+        GameDeck myDeck = gameDecks.get(turn);
+        GameDeck enemyDeck = gameDecks.get(changeTurn(turn));
+        if (selectedCard == null) {
+            System.out.println("no card is selected yet");
+        } else if (!(selectedCard instanceof Monster)) {
+            System.out.println("you can’t attack with this card");
+        } else if (phase != Phase.battle) {
+            System.out.println("you can’t do this action in this phase");
+        } else if (myDeck.getMonsterZones().get(selectedCardIndex).getHasAttackedThisRound()) {
+            System.out.println("this card already attacked");
+        } else {
+            Monster selectedMonster = (Monster) selectedCard;
+            int attackerDamage = selectedMonster.getAttackPoint();
+            enemyDeck.takeDamage(attackerDamage);
+            // TODO: 2021-05-08 check if dead
+            System.out.println("you opponent receives " + attackerDamage + " battle damage");
+        }
+    }
+
+    //
 //    private void attackDirect(GameDeck playerDeck, GameDeck enemyDeck)
 //    {
 //

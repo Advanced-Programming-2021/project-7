@@ -13,7 +13,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 
 
-import Model.Monster;
+import Model.Cards.Monster;
 import Model.Cards.Spell;
 import Model.Cards.Trap;
 

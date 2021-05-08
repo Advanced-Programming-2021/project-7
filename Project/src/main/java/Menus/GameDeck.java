@@ -71,6 +71,14 @@ class GameDeck {
         return "O";
     }
 
+    public void takeDamage(int damage){
+        playerLP -= damage;
+    }
+
+    public void heal(int amount){
+        playerLP += amount;
+    }
+
     public void drawCard(String cardName) {
 
     }
