@@ -13,8 +13,9 @@ class DuelProgramControler {
     private ArrayList<Card> mainDeck;
 
     public void run(String firstPlayer, String secondPlayer, int round) {
-        for (int i = 0; i < round; i++) {
+        for (int i = 1; i <= round; i++) {
             // methods to be set after each round
+            if (isGameOver(i)) break;
             setGameDecks(firstPlayer, secondPlayer);
             while (true) {
                 if (isRoundOver()) break;
@@ -38,6 +39,13 @@ class DuelProgramControler {
             roundOver(1);
             return  true;
         } else return  false;
+    }
+
+    private boolean isGameOver(int round) {
+        if (round < 3) return false;
+        if (gameDecks.get(0).getWinRounds() > 1) return true;
+        if (gameDecks.get(1).getWinRounds() > 1) return true;
+        return false;
     }
 
     private void setGameDecks(String firstPlayer, String secondPlayer) {
