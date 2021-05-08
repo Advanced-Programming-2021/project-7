@@ -265,6 +265,8 @@ class DuelProgramControler {
     private  void roundOver(int turn) { // 0 : firstPlayer losses , 1 : secondPlayer losses
         GameDeck firstDeck = gameDecks.get(0);
         GameDeck secondDeck = gameDecks.get(1);
+        firstDeck.addPlayerLPAfterRound();
+        secondDeck.addPlayerLPAfterRound();
         firstDeck.setPlayerLP(8000);
         secondDeck.setPlayerLP(8000);
         if (turn == 0) secondDeck.increaseWinRounds();

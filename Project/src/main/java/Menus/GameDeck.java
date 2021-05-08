@@ -6,6 +6,7 @@ import Model.Cards.MonsterZone;
 import Model.CommonTools;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ class GameDeck {
     private ArrayList<Card> deck = new ArrayList<>();
     private Card fieldZone;
     private ArrayList<Card> graveyardCards = new ArrayList<>();
+    private ArrayList<Integer> playerLPsAfterRound = new ArrayList<>();
 
     private ArrayList<Card> mainDeck = new ArrayList<>();
     private ArrayList<Card> sideDeck = new ArrayList<>();
@@ -114,6 +116,14 @@ class GameDeck {
 
     public int getWinRounds() {
         return this.winRounds;
+    }
+
+    public void addPlayerLPAfterRound() {
+        playerLPsAfterRound.add(playerLP);
+    }
+
+    public int getMaxPlayerLPAfterRounds() {
+        return Collections.max(playerLPsAfterRound);
     }
 
     public void editBoardCell(int position) {
