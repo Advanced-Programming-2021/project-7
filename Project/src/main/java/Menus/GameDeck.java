@@ -22,9 +22,12 @@ class GameDeck {
     
     private String playerNickName;
     private int playerLP;
+    private int winRounds;
 
     public GameDeck(String playerNickName, HashMap<Card, Integer> mainDeck, HashMap<Card, Integer> sideDeck) {
         this.playerNickName = playerNickName;
+        this.playerLP = 8000;
+        this.winRounds = 0;
         for (Map.Entry<Card, Integer> cardEntry : mainDeck.entrySet()) {
             for (Integer i = 0; i < cardEntry.getValue(); i++) {
                 // TODO clone
@@ -97,6 +100,18 @@ class GameDeck {
 
     public void increaseLP(int value) {
         this.playerLP += value;
+    }
+
+    public void setPlayerLP(int value) {
+        this.playerLP = value;
+    }
+
+    public void increaseWinRounds() {
+        this.winRounds++;
+    }
+
+    public int getWinRounds() {
+        return this.winRounds;
     }
 
     public void editBoardCell(int position) {

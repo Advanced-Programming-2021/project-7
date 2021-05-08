@@ -13,16 +13,31 @@ class DuelProgramControler {
     private ArrayList<Card> mainDeck;
 
     public void run(String firstPlayer, String secondPlayer, int round) {
-        setGameDecks(firstPlayer, secondPlayer);
-        while (true) {
-            String command = CommonTools.scan.nextLine();
-            showGameDeck(turn);
-            if (command.matches("^show graveyard$")) showGraveyard(turn);
-            else if (command.matches("^surrender$")) surrender(turn);
-            else if (command.matches("^select .*$")) selectCard(command);
-            else if (command.matches("^select -d$")) System.out.println("no card is selected yet");
-            else System.out.println("invalid command");
+        for (int i = 0; i < round; i++) {
+            // methods to be set after each round
+            setGameDecks(firstPlayer, secondPlayer);
+            while (true) {
+                if (isGameOver()) break;
+                String command = CommonTools.scan.nextLine();
+                showGameDeck(turn);
+                if (command.matches("^show graveyard$")) showGraveyard(turn);
+                else if (command.matches("^surrender$")) surrender(turn);
+                else if (command.matches("^select .*$")) selectCard(command);
+                else if (command.matches("^select -d$")) System.out.println("no card is selected yet");
+                else System.out.println("invalid command");
+            }
         }
+        //matchOver();
+    }
+
+    private boolean isGameOver() {
+        if (gameDecks.get(0).getPlayerLP() <= 0) {
+            gameOver(0);
+            return true;
+        } else if (gameDecks.get(1).getPlayerLP() <= 0) {
+            gameOver(1);
+            return  true;
+        } else return  false;
     }
 
     private void setGameDecks(String firstPlayer, String secondPlayer) {
@@ -245,6 +260,19 @@ class DuelProgramControler {
 //
 //    }
 //
+    private  void gameOver(int turn) { // 0 : firstPlayer losses , 1 : secondPlayer losses
+        GameDeck firstDeck = gameDecks.get(0);
+        GameDeck secondDeck = gameDecks.get(1);
+        firstDeck.setPlayerLP(8000);
+        secondDeck.setPlayerLP(8000);
+        if (turn == 0) {
+            secondDeck.increaseWinRounds();
+            //System.out.println();
+        } else {
+            firstDeck.increaseWinRounds();
+        }
+    }
+
     private int changeTurn(int turn) {
         if (turn == 1)
             return 0;
