@@ -248,18 +248,16 @@ class DuelProgramControler {
             System.out.println("invalid command");
         }
     }
-
-    //
+//
 //    private void cardShow(GameDeck playerDeck, GameDeck enemyDeck)
 //    {
 //
 //    }
 //
     private void surrender(int turn) {
-
+        gameDecks.get(turn).setPlayerLP(0);
     }
-
-    //
+//
 //    private void increaseLP(GameDeck playerDeck)
 //    {
 //
