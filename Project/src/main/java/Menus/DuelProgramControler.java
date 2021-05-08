@@ -17,7 +17,7 @@ class DuelProgramControler {
             // methods to be set after each round
             setGameDecks(firstPlayer, secondPlayer);
             while (true) {
-                if (isGameOver()) break;
+                if (isRoundOver()) break;
                 String command = CommonTools.scan.nextLine();
                 showGameDeck(turn);
                 if (command.matches("^show graveyard$")) showGraveyard(turn);
@@ -27,15 +27,15 @@ class DuelProgramControler {
                 else System.out.println("invalid command");
             }
         }
-        //matchOver();
+        //gameOver();
     }
 
-    private boolean isGameOver() {
+    private boolean isRoundOver() {
         if (gameDecks.get(0).getPlayerLP() <= 0) {
-            gameOver(0);
+            roundOver(0);
             return true;
         } else if (gameDecks.get(1).getPlayerLP() <= 0) {
-            gameOver(1);
+            roundOver(1);
             return  true;
         } else return  false;
     }
@@ -45,8 +45,10 @@ class DuelProgramControler {
         String secondNick = Player.getPlayerByUsername(secondPlayer).getNickname();
         Deck activeDeck1 = Player.getActiveDeckByUsername(firstPlayer);
         Deck activeDeck2 = Player.getActiveDeckByUsername(secondPlayer);
-        GameDeck gameDeckFirst = new GameDeck(firstNick, Deck.getMainDeckByDeck(activeDeck1), Deck.getSideDeckByDeck(activeDeck1));
-        GameDeck gameDeckSecond = new GameDeck(secondNick, Deck.getMainDeckByDeck(activeDeck2), Deck.getSideDeckByDeck(activeDeck2));
+        GameDeck gameDeckFirst = new GameDeck(firstNick, firstPlayer,
+                Deck.getMainDeckByDeck(activeDeck1), Deck.getSideDeckByDeck(activeDeck1));
+        GameDeck gameDeckSecond = new GameDeck(secondNick, secondPlayer,
+                Deck.getMainDeckByDeck(activeDeck2), Deck.getSideDeckByDeck(activeDeck2));
         gameDecks.add(gameDeckFirst);
         gameDecks.add(gameDeckSecond);
     }
@@ -260,17 +262,13 @@ class DuelProgramControler {
 //
 //    }
 //
-    private  void gameOver(int turn) { // 0 : firstPlayer losses , 1 : secondPlayer losses
+    private  void roundOver(int turn) { // 0 : firstPlayer losses , 1 : secondPlayer losses
         GameDeck firstDeck = gameDecks.get(0);
         GameDeck secondDeck = gameDecks.get(1);
         firstDeck.setPlayerLP(8000);
         secondDeck.setPlayerLP(8000);
-        if (turn == 0) {
-            secondDeck.increaseWinRounds();
-            //System.out.println();
-        } else {
-            firstDeck.increaseWinRounds();
-        }
+        if (turn == 0) secondDeck.increaseWinRounds();
+        else firstDeck.increaseWinRounds();
     }
 
     private int changeTurn(int turn) {

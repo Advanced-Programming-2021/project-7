@@ -21,11 +21,13 @@ class GameDeck {
     private ArrayList<Card> sideDeck = new ArrayList<>();
     
     private String playerNickName;
+    private String playerUserName;
     private int playerLP;
     private int winRounds;
 
-    public GameDeck(String playerNickName, HashMap<Card, Integer> mainDeck, HashMap<Card, Integer> sideDeck) {
+    public GameDeck(String playerNickName, String playerUserName, HashMap<Card, Integer> mainDeck, HashMap<Card, Integer> sideDeck) {
         this.playerNickName = playerNickName;
+        this.playerUserName = playerUserName;
         this.playerLP = 8000;
         this.winRounds = 0;
         for (Map.Entry<Card, Integer> cardEntry : mainDeck.entrySet()) {
@@ -198,6 +200,11 @@ class GameDeck {
     public void setMat() {
 
     }
+
+    public String getPlayerUserName() {
+        return this.playerUserName;
+    }
+
 
 //    public String getBoardCellByPosition(int position) {
 //
