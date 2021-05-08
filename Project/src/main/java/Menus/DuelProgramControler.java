@@ -280,7 +280,32 @@ class DuelProgramControler {
     }
 
     private void gameOver(int round) {
-
+        String winnerUsername = "";
+        int firstScore = 0;
+        int secondScore = 0;
+        if (round == 1) {
+            if (gameDecks.get(0).getWinRounds() == 1) {
+                firstScore = 1000 + gameDecks.get(0).getMaxPlayerLPAfterRounds();
+                secondScore = 100;
+                winnerUsername = gameDecks.get(0).getPlayerUserName();
+            } else {
+                firstScore = 100;
+                secondScore = 1000 + gameDecks.get(0).getMaxPlayerLPAfterRounds();
+                winnerUsername = gameDecks.get(1).getPlayerUserName();
+            }
+        } else if (round == 3) {
+            if (gameDecks.get(0).getWinRounds() == 2) {
+                firstScore = 3000 + (3 * gameDecks.get(0).getMaxPlayerLPAfterRounds());
+                secondScore = 300;
+                winnerUsername = gameDecks.get(0).getPlayerUserName();
+            } else {
+                firstScore = 300;
+                secondScore = 3000 + (3 * gameDecks.get(0).getMaxPlayerLPAfterRounds());
+                winnerUsername = gameDecks.get(1).getPlayerUserName();
+            }
+        }
+        System.out.println(winnerUsername + " won the game and the score is: "
+                + firstScore + "-" + secondScore);
     }
 
     private int changeTurn(int turn) {
