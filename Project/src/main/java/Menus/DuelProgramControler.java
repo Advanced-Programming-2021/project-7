@@ -26,18 +26,39 @@ class DuelProgramControler {
     private Phase phase = Phase.draw;
 
     public void run(String firstPlayer, String secondPlayer, int round) {
-        setGameDecks(firstPlayer, secondPlayer);
-        while (true) {
-            String command = CommonTools.scan.nextLine();
-            showGameDeck(turn);
-            if (command.matches("^show graveyard$")) showGraveyard(turn);
-            else if (command.matches("^surrender$")) surrender(turn);
-            else if (command.matches("^select .*$")) selectCard(command);
-            else if (command.matches("^select -d$")) System.out.println("no card is selected yet");
-            else if (command.matches("^attack ([1-5])$")) attackCard(command);
-            else if (command.matches("^attack direct$")) directAttack();
-            else System.out.println("invalid command");
+        for (int i = 1; i <= round; i++) {
+            // methods to be set after each round
+            if (isGameOver(i)) break;
+            setGameDecks(firstPlayer, secondPlayer);
+            while (true) {
+                if (isRoundOver()) break;
+                String command = CommonTools.scan.nextLine();
+                showGameDeck(turn);
+                if (command.matches("^show graveyard$")) showGraveyard(turn);
+                else if (command.matches("^surrender$")) surrender(turn);
+                else if (command.matches("^select .*$")) selectCard(command);
+                else if (command.matches("^select -d$")) System.out.println("no card is selected yet");
+                else System.out.println("invalid command");
+            }
         }
+        gameOver(round);
+    }
+
+    private boolean isRoundOver() {
+        if (gameDecks.get(0).getPlayerLP() <= 0) {
+            roundOver(0);
+            return true;
+        } else if (gameDecks.get(1).getPlayerLP() <= 0) {
+            roundOver(1);
+            return  true;
+        } else return  false;
+    }
+
+    private boolean isGameOver(int round) {
+        if (round < 3) return false;
+        if (gameDecks.get(0).getWinRounds() > 1) return true;
+        if (gameDecks.get(1).getWinRounds() > 1) return true;
+        return false;
     }
 
     private void setGameDecks(String firstPlayer, String secondPlayer) {
@@ -45,8 +66,10 @@ class DuelProgramControler {
         String secondNick = Player.getPlayerByUsername(secondPlayer).getNickname();
         Deck activeDeck1 = Player.getActiveDeckByUsername(firstPlayer);
         Deck activeDeck2 = Player.getActiveDeckByUsername(secondPlayer);
-        GameDeck gameDeckFirst = new GameDeck(firstNick, Deck.getMainDeckByDeck(activeDeck1), Deck.getSideDeckByDeck(activeDeck1));
-        GameDeck gameDeckSecond = new GameDeck(secondNick, Deck.getMainDeckByDeck(activeDeck2), Deck.getSideDeckByDeck(activeDeck2));
+        GameDeck gameDeckFirst = new GameDeck(firstNick, firstPlayer,
+                Deck.getMainDeckByDeck(activeDeck1), Deck.getSideDeckByDeck(activeDeck1));
+        GameDeck gameDeckSecond = new GameDeck(secondNick, secondPlayer,
+                Deck.getMainDeckByDeck(activeDeck2), Deck.getSideDeckByDeck(activeDeck2));
         gameDecks.add(gameDeckFirst);
         gameDecks.add(gameDeckSecond);
     }
@@ -357,18 +380,16 @@ class DuelProgramControler {
             System.out.println("invalid command");
         }
     }
-
-    //
+//
 //    private void cardShow(GameDeck playerDeck, GameDeck enemyDeck)
 //    {
 //
 //    }
 //
     private void surrender(int turn) {
-
+        gameDecks.get(turn).setPlayerLP(0);
     }
-
-    //
+//
 //    private void increaseLP(GameDeck playerDeck)
 //    {
 //
@@ -379,6 +400,46 @@ class DuelProgramControler {
 //
 //    }
 //
+    private void roundOver(int turn) { // 0 : firstPlayer losses , 1 : secondPlayer losses
+        GameDeck firstDeck = gameDecks.get(0);
+        GameDeck secondDeck = gameDecks.get(1);
+        firstDeck.addPlayerLPAfterRound();
+        secondDeck.addPlayerLPAfterRound();
+        firstDeck.setPlayerLP(8000);
+        secondDeck.setPlayerLP(8000);
+        if (turn == 0) secondDeck.increaseWinRounds();
+        else firstDeck.increaseWinRounds();
+    }
+
+    private void gameOver(int round) {
+        String winnerUsername = "";
+        int firstScore = 0;
+        int secondScore = 0;
+        if (round == 1) {
+            if (gameDecks.get(0).getWinRounds() == 1) {
+                firstScore = 1000 + gameDecks.get(0).getMaxPlayerLPAfterRounds();
+                secondScore = 100;
+                winnerUsername = gameDecks.get(0).getPlayerUserName();
+            } else {
+                firstScore = 100;
+                secondScore = 1000 + gameDecks.get(0).getMaxPlayerLPAfterRounds();
+                winnerUsername = gameDecks.get(1).getPlayerUserName();
+            }
+        } else if (round == 3) {
+            if (gameDecks.get(0).getWinRounds() == 2) {
+                firstScore = 3000 + (3 * gameDecks.get(0).getMaxPlayerLPAfterRounds());
+                secondScore = 300;
+                winnerUsername = gameDecks.get(0).getPlayerUserName();
+            } else {
+                firstScore = 300;
+                secondScore = 3000 + (3 * gameDecks.get(0).getMaxPlayerLPAfterRounds());
+                winnerUsername = gameDecks.get(1).getPlayerUserName();
+            }
+        }
+        System.out.println(winnerUsername + " won the game and the score is: "
+                + firstScore + "-" + secondScore);
+    }
+
     private int changeTurn(int turn) {
         if (turn == 1)
             return 0;

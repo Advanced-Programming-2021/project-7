@@ -6,6 +6,7 @@ import Model.Cards.MonsterZone;
 import Model.CommonTools;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,15 +17,21 @@ class GameDeck {
     private ArrayList<Card> deck = new ArrayList<>();
     private Card fieldZone;
     private ArrayList<Card> graveyardCards = new ArrayList<>();
+    private ArrayList<Integer> playerLPsAfterRound = new ArrayList<>();
 
     private ArrayList<Card> mainDeck = new ArrayList<>();
     private ArrayList<Card> sideDeck = new ArrayList<>();
     
     private String playerNickName;
+    private String playerUserName;
     private int playerLP;
+    private int winRounds;
 
-    public GameDeck(String playerNickName, HashMap<Card, Integer> mainDeck, HashMap<Card, Integer> sideDeck) {
+    public GameDeck(String playerNickName, String playerUserName, HashMap<Card, Integer> mainDeck, HashMap<Card, Integer> sideDeck) {
         this.playerNickName = playerNickName;
+        this.playerUserName = playerUserName;
+        this.playerLP = 8000;
+        this.winRounds = 0;
         for (Map.Entry<Card, Integer> cardEntry : mainDeck.entrySet()) {
             for (Integer i = 0; i < cardEntry.getValue(); i++) {
                 // TODO clone
@@ -100,11 +107,31 @@ class GameDeck {
     }
 
     public void decreaseLP(int value) {
-
+        this.playerLP -= value;
     }
 
     public void increaseLP(int value) {
+        this.playerLP += value;
+    }
 
+    public void setPlayerLP(int value) {
+        this.playerLP = value;
+    }
+
+    public void increaseWinRounds() {
+        this.winRounds++;
+    }
+
+    public int getWinRounds() {
+        return this.winRounds;
+    }
+
+    public void addPlayerLPAfterRound() {
+        playerLPsAfterRound.add(playerLP);
+    }
+
+    public int getMaxPlayerLPAfterRounds() {
+        return Collections.max(playerLPsAfterRound);
     }
 
     public void editBoardCell(int position) {
@@ -191,6 +218,11 @@ class GameDeck {
     public void setMat() {
 
     }
+
+    public String getPlayerUserName() {
+        return this.playerUserName;
+    }
+
 
 //    public String getBoardCellByPosition(int position) {
 //
