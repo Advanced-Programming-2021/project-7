@@ -36,9 +36,8 @@ class DuelProgramControler {
                 showGameDeck(turn);
                 if (command.matches("^show graveyard$")) showGraveyard(turn);
                 else if (command.matches("^surrender$")) surrender(turn);
-                else if (command.matches("^select .*$")) select(command);
+                else if (command.matches("^select .*$")) selectCard(command);
                 else if (command.matches("^select -d$")) System.out.println("no card is selected yet");
-                else if (command.matches("^summon$")) System.out.println("no card is selected yet");
                 else System.out.println("invalid command");
             }
         }
@@ -128,17 +127,15 @@ class DuelProgramControler {
         System.out.println(myDeck.getPlayerNickName() + " : " + myDeck.getPlayerLP());
     }
 
-    private void select(String command) {
+    private void selectCard(String command) {
         String address = command.substring(7);
         if (!isAddressValid(address)) {
             System.out.println("invalid selection");
             return;
         }
         int selectedSide = turn;
-        if (address.matches("^(?:(?:--monster|--spell|--field|--hand|--opponent)( (\\d+))* ?){3}$")) {
-            selectOpponentCard(address);
-        }
-        else selectMyCard(address);
+        if (address.matches("^(?:(?:--monster|--spell|--field|--hand|--opponent)( (\\d+))* ?){3}$"))
+            selectedSide = changeTurn(turn);
         if (command.matches("^(?:(?:--monster|--opponent)( (\\d+))* ?){2,3}$")) {
             int position = Integer.parseInt(CommonTools.takeNameOutOfCommand(address, "--monster"));
             gameDecks.get(selectedSide).selectMonster(position);
@@ -162,11 +159,7 @@ class DuelProgramControler {
         String opponent = CommonTools.takeNameOutOfCommand(address, "--opponent");
         if ((monster == null && spell == null && field != null && hand == null) || opponent != null) return false;
         if (monster != null) {
-            if (address.matches("^--monster (\\d+)$")){
-                if (Integer.parseInt(monster) > gameDecks.get(turn).getInHandCards().size() ||
-                        Integer.parseInt(monster) < 1) return false;
-            }
-            else if (Integer.parseInt(monster) > 5 || Integer.parseInt(monster) < 1) return false;
+            if (Integer.parseInt(monster) > 5 || Integer.parseInt(monster) < 1) return false;
         }
         if (spell != null) {
             if (Integer.parseInt(spell) > 5 || Integer.parseInt(spell) < 1) return false;
@@ -177,34 +170,6 @@ class DuelProgramControler {
                 return false;
         }
         return true;
-    }
-
-    private void selectMyCard(String address){
-        if (address.matches("^--monster (\\d+)$")) {
-            int position = Integer.parseInt(CommonTools.takeNameOutOfCommand(address, "--monster"));
-            gameDecks.get(turn).selectMonster(position);
-        }
-        else if (address.matches("^--spell (\\d+)$")) {
-            int position = Integer.parseInt(CommonTools.takeNameOutOfCommand(address, "--spell"));
-            gameDecks.get(turn).selectSpell(position);
-        }
-        else if (address.matches("^--hand (\\d)+$")){
-            int position = Integer.parseInt(CommonTools.takeNameOutOfCommand(address, "--hand"));
-            gameDecks.get(turn).selectHand(position);
-        }
-        else if (address.matches("^--field$")) gameDecks.get(turn).selectField();
-    }
-
-    private void selectOpponentCard(String address){
-        int selectedSide = changeTurn(turn);
-        if (address.matches("^(?:(?:--monster|--opponent)( (\\d+))* ?){3}$")) {
-            int position = Integer.parseInt(CommonTools.takeNameOutOfCommand(address, "--monster"));
-            gameDecks.get(selectedSide).selectOpponentMonster(position);
-        } else if (address.matches("^(?:(?:--spell|--opponent)( (\\d+))* ?){3}$")) {
-            int position = Integer.parseInt(CommonTools.takeNameOutOfCommand(address, "--spell"));
-            gameDecks.get(selectedSide).selectOpponentSpell(position);
-        } else if (address.matches("^(?:(?:--field|--opponent)( (\\d+))* ?){2}$"))
-            gameDecks.get(selectedSide).selectOpponentField();
     }
 
     private void whichCommand(String input, GameDeck playerDeck, GameDeck enemyDeck) {
@@ -473,10 +438,6 @@ class DuelProgramControler {
         }
         System.out.println(winnerUsername + " won the game and the score is: "
                 + firstScore + "-" + secondScore);
-    }
-
-    public Phase getPhase(){
-        return this.phase;
     }
 
     private int changeTurn(int turn) {
