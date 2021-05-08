@@ -92,11 +92,11 @@ class GameDeck {
     }
 
     public void decreaseLP(int value) {
-
+        this.playerLP -= value;
     }
 
     public void increaseLP(int value) {
-
+        this.playerLP += value;
     }
 
     public void editBoardCell(int position) {
