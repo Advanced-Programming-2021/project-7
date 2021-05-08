@@ -28,7 +28,7 @@ class DuelProgramControler {
                 else System.out.println("invalid command");
             }
         }
-        //gameOver();
+        gameOver(round);
     }
 
     private boolean isRoundOver() {
@@ -270,7 +270,7 @@ class DuelProgramControler {
 //
 //    }
 //
-    private  void roundOver(int turn) { // 0 : firstPlayer losses , 1 : secondPlayer losses
+    private void roundOver(int turn) { // 0 : firstPlayer losses , 1 : secondPlayer losses
         GameDeck firstDeck = gameDecks.get(0);
         GameDeck secondDeck = gameDecks.get(1);
         firstDeck.addPlayerLPAfterRound();
@@ -279,6 +279,10 @@ class DuelProgramControler {
         secondDeck.setPlayerLP(8000);
         if (turn == 0) secondDeck.increaseWinRounds();
         else firstDeck.increaseWinRounds();
+    }
+
+    private void gameOver(int round) {
+
     }
 
     private int changeTurn(int turn) {
