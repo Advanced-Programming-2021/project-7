@@ -14,7 +14,7 @@ import java.util.Map;
 
 class GameDeck {
     private HashMap<Integer, MonsterZone> monsterZones = new HashMap<>();
-    private HashMap<Integer, MonsterZone> spellZones = new HashMap<>();
+    private HashMap<Integer, SpellZone> spellZones = new HashMap<>();
     private ArrayList<Card> inHandCards = new ArrayList<>();
     private ArrayList<Card> deck = new ArrayList<>();
     private Card fieldZone;
@@ -66,7 +66,7 @@ class GameDeck {
         return monsterZones;
     }
 
-    public HashMap<Integer, MonsterZone> getSpellZones() {
+    public HashMap<Integer, SpellZone> getSpellZones() {
         return spellZones;
     }
 
@@ -193,23 +193,6 @@ class GameDeck {
 
     public void selectOpponentField(){
 
-    }
-
-    public void selectHand(int position, Phase phase) {
-        if(inHandCards.get(position - 1) == null) {
-            System.out.println("no card found in the given position");
-            return;
-        }
-        while (true) {
-            String command = CommonTools.scan.nextLine();
-            if (command.matches("^select -d$")) deselect();
-            else if (!inHandCards.get(position - 1).getType().equals("Monster")) System.out.println("you can’t summon this card");
-            //TODO unable to summon monsters
-            else if (phase != Phase.main1 && phase != Phase.main2) System.out.println("action not allowed in this phase");
-            else if (!monsterZones.containsValue(null)) System.out.println("monster card zone is full");
-
-            else System.out.println("invalid command");
-        }
     }
 
     public void deselect() {
