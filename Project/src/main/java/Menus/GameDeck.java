@@ -144,62 +144,6 @@ class GameDeck {
 
     }
 
-    public void selectMonster(int position) {
-        if(monsterZones.get(position) == null) {
-            System.out.println("no card found in the given position");
-            return;
-        }
-        while (true) {
-            String command = CommonTools.scan.nextLine();
-            if (command.matches("^select -d$")) deselect();
-            else if (command.matches("^summon$")) System.out.println("you can’t summon this card");
-            else System.out.println("invalid command");
-        }
-    }
-
-    public void selectOpponentMonster(int position) {
-
-    }
-
-    public void selectSpell(int position) {
-        if(spellZones.get(position) == null) {
-            System.out.println("no card found in the given position");
-            return;
-        }
-        while (true) {
-            String command = CommonTools.scan.nextLine();
-            if (command.matches("^select -d$")) deselect();
-            else if (command.matches("^summon$")) System.out.println("you can’t summon this card");
-            else System.out.println("invalid command");
-        }
-    }
-
-    public void selectOpponentSpell(int position){
-
-    }
-
-    public void selectField() {
-        if(fieldZone == null) {
-            System.out.println("no card found in the given position");
-            return;
-        }
-        while (true) {
-            String command = CommonTools.scan.nextLine();
-            if (command.matches("^select -d$")) deselect();
-            else if (command.matches("^summon$")) System.out.println("you can’t summon this card");
-            else System.out.println("invalid command");
-        }
-    }
-
-    public void selectOpponentField(){
-
-    }
-
-    public void deselect() {
-        System.out.println("card deselected");
-        return;
-    }
-
     public void setPosition(Card card, String position) {
 
     }
