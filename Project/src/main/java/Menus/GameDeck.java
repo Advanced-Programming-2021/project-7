@@ -10,6 +10,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+
+
 class GameDeck {
     private HashMap<Integer, MonsterZone> monsterZones = new HashMap<>();
     private HashMap<Integer, MonsterZone> spellZones = new HashMap<>();
@@ -150,9 +152,7 @@ class GameDeck {
         while (true) {
             String command = CommonTools.scan.nextLine();
             if (command.matches("^select -d$")) deselect();
-//            else if (command.matches("^surrender$")) surrender(turn);
-//            else if (command.matches("^select .*$")) selectCard(command);
-//            else if (command.matches("^select -d$")) System.out.println("no card is selected yet");
+            else if (command.matches("^summon$")) System.out.println("you can’t summon this card");
             else System.out.println("invalid command");
         }
     }
@@ -169,11 +169,13 @@ class GameDeck {
         while (true) {
             String command = CommonTools.scan.nextLine();
             if (command.matches("^select -d$")) deselect();
-//            else if (command.matches("^summon$")) summon();
-//            else if (command.matches("^set$")) set(command);
-//            else if (command.matches("^set --position")) setPosition();
+            else if (command.matches("^summon$")) System.out.println("you can’t summon this card");
             else System.out.println("invalid command");
         }
+    }
+
+    public void selectOpponentSpell(int position){
+
     }
 
     public void selectField() {
@@ -184,14 +186,16 @@ class GameDeck {
         while (true) {
             String command = CommonTools.scan.nextLine();
             if (command.matches("^select -d$")) deselect();
-//            else if (command.matches("^summon$")) summon();
-//            else if (command.matches("^set$")) set(command);
-//            else if (command.matches("^set --position")) setPosition();
+            else if (command.matches("^summon$")) System.out.println("you can’t summon this card");
             else System.out.println("invalid command");
         }
     }
 
-    public void selectHand(int position) {
+    public void selectOpponentField(){
+
+    }
+
+    public void selectHand(int position, Phase phase) {
         if(inHandCards.get(position - 1) == null) {
             System.out.println("no card found in the given position");
             return;
@@ -199,9 +203,11 @@ class GameDeck {
         while (true) {
             String command = CommonTools.scan.nextLine();
             if (command.matches("^select -d$")) deselect();
-//            else if (command.matches("^summon$")) summon();
-//            else if (command.matches("^set$")) set(command);
-//            else if (command.matches("^set --position")) setPosition();
+            else if (!inHandCards.get(position - 1).getType().equals("Monster")) System.out.println("you can’t summon this card");
+            //TODO unable to summon monsters
+            else if (phase != Phase.main1 && phase != Phase.main2) System.out.println("action not allowed in this phase");
+            else if (!monsterZones.containsValue(null)) System.out.println("monster card zone is full");
+
             else System.out.println("invalid command");
         }
     }
