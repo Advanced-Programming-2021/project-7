@@ -146,27 +146,27 @@ class DuelProgramControler {
     private void selectMyDeck(String address){
         if (address.matches("^--monster (\\d+)$")) {
             int position = Integer.parseInt(CommonTools.takeNameOutOfCommand(address, "--monster"));
-            gameDecks.get(turn).selectMonster(position);
+            selectMonster(position);
         } else if (address.matches("^--spell (\\d+)$")) {
             int position = Integer.parseInt(CommonTools.takeNameOutOfCommand(address, "--spell"));
-            gameDecks.get(turn).selectSpell(position);
+            selectSpell(position);
         } else if (address.matches("^--hand (\\d+)$")) {
             int position = Integer.parseInt(CommonTools.takeNameOutOfCommand(address, "--hand"));
             selectHand(position);
         } else if (address.matches("^--field$"))
-            gameDecks.get(turn).selectField();
+            selectField();
     }
 
     private void selectOpponentDeck(String address){
         int selectedSide = changeTurn(turn);
         if (address.matches("^(?:(?:--monster|--opponent)( (\\d+))* ?){3}$")) {
             int position = Integer.parseInt(CommonTools.takeNameOutOfCommand(address, "--monster"));
-            gameDecks.get(selectedSide).selectOpponentMonster(position);
+            selectOpponentMonster(position);
         } else if (address.matches("^(?:(?:--spell|--opponent)( (\\d+))* ?){3}$")) {
             int position = Integer.parseInt(CommonTools.takeNameOutOfCommand(address, "--spell"));
-            gameDecks.get(selectedSide).selectOpponentSpell(position);
+            selectOpponentSpell(position);
         } else if (address.matches("^(?:(?:--field|--opponent)( (\\d+))* ?){2}$"))
-            gameDecks.get(selectedSide).selectOpponentField();
+            selectOpponentField();
     }
 
     private boolean isAddressValid(String address) {
@@ -192,12 +192,25 @@ class DuelProgramControler {
         return true;
     }
 
+    private void selectMonster(int position){
+
+    }
+
+    private void selectSpell(int position){
+
+    }
+
+    private void selectField(){
+
+    }
+
     private void selectHand(int position) {
         ArrayList<Card> inHandCards = gameDecks.get(turn).getInHandCards();
         if(inHandCards.get(position - 1) == null) {
             System.out.println("no card found in the given position");
             return;
         }
+        selectedCard = inHandCards.get(position);
         while (true) {
             String command = CommonTools.scan.nextLine();
             if (command.matches("^select -d$")) {
@@ -207,6 +220,18 @@ class DuelProgramControler {
             else if (command.matches("^summon$")) summonMonster(position);
             else System.out.println("invalid command");
         }
+    }
+
+    private void selectOpponentMonster(int position){
+
+    }
+
+    private void selectOpponentSpell(int position){
+
+    }
+
+    private void selectOpponentField(){
+
     }
 
     private void summonMonster(int position){
@@ -228,7 +253,12 @@ class DuelProgramControler {
             System.out.println("you already summoned/set on this turn");
             return;
         }
-        
+        Monster selectedMonster = (Monster) selectedCard;
+        if(selectedMonster.getLevel() <= 4){
+            System.out.println("summoned successfully");
+            isSummoned = 1;
+            
+        }
     }
 
     private void whichCommand(String input, GameDeck playerDeck, GameDeck enemyDeck) {
