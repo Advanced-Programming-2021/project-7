@@ -2,11 +2,13 @@ package Menus;
 
 import Model.Cards.Card;
 import Model.Cards.Monster;
+import Model.Cards.MonsterZone;
 import Model.CommonTools;
 import Model.Deck;
 import Model.Player;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 
 enum Phase {
@@ -150,7 +152,7 @@ class DuelProgramControler {
             gameDecks.get(turn).selectSpell(position);
         } else if (address.matches("^--hand (\\d+)$")) {
             int position = Integer.parseInt(CommonTools.takeNameOutOfCommand(address, "--hand"));
-            gameDecks.get(turn).selectHand(position, phase);
+            selectHand(position);
         } else if (address.matches("^--field$"))
             gameDecks.get(turn).selectField();
     }
@@ -188,6 +190,45 @@ class DuelProgramControler {
                 return false;
         }
         return true;
+    }
+
+    private void selectHand(int position) {
+        ArrayList<Card> inHandCards = gameDecks.get(turn).getInHandCards();
+        if(inHandCards.get(position - 1) == null) {
+            System.out.println("no card found in the given position");
+            return;
+        }
+        while (true) {
+            String command = CommonTools.scan.nextLine();
+            if (command.matches("^select -d$")) {
+                System.out.println("card deselected");
+                return;
+            }
+            else if (command.matches("^summon$")) summonMonster(position);
+            else System.out.println("invalid command");
+        }
+    }
+
+    private void summonMonster(int position){
+        ArrayList<Card> inHandCards = gameDecks.get(turn).getInHandCards();
+        HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(turn).getMonsterZones();
+        if (!inHandCards.get(position - 1).getType().equals("Monster")) {
+            System.out.println("you can’t summon this card");
+            return;
+        }
+        if (phase != Phase.main1 && phase != Phase.main2) {
+            System.out.println("action not allowed in this phase");
+            return;
+        }
+        if (!monsterZones.containsValue(null)){
+            System.out.println("monster card zone is full");
+            return;
+        }
+        if (isSummoned == 1){
+            System.out.println("you already summoned/set on this turn");
+            return;
+        }
+        
     }
 
     private void whichCommand(String input, GameDeck playerDeck, GameDeck enemyDeck) {
@@ -463,10 +504,10 @@ class DuelProgramControler {
             return 0;
         return 1;
     }
-    
+
     private void changeGameTurn(){
         isSummoned = 0;
         turn = changeTurn(turn);
     }
-    
+
 }
