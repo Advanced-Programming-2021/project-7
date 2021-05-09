@@ -92,8 +92,18 @@ class GameDeck {
 
     }
 
-    public void summonCard(String cardName) {
+    public void addCardToMonsterZone(String cardName) {
+        for(int i = 1; i <= 5; i++){
+            if(monsterZones.get(i) == null){
+                monsterZones.get(i).setCardAttack(Card.getCardByName(cardName));
+                return;
+            }
+        }
+    }
 
+    public void tributeCardFromMonsterZone(int position){
+        graveyardCards.add(monsterZones.get(position).getCurrentMonster());
+        monsterZones.get(position).removeCard();
     }
 
     public void activateCard(String cardName) {
