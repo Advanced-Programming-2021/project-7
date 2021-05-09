@@ -21,6 +21,7 @@ enum Phase {
 class DuelProgramControler {
     private ArrayList<GameDeck> gameDecks = new ArrayList<>(2);
     private int turn = 0; //0 : firstPlayer, 1 : secondPlayer
+    private int isSummoned = 0; //0 : is not summoned before, 1 : is summoned before
     private Card selectedCard = null;
     private int selectedCardIndex = -1; // -1 means Empty
     private Phase phase = Phase.draw;
@@ -38,6 +39,7 @@ class DuelProgramControler {
                 else if (command.matches("^surrender$")) surrender(turn);
                 else if (command.matches("^select .*$")) selectCard(command);
                 else if (command.matches("^select -d$")) System.out.println("no card is selected yet");
+                else if (command.matches("^summon$")) System.out.println("no card is selected yet");
                 else System.out.println("invalid command");
             }
         }
@@ -148,7 +150,7 @@ class DuelProgramControler {
             gameDecks.get(turn).selectSpell(position);
         } else if (address.matches("^--hand (\\d+)$")) {
             int position = Integer.parseInt(CommonTools.takeNameOutOfCommand(address, "--hand"));
-            gameDecks.get(turn).selectHand(position);
+            gameDecks.get(turn).selectHand(position, phase);
         } else if (address.matches("^--field$"))
             gameDecks.get(turn).selectField();
     }
@@ -461,4 +463,10 @@ class DuelProgramControler {
             return 0;
         return 1;
     }
+    
+    private void changeGameTurn(){
+        isSummoned = 0;
+        turn = changeTurn(turn);
+    }
+    
 }
