@@ -42,6 +42,7 @@ class DuelProgramControler {
                 else if (command.matches("^select .*$")) selectCard(command);
                 else if (command.matches("^select -d$")) System.out.println("no card is selected yet");
                 else if (command.matches("^summon$")) System.out.println("no card is selected yet");
+                else if (command.matches("^set$")) System.out.println("no card is selected yet");
                 else System.out.println("invalid command");
             }
         }
@@ -191,15 +192,42 @@ class DuelProgramControler {
     }
 
     private void selectMonster(int position){
-
+        while (true) {
+            String command = CommonTools.scan.nextLine();
+            if (command.matches("^select -d$")) {
+                System.out.println("card deselected");
+                return;
+            }
+            else if (command.matches("^summon$")) System.out.println("you can’t summon this card");
+            else if (command.matches("^set$")) System.out.println("you can’t set this card");
+            else System.out.println("invalid command");
+        }
     }
 
     private void selectSpell(int position){
-
+        while (true) {
+            String command = CommonTools.scan.nextLine();
+            if (command.matches("^select -d$")) {
+                System.out.println("card deselected");
+                return;
+            }
+            else if (command.matches("^summon$")) System.out.println("you can’t summon this card");
+            else if (command.matches("^set$")) System.out.println("you can’t set this card");
+            else System.out.println("invalid command");
+        }
     }
 
     private void selectField(){
-
+        while (true) {
+            String command = CommonTools.scan.nextLine();
+            if (command.matches("^select -d$")) {
+                System.out.println("card deselected");
+                return;
+            }
+            else if (command.matches("^summon$")) System.out.println("you can’t summon this card");
+            else if (command.matches("^set$")) System.out.println("you can’t set this card");
+            else System.out.println("invalid command");
+        }
     }
 
     private void selectHand(int position) {
@@ -216,41 +244,52 @@ class DuelProgramControler {
                 return;
             }
             else if (command.matches("^summon$")) summonMonster(position);
+            else if (command.matches("^set$")) setMonster(position);
             else System.out.println("invalid command");
         }
     }
 
     private void selectOpponentMonster(int position){
-
+        while (true) {
+            String command = CommonTools.scan.nextLine();
+            if (command.matches("^select -d$")) {
+                System.out.println("card deselected");
+                return;
+            }
+            else if (command.matches("^summon$")) System.out.println("you can’t summon this card");
+            else if (command.matches("^set$")) System.out.println("you can’t set this card");
+            else System.out.println("invalid command");
+        }
     }
 
     private void selectOpponentSpell(int position){
-
+        while (true) {
+            String command = CommonTools.scan.nextLine();
+            if (command.matches("^select -d$")) {
+                System.out.println("card deselected");
+                return;
+            }
+            else if (command.matches("^summon$")) System.out.println("you can’t summon this card");
+            else if (command.matches("^set$")) System.out.println("you can’t set this card");
+            else System.out.println("invalid command");
+        }
     }
 
     private void selectOpponentField(){
-
+        while (true) {
+            String command = CommonTools.scan.nextLine();
+            if (command.matches("^select -d$")) {
+                System.out.println("card deselected");
+                return;
+            }
+            else if (command.matches("^summon$")) System.out.println("you can’t summon this card");
+            else if (command.matches("^set$")) System.out.println("you can’t set this card");
+            else System.out.println("invalid command");
+        }
     }
 
     private void summonMonster(int position){
-        ArrayList<Card> inHandCards = gameDecks.get(turn).getInHandCards();
-        HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(turn).getMonsterZones();
-        if (!inHandCards.get(position - 1).getType().equals("Monster")) {
-            System.out.println("you can’t summon this card");
-            return;
-        }
-        if (phase != Phase.main1 && phase != Phase.main2) {
-            System.out.println("action not allowed in this phase");
-            return;
-        }
-        if (!monsterZones.containsValue(null)){
-            System.out.println("monster card zone is full");
-            return;
-        }
-        if (isSummoned == 1){
-            System.out.println("you already summoned/set on this turn");
-            return;
-        }
+        if(!isSummonAndSetValid(position)) return;
         Monster selectedMonster = (Monster) selectedCard;
         if (selectedMonster.getLevel() <= 4){
             System.out.println("summoned successfully");
@@ -322,6 +361,35 @@ class DuelProgramControler {
         gameDecks.get(turn).tributeCardFromMonsterZone(secondMonster);
         gameDecks.get(turn).addCardToMonsterZone(selectedCard.getName());
         gameDecks.get(turn).getInHandCards().remove(position - 1);
+    }
+
+    private void setMonster(int position){
+        ArrayList<Card> inHandCards = gameDecks.get(turn).getInHandCards();
+        HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(turn).getMonsterZones();
+        if(!isSummonAndSetValid(position)) return;
+        
+    }
+
+    private boolean isSummonAndSetValid(int position){
+        ArrayList<Card> inHandCards = gameDecks.get(turn).getInHandCards();
+        HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(turn).getMonsterZones();
+        if (!inHandCards.get(position - 1).getType().equals("Monster")) {
+            System.out.println("you can’t summon this card");
+            return false;
+        }
+        if (phase != Phase.main1 && phase != Phase.main2) {
+            System.out.println("action not allowed in this phase");
+            return false;
+        }
+        if (!monsterZones.containsValue(null)){
+            System.out.println("monster card zone is full");
+            return false;
+        }
+        if (isSummoned == 1){
+            System.out.println("you already summoned/set on this turn");
+            return false;
+        }
+        return true;
     }
 
     private void whichCommand(String input, GameDeck playerDeck, GameDeck enemyDeck) {
@@ -602,5 +670,4 @@ class DuelProgramControler {
         isSummoned = 0;
         turn = changeTurn(turn);
     }
-
 }
