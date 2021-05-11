@@ -121,6 +121,10 @@ public class Player implements Comparable<Player> {
         this.money -= money;
     }
 
+    public void increaseScore(int score) { this.score += score; }
+
+    public void decreaseScore(int score) { this.score -= score; }
+
     public void setNickName(String nickname) {
         this.nickname = nickname;
     }

@@ -657,29 +657,37 @@ class DuelProgramControler {
 
     private void gameOver(int round) {
         String winnerUsername = "";
-        int firstScore = 0;
-        int secondScore = 0;
+        int firstMoney = 0;
+        int secondMoney = 0;
+        int firstScore = gameDecks.get(0).getWinRounds() * 1000;
+        int secondScore = gameDecks.get(1).getWinRounds() * 1000;
         if (round == 1) {
             if (gameDecks.get(0).getWinRounds() == 1) {
-                firstScore = 1000 + gameDecks.get(0).getMaxPlayerLPAfterRounds();
-                secondScore = 100;
+                firstMoney = 1000 + gameDecks.get(0).getMaxPlayerLPAfterRounds();
+                secondMoney = 100;
                 winnerUsername = gameDecks.get(0).getPlayerUserName();
             } else {
-                firstScore = 100;
-                secondScore = 1000 + gameDecks.get(0).getMaxPlayerLPAfterRounds();
+                firstMoney = 100;
+                secondMoney = 1000 + gameDecks.get(0).getMaxPlayerLPAfterRounds();
                 winnerUsername = gameDecks.get(1).getPlayerUserName();
             }
         } else if (round == 3) {
             if (gameDecks.get(0).getWinRounds() == 2) {
-                firstScore = 3000 + (3 * gameDecks.get(0).getMaxPlayerLPAfterRounds());
-                secondScore = 300;
+                firstMoney = 3000 + (3 * gameDecks.get(0).getMaxPlayerLPAfterRounds());
+                secondMoney = 300;
                 winnerUsername = gameDecks.get(0).getPlayerUserName();
             } else {
-                firstScore = 300;
-                secondScore = 3000 + (3 * gameDecks.get(0).getMaxPlayerLPAfterRounds());
+                firstMoney = 300;
+                secondMoney = 3000 + (3 * gameDecks.get(0).getMaxPlayerLPAfterRounds());
                 winnerUsername = gameDecks.get(1).getPlayerUserName();
             }
         }
+        Player firstPlayer = Player.getPlayerByUsername(gameDecks.get(0).getPlayerUserName());
+        Player secondPlayer = Player.getPlayerByUsername(gameDecks.get(1).getPlayerUserName());
+        firstPlayer.increaseScore(firstScore);
+        secondPlayer.increaseScore(secondScore);
+        firstPlayer.increaseMoney(firstMoney);
+        secondPlayer.increaseMoney(secondMoney);
         System.out.println(winnerUsername + " won the game and the score is: "
                 + firstScore + "-" + secondScore);
     }
