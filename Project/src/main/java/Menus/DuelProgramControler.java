@@ -42,6 +42,7 @@ class DuelProgramControler {
                 else if (command.matches("^summon$")) System.out.println("no card is selected yet");
                 else if (command.matches("^activate effect$")) activateSpellErrorCheck();
                 else if (command.matches("^set$")) set();
+                else if (command.matches("^card show --selected$")) cardShow();
                 else System.out.println("invalid command");
             }
         }
@@ -596,7 +597,6 @@ class DuelProgramControler {
         }
     }
 
-
     private void showGraveyard(int turn) {
         GameDeck gameDeck;
         if (turn == 0)
@@ -619,14 +619,18 @@ class DuelProgramControler {
         }
     }
 
-
-//    private void cardShow(GameDeck playerDeck, GameDeck enemyDeck)
-//    {
-//
-//    }
+    private void cardShow() {
+        if (selectedCard == null) {
+            System.out.println("no card is selected yet");
+        } // else if "card is not visible"
+        else {
+            System.out.println(selectedCard);
+        }
+    }
 
     private void surrender(int turn) {
         gameDecks.get(turn).setPlayerLP(0);
+        gameDecks.get((turn + 1) % 2).increaseWinRounds();
     }
 
     //
