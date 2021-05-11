@@ -44,6 +44,7 @@ class DuelProgramControler {
                 else if (command.matches("^set$")) set();
                 else if (command.matches("^card show --selected$")) cardShow();
                 else if (command.matches("^increase --LP (\\d+)$")) increasePlayerLPCheat(command);
+                else if (command.matches("^duel set-winner \\S+$")) setWinnerCheat(command);
                 else System.out.println("invalid command");
             }
         }
@@ -651,6 +652,17 @@ class DuelProgramControler {
         int amountOfLP = Integer.parseInt(matcher.group(1));
         GameDeck myDeck = gameDecks.get(turn);
         myDeck.increaseLP(amountOfLP);
+    }
+
+    private void setWinnerCheat(String command) {
+        Matcher matcher = CommonTools.getMatcher(command, "^duel set-winner (\\S+)$");
+        matcher.find();
+        String playerNickname = matcher.group(1);
+        if (gameDecks.get(0).getPlayerNickName().equals(playerNickname)) {
+            surrender(1);
+        } else if (gameDecks.get(1).getPlayerNickName().equals(playerNickname)) {
+            surrender(0);
+        } else System.out.println("There is no player with this nickname!");
     }
 
     private void roundOver(int turn) { // 0 : firstPlayer losses , 1 : secondPlayer losses
