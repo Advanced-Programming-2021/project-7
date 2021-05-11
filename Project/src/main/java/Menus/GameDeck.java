@@ -1,15 +1,13 @@
 package Menus;
 
 import Model.Cards.Card;
-import Model.Cards.SpellZone;
 import Model.Cards.MonsterZone;
-import Model.CommonTools;
+import Model.Cards.SpellZone;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-
 
 
 class GameDeck {
@@ -23,7 +21,7 @@ class GameDeck {
 
     private ArrayList<Card> mainDeck = new ArrayList<>();
     private ArrayList<Card> sideDeck = new ArrayList<>();
-    
+
     private String playerNickName;
     private String playerUserName;
     private int playerLP;
@@ -58,6 +56,24 @@ class GameDeck {
         return inHandCards;
     }
 
+    public boolean isSpellZoneFull() {
+        for (int i = 0; i < spellZones.size(); i++) {
+            if (spellZones.get(i).isEmpty()){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public int spellZoneFirstFreeSpace(){
+        for (int i = 0; i < spellZones.size(); i++) {
+            if (spellZones.get(i).isEmpty()){
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public ArrayList<Card> getDeck() {
         return deck;
     }
@@ -80,11 +96,11 @@ class GameDeck {
         return "O";
     }
 
-    public void takeDamage(int damage){
+    public void takeDamage(int damage) {
         playerLP -= damage;
     }
 
-    public void heal(int amount){
+    public void heal(int amount) {
         playerLP += amount;
     }
 
@@ -93,15 +109,15 @@ class GameDeck {
     }
 
     public void addCardToMonsterZone(String cardName) {
-        for(int i = 1; i <= 5; i++){
-            if(monsterZones.get(i) == null){
+        for (int i = 1; i <= 5; i++) {
+            if (monsterZones.get(i) == null) {
                 monsterZones.get(i).setCardAttack(Card.getCardByName(cardName));
                 return;
             }
         }
     }
 
-    public void tributeCardFromMonsterZone(int position){
+    public void tributeCardFromMonsterZone(int position) {
         graveyardCards.add(monsterZones.get(position).getCurrentMonster());
         monsterZones.get(position).removeCard();
     }
