@@ -43,6 +43,7 @@ class DuelProgramControler {
                 else if (command.matches("^activate effect$")) activateSpellErrorCheck();
                 else if (command.matches("^set$")) set();
                 else if (command.matches("^card show --selected$")) cardShow();
+                else if (command.matches("^increase --LP (\\d+)$")) increasePlayerLPCheat(command);
                 else System.out.println("invalid command");
             }
         }
@@ -644,6 +645,14 @@ class DuelProgramControler {
 //
 //    }
 //
+    private void increasePlayerLPCheat(String command) {
+        Matcher matcher = CommonTools.getMatcher(command, "^increase --LP (\\d+)$");
+        matcher.find();
+        int amountOfLP = Integer.parseInt(matcher.group(1));
+        GameDeck myDeck = gameDecks.get(turn);
+        myDeck.increaseLP(amountOfLP);
+    }
+
     private void roundOver(int turn) { // 0 : firstPlayer losses , 1 : secondPlayer losses
         GameDeck firstDeck = gameDecks.get(0);
         GameDeck secondDeck = gameDecks.get(1);
