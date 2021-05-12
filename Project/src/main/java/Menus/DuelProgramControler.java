@@ -41,10 +41,12 @@ class DuelProgramControler {
                 else if (command.matches("^select -d$")) System.out.println("no card is selected yet");
                 else if (command.matches("^summon$")) System.out.println("no card is selected yet");
                 else if (command.matches("^activate effect$")) activateSpellErrorCheck();
-                else if (command.matches("^set$")) System.out.println("no card is selected yet");
+                else if (command.matches("^set$")) set();
                 else if (command.matches("^card show --selected$")) cardShow();
                 else if (command.matches("^increase --LP (\\d+)$")) increasePlayerLPCheat(command);
                 else if (command.matches("^duel set-winner \\S+$")) setWinnerCheat(command);
+                else if (command.matches("^set --position (attack|defence)$"))
+                    System.out.println("no card is selected yet");
                 else System.out.println("invalid command");
             }
         }
@@ -236,6 +238,7 @@ class DuelProgramControler {
             return;
         }
         selectedCard = inHandCards.get(position);
+        selectedCardIndex = position;
         while (true) {
             String command = CommonTools.scan.nextLine();
             if (command.matches("^select -d$")) {
@@ -367,7 +370,7 @@ class DuelProgramControler {
     private boolean isSummonAndSetValid(int position) {
         ArrayList<Card> inHandCards = gameDecks.get(turn).getInHandCards();
         HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(turn).getMonsterZones();
-        if (!inHandCards.get(position - 1).getType().equals("Monster")) {
+        if (!inHandCards.get(position - 1).getType().equals("Monster") ) {
             System.out.println("you can’t summon this card");
             return false;
         }
@@ -720,6 +723,8 @@ class DuelProgramControler {
     }
 
     private void changeGameTurn() {
+        selectedCard = null;
+        selectedCardIndex = -1;
         isSummoned = 0;
         turn = changeTurn(turn);
     }
