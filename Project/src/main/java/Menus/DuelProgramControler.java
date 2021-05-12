@@ -41,7 +41,7 @@ class DuelProgramControler {
                 else if (command.matches("^select -d$")) System.out.println("no card is selected yet");
                 else if (command.matches("^summon$")) System.out.println("no card is selected yet");
                 else if (command.matches("^activate effect$")) activateSpellErrorCheck();
-                else if (command.matches("^set$")) set();
+                else if (command.matches("^set$")) System.out.println("no card is selected yet");
                 else if (command.matches("^card show --selected$")) cardShow();
                 else if (command.matches("^increase --LP (\\d+)$")) increasePlayerLPCheat(command);
                 else if (command.matches("^duel set-winner \\S+$")) setWinnerCheat(command);
@@ -289,7 +289,7 @@ class DuelProgramControler {
         if (selectedMonster.getLevel() <= 4) {
             System.out.println("summoned successfully");
             isSummoned = 1;
-            gameDecks.get(turn).addCardToMonsterZone(selectedCard.getName());
+            gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
             gameDecks.get(turn).getInHandCards().remove(position - 1);
         } else if (selectedMonster.getLevel() == 5 || selectedMonster.getLevel() == 6) summonWithOneTribute(position);
         else if (selectedMonster.getLevel() == 7 || selectedMonster.getLevel() == 8) summonWithTwoTribute(position);
@@ -320,7 +320,7 @@ class DuelProgramControler {
         System.out.println("summoned successfully");
         isSummoned = 1;
         gameDecks.get(turn).tributeCardFromMonsterZone(monsterZonePosition);
-        gameDecks.get(turn).addCardToMonsterZone(selectedCard.getName());
+        gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
         gameDecks.get(turn).getInHandCards().remove(position - 1);
     }
 
@@ -353,15 +353,15 @@ class DuelProgramControler {
         isSummoned = 1;
         gameDecks.get(turn).tributeCardFromMonsterZone(firstMonster);
         gameDecks.get(turn).tributeCardFromMonsterZone(secondMonster);
-        gameDecks.get(turn).addCardToMonsterZone(selectedCard.getName());
+        gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
         gameDecks.get(turn).getInHandCards().remove(position - 1);
     }
 
     private void setMonster(int position) {
-        ArrayList<Card> inHandCards = gameDecks.get(turn).getInHandCards();
-        HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(turn).getMonsterZones();
         if (!isSummonAndSetValid(position)) return;
-
+        System.out.println("set successfully");
+        gameDecks.get(turn).setCardToMonsterZone(selectedCard.getName());
+        gameDecks.get(turn).getInHandCards().remove(position - 1);
     }
 
     private boolean isSummonAndSetValid(int position) {
