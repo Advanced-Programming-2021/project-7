@@ -24,6 +24,8 @@ class DuelProgramControler {
     private int isSummoned = 0; //0 : is not summoned before, 1 : is summoned before
     private Card selectedCard = null;
     private int selectedCardIndex = -1; // -1 means Empty
+    private String selectedDeck = null; // hand, monsterZone, spellZone, field,
+                                        // opponentMonsterZone, opponentSpellZone, opponentField
     private Phase phase = Phase.draw;
 
     public void run(String firstPlayer, String secondPlayer, int round) {
@@ -38,8 +40,8 @@ class DuelProgramControler {
                 if (command.matches("^show graveyard$")) showGraveyard(turn);
                 else if (command.matches("^surrender$")) surrender(turn);
                 else if (command.matches("^select .*$")) selectCard(command);
-                else if (command.matches("^select -d$")) System.out.println("no card is selected yet");
-                else if (command.matches("^summon$")) System.out.println("no card is selected yet");
+                else if (command.matches("^select -d$")) deselect();
+                else if (command.matches("^summon$")) summonMonster();
                 else if (command.matches("^activate effect$")) activateSpellErrorCheck();
                 else if (command.matches("^set$")) set();
                 else if (command.matches("^card show --selected$")) cardShow();
@@ -147,6 +149,17 @@ class DuelProgramControler {
         else selectMyDeck(address);
     }
 
+    private void deselect(){
+        if(selectedCard == null){
+            System.out.println("no card is selected yet");
+            return;
+        }
+        selectedCard = null;
+        selectedCardIndex = -1;
+        selectedDeck = null;
+        System.out.println("card deselected");
+    }
+
     private void selectMyDeck(String address) {
         if (address.matches("^--monster (\\d+)$")) {
             int position = Integer.parseInt(CommonTools.takeNameOutOfCommand(address, "--monster"));
@@ -239,12 +252,13 @@ class DuelProgramControler {
         }
         selectedCard = inHandCards.get(position);
         selectedCardIndex = position;
+        selectedDeck = "hand";
         while (true) {
             String command = CommonTools.scan.nextLine();
             if (command.matches("^select -d$")) {
                 System.out.println("card deselected");
                 return;
-            } else if (command.matches("^summon$")) summonMonster(position);
+            }
             else if (command.matches("^set$")) setMonster(position);
             else System.out.println("invalid command");
         }
@@ -286,7 +300,17 @@ class DuelProgramControler {
         }
     }
 
-    private void summonMonster(int position) {
+    private void summonMonster() {
+        int position = selectedCardIndex;
+        ArrayList<Card> inHandCards = gameDecks.get(turn).getInHandCards();
+        if (selectedCard == null){
+            System.out.println("no card is selected yet");
+            return;
+        }
+        if (!selectedDeck.equals("hand") || !inHandCards.get(position - 1).getType().equals("Monster")){ //TODO check is Type correct
+            System.out.println("you can’t summon this card");
+            return;
+        }
         if (!isSummonAndSetValid(position)) return;
         Monster selectedMonster = (Monster) selectedCard;
         if (selectedMonster.getLevel() <= 4) {
@@ -360,6 +384,26 @@ class DuelProgramControler {
         gameDecks.get(turn).getInHandCards().remove(position - 1);
     }
 
+    private void set(){
+        int position = selectedCardIndex;
+        ArrayList<Card> inHandCards = gameDecks.get(turn).getInHandCards();
+        if (selectedCard == null){
+            System.out.println("no card is selected");
+            return;
+        }
+        if (!selectedDeck.equals("hand")){
+            System.out.println("you can’t set this card");
+            return;
+        }
+        if (!inHandCards.get(position - 1).getType().equals("Monster") &&
+                !inHandCards.get(position - 1).getType().equals("Spell")){ //TODO check is Type correct
+            System.out.println("you can’t set this card");
+            return;
+        }
+        if (inHandCards.get(position - 1).getType().equals("Monster")) setMonster(position);
+        else if (inHandCards.get(position - 1).getType().equals("Spell")) setSpell();
+    }
+
     private void setMonster(int position) {
         if (!isSummonAndSetValid(position)) return;
         System.out.println("set successfully");
@@ -368,12 +412,7 @@ class DuelProgramControler {
     }
 
     private boolean isSummonAndSetValid(int position) {
-        ArrayList<Card> inHandCards = gameDecks.get(turn).getInHandCards();
         HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(turn).getMonsterZones();
-        if (!inHandCards.get(position - 1).getType().equals("Monster") ) {
-            System.out.println("you can’t summon this card");
-            return false;
-        }
         if (phase != Phase.main1 && phase != Phase.main2) {
             System.out.println("action not allowed in this phase");
             return false;
@@ -584,7 +623,7 @@ class DuelProgramControler {
         // TODO: 2021-05-10 Use spell
     }
 
-    private void set() {
+    private void setSpell() {
         GameDeck myDeck = gameDecks.get(turn);
         if (selectedCard == null) {
             System.out.println("no card is selected yet");
@@ -724,8 +763,9 @@ class DuelProgramControler {
 
     private void changeGameTurn() {
         selectedCard = null;
-        selectedCardIndex = -1;
         isSummoned = 0;
+        selectedCardIndex = -1;
+        selectedDeck = null;
         turn = changeTurn(turn);
     }
 }
