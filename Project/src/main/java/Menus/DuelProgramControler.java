@@ -24,8 +24,8 @@ class DuelProgramControler {
     private int isSummoned = 0; //0 : is not summoned before, 1 : is summoned before
     private Card selectedCard = null;
     private int selectedCardIndex = -1; // -1 means Empty
-    private String selectedDeck = null; // hand, monsterZone, spellZone, field,
-                                        // opponentMonsterZone, opponentSpellZone, opponentField
+    private String selectedDeck = null; // hand, monster, spell, field,
+                                        // opponentMonster, opponentSpell, opponentField
     private Phase phase = Phase.draw;
 
     public void run(String firstPlayer, String secondPlayer, int round) {
@@ -47,8 +47,7 @@ class DuelProgramControler {
                 else if (command.matches("^card show --selected$")) cardShow();
                 else if (command.matches("^increase --LP (\\d+)$")) increasePlayerLPCheat(command);
                 else if (command.matches("^duel set-winner \\S+$")) setWinnerCheat(command);
-                else if (command.matches("^set --position (attack|defence)$"))
-                    System.out.println("no card is selected yet");
+                else if (command.matches("^set --position (attack|defence)$")) setPositionMonster();
                 else System.out.println("invalid command");
             }
         }
@@ -209,39 +208,18 @@ class DuelProgramControler {
     }
 
     private void selectMonster(int position) {
-        while (true) {
-            String command = CommonTools.scan.nextLine();
-            if (command.matches("^select -d$")) {
-                System.out.println("card deselected");
-                return;
-            } else if (command.matches("^summon$")) System.out.println("you can’t summon this card");
-            else if (command.matches("^set$")) System.out.println("you can’t set this card");
-            else System.out.println("invalid command");
-        }
+        selectedCardIndex = position;
+        selectedDeck = "monster";
     }
 
     private void selectSpell(int position) {
-        while (true) {
-            String command = CommonTools.scan.nextLine();
-            if (command.matches("^select -d$")) {
-                System.out.println("card deselected");
-                return;
-            } else if (command.matches("^summon$")) System.out.println("you can’t summon this card");
-            else if (command.matches("^set$")) System.out.println("you can’t set this card");
-            else System.out.println("invalid command");
-        }
+        selectedCardIndex = position;
+        selectedDeck = "spell";
     }
 
     private void selectField() {
-        while (true) {
-            String command = CommonTools.scan.nextLine();
-            if (command.matches("^select -d$")) {
-                System.out.println("card deselected");
-                return;
-            } else if (command.matches("^summon$")) System.out.println("you can’t summon this card");
-            else if (command.matches("^set$")) System.out.println("you can’t set this card");
-            else System.out.println("invalid command");
-        }
+        selectedCardIndex = -1;
+        selectedDeck = "field";
     }
 
     private void selectHand(int position) {
@@ -253,51 +231,21 @@ class DuelProgramControler {
         selectedCard = inHandCards.get(position);
         selectedCardIndex = position;
         selectedDeck = "hand";
-        while (true) {
-            String command = CommonTools.scan.nextLine();
-            if (command.matches("^select -d$")) {
-                System.out.println("card deselected");
-                return;
-            }
-            else if (command.matches("^set$")) setMonster(position);
-            else System.out.println("invalid command");
-        }
     }
 
     private void selectOpponentMonster(int position) {
-        while (true) {
-            String command = CommonTools.scan.nextLine();
-            if (command.matches("^select -d$")) {
-                System.out.println("card deselected");
-                return;
-            } else if (command.matches("^summon$")) System.out.println("you can’t summon this card");
-            else if (command.matches("^set$")) System.out.println("you can’t set this card");
-            else System.out.println("invalid command");
-        }
+        selectedCardIndex = position;
+        selectedDeck = "opponentMonster";
     }
 
     private void selectOpponentSpell(int position) {
-        while (true) {
-            String command = CommonTools.scan.nextLine();
-            if (command.matches("^select -d$")) {
-                System.out.println("card deselected");
-                return;
-            } else if (command.matches("^summon$")) System.out.println("you can’t summon this card");
-            else if (command.matches("^set$")) System.out.println("you can’t set this card");
-            else System.out.println("invalid command");
-        }
+        selectedCardIndex = position;
+        selectedDeck = "opponentSpell";
     }
 
     private void selectOpponentField() {
-        while (true) {
-            String command = CommonTools.scan.nextLine();
-            if (command.matches("^select -d$")) {
-                System.out.println("card deselected");
-                return;
-            } else if (command.matches("^summon$")) System.out.println("you can’t summon this card");
-            else if (command.matches("^set$")) System.out.println("you can’t set this card");
-            else System.out.println("invalid command");
-        }
+        selectedCardIndex = -1;
+        selectedDeck = "opponentField";
     }
 
     private void summonMonster() {
@@ -426,6 +374,14 @@ class DuelProgramControler {
             return false;
         }
         return true;
+    }
+
+    private void setPositionMonster(){
+        if (selectedCard == null){
+            System.out.println("no card is selected");
+            return;
+        }
+
     }
 
     private void whichCommand(String input, GameDeck playerDeck, GameDeck enemyDeck) {
