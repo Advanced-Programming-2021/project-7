@@ -427,7 +427,7 @@ class DuelProgramControler {
     
     private void flipSummon(){
         HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(turn).getMonsterZones();
-        if (!isSetPositionValid()) return;
+        if (!isFlipSummonValid()) return;
         if (summonedMonsterInThisRound != -1 || !monsterZones.get(selectedCardIndex).getStatus().equals("DH")){
             System.out.println("you can’t flip summon this card");
             return;
