@@ -24,6 +24,7 @@ class DuelProgramControler {
     private int isSummoned = 0; //0 : is not summoned before, 1 : is summoned before
     private Card selectedCard = null;
     private int selectedCardIndex = -1; // -1 means Empty
+    private int selectedMonsterCardIndex = -1; // -1 means empty
     private String selectedDeck = null; // hand, monster, spell, field,
                                         // opponentMonster, opponentSpell, opponentField
     private Phase phase = Phase.draw;
@@ -47,7 +48,7 @@ class DuelProgramControler {
                 else if (command.matches("^card show --selected$")) cardShow();
                 else if (command.matches("^increase --LP (\\d+)$")) increasePlayerLPCheat(command);
                 else if (command.matches("^duel set-winner \\S+$")) setWinnerCheat(command);
-                else if (command.matches("^set --position (attack|defence)$")) setPositionMonster();
+                else if (command.matches("^set --position (attack|defence)$")) setPositionMonster(command);
                 else System.out.println("invalid command");
             }
         }
@@ -376,12 +377,51 @@ class DuelProgramControler {
         return true;
     }
 
-    private void setPositionMonster(){
+    private void setPositionMonster(String command){
+        HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(turn).getMonsterZones();
+        if (!isSetPositionValid()) return;
+        if (command.matches("set --position attack")){
+            if (!monsterZones.get(selectedCardIndex).getStatus().equals("DO")){
+                System.out.println("this card is already in the wanted position");
+                return;
+            }
+            if (selectedMonsterCardIndex != -1){
+                System.out.println("you already changed this card position in this turn");
+                return;
+            }
+            Card card = monsterZones.get(selectedCardIndex).getCurrentMonster();
+            gameDecks.get(turn).getMonsterZones().get(selectedCardIndex).setCardAttack(card);
+        }
+        else {
+            if (!monsterZones.get(selectedCardIndex).getStatus().equals("OO")){
+                System.out.println("this card is already in the wanted position");
+                return;
+            }
+            if (selectedMonsterCardIndex != -1){
+                System.out.println("you already changed this card position in this turn");
+                return;
+            }
+            Card card = monsterZones.get(selectedCardIndex).getCurrentMonster();
+            gameDecks.get(turn).getMonsterZones().get(selectedCardIndex).setCardDefense(card);
+        }
+        System.out.println("monster card position changed successfully");
+        selectedMonsterCardIndex = selectedCardIndex;
+    }
+
+    private boolean isSetPositionValid(){
         if (selectedCard == null){
             System.out.println("no card is selected");
-            return;
+            return false;
         }
-
+        if (!selectedDeck.equals("monster")){
+            System.out.println("you can’t change this card position");
+            return false;
+        }
+        if (phase != Phase.main1 && phase != Phase.main2) {
+            System.out.println("action not allowed in this phase");
+            return false;
+        }
+        return true;
     }
 
     private void whichCommand(String input, GameDeck playerDeck, GameDeck enemyDeck) {
@@ -721,6 +761,7 @@ class DuelProgramControler {
         selectedCard = null;
         isSummoned = 0;
         selectedCardIndex = -1;
+        selectedMonsterCardIndex = -1;
         selectedDeck = null;
         turn = changeTurn(turn);
     }
