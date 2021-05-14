@@ -49,6 +49,7 @@ class DuelProgramControler {
                 else if (command.matches("^increase --LP (\\d+)$")) increasePlayerLPCheat(command);
                 else if (command.matches("^duel set-winner \\S+$")) setWinnerCheat(command);
                 else if (command.matches("^set --position (attack|defence)$")) setPositionMonster(command);
+                else if (command.matches("flip-summon")) flipSummon();
                 else System.out.println("invalid command");
             }
         }
@@ -409,6 +410,34 @@ class DuelProgramControler {
     }
 
     private boolean isSetPositionValid(){
+        if (selectedCard == null){
+            System.out.println("no card is selected");
+            return false;
+        }
+        if (!selectedDeck.equals("monster")){
+            System.out.println("you can’t change this card position");
+            return false;
+        }
+        if (phase != Phase.main1 && phase != Phase.main2) {
+            System.out.println("action not allowed in this phase");
+            return false;
+        }
+        return true;
+    }
+    
+    private void flipSummon(){
+        HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(turn).getMonsterZones();
+        if (!isSetPositionValid()) return;
+        if (summonedMonsterInThisRound != -1 || !monsterZones.get(selectedCardIndex).getStatus().equals("DH")){
+            System.out.println("you can’t flip summon this card");
+            return;
+        }
+        Card card = monsterZones.get(selectedCardIndex).getCurrentMonster();
+        gameDecks.get(turn).getMonsterZones().get(selectedCardIndex).setCardAttack(card);
+        System.out.println("flip summoned successfully");
+    }
+
+    private boolean isFlipSummonValid(){
         if (selectedCard == null){
             System.out.println("no card is selected");
             return false;
