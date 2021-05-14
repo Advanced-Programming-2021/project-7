@@ -660,30 +660,21 @@ class DuelProgramControler {
     }
 
     private void cardShow() {
+        HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(changeTurn(turn)).getMonsterZones();
         if (selectedCard == null) {
             System.out.println("no card is selected yet");
-        } // else if "card is not visible"
-        else {
+        } else if (monsterZones.get(selectedCardIndex).getStatus().equals("DH")) {
+            System.out.println("card is not visible");
+        } else {
             System.out.println(selectedCard);
         }
     }
 
     private void surrender(int turn) {
         gameDecks.get(turn).setPlayerLP(0);
-        gameDecks.get((turn + 1) % 2).increaseWinRounds();
+        gameDecks.get(changeTurn(turn)).increaseWinRounds();
     }
 
-    //
-//    private void increaseLP(GameDeck playerDeck)
-//    {
-//
-//    }
-//
-//    private void duelSetWinner(GameDeck playerDeck)
-//    {
-//
-//    }
-//
     private void increasePlayerLPCheat(String command) {
         Matcher matcher = CommonTools.getMatcher(command, "^increase --LP (\\d+)$");
         matcher.find();
