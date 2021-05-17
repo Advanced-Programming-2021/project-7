@@ -24,6 +24,7 @@ enum Phase {
 
 class DuelProgramControler {
     private ArrayList<GameDeck> gameDecks = new ArrayList<>(2);
+    private MonsterPowersController monsterPowersController = new MonsterPowersController(gameDecks);
     private int turn = 0; //0 : firstPlayer, 1 : secondPlayer
     private int isSummoned = 0; //0 : is not summoned before, 1 : is summoned before
     private Card selectedCard = null;
@@ -548,6 +549,11 @@ class DuelProgramControler {
             Card card = enemyDeck.getMonsterZones().get(selectDefender).removeCard();
             enemyDeck.getGraveyardCards().add(card);
             enemyDeck.takeDamage(damage);
+            monsterPowersController.setSelectedCardIndex(selectedCardIndex);
+            monsterPowersController.setAttackerCard(selectedCard);
+            monsterPowersController.setTurn(turn);
+            monsterPowersController.monsterPowersWhenDestroyed(enemyDeck.getMonsterZones()
+                    .get(selectDefender).getCurrentMonster());
             // TODO: 2021-05-08 check if dead
             System.out.printf("your opponent’s monster is destroyed and your opponent receives"
                     + " %d battle damage\n", damage);
@@ -576,8 +582,17 @@ class DuelProgramControler {
                 .getCurrentMonster()).getDefensePoint();
         int damage = attackerDamage - defenderDamage;
         if (damage > 0) {
+<<<<<<< Updated upstream
             Card card = enemyDeck.getMonsterZones().get(selectDefender).removeCard();
             enemyDeck.getGraveyardCards().add(card);
+=======
+            moveToGraveyard(changeTurn(turn), "MonsterZone", selectDefender);
+            monsterPowersController.setSelectedCardIndex(selectedCardIndex);
+            monsterPowersController.setAttackerCard(selectedCard);
+            monsterPowersController.setTurn(turn);
+            monsterPowersController.monsterPowersWhenDestroyed(enemyDeck.getMonsterZones()
+                    .get(selectDefender).getCurrentMonster());
+>>>>>>> Stashed changes
             System.out.println("the defense position monster is destroyed");
         } else if (attackerDamage == defenderDamage) {
             System.out.println("no card is destroyed");
@@ -598,8 +613,17 @@ class DuelProgramControler {
                 .getCurrentMonster()).getDefensePoint();
         int damage = attackerDamage - defenderDamage;
         if (damage > 0) {
+<<<<<<< Updated upstream
             Card card = enemyDeck.getMonsterZones().get(selectDefender).removeCard();
             enemyDeck.getGraveyardCards().add(card);
+=======
+            moveToGraveyard(changeTurn(turn), "MonsterZone", selectDefender);
+            monsterPowersController.setSelectedCardIndex(selectedCardIndex);
+            monsterPowersController.setAttackerCard(selectedCard);
+            monsterPowersController.setTurn(turn);
+            monsterPowersController.monsterPowersWhenDestroyed(enemyDeck.getMonsterZones()
+                    .get(selectDefender).getCurrentMonster());
+>>>>>>> Stashed changes
             System.out.printf("the defense position monster (%s) is destroyed\n", enemyCardName);
         } else if (damage == 0) {
             System.out.printf("enemy card was %s no card is destroyed\n", enemyCardName);
@@ -795,6 +819,52 @@ class DuelProgramControler {
         selectedMonsterCardIndex = -1;
         selectedDeck = null;
         turn = changeTurn(turn);
+<<<<<<< Updated upstream
         System.out.println("its " + gameDecks.get(turn).getPlayerNickName() + "'s turn");
+=======
+        round++;
+    }
+
+    private void changePhase() {
+        phase = phase.next();
+        System.out.println("phase: " + phase);
+    }
+
+    private void checkSpellCard() {
+        Spell spell = (Spell) selectedCard;
+        if (spell.getName().equals("Terraforming")) {
+            Terraforming();
+        } else if (spell.getName().equals("Pot of Greed")) {
+            drawXCards(1);
+        } else if (spell.getName().equals("Raigeki")) {
+            Raigeki();
+        } else if (spell.getName().equals("Change of Heart")) {
+            ChangeOfHeart(); // TODO
+        } else if (spell.getName().equals("Harpie’s Feather Duster")) {
+            HarpieFeatherDuster();
+        } else if (spell.getName().equals("Swords of Revealing Light")) {
+            SwordOfRevealingLight(); // TODO
+        } else if (spell.getName().equals("Dark Hole")) {
+            darkHole();
+        } else if (spell.getName().equals("Twin Twisters")) {
+            twinTwisters();
+        } else if (spell.getName().equals("Mystical space typhoon")) {
+            mysticalTyphoon();
+        }
+    }
+
+    private void Terraforming() {
+        GameDeck myDeck = gameDecks.get(turn);
+        for (int i = 0; i < myDeck.getDeck().size(); i++) {
+            if (myDeck.getDeck().get(i).getType().equals("Spell")) {
+                Spell spell = (Spell) myDeck.getDeck().get(i);
+                if (spell.getSpellType().equals("Field")) {
+                    myDeck.getInHandCards().add(myDeck.getDeck().get(i));
+                    myDeck.getDeck().remove(i);
+                    return;
+                }
+            }
+        }
+>>>>>>> Stashed changes
     }
 }
