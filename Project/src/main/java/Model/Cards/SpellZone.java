@@ -46,4 +46,8 @@ public class SpellZone {
         status = "E";
         return card;
     }
+
+    public Card getCurrentCard() {
+        return currentCard;
+    }
 }
