@@ -58,6 +58,7 @@ class DuelProgramController {
                 else if (command.matches("^increase --LP (\\d+)$")) increasePlayerLPCheat(command);
                 else if (command.matches("^duel set-winner \\S+$")) setWinnerCheat(command);
                 else if (command.matches("^set --position (attack|defence)$")) setPositionMonster(command);
+                else if (command.matches("flip-summon")) flipSummon();
                 else System.out.println("invalid command");
             }
         }
@@ -432,12 +433,32 @@ class DuelProgramController {
         return true;
     }
 
-    private void whichCommand(String input, GameDeck playerDeck, GameDeck enemyDeck) {
-
+    private void flipSummon() {
+        HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(turn).getMonsterZones();
+        if (!isFlipSummonValid()) return;
+        if (isSummoned != 0 || !monsterZones.get(selectedCardIndex).getStatus().equals("DH")){
+            System.out.println("you can’t flip summon this card");
+            return;
+        }
+        Card card = monsterZones.get(selectedCardIndex).getCurrentMonster();
+        gameDecks.get(turn).getMonsterZones().get(selectedCardIndex).setCardAttack(card);
+        System.out.println("flip summoned successfully");
     }
 
-    private void setPhase(String newPhase, GameDeck playerDeck) {
-
+    private boolean isFlipSummonValid() {
+        if (selectedCard == null){
+            System.out.println("no card is selected");
+            return false;
+        }
+        if (!selectedDeck.equals("monster")){
+            System.out.println("you can’t change this card position");
+            return false;
+        }
+        if (phase != Phase.main1 && phase != Phase.main2) {
+            System.out.println("action not allowed in this phase");
+            return false;
+        }
+        return true;
     }
 
     private void addToHand(String cardName, GameDeck playerDeck) {
@@ -456,30 +477,6 @@ class DuelProgramController {
 
     }
 
-    private void summon(GameDeck playerDeck) {
-
-    }
-
-    //    private String checkSummonCard(Card card, GameDeck playerDeck)
-//    {
-//
-//    }
-//
-//    private String checkAttributeCard(Card card, GameDeck playerDeck)
-//    {
-//
-//    }
-//
-//    private String checkSetCard(Card card, GameDeck playerDeck)
-//    {
-//
-//    }
-//
-//    private void flipSummon(GameDeck playerDeck)
-//    {
-//
-//    }
-//
     private void attackCard(String command) {
         int selectDefender;
         Matcher matcher = CommonTools.getMatcher(command, "(\\d)");
@@ -512,7 +509,6 @@ class DuelProgramController {
     }
 
     public void attackOO(int selectDefender, GameDeck myDeck, GameDeck enemyDeck) {
-
         Monster selectedMonster = (Monster) selectedCard;
         // TODO: 2021-05-10 Do Effect
         int attackerDamage = selectedMonster.getAttackPoint();
@@ -724,6 +720,173 @@ class DuelProgramController {
             System.out.println("card is not visible");
         } else {
             System.out.println(selectedCard);
+        }
+    }
+
+    private void activateSpellTerraforming(){
+        System.out.println("enter number of selected field spell card:");
+        while(true){
+            int index = CommonTools.scan.nextInt();
+            Spell spell = (Spell) gameDecks.get(turn).getDeck().get(index - 1);
+            if (index > gameDecks.get(turn).getDeck().size()){
+                System.out.println("entered index is bigger than deck's size");
+            }
+            else if(!spell.getSpellIcon().equals("Field")){
+                System.out.println("selected card is not a field spell");
+            }
+            else{
+                index = index - 1;
+                Card card = gameDecks.get(turn).getDeck().get(index);
+                gameDecks.get(turn).getInHandCards().add(card);
+                gameDecks.get(turn).getDeck().remove(index);
+                System.out.println("card successfully added to your hand");
+                break;
+            }
+        }
+    }
+
+    private void activateSpellPotOfGreed(){
+        int size = gameDecks.get(turn).getDeck().size();
+        if (size >= 2){
+            Card card1 = gameDecks.get(turn).getDeck().get(size - 1);
+            Card card2 = gameDecks.get(turn).getDeck().get(size - 2);
+            gameDecks.get(turn).getInHandCards().add(card1);
+            gameDecks.get(turn).getInHandCards().add(card2);
+            gameDecks.get(turn).getDeck().remove(size - 1);
+            gameDecks.get(turn).getDeck().remove(size - 2);
+            System.out.println("cards added to your hand successfully");
+        }
+        if (size == 1){
+            Card card1 = gameDecks.get(turn).getDeck().get(0);
+            gameDecks.get(turn).getInHandCards().add(card1);
+            gameDecks.get(turn).getDeck().remove(0);
+            System.out.println("card added to your hand successfully");
+        }
+        else {
+            System.out.println("there is no card in your deck");
+        }
+    }
+
+    private void activateSpellRaigeki(){
+        int opponentTurn = changeTurn(turn);
+        for(int i = 1; i < 5; i++){
+            gameDecks.get(opponentTurn).getMonsterZones().get(i).removeCard();
+            //todo move to graveyard
+        }
+        System.out.println("all the monsters controlled by your enemy destroyed");
+    }
+
+    private void spellActivateChangeOfHeart(){
+        int opponentTurn = changeTurn(turn);
+        if(gameDecks.get(opponentTurn).isMonsterZoneEmpty()){
+            System.out.println("opponent's monster zone is empty");
+            return;
+        }
+        if(!gameDecks.get(turn).isMonsterZoneFull()){
+            System.out.println("your monster zone is full");
+            return;
+        }
+        System.out.println("enter position of a monster from opponent's monster zone");
+        int position;
+        while(true){
+            position = CommonTools.scan.nextInt();
+            if(position < 1 || position > 5){
+                System.out.println("enter a number between 1 and 5");
+            }
+            else if(gameDecks.get(opponentTurn).getMonsterZones().get(position).isEmpty()){
+                System.out.println("entered position is empty");
+            }
+            else{
+                Card card = gameDecks.get(opponentTurn).getMonsterZones().get(position).getCurrentMonster();
+                gameDecks.get(turn).summonCardToMonsterZone(card.getName());
+                gameDecks.get(opponentTurn).getSpellZones().get(position).removeCard();
+                System.out.println("opponent's monster added to your monster zone");
+                break;
+            }
+        }
+    }
+
+    private void spellActivateHarpiesFeatherDuster(){
+        int opponentTurn = changeTurn(turn);
+        for(int i = 1; i < 5; i++){
+            gameDecks.get(opponentTurn).getSpellZones().get(i).removeCard();
+            //todo move to graveyard
+        }
+        System.out.println("all the spells and traps controlled by your enemy destroyed");
+    }
+
+    private void spellActivateDarkHole(){
+        for(int i = 1; i <= 5; i++){
+            gameDecks.get(turn).getMonsterZones().get(i).removeCard();
+            //todo move to graveyard
+        }
+        int opponentTurn = changeTurn(turn);
+        for(int i = 1; i <= 5; i++){
+            gameDecks.get(opponentTurn).getMonsterZones().get(i).removeCard();
+            //todo move to graveyard
+        }
+        System.out.println("all the monsters on the game board destroyed");
+    }
+
+    private void spellActivateSpellAbsorption(){
+        int amountOfLP = 500;
+        GameDeck myDeck = gameDecks.get(turn);
+        myDeck.increaseLP(amountOfLP);
+    }
+
+    private void TwinTwisters(){
+        if(gameDecks.get(turn).getInHandCards().size() == 0){
+            System.out.println("your hand is empty");
+            return;
+        }
+        if(gameDecks.get(turn).isSpellZoneEmpty()){
+            System.out.println("opponent's spellZone is empty");
+            return;
+        }
+        System.out.println("select a card to remove from your hand");
+        int removePosition;
+        while(true){
+            removePosition = CommonTools.scan.nextInt();
+            if(removePosition > gameDecks.get(turn).getInHandCards().size()){
+                System.out.println("entered index more than in hand cards");
+            }else{
+                gameDecks.get(turn).getInHandCards().remove(removePosition - 1);
+                //Todo move to graveyard
+                break;
+            }
+        }
+        int destroyedPosition1;
+        int destroyedPosition2;
+        int opponentTurn = changeTurn(turn);
+        while(true){
+            destroyedPosition1 = CommonTools.scan.nextInt();
+            if(destroyedPosition1 > 5 || destroyedPosition1 < 1){
+                System.out.println("entered index more than 5 or less than 1");
+            }
+            else if(gameDecks.get(opponentTurn).getSpellZones().get(destroyedPosition1).isEmpty()){
+                System.out.println("entered position is empty");
+            }
+            else{
+                //Todo move to graveyard
+                gameDecks.get(opponentTurn).getSpellZones().get(destroyedPosition1).removeCard();
+                System.out.println("first card removed");
+                break;
+            }
+        }
+        while(true){
+            destroyedPosition2 = CommonTools.scan.nextInt();
+            if(destroyedPosition2 > 5 || destroyedPosition2 < 1){
+                System.out.println("entered index more than 5 or less than 1");
+            }
+            else if(gameDecks.get(opponentTurn).getSpellZones().get(destroyedPosition2).isEmpty()){
+                System.out.println("entered position is empty");
+            }
+            else{
+                //Todo move to graveyard
+                gameDecks.get(opponentTurn).getSpellZones().get(destroyedPosition2).removeCard();
+                System.out.println("second card removed");
+                break;
+            }
         }
     }
 

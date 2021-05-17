@@ -74,6 +74,15 @@ class GameDeck {
         return true;
     }
 
+    public boolean isSpellZoneEmpty(){
+        for (int i = 0; i < spellZones.size(); i++) {
+            if (!spellZones.get(i).isEmpty()){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public Card getFieldZone() {
         return fieldZone;
     }
@@ -88,9 +97,24 @@ class GameDeck {
         return false;
     }
 
+    public String getFieldZoneAsString() {
+        if (fieldZone == null)
+            return "E";
+        return "O";
+    }
+
     public boolean isMonsterZoneEmpty() {
         for (int i = 0; i < monsterZones.size(); i++) {
             if (monsterZones.get(i).isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isMonsterZoneFull() {
+        for (int i = 0; i < monsterZones.size(); i++) {
+            if (monsterZones.get(i).isEmpty()){
                 return false;
             }
         }
