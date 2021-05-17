@@ -24,14 +24,6 @@ public class Monster extends Card {
         this.attackPoint = attackPoint;
     }
 
-    public void changeAttackPoint(int amount){
-        attackPoint += amount;
-    }
-
-    public void changeDefensePoint(int amount){
-        defensePoint += amount;
-    }
-
     public void setDefensePoint(int defensePoint) {
         this.defensePoint = defensePoint;
     }

@@ -3,7 +3,6 @@ package Model.Cards;
 public class Spell extends Card {
     private String spellType;
     private String icon;
-    private int playedRound;
 
 
     public Spell(String name, String type, String icon, String description, String trapType, int price) {
@@ -28,12 +27,8 @@ public class Spell extends Card {
         return icon;
     }
 
-    public void setPlayedRound(int playedRound) {
-        this.playedRound = playedRound;
-    }
-
-    public int getPlayedRound() {
-        return playedRound;
+    public String getSpellName() {
+        return name;
     }
 
     public String getDescription() {

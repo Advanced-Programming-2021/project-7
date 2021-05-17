@@ -35,7 +35,7 @@ class PlayMenu {
         }
         if(!isDuelValid(player1, player2, rounds)) return;
         int round = Integer.parseInt(rounds);
-        DuelProgramController duelProgramControler = new DuelProgramController();
+        DuelProgramControler duelProgramControler = new DuelProgramControler();
         duelProgramControler.run(player1, player2, round);
     }
 
