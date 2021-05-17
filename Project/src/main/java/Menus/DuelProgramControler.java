@@ -537,6 +537,11 @@ class DuelProgramControler {
             Card card = enemyDeck.getMonsterZones().get(selectDefender).removeCard();
             enemyDeck.getGraveyardCards().add(card);
             enemyDeck.takeDamage(damage);
+            monsterPowersController.setSelectedCardIndex(selectedCardIndex);
+            monsterPowersController.setAttackerCard(selectedCard);
+            monsterPowersController.setTurn(turn);
+            monsterPowersController.monsterPowersWhenDestroyed(enemyDeck.getMonsterZones()
+                    .get(selectDefender).getCurrentMonster());
             // TODO: 2021-05-08 check if dead
             System.out.printf("your opponent’s monster is destroyed and your opponent receives"
                     + " %d battle damage\n", damage);
@@ -567,6 +572,11 @@ class DuelProgramControler {
         if (damage > 0) {
             Card card = enemyDeck.getMonsterZones().get(selectDefender).removeCard();
             enemyDeck.getGraveyardCards().add(card);
+            monsterPowersController.setSelectedCardIndex(selectedCardIndex);
+            monsterPowersController.setAttackerCard(selectedCard);
+            monsterPowersController.setTurn(turn);
+            monsterPowersController.monsterPowersWhenDestroyed(enemyDeck.getMonsterZones()
+                    .get(selectDefender).getCurrentMonster());
             System.out.println("the defense position monster is destroyed");
         } else if (attackerDamage == defenderDamage) {
             System.out.println("no card is destroyed");
@@ -589,6 +599,11 @@ class DuelProgramControler {
         if (damage > 0) {
             Card card = enemyDeck.getMonsterZones().get(selectDefender).removeCard();
             enemyDeck.getGraveyardCards().add(card);
+            monsterPowersController.setSelectedCardIndex(selectedCardIndex);
+            monsterPowersController.setAttackerCard(selectedCard);
+            monsterPowersController.setTurn(turn);
+            monsterPowersController.monsterPowersWhenDestroyed(enemyDeck.getMonsterZones()
+                    .get(selectDefender).getCurrentMonster());
             System.out.printf("the defense position monster (%s) is destroyed\n", enemyCardName);
         } else if (damage == 0) {
             System.out.printf("enemy card was %s no card is destroyed\n", enemyCardName);
