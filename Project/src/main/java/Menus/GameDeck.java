@@ -16,7 +16,6 @@ class GameDeck {
     private ArrayList<Card> inHandCards = new ArrayList<>();
     private ArrayList<Card> deck = new ArrayList<>();
     private Card fieldZone;
-    private String fieldZoneStatus = "E";
     private ArrayList<Card> graveyardCards = new ArrayList<>();
     private ArrayList<Integer> playerLPsAfterRound = new ArrayList<>();
 
@@ -45,14 +44,6 @@ class GameDeck {
         }
     }
 
-    public void setFieldZoneStatus(String fieldZoneStatus) {
-        this.fieldZoneStatus = fieldZoneStatus;
-    }
-
-    public String getFieldZoneStatus() {
-        return fieldZoneStatus;
-    }
-
     public String getPlayerNickName() {
         return playerNickName;
     }
@@ -65,45 +56,45 @@ class GameDeck {
         return inHandCards;
     }
 
+    public boolean isMonsterZoneEmpty(){
+        for (int i = 0; i < monsterZones.size(); i++) {
+            if (!monsterZones.get(i).isEmpty()){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isMonsterZoneFull() {
+        for (int i = 0; i < monsterZones.size(); i++) {
+            if (monsterZones.get(i).isEmpty()){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isSpellZoneEmpty(){
+        for (int i = 0; i < spellZones.size(); i++) {
+            if (!spellZones.get(i).isEmpty()){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public boolean isSpellZoneFull() {
         for (int i = 0; i < spellZones.size(); i++) {
-            if (spellZones.get(i).isEmpty()) {
+            if (spellZones.get(i).isEmpty()){
                 return false;
             }
         }
         return true;
     }
 
-    public Card getFieldZone() {
-        return fieldZone;
-    }
-
-    public void emptyFieldZone() {
-        fieldZone = null;
-    }
-
-    public boolean isFieldZoneEmpty() {
-        if (fieldZone == null)
-            return true;
-        return false;
-    }
-
-    public boolean isMonsterZoneEmpty() {
-        for (int i = 0; i < monsterZones.size(); i++) {
-            if (monsterZones.get(i).isEmpty()) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public void setFieldZone(Card fieldZone) {
-        this.fieldZone = fieldZone;
-    }
-
-    public int spellZoneFirstFreeSpace() {
+    public int spellZoneFirstFreeSpace(){
         for (int i = 0; i < spellZones.size(); i++) {
-            if (spellZones.get(i).isEmpty()) {
+            if (spellZones.get(i).isEmpty()){
                 return i;
             }
         }
@@ -124,6 +115,12 @@ class GameDeck {
 
     public ArrayList<Card> getGraveyardCards() {
         return graveyardCards;
+    }
+
+    public String getFieldZoneAsString() {
+        if (fieldZone == null)
+            return "E";
+        return "O";
     }
 
     public void takeDamage(int damage) {
