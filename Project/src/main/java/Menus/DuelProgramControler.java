@@ -88,6 +88,7 @@ class DuelProgramControler {
                 Deck.getMainDeckByDeck(activeDeck2), Deck.getSideDeckByDeck(activeDeck2));
         gameDecks.add(gameDeckFirst);
         gameDecks.add(gameDeckSecond);
+        MonsterPowersController monsterPowersController = new MonsterPowersController(gameDecks);
     }
 
     private void showGameDeck(int turn) {
@@ -457,10 +458,6 @@ class DuelProgramControler {
         return true;
     }
 
-    private void whichCommand(String input, GameDeck playerDeck, GameDeck enemyDeck) {
-
-    }
-
     private void setPhase(String newPhase, GameDeck playerDeck) {
 
     }
@@ -481,9 +478,6 @@ class DuelProgramControler {
 
     }
 
-    private void summon(GameDeck playerDeck) {
-
-    }
 
     //    private String checkSummonCard(Card card, GameDeck playerDeck)
 //    {
@@ -496,11 +490,6 @@ class DuelProgramControler {
 //    }
 //
 //    private String checkSetCard(Card card, GameDeck playerDeck)
-//    {
-//
-//    }
-//
-//    private void flipSummon(GameDeck playerDeck)
 //    {
 //
 //    }
