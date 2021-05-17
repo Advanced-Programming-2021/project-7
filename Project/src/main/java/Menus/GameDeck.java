@@ -158,8 +158,11 @@ class GameDeck {
         playerLP += amount;
     }
 
-    public void drawCard(String cardName) {
-
+    public void drawCard() {
+        Card card = deck.get(deck.size() - 1);
+        inHandCards.add(card);
+        deck.remove(deck.size() - 1);
+        System.out.println("new card added to the hand: " + card.getName());
     }
 
     public void summonCardToMonsterZone(String cardName) {

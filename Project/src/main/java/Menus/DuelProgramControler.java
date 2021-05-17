@@ -44,6 +44,7 @@ class DuelProgramController {
             if (isGameOver(i)) break;
             setGameDecks(firstPlayer, secondPlayer);
             while (true) {
+                if (phase == Phase.draw) drawCard();
                 if (isRoundOver()) break;
                 String command = CommonTools.scan.nextLine();
                 showGameDeck(turn);
@@ -58,7 +59,8 @@ class DuelProgramController {
                 else if (command.matches("^increase --LP (\\d+)$")) increasePlayerLPCheat(command);
                 else if (command.matches("^duel set-winner \\S+$")) setWinnerCheat(command);
                 else if (command.matches("^set --position (attack|defence)$")) setPositionMonster(command);
-                else if (command.matches("flip-summon")) flipSummon();
+                else if (command.matches("^flip-summon$")) flipSummon();
+                else if (command.matches("^next phase$")) changePhase();
                 else System.out.println("invalid command");
             }
         }
@@ -977,12 +979,21 @@ class DuelProgramController {
         turn = changeTurn(turn);
         System.out.println("its " + gameDecks.get(turn).getPlayerNickName() + "'s turn");
         round++;
-        round++;
+    }
+
+    private void drawCard() {
+        ArrayList<Card> deck = gameDecks.get(turn).getDeck();
+        if (deck.size() == 0) {
+            gameDecks.get(turn).setPlayerLP(0);
+            return;
+        }
+        gameDecks.get(turn).drawCard();
     }
 
     private void changePhase() {
         phase = phase.next();
         System.out.println("phase: " + phase);
+        if (phase == phase.end) changeGameTurn();
     }
 
     private void checkSpellCard() {
