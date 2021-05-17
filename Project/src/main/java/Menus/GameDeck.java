@@ -55,6 +55,15 @@ class GameDeck {
     public ArrayList<Card> getInHandCards() {
         return inHandCards;
     }
+    
+    public boolean isSpellZoneEmpty(){
+        for (int i = 0; i < spellZones.size(); i++) {
+            if (!spellZones.get(i).isEmpty()){
+                return false;
+            }
+        }
+        return true;
+    }
 
     public boolean isSpellZoneFull() {
         for (int i = 0; i < spellZones.size(); i++) {
