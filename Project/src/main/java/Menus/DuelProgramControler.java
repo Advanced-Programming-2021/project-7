@@ -15,7 +15,11 @@ enum Phase {
     main1,
     battle,
     main2,
-    end
+    end;
+    private static Phase[] values = values();
+    public Phase next() {
+        return values[(this.ordinal() + 1) % values.length];
+    }
 }
 
 class DuelProgramControler {
@@ -777,6 +781,11 @@ class DuelProgramControler {
         return 1;
     }
 
+    private void changePhase() {
+        phase = phase.next();
+        System.out.println("phase: " + phase);
+    }
+
     private void changeGameTurn() {
         selectedCard = null;
         isSummoned = 0;
@@ -784,5 +793,6 @@ class DuelProgramControler {
         selectedMonsterCardIndex = -1;
         selectedDeck = null;
         turn = changeTurn(turn);
+        System.out.println("its " + gameDecks.get(turn).getPlayerNickName() + "'s turn");
     }
 }
