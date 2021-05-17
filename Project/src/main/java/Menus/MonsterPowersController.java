@@ -1,8 +1,11 @@
 package Menus;
 
 import Model.Cards.Card;
+import Model.CommonTools;
 
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.regex.Matcher;
 
 public class MonsterPowersController {
     private ArrayList <GameDeck> gameDecks = new ArrayList<>();
@@ -33,7 +36,13 @@ public class MonsterPowersController {
 
     public void monsterPowersWhenSummon(Card card) {
         String cardName = card.getName();
+        if (cardName.equals("Scanner")) ScannerPower();
 
+    }
+
+    public void monsterPowersWhenFlipsummon(Card card) {
+        String cardName = card.getName();
+        if (cardName.equals("Man-Eater Bug")) manEaterBugPower();
     }
 
     public void monsterPowersWhenDestroyed(Card card) {
@@ -53,6 +62,7 @@ public class MonsterPowersController {
 
     public void monstersWithSpecialSummonPower(Card card) {
         String cardName = card.getName();
+//        if (cardName.equals("Gate Guardian"))
     }
 
     public void yomiShipPower() {
@@ -60,5 +70,26 @@ public class MonsterPowersController {
         Card card = myDeck.getMonsterZones().get(selectedCardIndex).removeCard();
         myDeck.getGraveyardCards().add(card);
         System.out.println("Your monster card is destroyed by enemy monster effect");
+    }
+
+    public void manEaterBugPower() {
+        GameDeck enemyDeck = gameDecks.get((turn + 1) % 2);
+        System.out.println("select one of opponent's monsters to be destroyed:");
+        String command;
+        while (true) {
+            command = CommonTools.scan.nextLine();
+            if (command.matches("^select --monster (\\d)")) break;
+            else System.out.println("invalid selection");
+        }
+        Matcher matcher = CommonTools.getMatcher(command, "(\\d)");
+        matcher.find();
+        int selectedMonster = Integer.parseInt(matcher.group(1));
+        Card card = enemyDeck.getMonsterZones().get(selectedMonster).removeCard();
+        enemyDeck.getGraveyardCards().add(card);
+        System.out.println("your opponent’s monster is destroyed");
+    }
+
+    public void ScannerPower() {
+        
     }
 }

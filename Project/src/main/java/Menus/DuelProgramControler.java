@@ -445,6 +445,8 @@ class DuelProgramController {
         Card card = monsterZones.get(selectedCardIndex).getCurrentMonster();
         gameDecks.get(turn).getMonsterZones().get(selectedCardIndex).setCardAttack(card);
         System.out.println("flip summoned successfully");
+        monsterPowersController.setTurn(turn);
+        monsterPowersController.monsterPowersWhenFlipsummon(selectedCard);
     }
 
     private boolean isFlipSummonValid() {
