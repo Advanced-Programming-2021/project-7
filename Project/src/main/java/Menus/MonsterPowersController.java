@@ -12,23 +12,29 @@ public class MonsterPowersController {
     }
 
     public void monsterPowersWhenSummon(Card card) {
+        String cardName = card.getName();
 
     }
 
     public void monsterPowersWhenDestroyed(Card card) {
-
+        String cardName = card.getName();
+        if (cardName.equals("Yomi Ship")) yomiShipPower();
     }
 
     public void monsterPowersWhenGetAttacked(Card card) {
-
+        String cardName = card.getName();
     }
 
     public void monstersWithRitualPower(Card card) {
-
+        String cardName = card.getName();
     }
 
     public void monstersWithSpecialSummonPower(Card card) {
-        
+        String cardName = card.getName();
+    }
+
+    public void yomiShipPower() {
+
     }
 
 }

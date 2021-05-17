@@ -24,6 +24,7 @@ enum Phase {
 
 class DuelProgramControler {
     private ArrayList<GameDeck> gameDecks = new ArrayList<>(2);
+    private MonsterPowersController monsterPowersController = new MonsterPowersController(gameDecks);
     private int turn = 0; //0 : firstPlayer, 1 : secondPlayer
     private int isSummoned = 0; //0 : is not summoned before, 1 : is summoned before
     private Card selectedCard = null;
@@ -88,7 +89,6 @@ class DuelProgramControler {
                 Deck.getMainDeckByDeck(activeDeck2), Deck.getSideDeckByDeck(activeDeck2));
         gameDecks.add(gameDeckFirst);
         gameDecks.add(gameDeckSecond);
-        MonsterPowersController monsterPowersController = new MonsterPowersController(gameDecks);
     }
 
     private void showGameDeck(int turn) {
