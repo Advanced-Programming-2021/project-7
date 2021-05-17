@@ -15,7 +15,11 @@ enum Phase {
     main1,
     battle,
     main2,
-    end
+    end;
+    private static Phase[] values = values();
+    public Phase next() {
+        return values[(this.ordinal() + 1) % values.length];
+    }
 }
 
 class DuelProgramController {
@@ -548,15 +552,12 @@ class DuelProgramController {
                 .getCurrentMonster()).getDefensePoint();
         int damage = attackerDamage - defenderDamage;
         if (damage > 0) {
-<<<<<<< Updated upstream
-=======
             moveToGraveyard(changeTurn(turn), "MonsterZone", selectDefender);
             monsterPowersController.setSelectedCardIndex(selectedCardIndex);
             monsterPowersController.setAttackerCard(selectedCard);
             monsterPowersController.setTurn(turn);
             monsterPowersController.monsterPowersWhenDestroyed(enemyDeck.getMonsterZones()
                     .get(selectDefender).getCurrentMonster());
->>>>>>> Stashed changes
             moveToGraveyard(changeTurn(turn), "MonsterZone", selectDefender);
             System.out.println("the defense position monster is destroyed");
         } else if (attackerDamage == defenderDamage) {
@@ -578,15 +579,12 @@ class DuelProgramController {
                 .getCurrentMonster()).getDefensePoint();
         int damage = attackerDamage - defenderDamage;
         if (damage > 0) {
-<<<<<<< Updated upstream
-=======
             moveToGraveyard(changeTurn(turn), "MonsterZone", selectDefender);
             monsterPowersController.setSelectedCardIndex(selectedCardIndex);
             monsterPowersController.setAttackerCard(selectedCard);
             monsterPowersController.setTurn(turn);
             monsterPowersController.monsterPowersWhenDestroyed(enemyDeck.getMonsterZones()
                     .get(selectDefender).getCurrentMonster());
->>>>>>> Stashed changes
             moveToGraveyard(changeTurn(turn), "MonsterZone", selectDefender);
             System.out.printf("the defense position monster (%s) is destroyed\n", enemyCardName);
         } else if (damage == 0) {
@@ -814,9 +812,7 @@ class DuelProgramController {
         selectedMonsterCardIndex = -1;
         selectedDeck = null;
         turn = changeTurn(turn);
-<<<<<<< Updated upstream
         System.out.println("its " + gameDecks.get(turn).getPlayerNickName() + "'s turn");
-=======
         round++;
         round++;
     }
@@ -824,44 +820,6 @@ class DuelProgramController {
     private void changePhase() {
         phase = phase.next();
         System.out.println("phase: " + phase);
-    }
-
-    private void checkSpellCard() {
-        Spell spell = (Spell) selectedCard;
-        if (spell.getName().equals("Terraforming")) {
-            Terraforming();
-        } else if (spell.getName().equals("Pot of Greed")) {
-            drawXCards(1);
-        } else if (spell.getName().equals("Raigeki")) {
-            Raigeki();
-        } else if (spell.getName().equals("Change of Heart")) {
-            ChangeOfHeart(); // TODO
-        } else if (spell.getName().equals("Harpie’s Feather Duster")) {
-            HarpieFeatherDuster();
-        } else if (spell.getName().equals("Swords of Revealing Light")) {
-            SwordOfRevealingLight(); // TODO
-        } else if (spell.getName().equals("Dark Hole")) {
-            darkHole();
-        } else if (spell.getName().equals("Twin Twisters")) {
-            twinTwisters();
-        } else if (spell.getName().equals("Mystical space typhoon")) {
-            mysticalTyphoon();
-        }
-    }
-
-    private void Terraforming() {
-        GameDeck myDeck = gameDecks.get(turn);
-        for (int i = 0; i < myDeck.getDeck().size(); i++) {
-            if (myDeck.getDeck().get(i).getType().equals("Spell")) {
-                Spell spell = (Spell) myDeck.getDeck().get(i);
-                if (spell.getSpellType().equals("Field")) {
-                    myDeck.getInHandCards().add(myDeck.getDeck().get(i));
-                    myDeck.getDeck().remove(i);
-                    return;
-                }
-            }
-        }
->>>>>>> Stashed changes
     }
 
     private void checkSpellCard() {
@@ -1108,8 +1066,5 @@ class DuelProgramController {
             gameDeck.getInHandCards().remove(index);
         }
         activateOrDeactivateFieldCardForAll(1);
-
     }
-
-
 }
