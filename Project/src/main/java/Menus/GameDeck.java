@@ -55,7 +55,25 @@ class GameDeck {
     public ArrayList<Card> getInHandCards() {
         return inHandCards;
     }
-    
+
+    public boolean isMonsterZoneEmpty(){
+        for (int i = 0; i < monsterZones.size(); i++) {
+            if (!monsterZones.get(i).isEmpty()){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isMonsterZoneFull() {
+        for (int i = 0; i < monsterZones.size(); i++) {
+            if (monsterZones.get(i).isEmpty()){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public boolean isSpellZoneEmpty(){
         for (int i = 0; i < spellZones.size(); i++) {
             if (!spellZones.get(i).isEmpty()){
