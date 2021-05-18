@@ -29,7 +29,7 @@ class DuelProgramController {
     private int isSummoned = 0; //0 : is not summoned before, 1 : is summoned before
     private Card selectedCard = null;
     private int selectedCardIndex = -1; // -1 means Empty
-    private int selectedMonsterCardIndex = -1; // -1 means empty
+    private int changedPositionMonsterIndex = -1;
     private String selectedDeck = null; // hand, monster, spell, field,
     // opponentMonster, opponentSpell, opponentField
     private Phase phase = Phase.draw;
@@ -221,23 +221,38 @@ class DuelProgramController {
     }
 
     private void selectMonster(int position) {
+        if(gameDecks.get(turn).getMonsterZones().get(position).isEmpty()){
+            System.out.println("no card found in the given position");
+            return;
+        }
+        selectedCard = gameDecks.get(turn).getMonsterZones().get(position).getCurrentMonster();
         selectedCardIndex = position;
         selectedDeck = "monster";
     }
 
     private void selectSpell(int position) {
+        if(gameDecks.get(turn).getSpellZones().get(position).isEmpty()){
+            System.out.println("no card found in the given position");
+            return;
+        }
+        selectedCard = gameDecks.get(turn).getSpellZones().get(position).getCurrentCard();
         selectedCardIndex = position;
         selectedDeck = "spell";
     }
 
     private void selectField() {
+        if(gameDecks.get(turn).isSpellZoneEmpty()){
+            System.out.println("no card found in the given position");
+            return;
+        }
+        selectedCard = gameDecks.get(turn).getFieldZone();
         selectedCardIndex = -1;
         selectedDeck = "field";
     }
 
     private void selectHand(int position) {
         ArrayList<Card> inHandCards = gameDecks.get(turn).getInHandCards();
-        if (inHandCards.get(position - 1) == null) {
+        if (position > inHandCards.size()) {
             System.out.println("no card found in the given position");
             return;
         }
@@ -285,12 +300,12 @@ class DuelProgramController {
 
     private void summonWithOneTribute(int position) {
         HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(turn).getMonsterZones();
-        int numberOfEmptyMonsterZones = 0;
+        int numberOfFullMonsterZones = 0;
         for (int i = 1; i <= 5; i++) {
-            if (monsterZones.get(i).getCurrentMonster() == null)
-                numberOfEmptyMonsterZones = numberOfEmptyMonsterZones + 1;
+            if (monsterZones.get(i).getCurrentMonster() != null)
+                numberOfFullMonsterZones = numberOfFullMonsterZones + 1;
         }
-        if (numberOfEmptyMonsterZones > 0) {
+        if (numberOfFullMonsterZones == 0) {
             System.out.println("there are not enough cards for tribute");
             return;
         }
@@ -314,12 +329,12 @@ class DuelProgramController {
 
     private void summonWithTwoTribute(int position) {
         HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(turn).getMonsterZones();
-        int numberOfEmptyMonsterZones = 0;
+        int numberOfEmptyFullZones = 0;
         for (int i = 1; i <= 5; i++) {
-            if (monsterZones.get(i).getCurrentMonster() == null)
-                numberOfEmptyMonsterZones = numberOfEmptyMonsterZones + 1;
+            if (monsterZones.get(i).getCurrentMonster() != null)
+                numberOfEmptyFullZones = numberOfEmptyFullZones + 1;
         }
-        if (numberOfEmptyMonsterZones > 1) {
+        if (numberOfEmptyFullZones < 2) {
             System.out.println("there are not enough cards for tribute");
             return;
         }
@@ -378,7 +393,7 @@ class DuelProgramController {
             System.out.println("action not allowed in this phase");
             return false;
         }
-        if (!monsterZones.containsValue(null)) {
+        if (!gameDecks.get(turn).isMonsterZoneFull()) {
             System.out.println("monster card zone is full");
             return false;
         }
@@ -397,7 +412,7 @@ class DuelProgramController {
                 System.out.println("this card is already in the wanted position");
                 return;
             }
-            if (selectedMonsterCardIndex != -1) {
+            if (changedPositionMonsterIndex == selectedCardIndex) {
                 System.out.println("you already changed this card position in this turn");
                 return;
             }
@@ -408,7 +423,7 @@ class DuelProgramController {
                 System.out.println("this card is already in the wanted position");
                 return;
             }
-            if (selectedMonsterCardIndex != -1) {
+            if (changedPositionMonsterIndex == selectedCardIndex) {
                 System.out.println("you already changed this card position in this turn");
                 return;
             }
@@ -416,7 +431,7 @@ class DuelProgramController {
             gameDecks.get(turn).getMonsterZones().get(selectedCardIndex).setCardDefense(card);
         }
         System.out.println("monster card position changed successfully");
-        selectedMonsterCardIndex = selectedCardIndex;
+        changedPositionMonsterIndex = selectedCardIndex;
     }
 
     private boolean isSetPositionValid() {
@@ -976,7 +991,7 @@ class DuelProgramController {
         selectedCard = null;
         isSummoned = 0;
         selectedCardIndex = -1;
-        selectedMonsterCardIndex = -1;
+        changedPositionMonsterIndex = -1;
         selectedDeck = null;
         turn = changeTurn(turn);
         System.out.println("its " + gameDecks.get(turn).getPlayerNickName() + "'s turn");
