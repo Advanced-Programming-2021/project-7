@@ -36,7 +36,7 @@ public class MonsterPowersController {
 
     public void monsterPowersWhenSummon(Card card) {
         String cardName = card.getName();
-        if (cardName.equals("Scanner")) ScannerPower();
+        if (cardName.equals("Scanner")) ScannerPower(card);
 
     }
 
@@ -89,7 +89,9 @@ public class MonsterPowersController {
         System.out.println("your opponent’s monster is destroyed");
     }
 
-    public void ScannerPower() {
-        
+    public void ScannerPower(Card card) {
+        GameDeck enemyDeck = gameDecks.get((turn + 1) % 2);
+        enemyDeck.getGraveyardCards();
+
     }
 }
