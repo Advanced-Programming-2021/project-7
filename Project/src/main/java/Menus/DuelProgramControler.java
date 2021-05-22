@@ -29,7 +29,7 @@ class DuelProgramController {
     private int isSummoned = 0; //0 : is not summoned before, 1 : is summoned before
     private Card selectedCard = null;
     private int selectedCardIndex = -1; // -1 means Empty
-    private int changedPositionMonsterIndex = -1;
+    private int selectedMonsterCardIndex = -1;
     private String selectedDeck = null; // hand, monster, spell, field,
     // opponentMonster, opponentSpell, opponentField
     private Phase phase = Phase.draw;
@@ -994,7 +994,7 @@ class DuelProgramController {
         selectedCard = null;
         isSummoned = 0;
         selectedCardIndex = -1;
-        changedPositionMonsterIndex = -1;
+        selectedMonsterCardIndex = -1;
         selectedDeck = null;
         turn = changeTurn(turn);
         System.out.println("its " + gameDecks.get(turn).getPlayerNickName() + "'s turn");
