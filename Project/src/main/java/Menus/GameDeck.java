@@ -181,7 +181,7 @@ class GameDeck {
 
     public void setCardToMonsterZone(String cardName) {
         for (int i = 1; i <= 5; i++) {
-            if (monsterZones.get(i).getCurrentMonster() == null) {
+            if (monsterZones.get(i) == null) {
                 monsterZones.get(i).setCardHidden(Card.getCardByName(cardName));
                 return;
             }

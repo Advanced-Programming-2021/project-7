@@ -5,7 +5,7 @@ import Model.Cards.Card;
 import java.util.*;
 
 public class Player implements Comparable<Player> {
-    private static ArrayList<Player> players = new ArrayList<>();
+    private static ArrayList<Player> players = new ArrayList<Player>();
     private String username;
     private String password;
     private String nickname;
@@ -26,6 +26,8 @@ public class Player implements Comparable<Player> {
     }
 
     public static Player getPlayerByUsername(String username) {
+        if (players == null)
+            players = new ArrayList<>();
         Iterator<Player> playerIterator = players.iterator();
         while (playerIterator.hasNext()) {
             Player player = playerIterator.next();

@@ -24,7 +24,6 @@ public class Initialize {
         initializePlayers();
         importMonsterCardDate();
         importSpellTrapCardData();
-        new LoginMenu().run();
     }
 
     public void makeFolders() {
@@ -37,6 +36,14 @@ public class Initialize {
             theDir.mkdirs();
         }
         theDir = new File("DataBase//Cards");
+        if (!theDir.exists()) {
+            theDir.mkdirs();
+        }
+        theDir = new File("DataBase//TestsInput");
+        if (!theDir.exists()) {
+            theDir.mkdirs();
+        }
+        theDir = new File("DataBase//TestsOutput");
         if (!theDir.exists()) {
             theDir.mkdirs();
         }

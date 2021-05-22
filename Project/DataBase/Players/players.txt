@@ -1,31 +1,17 @@
 [
   {
-    "username": "armin",
+    "username": "ali",
     "password": "ramz",
-    "nickname": "nick",
+    "nickname": "ali",
     "score": 0,
     "money": 0,
     "cards": {},
     "decks": []
   },
   {
-    "username": "ali",
-    "password": "ramz2",
-    "nickname": "ali1",
-    "score": 0,
-    "money": 0,
-    "cards": {},
-    "decks": [],
-    "activeDeck": {
-      "deckIsValid": false,
-      "deckName": "aliDeck",
-      "playerName": "ali"
-    }
-  },
-  {
     "username": "shayan",
-    "password": "shayan1381",
-    "nickname": "shn",
+    "password": "ramz",
+    "nickname": "jenab",
     "score": 0,
     "money": 0,
     "cards": {},

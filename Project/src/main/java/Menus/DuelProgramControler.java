@@ -300,12 +300,12 @@ class DuelProgramController {
 
     private void summonWithOneTribute(int position) {
         HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(turn).getMonsterZones();
-        int numberOfFullMonsterZones = 0;
+        int numberOfEmptyMonsterZones = 0;
         for (int i = 1; i <= 5; i++) {
-            if (monsterZones.get(i).getCurrentMonster() != null)
-                numberOfFullMonsterZones = numberOfFullMonsterZones + 1;
+            if (monsterZones.get(i).getCurrentMonster() == null)
+                numberOfEmptyMonsterZones = numberOfEmptyMonsterZones + 1;
         }
-        if (numberOfFullMonsterZones == 0) {
+        if (numberOfEmptyMonsterZones > 0) {
             System.out.println("there are not enough cards for tribute");
             return;
         }
@@ -329,12 +329,12 @@ class DuelProgramController {
 
     private void summonWithTwoTribute(int position) {
         HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(turn).getMonsterZones();
-        int numberOfEmptyFullZones = 0;
+        int numberOfEmptyMonsterZones = 0;
         for (int i = 1; i <= 5; i++) {
-            if (monsterZones.get(i).getCurrentMonster() != null)
-                numberOfEmptyFullZones = numberOfEmptyFullZones + 1;
+            if (monsterZones.get(i).getCurrentMonster() == null)
+                numberOfEmptyMonsterZones = numberOfEmptyMonsterZones + 1;
         }
-        if (numberOfEmptyFullZones < 2) {
+        if (numberOfEmptyMonsterZones > 1) {
             System.out.println("there are not enough cards for tribute");
             return;
         }
@@ -393,7 +393,7 @@ class DuelProgramController {
             System.out.println("action not allowed in this phase");
             return false;
         }
-        if (!gameDecks.get(turn).isMonsterZoneFull()) {
+        if (!monsterZones.containsValue(null)) {
             System.out.println("monster card zone is full");
             return false;
         }
@@ -412,7 +412,7 @@ class DuelProgramController {
                 System.out.println("this card is already in the wanted position");
                 return;
             }
-            if (changedPositionMonsterIndex == selectedCardIndex) {
+            if (selectedMonsterCardIndex != -1) {
                 System.out.println("you already changed this card position in this turn");
                 return;
             }
@@ -423,7 +423,7 @@ class DuelProgramController {
                 System.out.println("this card is already in the wanted position");
                 return;
             }
-            if (changedPositionMonsterIndex == selectedCardIndex) {
+            if (selectedMonsterCardIndex != -1) {
                 System.out.println("you already changed this card position in this turn");
                 return;
             }
@@ -431,7 +431,7 @@ class DuelProgramController {
             gameDecks.get(turn).getMonsterZones().get(selectedCardIndex).setCardDefense(card);
         }
         System.out.println("monster card position changed successfully");
-        changedPositionMonsterIndex = selectedCardIndex;
+        selectedMonsterCardIndex = selectedCardIndex;
     }
 
     private boolean isSetPositionValid() {
@@ -515,6 +515,8 @@ class DuelProgramController {
         } else if (myDeck.getMonsterZones().get(selectedCardIndex).getHasAttackedThisRound()) {
             System.out.println("this card already attacked");
             return;
+        } else if (messengerOfPeaceBlocks(((Monster) selectedCard).getAttackPoint())) {
+            System.out.println("An Spell Card Stops this monster from attacking");
         } else if (enemyDeck.getMonsterZones().get(selectDefender).isEmpty()) {
             System.out.println("there is no card to attack here");
             return;
@@ -528,6 +530,7 @@ class DuelProgramController {
     }
 
     public void attackOO(int selectDefender, GameDeck myDeck, GameDeck enemyDeck) {
+
         Monster selectedMonster = (Monster) selectedCard;
         // TODO: 2021-05-10 Do Effect
         int attackerDamage = selectedMonster.getAttackPoint();
@@ -1257,5 +1260,8 @@ class DuelProgramController {
             gameDeck.getInHandCards().remove(index);
         }
         activateOrDeactivateFieldCardForAll(1);
+
     }
+
+
 }

@@ -1,0 +1,13 @@
+user create --username ali --username ali --username ali
+a
+menu enter duel
+menu show-current
+user create --username ali --nickname ali --password ramz
+user create --username ali --nickname ali --password ramz
+user create --username armin --nickname ali --password ramz
+user create --username shayan --nickname jenab --password ramz
+user login --username ali --username ali
+user login --username ali --password ali
+user login --username ali --password ramz
+logout
+menu exit

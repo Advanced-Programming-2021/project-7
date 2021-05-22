@@ -18,7 +18,7 @@ public class LoginMenu {
                 createPlayer(command);
             else if (command.matches("^user login (?:(--username|--password) (\\S+) ?){2}$"))
                 loginPlayer(command);
-            else if (command.matches("^menu exit$")) System.exit(0);
+            else if (command.matches("^menu exit$")) return;
             else if (command.matches("^menu enter (profile|duel|shop|scoreboard|deck)$"))
                 System.out.println("please login first");
             else if (command.matches("^menu show-current$")) System.out.println("Login");
@@ -47,7 +47,7 @@ public class LoginMenu {
         }
     }
 
-    private void loginPlayer(String command) throws IOException {
+    public void loginPlayer(String command) throws IOException {
         String username = CommonTools.takeNameOutOfCommand(command, "--username");
         String password = CommonTools.takeNameOutOfCommand(command, "--password");
         if (username == null || password == null) {
