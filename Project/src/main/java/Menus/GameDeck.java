@@ -66,7 +66,7 @@ class GameDeck {
     }
 
     public boolean isSpellZoneFull() {
-        for (int i = 0; i < spellZones.size(); i++) {
+        for (int i = 1; i <= 5; i++) {
             if (spellZones.get(i).isEmpty()) {
                 return false;
             }
@@ -75,12 +75,21 @@ class GameDeck {
     }
 
     public boolean isSpellZoneEmpty(){
-        for (int i = 0; i < spellZones.size(); i++) {
+        for (int i = 1; i <= 5; i++) {
             if (!spellZones.get(i).isEmpty()){
                 return false;
             }
         }
         return true;
+    }
+
+    public boolean doesTrapExist(String cardName){
+        for (int i = 1; i <= 5; i++) {
+            if (spellZones.get(i).getCurrentCard().getName().equals(cardName)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public Card getFieldZone() {
