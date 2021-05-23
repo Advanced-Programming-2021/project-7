@@ -1232,6 +1232,43 @@ class DuelProgramController {
         }
     }
 
+    private void activeTrapMindCrush(){
+        System.out.println("enter name of a card:");
+        String cardName = CommonTools.scan.nextLine();
+        int opponentTurn = changeTurn(turn);
+        int size = gameDecks.get(opponentTurn).getInHandCards().size();
+        boolean doesCardExist = false;
+        for (int i = 0; i < size; i++){
+            Card card = gameDecks.get(opponentTurn).getInHandCards().get(i);
+            if (card.getName().equals(cardName)){
+                doesCardExist = true;
+                break;
+            }
+        }
+        if (!doesCardExist){
+            int sizeOfHand = gameDecks.get(turn).getInHandCards().size();
+            int randomIndex = (int)Math.floor(Math.random() * sizeOfHand);
+            moveToGraveyard(turn, "inHand", randomIndex);
+        }
+        else{
+            size = gameDecks.get(opponentTurn).getInHandCards().size();
+            for (int i = 0; i < size; i++){
+                Card card = gameDecks.get(opponentTurn).getInHandCards().get(i);
+                if (card.getName().equals(cardName)) moveToGraveyard(opponentTurn, "inHand", i);
+                
+            }
+            for (int i = 1; i <= 5; i++){
+                Card card = gameDecks.get(opponentTurn).getMonsterZones().get(i).getCurrentMonster();
+                if (card.getName().equals(cardName)) moveToGraveyard(opponentTurn, "monsterZone", i);
+                
+            }
+            for (int i = 1; i <= 5; i++){
+                Card card = gameDecks.get(opponentTurn).getSpellZones().get(i).getCurrentCard();
+                if (card.getName().equals(cardName)) moveToGraveyard(opponentTurn, "spellZone", i);
+            }
+        }
+    }
+
     private void activateTrapCallOfTheHaunted(){
 
     }
