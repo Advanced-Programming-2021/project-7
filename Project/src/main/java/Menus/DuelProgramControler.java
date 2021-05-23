@@ -7,6 +7,7 @@ import Model.Player;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.regex.Matcher;
 
 enum Phase {
@@ -1222,6 +1223,19 @@ class DuelProgramController {
         }
     }
 
+    private void activeTrapMirrorForce(){
+        int opponentTurn = changeTurn(turn);
+        for (int i = 1; i <= 5; i++){
+            if (gameDecks.get(opponentTurn).getMonsterZones().get(i).getStatus().equals("OO")){
+                moveToGraveyard(opponentTurn, "MonsterZone", i);
+            }
+        }
+    }
+
+    private void activateTrapCallOfTheHaunted(){
+
+    }
+
     private void activateOrDeactivateFieldCardForAll(int activeMode) { // 1 for activate and -1 for deactivate
         for (int i = 0; i < gameDecks.size(); i++) {
             if (!gameDecks.get(i).getFieldZoneStatus().equals("O"))
@@ -1245,19 +1259,19 @@ class DuelProgramController {
 
     private void moveToGraveyard(int turn, String place, int index) {
         activateOrDeactivateFieldCardForAll(-1);
-        GameDeck gameDeck = gameDecks.get(turn);
+        //GameDeck gameDeck = gameDecks.get(turn);
         if (place.equals("MonsterZone")) {
-            Card card = gameDeck.getMonsterZones().get(index).removeCard();
-            gameDeck.getGraveyardCards().add(card);
+            Card card = gameDecks.get(turn).getMonsterZones().get(index).removeCard();
+            gameDecks.get(turn).getGraveyardCards().add(card);
         } else if (place.equals("SpellZone")) {
-            Card card = gameDeck.getSpellZones().get(index).removeCard();
-            gameDeck.getGraveyardCards().add(card);
+            Card card = gameDecks.get(turn).getSpellZones().get(index).removeCard();
+            gameDecks.get(turn).getGraveyardCards().add(card);
         } else if (place.equals("field")) {
-            gameDeck.getGraveyardCards().add(gameDeck.getFieldZone());
-            gameDeck.emptyFieldZone();
+            gameDecks.get(turn).getGraveyardCards().add(gameDecks.get(turn).getFieldZone());
+            gameDecks.get(turn).emptyFieldZone();
         } else if (place.equals("inHand")) {
-            gameDeck.getGraveyardCards().add(gameDeck.getInHandCards().get(index));
-            gameDeck.getInHandCards().remove(index);
+            gameDecks.get(turn).getGraveyardCards().add(gameDecks.get(turn).getInHandCards().get(index));
+            gameDecks.get(turn).getInHandCards().remove(index);
         }
         activateOrDeactivateFieldCardForAll(1);
 
