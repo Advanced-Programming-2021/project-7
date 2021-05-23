@@ -35,7 +35,7 @@ class DuelProgramController {
     // opponentMonster, opponentSpell, opponentField
     private Phase phase = Phase.draw;
     private int round = 1;
-    private boolean timeSealTrap = false;
+    private int timeSealTrap = 0;
 
     public void run(String firstPlayer, String secondPlayer, int round) {
         for (int i = 1; i <= round; i++) {
@@ -536,7 +536,7 @@ class DuelProgramController {
         }
     }
 
-    public boolean checkTrap(){
+    public boolean checkTrap() {
         int trapTurn = changeTurn(turn);
         boolean doesMirrorForceExist = gameDecks.get(trapTurn).doesTrapExist("Mirror Force");
         boolean doesNegateAttackExist = gameDecks.get(trapTurn).doesTrapExist("Negate Attack");
@@ -551,17 +551,15 @@ class DuelProgramController {
         else if (!doesMirrorForceExist && doesNegateAttackExist) activateTrapNegateAttack();
         else {
             System.out.println("do you want to activate 'Mirror Force' or 'Negate Attack' ?");
-            while (true){
+            while (true) {
                 String trap = CommonTools.scan.nextLine();
-                if (trap.equals("Mirror Force")){
+                if (trap.equals("Mirror Force")) {
                     activateTrapMirrorForce();
                     break;
-                }
-                else if (trap.equals("Negate Attack")){
+                } else if (trap.equals("Negate Attack")) {
                     activateTrapNegateAttack();
                     break;
-                }
-                else System.out.println("invalid command");
+                } else System.out.println("invalid command");
             }
         }
         return true;
@@ -722,8 +720,21 @@ class DuelProgramController {
         deselect();
     }
 
-    private void activateTrap(){ // todo complete commands
-
+    private void activateTrap() { // todo complete commands
+        if (!selectedDeck.equals("spell")) {
+            System.out.println("invalid deck or card");
+            return;
+        }
+        if (!selectedCard.getName().equals("Mind Crush") &&
+                !selectedCard.getName().equals("Torrential Tribute") &&
+                !selectedCard.getName().equals("Time Seal")) {
+            System.out.println("invalid card");
+            return;
+        }
+        if (selectedCard.getName().equals("Mind Crush")) activateTrapMindCrush();
+        else if (selectedCard.getName().equals("Torrential Tribute")) activateTrapTorrentialTribute();
+        else if (selectedCard.getName().equals("Time Seal")) activateTrapTimeSeal();
+        moveToGraveyard(turn, "SpellZone", selectedCardIndex);
     }
 
     private void setSpell() {
@@ -1029,6 +1040,7 @@ class DuelProgramController {
         selectedCardIndex = -1;
         selectedMonsterCardIndex = -1;
         selectedDeck = null;
+        if (timeSealTrap != 0) timeSealTrap = timeSealTrap - 1;
         turn = changeTurn(turn);
         System.out.println("its " + gameDecks.get(turn).getPlayerNickName() + "'s turn");
         round++;
@@ -1087,6 +1099,10 @@ class DuelProgramController {
     }
 
     private void drawXCards(int x) {
+        if (timeSealTrap == 1) {
+            System.out.println("you cant draw card in this round");
+            return;
+        }
         GameDeck myDeck = gameDecks.get(turn);
         for (int i = 0; i < x; i++) {
             myDeck.getInHandCards().add(myDeck.getDeck().get(0));
@@ -1263,7 +1279,7 @@ class DuelProgramController {
             }
         }
         int opponentTurn = changeTurn(turn);
-        for (int i = 1; i <= 5; i++){
+        for (int i = 1; i <= 5; i++) {
             if (gameDecks.get(opponentTurn).getSpellZones().get(i).getCurrentCard().getName().equals("Mirror Force")) {
                 moveToGraveyard(opponentTurn, "SpellZone", i);
                 break;
@@ -1272,6 +1288,7 @@ class DuelProgramController {
     }
 
     private void activateTrapMindCrush() {
+        System.out.println("trap 'Mind Crush' activated");
         System.out.println("enter name of a card:");
         String cardName = CommonTools.scan.nextLine();
         int opponentTurn = changeTurn(turn);
@@ -1293,21 +1310,11 @@ class DuelProgramController {
             for (int i = 0; i < size; i++) {
                 Card card = gameDecks.get(opponentTurn).getInHandCards().get(i);
                 if (card.getName().equals(cardName)) moveToGraveyard(opponentTurn, "inHand", i);
-
-            }
-            for (int i = 1; i <= 5; i++) {
-                Card card = gameDecks.get(opponentTurn).getMonsterZones().get(i).getCurrentMonster();
-                if (card.getName().equals(cardName)) moveToGraveyard(opponentTurn, "monsterZone", i);
-
-            }
-            for (int i = 1; i <= 5; i++) {
-                Card card = gameDecks.get(opponentTurn).getSpellZones().get(i).getCurrentCard();
-                if (card.getName().equals(cardName)) moveToGraveyard(opponentTurn, "spellZone", i);
             }
         }
     }
 
-    private void activateTrapTorrentialTribute() { // after a summon
+    private void activateTrapTorrentialTribute() {
         for (int i = 1; i <= 5; i++) {
             if (gameDecks.get(turn).getMonsterZones().get(i).getStatus().isEmpty()) {
                 moveToGraveyard(turn, "MonsterZone", i);
@@ -1321,13 +1328,21 @@ class DuelProgramController {
         }
     }
 
-    private void activeTrapTimeSeal(){ // todo
-        timeSealTrap = true;
+    private void activateTrapTimeSeal() {
+        System.out.println("trap 'Time Seal' activated");
+        timeSealTrap = 2;
     }
 
     private void activateTrapNegateAttack() {
         System.out.println("trap 'Negate Attack' activated");
+        int opponentTurn = changeTurn(turn);
         phase = Phase.main2;
+        for (int i = 1; i <= 5; i++) {
+            if (gameDecks.get(opponentTurn).getSpellZones().get(i).getCurrentCard().getName().equals("Negate Attack")) {
+                moveToGraveyard(opponentTurn, "SpellZone", i);
+                break;
+            }
+        }
     }
 
     private void activateOrDeactivateFieldCardForAll(int activeMode) { // 1 for activate and -1 for deactivate
