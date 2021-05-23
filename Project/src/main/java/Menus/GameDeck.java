@@ -74,18 +74,18 @@ class GameDeck {
         return true;
     }
 
-    public boolean isSpellZoneEmpty(){
+    public boolean isSpellZoneEmpty() {
         for (int i = 1; i <= 5; i++) {
-            if (!spellZones.get(i).isEmpty()){
+            if (!spellZones.get(i).isEmpty()) {
                 return false;
             }
         }
         return true;
     }
 
-    public boolean doesTrapExist(String cardName){
+    public boolean doesTrapExist(String cardName) {
         for (int i = 1; i <= 5; i++) {
-            if (spellZones.get(i).getCurrentCard().getName().equals(cardName)){
+            if (spellZones.get(i).getCurrentCard().getName().equals(cardName)) {
                 return true;
             }
         }
@@ -123,7 +123,7 @@ class GameDeck {
 
     public boolean isMonsterZoneFull() {
         for (int i = 0; i < monsterZones.size(); i++) {
-            if (monsterZones.get(i).isEmpty()){
+            if (monsterZones.get(i).isEmpty()) {
                 return false;
             }
         }
