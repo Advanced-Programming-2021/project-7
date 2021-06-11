@@ -11,7 +11,7 @@ public class Player implements Comparable<Player> {
     private String nickname;
     private int score;
     private int money;
-    private HashMap<Card, Integer> cards = new HashMap<>();
+    private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Deck> decks = new ArrayList<>();
     private Deck activeDeck = null;
 
@@ -70,17 +70,11 @@ public class Player implements Comparable<Player> {
 
     public void addCard(Card card) {
         if (cards == null)
-            cards = new HashMap<>();
-        if (cards.containsKey(card)) {
-            int numberOfCards = cards.get(card);
-            numberOfCards++;
-            cards.put(card, numberOfCards);
-        } else {
-            cards.put(card, 1);
-        }
+            cards = new ArrayList<>();
+        cards.add(card);
     }
 
-    public HashMap<Card, Integer> getCards() {
+    public ArrayList<Card> getCards() {
         return cards;
     }
 
@@ -89,12 +83,8 @@ public class Player implements Comparable<Player> {
     }
 
     public boolean doesCardExist(String cardName) {
-        ArrayList<Card> cardsArray = new ArrayList<Card>();
-        for (Map.Entry<Card, Integer> e : cards.entrySet()) {
-            cardsArray.add(e.getKey());
-        }
-        for (int i = 0; i < cardsArray.size(); i++){
-            if (cardsArray.get(i).getName().equals(cardName)) return true;
+        for (int i = 0; i < cards.size(); i++){
+            if (cards.get(i).getName().equals(cardName)) return true;
         }
         return false;
     }
@@ -219,13 +209,9 @@ public class Player implements Comparable<Player> {
     }
 
     public void showCards() {
-        ArrayList<Card> cardsArray = new ArrayList<Card>();
-        for (Map.Entry<Card, Integer> e : cards.entrySet()) {
-            cardsArray.add(e.getKey());
-        }
-        Collections.sort(cardsArray);
-        for (int i = 0; i < cardsArray.size(); i++) {
-            System.out.printf("%s:%s\n", cardsArray.get(i).getName(), cardsArray.get(i).getDescription());
+        Collections.sort(cards);
+        for (int i = 0; i < cards.size(); i++) {
+            System.out.printf("%s:%s\n", cards.get(i).getName(), cards.get(i).getDescription());
         }
     }
 }
