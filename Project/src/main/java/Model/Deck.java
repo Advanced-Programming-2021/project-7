@@ -176,9 +176,16 @@ public class Deck implements Comparable<Deck> {
         ArrayList<Card> monsters = new ArrayList<>();
         ArrayList<Card> spellsAndTraps = new ArrayList<>();
         for (Map.Entry <Card, Integer> e : mainDeck.entrySet()) {
-            if(e.getKey().getType().equals("monster")) monsters.add(e.getKey());
-            else if(e.getKey().getType().equals("spell") ||
-                    e.getKey().getType().equals("trap")) spellsAndTraps.add(e.getKey());
+            if(e.getKey().getType().equals("Monster")) {
+                for (int i = 0; i < e.getValue(); i++) {
+                    monsters.add(e.getKey());
+                }
+            }
+            else if(e.getKey().getType().equals("Spell") || e.getKey().getType().equals("Trap")) {
+                for (int i = 0; i < e.getValue(); i++) {
+                    spellsAndTraps.add(e.getKey());
+                }
+            }
         }
         Collections.sort(monsters);
         Collections.sort(spellsAndTraps);
@@ -187,7 +194,7 @@ public class Deck implements Comparable<Deck> {
             System.out.printf("%s: %s\n", monsters.get(i).getName(), monsters.get(i).getDescription());
         }
         System.out.println("Spell and Traps:");
-        for (int i = 0; i < monsters.size(); i++){
+        for (int i = 0; i < spellsAndTraps.size(); i++){
             System.out.printf("%s: %s\n", spellsAndTraps.get(i).getName(), spellsAndTraps.get(i).getDescription());
         }
     }
@@ -196,9 +203,16 @@ public class Deck implements Comparable<Deck> {
         ArrayList<Card> monsters = new ArrayList<>();
         ArrayList<Card> spellsAndTraps = new ArrayList<>();
         for (Map.Entry <Card, Integer> e : sideDeck.entrySet()) {
-            if(e.getKey().getType().equals("monster")) monsters.add(e.getKey());
-            else if(e.getKey().getType().equals("spell") ||
-                    e.getKey().getType().equals("trap")) spellsAndTraps.add(e.getKey());
+            if(e.getKey().getType().equals("Monster")) {
+                for (int i = 0; i < e.getValue(); i++) {
+                    monsters.add(e.getKey());
+                }
+            }
+            else if(e.getKey().getType().equals("Spell") || e.getKey().getType().equals("Trap")) {
+                for (int i = 0; i < e.getValue(); i++) {
+                    spellsAndTraps.add(e.getKey());
+                }
+            }
         }
         Collections.sort(monsters);
         Collections.sort(spellsAndTraps);
@@ -207,7 +221,7 @@ public class Deck implements Comparable<Deck> {
             System.out.printf("%s: %s\n", monsters.get(i).getName(), monsters.get(i).getDescription());
         }
         System.out.println("Spell and Traps:");
-        for (int i = 0; i < monsters.size(); i++){
+        for (int i = 0; i < spellsAndTraps.size(); i++){
             System.out.printf("%s: %s\n", spellsAndTraps.get(i).getName(), spellsAndTraps.get(i).getDescription());
         }
     }
