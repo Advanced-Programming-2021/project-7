@@ -89,11 +89,12 @@ public class Player implements Comparable<Player> {
     }
 
     public boolean doesCardExist(String cardName) {
-        Card card = Card.getCardByName(cardName);
-        for (int i = 0; i < cards.size(); i++) {
-            if (cards.containsKey(card)) {
-                return true;
-            }
+        ArrayList<Card> cardsArray = new ArrayList<Card>();
+        for (Map.Entry<Card, Integer> e : cards.entrySet()) {
+            cardsArray.add(e.getKey());
+        }
+        for (int i = 0; i < cardsArray.size(); i++){
+            if (cardsArray.get(i).getName().equals(cardName)) return true;
         }
         return false;
     }
