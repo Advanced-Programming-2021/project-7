@@ -83,20 +83,24 @@ public class Player implements Comparable<Player> {
     }
 
     public void removeCard(Card card) {
+        if (cards == null){
+            return;
+        }
         System.out.println(cards.size());
-        if (cards.get(card) >= 2) {
-            int numberOfCards = cards.get(card);
-            numberOfCards--;
-            cards.put(card, numberOfCards);
-        } else {
-            cards.remove(card);
+        for (Map.Entry<Card, Integer> e : cards.entrySet()) {
+            if (e.getKey().getName().equals(card.getName()) && e.getValue() != 0){
+                e.setValue(e.getValue() - 1);
+                return;
+            }
         }
     }
 
     public boolean doesCardExist(String cardName) {
         ArrayList<Card> cardsArray = new ArrayList<Card>();
         for (Map.Entry<Card, Integer> e : cards.entrySet()) {
-            cardsArray.add(e.getKey());
+            for (int i = 0; i < e.getValue(); i++) {
+                cardsArray.add(e.getKey());
+            }
         }
         for (int i = 0; i < cardsArray.size(); i++){
             if (cardsArray.get(i).getName().equals(cardName)) return true;
