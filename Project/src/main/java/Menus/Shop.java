@@ -13,7 +13,7 @@ class Shop {
     public void run(String username) throws IOException {
         while (true) {
             String command = CommonTools.scan.nextLine();
-            if (command.matches("^shop buy [^ ]+$")) buyCard(username, command);
+            if (command.matches("^shop buy .+$")) buyCard(username, command);
             else if (command.matches("^shop show --all$")) showAll();
             else if (command.matches("^menu enter (profile|duel|deck|shop|scoreboard)$"))
                 System.out.println("menu navigation is not possible");
@@ -25,11 +25,7 @@ class Shop {
     }
 
     public static void buyCard(String username, String command) throws IOException {
-        String pattern = "^shop buy ([^ ]+)$";
-        Pattern r = Pattern.compile(pattern);
-        Matcher m = r.matcher(command);
-        m.find();
-        String card = m.group(1);
+        String card = command.substring(9);
         if (Card.getCardByName(card) == null) {
             System.out.println("there is no card with this name");
         } else {
