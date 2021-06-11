@@ -69,8 +69,6 @@ public class Player implements Comparable<Player> {
     }
 
     public void addCard(Card card) {
-        if (cards == null)
-            cards = new HashMap<>();
         if (cards.containsKey(card)) {
             int numberOfCards = cards.get(card);
             numberOfCards++;
@@ -85,15 +83,23 @@ public class Player implements Comparable<Player> {
     }
 
     public void removeCard(Card card) {
-        cards.remove(card);
+        System.out.println(cards.size());
+        if (cards.get(card) >= 2) {
+            int numberOfCards = cards.get(card);
+            numberOfCards--;
+            cards.put(card, numberOfCards);
+        } else {
+            cards.remove(card);
+        }
     }
 
     public boolean doesCardExist(String cardName) {
-        Card card = Card.getCardByName(cardName);
-        for (int i = 0; i < cards.size(); i++) {
-            if (cards.containsKey(card)) {
-                return true;
-            }
+        ArrayList<Card> cardsArray = new ArrayList<Card>();
+        for (Map.Entry<Card, Integer> e : cards.entrySet()) {
+            cardsArray.add(e.getKey());
+        }
+        for (int i = 0; i < cardsArray.size(); i++){
+            if (cardsArray.get(i).getName().equals(cardName)) return true;
         }
         return false;
     }
@@ -220,7 +226,9 @@ public class Player implements Comparable<Player> {
     public void showCards() {
         ArrayList<Card> cardsArray = new ArrayList<Card>();
         for (Map.Entry<Card, Integer> e : cards.entrySet()) {
-            cardsArray.add(e.getKey());
+            for (int i = 0; i < e.getValue(); i++) {
+                cardsArray.add(e.getKey());
+            }
         }
         Collections.sort(cardsArray);
         for (int i = 0; i < cardsArray.size(); i++) {
