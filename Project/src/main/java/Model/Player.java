@@ -195,7 +195,7 @@ public class Player implements Comparable<Player> {
         System.out.println("Other Decks:");
         if (decks != null) Collections.sort(decks);
         for (int i = 0; i < decks.size(); i++) {
-            if (!decks.get(i).getDeckName().equals(activeDeck.getDeckName())) {
+            if (true) {
                 String validity;
                 if (decks.get(i).isDeckValid()) validity = "valid";
                 else validity = "invalid";
