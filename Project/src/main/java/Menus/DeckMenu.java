@@ -18,7 +18,7 @@ class DeckMenu {
             if (command.matches("^deck create [^ ]+$")) createDeck(username, command);
             else if (command.matches("^deck delete [^ ]+$")) deleteDeck(username, command);
             else if (command.matches("^deck set-activate [^ ]+$")) setActiveDeck(username, command);
-            else if (command.matches("^deck add-card (?:(?:--card|--deck|--side)( ([^ ]+))* ?){2,3}$"))
+            else if (command.matches("^deck add-card (?:(?:--card|--deck|--side)( (.+))* ?){2,3}$"))
                 addCardToDeck(username, command);
             else if (command.matches("^deck rm-card (?:(?:--card|--deck|--side)( ([^ ]+))* ?){2,3}$"))
                 removeCardFromDeck(username, command);

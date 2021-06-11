@@ -1,20 +1,49 @@
 [
   {
-    "username": "ali",
-    "password": "ramz",
-    "nickname": "ali",
-    "score": 0,
-    "money": 0,
-    "cards": {},
-    "decks": []
+    "@type": "Model.Player",
+    "@val": {
+      "username": "ali",
+      "password": "ramz",
+      "nickname": "ali",
+      "score": 0,
+      "money": 41000,
+      "cards": [
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Ritual",
+              "playedRound": 0,
+              "name": "Advanced Ritual Art",
+              "description": "This card can be used to Ritual Summon any 1 Ritual Monster. You must also send Normal Monsters from your Deck to the Graveyard whose total Levels equal the Level of that Ritual Monster.",
+              "type": "Spell",
+              "price": 3000
+            }
+          },
+          1
+        ]
+      ],
+      "decks": [
+        {
+          "mainDeck": {},
+          "sideDeck": {},
+          "deckIsValid": false,
+          "deckName": "armin",
+          "playerName": "ali"
+        }
+      ]
+    }
   },
   {
-    "username": "shayan",
-    "password": "ramz",
-    "nickname": "jenab",
-    "score": 0,
-    "money": 0,
-    "cards": {},
-    "decks": []
+    "@type": "Model.Player",
+    "@val": {
+      "username": "shayan",
+      "password": "ramz",
+      "nickname": "jenab",
+      "score": 0,
+      "money": 50000,
+      "cards": {},
+      "decks": []
+    }
   }
 ]

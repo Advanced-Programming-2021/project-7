@@ -33,6 +33,7 @@ class Shop {
             if (money < Card.getPriceByUsername(card)) {
                 System.out.println("not enough money");
             } else {
+                System.out.println("Card bought!");
                 Card addingCard = Card.getCardByName(card);
                 Player player = Player.getPlayerByUsername(username);
                 player.addCard(addingCard);

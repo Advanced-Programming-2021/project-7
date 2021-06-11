@@ -4,9 +4,9 @@ import Model.Cards.Monster;
 import Model.Cards.Spell;
 import Model.Cards.Trap;
 import Model.Player;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
+import com.gilecode.yagson.YaGson;
+import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
+
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -59,11 +59,11 @@ public class Initialize {
         }
 
         Path path = Path.of("DataBase//Players//players.txt");
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        YaGson yaGson = new YaGson();
         String playersData = Files.readString(path);
         Type arraylistOfPlayer = new TypeToken<ArrayList<Player>>() {
         }.getType();
-        Player.setPlayers(gson.fromJson(playersData, arraylistOfPlayer));
+        Player.setPlayers(yaGson.fromJson(playersData, arraylistOfPlayer));
     }
 
     public void importMonsterCardDate() throws IOException {

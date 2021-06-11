@@ -69,6 +69,8 @@ public class Player implements Comparable<Player> {
     }
 
     public void addCard(Card card) {
+        if (cards == null)
+            cards = new HashMap<>();
         if (cards.containsKey(card)) {
             int numberOfCards = cards.get(card);
             numberOfCards++;
@@ -76,6 +78,10 @@ public class Player implements Comparable<Player> {
         } else {
             cards.put(card, 1);
         }
+    }
+
+    public HashMap<Card, Integer> getCards() {
+        return cards;
     }
 
     public void removeCard(Card card) {
@@ -123,9 +129,13 @@ public class Player implements Comparable<Player> {
         this.money -= money;
     }
 
-    public void increaseScore(int score) { this.score += score; }
+    public void increaseScore(int score) {
+        this.score += score;
+    }
 
-    public void decreaseScore(int score) { this.score -= score; }
+    public void decreaseScore(int score) {
+        this.score -= score;
+    }
 
     public void setNickName(String nickname) {
         this.nickname = nickname;
