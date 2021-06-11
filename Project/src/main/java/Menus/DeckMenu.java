@@ -86,16 +86,20 @@ class DeckMenu {
     }
 
     private void addCardToDeck(String username, String command) throws IOException {
-        String cardName = CommonTools.takeNameOutOfCommand(command, "--card");
-        String deckName = CommonTools.takeNameOutOfCommand(command, "--deck");
+        String pattern = "^deck add-card --card (.*) --deck (.*)$";
+        Pattern r = Pattern.compile(pattern);
+        Matcher m = r.matcher(command);
+        m.find();
+        String cardName = m.group(1);
+        String deckName = m.group(2);
         String side = CommonTools.takeNameOutOfCommand(command, "--side");
         if(cardName == null || deckName == null || side != null){
             System.out.println("invalid command");
             return;
         }
         if (!addCardValidity(cardName, deckName, username)) return;
-        Deck deck = Deck.getDeckByNames(deckName, username);
         Player player = Player.getPlayerByUsername(username);
+        Deck deck = player.getDeckByName(deckName);
         if (!command.contains("--side")) {
             if (deck.isMainDeckFull()) {
                 System.out.println("main deck is full");
@@ -155,7 +159,7 @@ class DeckMenu {
             System.out.printf("card with name %s does not exist\n", cardName);
             return false;
         }
-        if (Deck.getDeckByNames(deckName, username) == null) {
+        if (player.getDeckByName(deckName) == null) {
             System.out.printf("deck with name %s does not exist\n", deckName);
             return false;
         }
@@ -195,6 +199,11 @@ class DeckMenu {
         String afterSide = CommonTools.takeNameOutOfCommand(command, "--side");
         if(deckName == null || afterSide != null){
             System.out.println("invalid command");
+            return;
+        }
+
+        if (Player.getPlayerByUsername(username).getDeckByName(deckName) == null){
+            System.out.println("there is no such a deck");
             return;
         }
         System.out.printf("Deck: %s\n", deckName);
