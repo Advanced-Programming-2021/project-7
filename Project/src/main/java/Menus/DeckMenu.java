@@ -56,14 +56,16 @@ class DeckMenu {
         Matcher m = r.matcher(command);
         m.find();
         String deckName = m.group(1);
-        if (Deck.getDeckByNames(deckName, username) == null) {
+        if (Player.getPlayerByUsername(username).getDeckByName(deckName) == null) {
             System.out.printf("deck with name %s does not exist\n", deckName);
             return;
         }
         System.out.println("deck delete successfully!");
         Player.getPlayerByUsername(username).removeDeck(deckName);
-        if (Player.getActiveDeckByUsername(username).getDeckName().equals(deckName)) {
-            Player.getPlayerByUsername(username).removeActiveDeck();
+        if(Player.getActiveDeckByUsername(username) != null){
+            if (Player.getActiveDeckByUsername(username).getDeckName().equals(deckName)){
+                Player.getPlayerByUsername(username).removeActiveDeck();
+            }
         }
         FileHandler.updatePlayers();
     }
