@@ -121,7 +121,6 @@ class DeckMenu {
             }
             deck.addCardToSideDeck(Card.getCardByName(cardName));
         }
-        //TODO duplicate keys in hashmap
         player.removeCard(Card.getCardByName(cardName));
         System.out.println("card added to deck successfully");
         FileHandler.updatePlayers();
@@ -209,10 +208,10 @@ class DeckMenu {
         System.out.printf("Deck: %s\n", deckName);
         if (command.contains(" --side")) {
             System.out.println("Side deck");
-            Objects.requireNonNull(Player.getPlayerByUsername(username)).getDeckByName(deckName).showMainDeck();
+            Objects.requireNonNull(Player.getPlayerByUsername(username)).getDeckByName(deckName).showSideDeck();
         } else {
             System.out.println("Main deck");
-            Objects.requireNonNull(Player.getPlayerByUsername(username)).getDeckByName(deckName).showSideDeck();
+            Objects.requireNonNull(Player.getPlayerByUsername(username)).getDeckByName(deckName).showMainDeck();
         }
     }
 
