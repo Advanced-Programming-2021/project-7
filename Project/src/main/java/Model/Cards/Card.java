@@ -51,7 +51,7 @@ public class Card implements Comparable<Card> {
         for (int i = 0; i < cards.size(); i++) {
             String line = cards.get(i).name;
             line = line + ":";
-            line = line + cards.get(i).description;
+            line = line + cards.get(i).price;
             namesAndDescriptions.add(line);
         }
         Collections.sort(namesAndDescriptions);
