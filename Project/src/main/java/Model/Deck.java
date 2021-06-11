@@ -20,7 +20,6 @@ public class Deck implements Comparable<Deck> {
         this.deckName = deckName;
         this.playerName = playerName;
         this.deckIsValid = false;
-        decks.add(this);
         Player.getPlayerByUsername(playerName).addDeck(this);
     }
 
