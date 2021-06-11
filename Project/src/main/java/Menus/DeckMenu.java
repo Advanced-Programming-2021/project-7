@@ -199,11 +199,11 @@ class DeckMenu {
             return;
         }
         System.out.printf("Deck: %s\n", deckName);
-        if (command.contains(" --side")) {
-            System.out.println("Side deck");
+        if (!command.contains(" --side")) {
+            System.out.println("Main deck");
             Objects.requireNonNull(Player.getPlayerByUsername(username)).getDeckByName(deckName).showMainDeck();
         } else {
-            System.out.println("Main deck");
+            System.out.println("Side deck");
             Objects.requireNonNull(Player.getPlayerByUsername(username)).getDeckByName(deckName).showSideDeck();
         }
     }
