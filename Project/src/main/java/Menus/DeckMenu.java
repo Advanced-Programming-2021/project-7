@@ -41,7 +41,7 @@ class DeckMenu {
         Matcher m = r.matcher(command);
         m.find();
         String deckName = m.group(1);
-        if (Deck.doesDeckExist(deckName)) {
+        if (Player.getPlayerByUsername(username).getDeckByName(deckName) != null) {
             System.out.printf("deck with name %s already exists\n", deckName);
             return;
         }
@@ -76,7 +76,7 @@ class DeckMenu {
         Matcher m = r.matcher(command);
         m.find();
         String deckName = m.group(1);
-        if (Deck.getDeckByNames(deckName, username) == null) {
+        if (Player.getPlayerByUsername(username).getDeckByName(deckName) == null) {
             System.out.printf("deck with name %s does not exist\n", deckName);
             return;
         }
