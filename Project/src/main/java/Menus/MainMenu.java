@@ -12,8 +12,10 @@ class MainMenu {
             String command = CommonTools.scan.nextLine();
             if (command.matches("^menu enter scoreboard$"))
                 Scoreboard.getInstance().run();
-            else if (command.matches("^logout$") || command.matches("^menu exit$"))
+            else if (command.matches("^user logout$") || command.matches("^menu exit$")) {
+                System.out.println("user logged out successfully!");
                 return;
+            }
             else if (command.matches("^menu enter profile$"))
                 profile(username);
             else if (command.matches("^menu enter duel$"))
