@@ -9,8 +9,8 @@ import java.util.Map;
 
 public class Deck implements Comparable<Deck> {
     private static ArrayList<Deck> decks = new ArrayList<>();
-    private HashMap<Card, Integer> mainDeck;
-    private HashMap<Card, Integer> sideDeck;
+    private HashMap<Card, Integer> mainDeck = new HashMap<>();
+    private HashMap<Card, Integer> sideDeck = new HashMap<>();
     private boolean deckIsValid;
     private String deckName;
     private String playerName;
@@ -99,6 +99,9 @@ public class Deck implements Comparable<Deck> {
 
     public boolean isDeckValid() {
         int numberOfCards = 0;
+        if (mainDeck == null){
+            return false;
+        }
         for (Map.Entry <Card, Integer> e : mainDeck.entrySet()) {
             numberOfCards += e.getValue();
         }
@@ -145,6 +148,9 @@ public class Deck implements Comparable<Deck> {
 
     public int getMainNumberOfCards(){
         int numberOfCards = 0;
+        if (mainDeck == null){
+            return 0;
+        }
         for (Map.Entry <Card, Integer> e : mainDeck.entrySet()) {
             numberOfCards += e.getValue();
         }
@@ -153,6 +159,9 @@ public class Deck implements Comparable<Deck> {
 
     public int getSideNumberOfCards(){
         int numberOfCards = 0;
+        if (sideDeck == null){
+            return 0;
+        }
         for (Map.Entry <Card, Integer> e : sideDeck.entrySet()) {
             numberOfCards += e.getValue();
         }
