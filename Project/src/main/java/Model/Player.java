@@ -2,6 +2,7 @@ package Model;
 
 import Model.Cards.Card;
 
+import java.io.IOException;
 import java.util.*;
 
 public class Player implements Comparable<Player> {
@@ -86,7 +87,6 @@ public class Player implements Comparable<Player> {
         if (cards == null){
             return;
         }
-        System.out.println(cards.size());
         for (Map.Entry<Card, Integer> e : cards.entrySet()) {
             if (e.getKey().getName().equals(card.getName()) && e.getValue() != 0){
                 e.setValue(e.getValue() - 1);
@@ -127,7 +127,15 @@ public class Player implements Comparable<Player> {
         decks.add(deck);
     }
 
-    public void removeDeck(String deckName) {
+    public void removeDeck(String deckName) throws IOException {
+        for (Map.Entry<Card, Integer> e : Deck.getMainDeckByDeck(this.getDeckByName(deckName)).entrySet()) {
+            for (int i = 0; i < e.getValue(); i++) {
+                Card addingCard = Card.getCardByName(e.getKey().getName());
+                Player player = Player.getPlayerByUsername(username);
+                player.addCard(addingCard);
+                FileHandler.updatePlayers();
+            }
+        }
         decks.removeIf(deck -> deck.getDeckName().equals(deckName));
     }
 
