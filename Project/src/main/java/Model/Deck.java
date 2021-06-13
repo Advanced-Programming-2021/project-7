@@ -53,11 +53,11 @@ public class Deck implements Comparable<Deck> {
 
     public void addCardToMainDeck(Card card) {
         for (Map.Entry <Card, Integer> e : mainDeck.entrySet()) {
-            if (e.getKey().equals(card)) {
+            if (e.getKey().getName().equals(card.getName())) {
                 int number = e.getValue() + 1;
                 mainDeck.remove(card);
                 mainDeck.put(card, number);
-                break;
+                return;
             }
         }
         mainDeck.put(card, 1);
@@ -65,11 +65,11 @@ public class Deck implements Comparable<Deck> {
 
     public void addCardToSideDeck(Card card) {
         for (Map.Entry <Card, Integer> e : sideDeck.entrySet()) {
-            if (e.getKey().equals(card)) {
+            if (e.getKey().getName().equals(card.getName())) {
                 int number = e.getValue() + 1;
                 sideDeck.remove(card);
                 sideDeck.put(card, number);
-                break;
+                return;
             }
         }
         sideDeck.put(card, 1);
