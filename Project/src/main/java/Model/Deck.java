@@ -130,12 +130,12 @@ public class Deck implements Comparable<Deck> {
     public boolean isThereThreeCards(Card card) {
         int numberOfCards = 0;
         for (Map.Entry <Card, Integer> e : mainDeck.entrySet()) {
-            if (e.getKey().equals(card)) {
+            if (e.getKey().getName().equals(card.getName())) {
                 numberOfCards += e.getValue();
             }
         }
         for (Map.Entry <Card, Integer> e : sideDeck.entrySet()) {
-            if (e.getKey().equals(card)) {
+            if (e.getKey().getName().equals(card.getName())) {
                 numberOfCards += e.getValue();
             }
         }
