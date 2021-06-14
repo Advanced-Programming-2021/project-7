@@ -4,6 +4,7 @@ import Model.*;
 import Model.Cards.Card;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,7 +21,7 @@ class DeckMenu {
             else if (command.matches("^deck set-activate [^ ]+$")) setActiveDeck(username, command);
             else if (command.matches("^deck add-card (?:(?:--card|--deck|--side)( (.+))* ?){2,3}$"))
                 addCardToDeck(username, command);
-            else if (command.matches("^deck rm-card (?:(?:--card|--deck|--side)( ([^ ]+))* ?){2,3}$"))
+            else if (command.matches("^deck rm-card (?:(?:--card|--deck|--side)( (.+))* ?){2,3}$"))
                 removeCardFromDeck(username, command);
             else if (command.matches("^deck show --all")) showAllDecks(username);
             else if (command.matches("^deck show (?:(?:--deck-name|--side)( ([^ ]+))* ?){1,2}$"))
@@ -86,7 +87,7 @@ class DeckMenu {
     }
 
     private void addCardToDeck(String username, String command) throws IOException {
-        String pattern = "^deck add-card --card (.*) --deck (.*)$";
+        String pattern = "^deck add-card --card (.*) --deck (.*)( --side)*$";
         Pattern r = Pattern.compile(pattern);
         Matcher m = r.matcher(command);
         m.find();
@@ -127,21 +128,25 @@ class DeckMenu {
     }
 
     private void removeCardFromDeck(String username, String command) throws IOException {
-        String cardName = CommonTools.takeNameOutOfCommand(command, "--card");
-        String deckName = CommonTools.takeNameOutOfCommand(command, "--deck");
-        String afterSide = CommonTools.takeNameOutOfCommand(command, "--side");
-        if(cardName == null || deckName == null || afterSide != null){
+        String pattern = "^deck rm-card --card (.*) --deck (.*)( --side)*$";
+        Pattern r = Pattern.compile(pattern);
+        Matcher m = r.matcher(command);
+        m.find();
+        String cardName = m.group(1);
+        String deckName = m.group(2);
+        if(cardName == null || deckName == null){
             System.out.println("invalid command");
             return;
         }
         boolean side = command.contains("--side");
         if (!removeCardValidity(cardName, deckName, username, side)) return;
-        Deck deck = Deck.getDeckByNames(deckName, username);
         Player player = Player.getPlayerByUsername(username);
+        Deck deck = player.getDeckByName(deckName);
+        Card card = Card.getCardByName(cardName);
         if (!command.contains("--side")) {
-            deck.removeCardFromMainDeck(Card.getCardByName(cardName));
+            deck.removeCardFromMainDeck(card);
         } else {
-            deck.removeCardFromSideDeck(Card.getCardByName(cardName));
+            deck.removeCardFromSideDeck(card);
         }
         player.removeCard(Card.getCardByName(cardName));
         System.out.println("card removed form deck successfully");
@@ -166,27 +171,33 @@ class DeckMenu {
     }
 
     private boolean removeCardValidity(String cardName, String deckName, String username, boolean side) {
+        Player player = Player.getPlayerByUsername(username);
         if (cardName == null | deckName == null) {
             System.out.println("invalid command");
             return false;
         }
-        if (Deck.getDeckByNames(deckName, username) == null) {
+        if (player.getDeckByName(deckName) == null) {
             System.out.printf("deck with name %s does not exist\n", deckName);
             return false;
         }
-        Deck deck = Deck.getDeckByNames(deckName, username);
+        Deck deck = player.getDeckByName(deckName);
         if (!side) {
-            if (!Deck.getMainDeckByDeck(deck).containsKey(Card.getCardByName(cardName))) {
-                System.out.printf("card with name %s does not exist in main deck\n", cardName);
-                return false;
+            for (Map.Entry <Card, Integer> e : Deck.getMainDeckByDeck(deck).entrySet()) {
+                if (e.getKey().getName().equals(cardName)) {
+                    return true;
+                }
             }
+            System.out.printf("card with name %s does not exist in main deck\n", cardName);
+            return false;
         } else {
-            if (!Deck.getSideDeckByDeck(deck).containsKey(Card.getCardByName(cardName))) {
-                System.out.printf("card with name %s does not exist in side deck\n", cardName);
-                return false;
+            for (Map.Entry <Card, Integer> e : Deck.getSideDeckByDeck(deck).entrySet()) {
+                if (e.getKey().getName().equals(cardName)) {
+                    return true;
+                }
             }
+            System.out.printf("card with name %s does not exist in side deck\n", cardName);
+            return false;
         }
-        return true;
     }
 
     private void showAllDecks(String username) {
