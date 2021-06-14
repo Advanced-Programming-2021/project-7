@@ -10,7 +10,7 @@ class PlayMenu {
     public void run(String username) {
         while (true) {
             String command = CommonTools.scan.nextLine();
-            if (command.matches("^duel new (?:(?:--second-player|--rounds) ([^ ]+) ?){2}$"))
+            if (command.matches("^duel --new (?:(?:--second-player|--rounds) ([^ ]+) ?){2}$"))
                 newDuel(username, command);
             else if (command.matches("^menu enter (profile|duel|deck|shop|scoreboard)$"))
                 System.out.println("menu navigation is not possible");
@@ -35,8 +35,8 @@ class PlayMenu {
         }
         if(!isDuelValid(player1, player2, rounds)) return;
         int round = Integer.parseInt(rounds);
-        DuelProgramController duelProgramControler = new DuelProgramController();
-        duelProgramControler.run(player1, player2, round);
+        DuelProgramController duelProgramController = new DuelProgramController();
+        duelProgramController.run(player1, player2, round);
     }
 
     private boolean isDuelValid(String player1, String player2, String rounds){
@@ -45,11 +45,11 @@ class PlayMenu {
             return false;
         }
         if (Player.getActiveDeckByUsername(player1) == null) {
-            System.out.printf("%s has no active deck", player1);
+            System.out.printf("%s has no active deck\n", player1);
             return false;
         }
         if (Player.getActiveDeckByUsername(player2) == null) {
-            System.out.printf("%s has no active deck", player2);
+            System.out.printf("%s has no active deck\n", player2);
             return false;
         }
         if (!Player.getActiveDeckByUsername(player1).isDeckValid()) {
