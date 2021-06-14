@@ -22,7 +22,7 @@ public class Player implements Comparable<Player> {
         this.password = password;
         this.nickname = nickname;
         score = 0;
-        money = 50000;
+        money = 100000;
         players.add(this);
     }
 
