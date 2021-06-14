@@ -77,22 +77,26 @@ public class Deck implements Comparable<Deck> {
 
     public void removeCardFromMainDeck(Card card) {
         for (Map.Entry <Card, Integer> e : mainDeck.entrySet()) {
-            if (e.getKey().equals(card)) {
+            if (e.getKey().getName().equals(card.getName())) {
                 int number = e.getValue() - 1;
-                if (number > 0) mainDeck.put(card, number);
-                else mainDeck.remove(card);
-                break;
+                mainDeck.remove(card);
+                if (number > 0) {
+                    sideDeck.put(card, number);
+                }
+                return;
             }
         }
     }
 
     public void removeCardFromSideDeck(Card card) {
         for (Map.Entry <Card, Integer> e : sideDeck.entrySet()) {
-            if (e.getKey().equals(card)) {
+            if (e.getKey().getName().equals(card.getName())) {
                 int number = e.getValue() - 1;
-                if (number > 0) sideDeck.put(card, number);
-                else sideDeck.remove(card);
-                break;
+                sideDeck.remove(card);
+                if (number > 0) {
+                    sideDeck.put(card, number);
+                }
+                return;
             }
         }
     }
