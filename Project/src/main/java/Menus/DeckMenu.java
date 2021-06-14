@@ -87,7 +87,7 @@ class DeckMenu {
     }
 
     private void addCardToDeck(String username, String command) throws IOException {
-        String pattern = "^deck add-card --card (.*) --deck (.*)( --side)*$";
+        String pattern = "^deck add-card --card ([^-]*) --deck ([^-]*)( --side)*$";
         Pattern r = Pattern.compile(pattern);
         Matcher m = r.matcher(command);
         m.find();
@@ -128,7 +128,7 @@ class DeckMenu {
     }
 
     private void removeCardFromDeck(String username, String command) throws IOException {
-        String pattern = "^deck rm-card --card (.*) --deck (.*)( --side)*$";
+        String pattern = "^deck rm-card --card ([^-]*) --deck ([^-]*)( --side)*$";
         Pattern r = Pattern.compile(pattern);
         Matcher m = r.matcher(command);
         m.find();
@@ -148,7 +148,6 @@ class DeckMenu {
         } else {
             deck.removeCardFromSideDeck(card, username);
         }
-        player.removeCard(Card.getCardByName(cardName));
         System.out.println("card removed form deck successfully");
         FileHandler.updatePlayers();
     }
@@ -184,7 +183,9 @@ class DeckMenu {
         if (!side) {
             for (Map.Entry <Card, Integer> e : Deck.getMainDeckByDeck(deck).entrySet()) {
                 if (e.getKey().getName().equals(cardName)) {
-                    return true;
+                    if (e.getValue() != 0) {
+                        return true;
+                    }
                 }
             }
             System.out.printf("card with name %s does not exist in main deck\n", cardName);
@@ -192,7 +193,9 @@ class DeckMenu {
         } else {
             for (Map.Entry <Card, Integer> e : Deck.getSideDeckByDeck(deck).entrySet()) {
                 if (e.getKey().getName().equals(cardName)) {
-                    return true;
+                    if (e.getValue() != 0) {
+                        return true;
+                    }
                 }
             }
             System.out.printf("card with name %s does not exist in side deck\n", cardName);
