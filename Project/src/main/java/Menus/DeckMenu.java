@@ -144,9 +144,9 @@ class DeckMenu {
         Deck deck = player.getDeckByName(deckName);
         Card card = Card.getCardByName(cardName);
         if (!command.contains("--side")) {
-            deck.removeCardFromMainDeck(card);
+            deck.removeCardFromMainDeck(card, username);
         } else {
-            deck.removeCardFromSideDeck(card);
+            deck.removeCardFromSideDeck(card, username);
         }
         player.removeCard(Card.getCardByName(cardName));
         System.out.println("card removed form deck successfully");
