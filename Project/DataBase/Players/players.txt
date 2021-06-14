@@ -45,5 +45,607 @@
       "cards": {},
       "decks": []
     }
+  },
+  {
+    "@type": "Model.Player",
+    "@val": {
+      "username": "Iman",
+      "password": "1234",
+      "nickname": "iman",
+      "score": 0,
+      "money": 1100,
+      "cards": [
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 500,
+              "defensePoint": 500,
+              "level": 2,
+              "attribute": "EARTH",
+              "monsterType": "Rock",
+              "cardType": "Normal",
+              "name": "Haniwa",
+              "description": "An earthen figure that protects the tomb of an ancient ruler.",
+              "type": "Monster",
+              "price": 600
+            }
+          },
+          4
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1000,
+              "defensePoint": 0,
+              "level": 3,
+              "attribute": "EARTH",
+              "monsterType": "Dragon",
+              "cardType": "Effect",
+              "name": "Exploder Dragon",
+              "description": "If this card is destroyed by battle and sent to the Graveyard: Destroy the monster that destroyed it. Neither player takes any battle damage from attacks involving this attacking card.",
+              "type": "Monster",
+              "price": 1000
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Trap",
+            "@val": {
+              "trapType": "Unlimited",
+              "icon": "Normal",
+              "name": "Magic Cylinder",
+              "description": "\"When an opponent's monster declares an attack: Target the attacking monster; negate the attack, and if you do, inflict damage to your opponent equal to its ATK.\"",
+              "type": "Trap",
+              "price": 2000
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 700,
+              "defensePoint": 1000,
+              "level": 3,
+              "attribute": "EARTH",
+              "monsterType": "Warrior",
+              "cardType": "Normal",
+              "name": "Battle warrior",
+              "description": "A warrior that fights with his bare hands!!!",
+              "type": "Monster",
+              "price": 1300
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1200,
+              "defensePoint": 700,
+              "level": 3,
+              "attribute": "WIND",
+              "monsterType": "Dragon",
+              "cardType": "Normal",
+              "name": "Baby dragon",
+              "description": "\"Much more than just a child, this dragon is gifted with untapped power.\"",
+              "type": "Monster",
+              "price": 1600
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Trap",
+            "@val": {
+              "trapType": "Unlimited",
+              "icon": "Normal",
+              "name": "Mind Crush",
+              "description": "\"Declare 1 card name; if that card is in your opponent's hand, they must discard all copies of it, otherwise you discard 1 random card.\"",
+              "type": "Trap",
+              "price": 2000
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 450,
+              "defensePoint": 600,
+              "level": 2,
+              "attribute": "EARTH",
+              "monsterType": "Insect",
+              "cardType": "Effect",
+              "name": "Man-Eater Bug",
+              "description": "FLIP: Target 1 monster on the field; destroy that target.",
+              "type": "Monster",
+              "price": 600
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 900,
+              "defensePoint": 1000,
+              "level": 3,
+              "attribute": "FIRE",
+              "monsterType": "Spellcaster",
+              "cardType": "Normal",
+              "name": "Flame manipulator",
+              "description": "\"This Spellcaster attacks enemies with fire-related spells such as \"\"Sea of Flames\"\" and \"\"Wall of Fire\"\".\"",
+              "type": "Monster",
+              "price": 1500
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1100,
+              "defensePoint": 1000,
+              "level": 3,
+              "attribute": "EARTH",
+              "monsterType": "Warrior",
+              "cardType": "Normal",
+              "name": "Hero of the east",
+              "description": "Feel da strength ah dis sword-swinging samurai from da Far East.",
+              "type": "Monster",
+              "price": 1700
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 300,
+              "defensePoint": 500,
+              "level": 3,
+              "attribute": "LIGHT",
+              "monsterType": "Fairy",
+              "cardType": "Effect",
+              "name": "Marshmallon",
+              "description": "\"Cannot be destroyed by battle. After damage calculation, if this card was attacked, and was face-down at the start of the Damage Step: The attacking player takes 1000 damage.\"",
+              "type": "Monster",
+              "price": 700
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1000,
+              "defensePoint": 1000,
+              "level": 4,
+              "attribute": "FIRE",
+              "monsterType": "Warrior",
+              "cardType": "Effect",
+              "name": "Command Knight",
+              "description": "\"All Warrior-Type monsters you control gain 400 ATK. If you control another monster, monsters your opponent controls cannot target this card for an attack.\"",
+              "type": "Monster",
+              "price": 2100
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 200,
+              "defensePoint": 2000,
+              "level": 2,
+              "attribute": "EARTH",
+              "monsterType": "Cyberse",
+              "cardType": "Normal",
+              "name": "Bitron",
+              "description": "A new species found in electronic space. There's not much information on it.",
+              "type": "Monster",
+              "price": 1000
+            }
+          },
+          3
+        ]
+      ],
+      "decks": [
+        {
+          "mainDeck": {},
+          "sideDeck": {},
+          "deckIsValid": false,
+          "deckName": "firstDeck",
+          "playerName": "Iman"
+        },
+        {
+          "mainDeck": [
+            [
+              {
+                "@type": "Model.Cards.Monster",
+                "@val": {
+                  "attackPoint": 300,
+                  "defensePoint": 500,
+                  "level": 3,
+                  "attribute": "LIGHT",
+                  "monsterType": "Fairy",
+                  "cardType": "Effect",
+                  "name": "Marshmallon",
+                  "description": "\"Cannot be destroyed by battle. After damage calculation, if this card was attacked, and was face-down at the start of the Damage Step: The attacking player takes 1000 damage.\"",
+                  "type": "Monster",
+                  "price": 700
+                }
+              },
+              2
+            ],
+            [
+              {
+                "@type": "Model.Cards.Monster",
+                "@val": {
+                  "attackPoint": 300,
+                  "defensePoint": 500,
+                  "level": 3,
+                  "attribute": "LIGHT",
+                  "monsterType": "Fairy",
+                  "cardType": "Effect",
+                  "name": "Marshmallon",
+                  "description": "\"Cannot be destroyed by battle. After damage calculation, if this card was attacked, and was face-down at the start of the Damage Step: The attacking player takes 1000 damage.\"",
+                  "type": "Monster",
+                  "price": 700
+                }
+              },
+              1
+            ]
+          ],
+          "sideDeck": {},
+          "deckIsValid": false,
+          "deckName": "first",
+          "playerName": "Iman"
+        }
+      ]
+    }
+  },
+  {
+    "@type": "Model.Player",
+    "@val": {
+      "username": "Reza",
+      "password": "1234",
+      "nickname": "reze",
+      "score": 0,
+      "money": 18400,
+      "cards": [
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1100,
+              "defensePoint": 1000,
+              "level": 3,
+              "attribute": "EARTH",
+              "monsterType": "Warrior",
+              "cardType": "Normal",
+              "name": "Hero of the east",
+              "description": "Feel da strength ah dis sword-swinging samurai from da Far East.",
+              "type": "Monster",
+              "price": 1700
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1200,
+              "defensePoint": 700,
+              "level": 3,
+              "attribute": "WIND",
+              "monsterType": "Dragon",
+              "cardType": "Normal",
+              "name": "Baby dragon",
+              "description": "\"Much more than just a child, this dragon is gifted with untapped power.\"",
+              "type": "Monster",
+              "price": 1600
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 900,
+              "defensePoint": 1000,
+              "level": 3,
+              "attribute": "FIRE",
+              "monsterType": "Spellcaster",
+              "cardType": "Normal",
+              "name": "Flame manipulator",
+              "description": "\"This Spellcaster attacks enemies with fire-related spells such as \"\"Sea of Flames\"\" and \"\"Wall of Fire\"\".\"",
+              "type": "Monster",
+              "price": 1500
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Equip",
+              "playedRound": 0,
+              "name": "Sword of dark destruction",
+              "description": "A DARK monster equipped with this card increases its ATK by 400 points and decreases its DEF by 200 points.",
+              "type": "Spell",
+              "price": 4300
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 300,
+              "defensePoint": 500,
+              "level": 3,
+              "attribute": "LIGHT",
+              "monsterType": "Fairy",
+              "cardType": "Effect",
+              "name": "Marshmallon",
+              "description": "\"Cannot be destroyed by battle. After damage calculation, if this card was attacked, and was face-down at the start of the Damage Step: The attacking player takes 1000 damage.\"",
+              "type": "Monster",
+              "price": 700
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 200,
+              "defensePoint": 2000,
+              "level": 2,
+              "attribute": "EARTH",
+              "monsterType": "Cyberse",
+              "cardType": "Normal",
+              "name": "Bitron",
+              "description": "A new species found in electronic space. There's not much information on it.",
+              "type": "Monster",
+              "price": 1000
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 100,
+              "defensePoint": 100,
+              "level": 1,
+              "attribute": "DARK",
+              "monsterType": "Cyberse",
+              "cardType": "Effect",
+              "name": "Texchanger",
+              "description": "\"Once per turn, when your monster is targeted for an attack: You can negate that attack, then Special Summon 1 Cyberse Normal Monster from your hand, Deck, or GY.\"",
+              "type": "Monster",
+              "price": 200
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 700,
+              "defensePoint": 1000,
+              "level": 3,
+              "attribute": "EARTH",
+              "monsterType": "Warrior",
+              "cardType": "Normal",
+              "name": "Battle warrior",
+              "description": "A warrior that fights with his bare hands!!!",
+              "type": "Monster",
+              "price": 1300
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1700,
+              "defensePoint": 1600,
+              "level": 4,
+              "attribute": "EARTH",
+              "monsterType": "Warrior",
+              "cardType": "Normal",
+              "name": "Warrior Dai Grepher",
+              "description": "The warrior who can manipulate dragons. Nobody knows his mysterious past.",
+              "type": "Monster",
+              "price": 3400
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 800,
+              "defensePoint": 1400,
+              "level": 3,
+              "attribute": "WATER",
+              "monsterType": "Aqua",
+              "cardType": "Effect",
+              "name": "Yomi Ship",
+              "description": "If this card is destroyed by battle and sent to the GY: Destroy the monster that destroyed this card.",
+              "type": "Monster",
+              "price": 1700
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1000,
+              "defensePoint": 500,
+              "level": 3,
+              "attribute": "LIGHT",
+              "monsterType": "Thunder",
+              "cardType": "Normal",
+              "name": "Wattkid",
+              "description": "A creature that electrocutes opponents with bolts of lightning.",
+              "type": "Monster",
+              "price": 1300
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 100,
+              "defensePoint": 100,
+              "level": 1,
+              "attribute": "DARK",
+              "monsterType": "Cyberse",
+              "cardType": "Effect",
+              "name": "Texchanger",
+              "description": "\"Once per turn, when your monster is targeted for an attack: You can negate that attack, then Special Summon 1 Cyberse Normal Monster from your hand, Deck, or GY.\"",
+              "type": "Monster",
+              "price": 200
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 450,
+              "defensePoint": 600,
+              "level": 2,
+              "attribute": "EARTH",
+              "monsterType": "Insect",
+              "cardType": "Effect",
+              "name": "Man-Eater Bug",
+              "description": "FLIP: Target 1 monster on the field; destroy that target.",
+              "type": "Monster",
+              "price": 600
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 600,
+              "defensePoint": 500,
+              "level": 2,
+              "attribute": "DARK",
+              "monsterType": "Spellcaster",
+              "cardType": "Normal",
+              "name": "Curtain of the dark ones",
+              "description": "\"A curtain that a spellcaster made, it is said to raise a dark power.\"",
+              "type": "Monster",
+              "price": 700
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Trap",
+            "@val": {
+              "trapType": "Limited",
+              "icon": "Continuous",
+              "name": "Wall of Revealing Light",
+              "description": "Activate by paying any multiple of 1000 Life Points. Monsters your opponent controls cannot attack if their ATK is less than or equal to the amount you paid.",
+              "type": "Trap",
+              "price": 3500
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 500,
+              "defensePoint": 500,
+              "level": 2,
+              "attribute": "EARTH",
+              "monsterType": "Rock",
+              "cardType": "Normal",
+              "name": "Haniwa",
+              "description": "An earthen figure that protects the tomb of an ancient ruler.",
+              "type": "Monster",
+              "price": 600
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1000,
+              "defensePoint": 0,
+              "level": 3,
+              "attribute": "EARTH",
+              "monsterType": "Dragon",
+              "cardType": "Effect",
+              "name": "Exploder Dragon",
+              "description": "If this card is destroyed by battle and sent to the Graveyard: Destroy the monster that destroyed it. Neither player takes any battle damage from attacks involving this attacking card.",
+              "type": "Monster",
+              "price": 1000
+            }
+          },
+          4
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1200,
+              "defensePoint": 800,
+              "level": 3,
+              "attribute": "EARTH",
+              "monsterType": "Beast",
+              "cardType": "Normal",
+              "name": "Silver Fang",
+              "description": "\"A snow wolf that's beautiful to the eye, but absolutely vicious in battle.\"",
+              "type": "Monster",
+              "price": 1700
+            }
+          },
+          3
+        ]
+      ],
+      "decks": []
+    }
   }
 ]

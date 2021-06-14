@@ -6,6 +6,7 @@ import Model.FileHandler;
 import Model.Player;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,10 +19,18 @@ class Shop {
             else if (command.matches("^menu enter (profile|duel|deck|shop|scoreboard)$"))
                 System.out.println("menu navigation is not possible");
             else if (command.matches("^menu show-current$")) System.out.println("shop");
+            else if (command.matches("^increase --money \\d+$")) increaseMoney(command, username);
             else if (command.matches("^menu exit$")) {
                 return;
             } else System.out.println("invalid command!");
         }
+    }
+
+    public void increaseMoney(String command, String playerName) {
+        Matcher matcher = CommonTools.getMatcher(command, "^increase --money (\\d+)$");
+        matcher.find();
+        int amountOfMoney = Integer.parseInt(matcher.group(1));
+        Player.getPlayerByUsername(playerName).increaseMoney(amountOfMoney);
     }
 
     public static void buyCard(String username, String command) throws IOException {
