@@ -37,6 +37,7 @@ class DuelProgramController {
     private int round = 1;
     private int timeSealTrap = 0;
     private int isCardDrawn = 0;
+    private int isGameStart = 2;
 
     public void run(String firstPlayer, String secondPlayer, int round) {
         for (int i = 1; i <= round; i++) {
@@ -45,14 +46,15 @@ class DuelProgramController {
             keepMessengerOfPeace();
             //drawXCards(1);
             // methods to be set after each round
-            for(int j = 0; j < 4; j++){
+            for(int j = 0; j < 5; j++){
                 gameDecks.get(turn).drawCard();
                 gameDecks.get(changeTurn(turn)).drawCard();
             }
             if (isGameOver(i)) break;
             while (true) {
-                if (phase == Phase.draw && isCardDrawn == 0) drawCard();
+                if (phase == Phase.draw && isCardDrawn == 0 && isGameStart == 0) drawCard();
                 if (isRoundOver()) break;
+                System.out.println("phase: " + phase);
                 showGameDeck(turn);
                 String command = CommonTools.scan.nextLine();
                 if (command.matches("^show graveyard$")) showGraveyard(turn);
@@ -298,6 +300,7 @@ class DuelProgramController {
         if (selectedMonster.getLevel() <= 4) {
             System.out.println("summoned successfully");
             isSummoned = 1;
+            selectedMonsterCardIndex = selectedCardIndex;
             gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
             gameDecks.get(turn).getInHandCards().remove(position - 1);
         } else if (selectedMonster.getLevel() == 5 || selectedMonster.getLevel() == 6) summonWithOneTribute(position);
@@ -328,6 +331,7 @@ class DuelProgramController {
         }
         System.out.println("summoned successfully");
         isSummoned = 1;
+        selectedMonsterCardIndex = selectedCardIndex;
         gameDecks.get(turn).tributeCardFromMonsterZone(monsterZonePosition);
         gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
         gameDecks.get(turn).getInHandCards().remove(position - 1);
@@ -360,6 +364,7 @@ class DuelProgramController {
         }
         System.out.println("summoned successfully");
         isSummoned = 1;
+        selectedMonsterCardIndex = selectedCardIndex;
         gameDecks.get(turn).tributeCardFromMonsterZone(firstMonster);
         gameDecks.get(turn).tributeCardFromMonsterZone(secondMonster);
         gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
@@ -399,7 +404,7 @@ class DuelProgramController {
             System.out.println("action not allowed in this phase");
             return false;
         }
-        if (!gameDecks.get(turn).isMonsterZoneFull()) {
+        if (gameDecks.get(turn).isMonsterZoneFull()) {
             System.out.println("monster card zone is full");
             return false;
         }
@@ -418,7 +423,7 @@ class DuelProgramController {
                 System.out.println("this card is already in the wanted position");
                 return;
             }
-            if (selectedMonsterCardIndex != -1) {
+            if (selectedMonsterCardIndex == selectedCardIndex) {
                 System.out.println("you already changed this card position in this turn");
                 return;
             }
@@ -429,7 +434,7 @@ class DuelProgramController {
                 System.out.println("this card is already in the wanted position");
                 return;
             }
-            if (selectedMonsterCardIndex != -1) {
+            if (selectedMonsterCardIndex == selectedCardIndex) {
                 System.out.println("you already changed this card position in this turn");
                 return;
             }
@@ -797,7 +802,7 @@ class DuelProgramController {
         } else if (monsterZones.get(selectedCardIndex).getStatus().equals("DH")) {
             System.out.println("card is not visible");
         } else {
-            System.out.println(selectedCard);
+            System.out.println(selectedCard.getName() + ":" + selectedCard.getType() + ":" + selectedCard.getDescription());
         }
     }
 
@@ -1045,6 +1050,7 @@ class DuelProgramController {
         selectedDeck = null;
         isCardDrawn = 0;
         if (timeSealTrap != 0) timeSealTrap = timeSealTrap - 1;
+        if (isGameStart != 0) isGameStart = isGameStart - 1;
         turn = changeTurn(turn);
         System.out.println("its " + gameDecks.get(turn).getPlayerNickName() + "'s turn");
         round++;
@@ -1062,7 +1068,6 @@ class DuelProgramController {
 
     private void changePhase() {
         phase = phase.next();
-        System.out.println("phase: " + phase);
         if (phase == phase.end) changeGameTurn();
     }
 
