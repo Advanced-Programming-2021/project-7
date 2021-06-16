@@ -20,9 +20,6 @@ class GameDeck {
     private ArrayList<Card> graveyardCards = new ArrayList<>();
     private ArrayList<Integer> playerLPsAfterRound = new ArrayList<>();
 
-    private ArrayList<Card> mainDeck = new ArrayList<>();
-    private ArrayList<Card> sideDeck = new ArrayList<>();
-
     private String playerNickName;
     private String playerUserName;
     private int playerLP;
@@ -34,14 +31,16 @@ class GameDeck {
         this.playerLP = 8000;
         this.winRounds = 0;
         for (int i = 1; i <= 5; i++){
-            monsterZones.put(i, new MonsterZone());
+            MonsterZone monsterZone = new MonsterZone();
+            monsterZones.put(i, monsterZone);
         }
         for (int i = 1; i <= 5; i++){
-            spellZones.put(i, new SpellZone());
+            SpellZone spellZone = new SpellZone();
+            spellZones.put(i, spellZone);
         }
         for (Map.Entry<Card, Integer> cardEntry : mainDeck.entrySet()) {
             for (Integer i = 0; i < cardEntry.getValue(); i++) {
-                // TODO clone
+                deck.add(Card.getCardByName(cardEntry.getKey().getName()));
             }
         }
         for (Map.Entry<Card, Integer> cardEntry : sideDeck.entrySet()) {
@@ -119,8 +118,8 @@ class GameDeck {
     }
 
     public boolean isMonsterZoneEmpty() {
-        for (int i = 0; i < monsterZones.size(); i++) {
-            if (monsterZones.get(i).isEmpty()) {
+        for (int i = 1; i <= monsterZones.size(); i++) {
+            if (!monsterZones.get(i).isEmpty()) {
                 return false;
             }
         }
@@ -128,7 +127,7 @@ class GameDeck {
     }
 
     public boolean isMonsterZoneFull() {
-        for (int i = 0; i < monsterZones.size(); i++) {
+        for (int i = 1; i <= monsterZones.size(); i++) {
             if (monsterZones.get(i).isEmpty()) {
                 return false;
             }
@@ -141,7 +140,7 @@ class GameDeck {
     }
 
     public int spellZoneFirstFreeSpace() {
-        for (int i = 0; i < spellZones.size(); i++) {
+        for (int i = 1; i <= spellZones.size(); i++) {
             if (spellZones.get(i).isEmpty()) {
                 return i;
             }
