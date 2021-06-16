@@ -6,72 +6,61 @@
       "password": "ramz",
       "nickname": "ali",
       "score": 0,
-      "money": 41000,
-      "cards": [
-        [
-          {
-            "@type": "Model.Cards.Spell",
-            "@val": {
-              "icon": "Ritual",
-              "playedRound": 0,
-              "name": "Advanced Ritual Art",
-              "description": "This card can be used to Ritual Summon any 1 Ritual Monster. You must also send Normal Monsters from your Deck to the Graveyard whose total Levels equal the Level of that Ritual Monster.",
-              "type": "Spell",
-              "price": 3000
-            }
-          },
-          1
-        ]
-      ],
-      "decks": [
-        {
-          "mainDeck": {},
-          "sideDeck": {},
-          "deckIsValid": false,
-          "deckName": "armin",
-          "playerName": "ali"
-        }
-      ]
-    }
-  },
-  {
-    "@type": "Model.Player",
-    "@val": {
-      "username": "shayan",
-      "password": "ramz",
-      "nickname": "jenab",
-      "score": 0,
-      "money": 50000,
-      "cards": {},
-      "decks": []
-    }
-  },
-  {
-    "@type": "Model.Player",
-    "@val": {
-      "username": "Iman",
-      "password": "1234",
-      "nickname": "iman",
-      "score": 0,
-      "money": 1100,
+      "money": 174800,
       "cards": [
         [
           {
             "@type": "Model.Cards.Monster",
             "@val": {
-              "attackPoint": 500,
-              "defensePoint": 500,
-              "level": 2,
+              "attackPoint": 1700,
+              "defensePoint": 1150,
+              "level": 4,
               "attribute": "EARTH",
-              "monsterType": "Rock",
+              "monsterType": "Warrior",
               "cardType": "Normal",
-              "name": "Haniwa",
-              "description": "An earthen figure that protects the tomb of an ancient ruler.",
+              "name": "Axe Raider",
+              "description": "An axe-wielding monster of tremendous strength and agility.",
               "type": "Monster",
-              "price": 600
+              "price": 3100
             }
           },
-          4
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 3000,
+              "defensePoint": 1200,
+              "level": 8,
+              "attribute": "EARTH",
+              "monsterType": "Beast-Warrior",
+              "cardType": "Effect",
+              "name": "Beast King Barbaros",
+              "description": "\"You can Normal Summon/Set this card without Tributing, but its original ATK becomes 1900. You can Tribute 3 monsters to Tribute Summon (but not Set) this card. If Summoned this way: Destroy all cards your opponent controls.\"",
+              "type": "Monster",
+              "price": 9200
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 2550,
+              "defensePoint": 2500,
+              "level": 8,
+              "attribute": "WATER",
+              "monsterType": "Aqua",
+              "cardType": "Ritual",
+              "name": "Crab Turtle",
+              "description": "\"This monster can only be Ritual Summoned with the Ritual Spell Card, \"\"Turtle Oath\"\". You must also offer monsters whose total Level Stars equal 8 or more as a Tribute from the field or your hand.\"",
+              "type": "Monster",
+              "price": 10200
+            }
+          },
+          1
         ],
         [
           {
@@ -89,140 +78,90 @@
               "price": 1000
             }
           },
-          3
+          4
         ],
         [
           {
-            "@type": "Model.Cards.Trap",
+            "@type": "Model.Cards.Spell",
             "@val": {
-              "trapType": "Unlimited",
-              "icon": "Normal",
-              "name": "Magic Cylinder",
-              "description": "\"When an opponent's monster declares an attack: Target the attacking monster; negate the attack, and if you do, inflict damage to your opponent equal to its ATK.\"",
-              "type": "Trap",
-              "price": 2000
+              "icon": "Field",
+              "playedRound": 0,
+              "name": "Closed Forest",
+              "description": "All Beast-Type monsters you control gain 100 ATK for each monster in your Graveyard. Field Spell Cards cannot be activated. Field Spell Cards cannot be activated during the turn this card is destroyed.",
+              "type": "Spell",
+              "price": 4300
             }
           },
-          3
+          1
         ],
         [
           {
             "@type": "Model.Cards.Monster",
             "@val": {
-              "attackPoint": 700,
-              "defensePoint": 1000,
-              "level": 3,
+              "attackPoint": 1600,
+              "defensePoint": 1400,
+              "level": 5,
               "attribute": "EARTH",
-              "monsterType": "Warrior",
-              "cardType": "Normal",
-              "name": "Battle warrior",
-              "description": "A warrior that fights with his bare hands!!!",
-              "type": "Monster",
-              "price": 1300
-            }
-          },
-          3
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 1200,
-              "defensePoint": 700,
-              "level": 3,
-              "attribute": "WIND",
               "monsterType": "Dragon",
               "cardType": "Normal",
-              "name": "Baby dragon",
-              "description": "\"Much more than just a child, this dragon is gifted with untapped power.\"",
+              "name": "Crawling dragon",
+              "description": "\"This weakened dragon can no longer fly, but is still a deadly force to be reckoned with.\"",
               "type": "Monster",
-              "price": 1600
+              "price": 3900
             }
           },
-          3
-        ],
-        [
-          {
-            "@type": "Model.Cards.Trap",
-            "@val": {
-              "trapType": "Unlimited",
-              "icon": "Normal",
-              "name": "Mind Crush",
-              "description": "\"Declare 1 card name; if that card is in your opponent's hand, they must discard all copies of it, otherwise you discard 1 random card.\"",
-              "type": "Trap",
-              "price": 2000
-            }
-          },
-          3
+          1
         ],
         [
           {
             "@type": "Model.Cards.Monster",
             "@val": {
-              "attackPoint": 450,
-              "defensePoint": 600,
+              "attackPoint": 2000,
+              "defensePoint": 100,
+              "level": 4,
+              "attribute": "LIGHT",
+              "monsterType": "Dragon",
+              "cardType": "Normal",
+              "name": "Alexandrite Dragon",
+              "description": "\"Many of the czars' lost jewels can be found in the scales of this priceless dragon. Its creator remains a mystery, along with how they acquired the imperial treasures. But whosoever finds this dragon has hit the jackpot... whether they know it or not.\"",
+              "type": "Monster",
+              "price": 2600
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 600,
+              "defensePoint": 500,
               "level": 2,
-              "attribute": "EARTH",
-              "monsterType": "Insect",
-              "cardType": "Effect",
-              "name": "Man-Eater Bug",
-              "description": "FLIP: Target 1 monster on the field; destroy that target.",
-              "type": "Monster",
-              "price": 600
-            }
-          },
-          3
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 900,
-              "defensePoint": 1000,
-              "level": 3,
-              "attribute": "FIRE",
+              "attribute": "DARK",
               "monsterType": "Spellcaster",
               "cardType": "Normal",
-              "name": "Flame manipulator",
-              "description": "\"This Spellcaster attacks enemies with fire-related spells such as \"\"Sea of Flames\"\" and \"\"Wall of Fire\"\".\"",
-              "type": "Monster",
-              "price": 1500
-            }
-          },
-          3
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 1100,
-              "defensePoint": 1000,
-              "level": 3,
-              "attribute": "EARTH",
-              "monsterType": "Warrior",
-              "cardType": "Normal",
-              "name": "Hero of the east",
-              "description": "Feel da strength ah dis sword-swinging samurai from da Far East.",
-              "type": "Monster",
-              "price": 1700
-            }
-          },
-          3
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 300,
-              "defensePoint": 500,
-              "level": 3,
-              "attribute": "LIGHT",
-              "monsterType": "Fairy",
-              "cardType": "Effect",
-              "name": "Marshmallon",
-              "description": "\"Cannot be destroyed by battle. After damage calculation, if this card was attacked, and was face-down at the start of the Damage Step: The attacking player takes 1000 damage.\"",
+              "name": "Curtain of the dark ones",
+              "description": "\"A curtain that a spellcaster made, it is said to raise a dark power.\"",
               "type": "Monster",
               "price": 700
+            }
+          },
+          4
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1700,
+              "defensePoint": 1000,
+              "level": 4,
+              "attribute": "EARTH",
+              "monsterType": "Beast-Warrior",
+              "cardType": "Normal",
+              "name": "Battle OX",
+              "description": "\"A monster with tremendous power, it destroys enemies with a swing of its axe.\"",
+              "type": "Monster",
+              "price": 2900
             }
           },
           1
@@ -243,7 +182,43 @@
               "price": 2100
             }
           },
-          3
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 2500,
+              "defensePoint": 2100,
+              "level": 7,
+              "attribute": "DARK",
+              "monsterType": "Spellcaster",
+              "cardType": "Normal",
+              "name": "Dark magician",
+              "description": "The ultimate wizard in terms of attack and defense.",
+              "type": "Monster",
+              "price": 8300
+            }
+          },
+          4
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1800,
+              "defensePoint": 1500,
+              "level": 4,
+              "attribute": "DARK",
+              "monsterType": "Warrior",
+              "cardType": "Normal",
+              "name": "Dark Blade",
+              "description": "\"They say he is a dragon-manipulating warrior from the dark world. His attack is tremendous, using his great swords with vicious power.\"",
+              "type": "Monster",
+              "price": 3500
+            }
+          },
+          1
         ],
         [
           {
@@ -261,194 +236,21 @@
               "price": 1000
             }
           },
-          3
-        ]
-      ],
-      "decks": [
-        {
-          "mainDeck": {},
-          "sideDeck": {},
-          "deckIsValid": false,
-          "deckName": "firstDeck",
-          "playerName": "Iman"
-        },
-        {
-          "mainDeck": [
-            [
-              {
-                "@type": "Model.Cards.Monster",
-                "@val": {
-                  "attackPoint": 300,
-                  "defensePoint": 500,
-                  "level": 3,
-                  "attribute": "LIGHT",
-                  "monsterType": "Fairy",
-                  "cardType": "Effect",
-                  "name": "Marshmallon",
-                  "description": "\"Cannot be destroyed by battle. After damage calculation, if this card was attacked, and was face-down at the start of the Damage Step: The attacking player takes 1000 damage.\"",
-                  "type": "Monster",
-                  "price": 700
-                }
-              },
-              2
-            ],
-            [
-              {
-                "@type": "Model.Cards.Monster",
-                "@val": {
-                  "attackPoint": 300,
-                  "defensePoint": 500,
-                  "level": 3,
-                  "attribute": "LIGHT",
-                  "monsterType": "Fairy",
-                  "cardType": "Effect",
-                  "name": "Marshmallon",
-                  "description": "\"Cannot be destroyed by battle. After damage calculation, if this card was attacked, and was face-down at the start of the Damage Step: The attacking player takes 1000 damage.\"",
-                  "type": "Monster",
-                  "price": 700
-                }
-              },
-              1
-            ]
-          ],
-          "sideDeck": {},
-          "deckIsValid": false,
-          "deckName": "first",
-          "playerName": "Iman"
-        }
-      ]
-    }
-  },
-  {
-    "@type": "Model.Player",
-    "@val": {
-      "username": "Reza",
-      "password": "1234",
-      "nickname": "reze",
-      "score": 0,
-      "money": 18400,
-      "cards": [
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 1100,
-              "defensePoint": 1000,
-              "level": 3,
-              "attribute": "EARTH",
-              "monsterType": "Warrior",
-              "cardType": "Normal",
-              "name": "Hero of the east",
-              "description": "Feel da strength ah dis sword-swinging samurai from da Far East.",
-              "type": "Monster",
-              "price": 1700
-            }
-          },
-          3
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 1200,
-              "defensePoint": 700,
-              "level": 3,
-              "attribute": "WIND",
-              "monsterType": "Dragon",
-              "cardType": "Normal",
-              "name": "Baby dragon",
-              "description": "\"Much more than just a child, this dragon is gifted with untapped power.\"",
-              "type": "Monster",
-              "price": 1600
-            }
-          },
-          3
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 900,
-              "defensePoint": 1000,
-              "level": 3,
-              "attribute": "FIRE",
-              "monsterType": "Spellcaster",
-              "cardType": "Normal",
-              "name": "Flame manipulator",
-              "description": "\"This Spellcaster attacks enemies with fire-related spells such as \"\"Sea of Flames\"\" and \"\"Wall of Fire\"\".\"",
-              "type": "Monster",
-              "price": 1500
-            }
-          },
-          3
+          1
         ],
         [
           {
             "@type": "Model.Cards.Spell",
             "@val": {
-              "icon": "Equip",
+              "icon": "Ritual",
               "playedRound": 0,
-              "name": "Sword of dark destruction",
-              "description": "A DARK monster equipped with this card increases its ATK by 400 points and decreases its DEF by 200 points.",
+              "name": "Advanced Ritual Art",
+              "description": "This card can be used to Ritual Summon any 1 Ritual Monster. You must also send Normal Monsters from your Deck to the Graveyard whose total Levels equal the Level of that Ritual Monster.",
               "type": "Spell",
-              "price": 4300
+              "price": 3000
             }
           },
-          3
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 300,
-              "defensePoint": 500,
-              "level": 3,
-              "attribute": "LIGHT",
-              "monsterType": "Fairy",
-              "cardType": "Effect",
-              "name": "Marshmallon",
-              "description": "\"Cannot be destroyed by battle. After damage calculation, if this card was attacked, and was face-down at the start of the Damage Step: The attacking player takes 1000 damage.\"",
-              "type": "Monster",
-              "price": 700
-            }
-          },
-          3
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 200,
-              "defensePoint": 2000,
-              "level": 2,
-              "attribute": "EARTH",
-              "monsterType": "Cyberse",
-              "cardType": "Normal",
-              "name": "Bitron",
-              "description": "A new species found in electronic space. There's not much information on it.",
-              "type": "Monster",
-              "price": 1000
-            }
-          },
-          3
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 100,
-              "defensePoint": 100,
-              "level": 1,
-              "attribute": "DARK",
-              "monsterType": "Cyberse",
-              "cardType": "Effect",
-              "name": "Texchanger",
-              "description": "\"Once per turn, when your monster is targeted for an attack: You can negate that attack, then Special Summon 1 Cyberse Normal Monster from your hand, Deck, or GY.\"",
-              "type": "Monster",
-              "price": 200
-            }
-          },
-          1
+          0
         ],
         [
           {
@@ -466,148 +268,167 @@
               "price": 1300
             }
           },
-          3
+          1
         ],
         [
           {
             "@type": "Model.Cards.Monster",
             "@val": {
-              "attackPoint": 1700,
-              "defensePoint": 1600,
+              "attackPoint": 1300,
+              "defensePoint": 1000,
               "level": 4,
-              "attribute": "EARTH",
-              "monsterType": "Warrior",
+              "attribute": "FIRE",
+              "monsterType": "Pyro",
               "cardType": "Normal",
-              "name": "Warrior Dai Grepher",
-              "description": "The warrior who can manipulate dragons. Nobody knows his mysterious past.",
+              "name": "Fireyarou",
+              "description": "A malevolent creature wrapped in flames that attacks enemies with intense fire.",
               "type": "Monster",
-              "price": 3400
+              "price": 2500
             }
           },
-          3
+          4
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Normal",
+              "playedRound": 0,
+              "name": "Change of Heart",
+              "description": "Target 1 monster your opponent controls; take control of it until the End Phase.",
+              "type": "Spell",
+              "price": 2500
+            }
+          },
+          1
         ],
         [
           {
             "@type": "Model.Cards.Monster",
             "@val": {
-              "attackPoint": 800,
-              "defensePoint": 1400,
+              "attackPoint": 1200,
+              "defensePoint": 700,
               "level": 3,
-              "attribute": "WATER",
-              "monsterType": "Aqua",
-              "cardType": "Effect",
-              "name": "Yomi Ship",
-              "description": "If this card is destroyed by battle and sent to the GY: Destroy the monster that destroyed this card.",
-              "type": "Monster",
-              "price": 1700
-            }
-          },
-          3
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 1000,
-              "defensePoint": 500,
-              "level": 3,
-              "attribute": "LIGHT",
-              "monsterType": "Thunder",
+              "attribute": "WIND",
+              "monsterType": "Dragon",
               "cardType": "Normal",
-              "name": "Wattkid",
-              "description": "A creature that electrocutes opponents with bolts of lightning.",
+              "name": "Baby dragon",
+              "description": "\"Much more than just a child, this dragon is gifted with untapped power.\"",
               "type": "Monster",
-              "price": 1300
+              "price": 1600
             }
           },
-          3
+          1
         ],
         [
           {
-            "@type": "Model.Cards.Monster",
+            "@type": "Model.Cards.Spell",
             "@val": {
-              "attackPoint": 100,
-              "defensePoint": 100,
-              "level": 1,
-              "attribute": "DARK",
-              "monsterType": "Cyberse",
-              "cardType": "Effect",
-              "name": "Texchanger",
-              "description": "\"Once per turn, when your monster is targeted for an attack: You can negate that attack, then Special Summon 1 Cyberse Normal Monster from your hand, Deck, or GY.\"",
-              "type": "Monster",
-              "price": 200
+              "icon": "Ritual",
+              "playedRound": 0,
+              "name": "Advanced Ritual Art",
+              "description": "This card can be used to Ritual Summon any 1 Ritual Monster. You must also send Normal Monsters from your Deck to the Graveyard whose total Levels equal the Level of that Ritual Monster.",
+              "type": "Spell",
+              "price": 3000
             }
           },
-          3
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 450,
-              "defensePoint": 600,
-              "level": 2,
-              "attribute": "EARTH",
-              "monsterType": "Insect",
-              "cardType": "Effect",
-              "name": "Man-Eater Bug",
-              "description": "FLIP: Target 1 monster on the field; destroy that target.",
-              "type": "Monster",
-              "price": 600
-            }
-          },
-          3
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 600,
-              "defensePoint": 500,
-              "level": 2,
-              "attribute": "DARK",
-              "monsterType": "Spellcaster",
-              "cardType": "Normal",
-              "name": "Curtain of the dark ones",
-              "description": "\"A curtain that a spellcaster made, it is said to raise a dark power.\"",
-              "type": "Monster",
-              "price": 700
-            }
-          },
-          3
+          2
         ],
         [
           {
             "@type": "Model.Cards.Trap",
             "@val": {
-              "trapType": "Limited",
+              "trapType": "Unlimited",
               "icon": "Continuous",
-              "name": "Wall of Revealing Light",
-              "description": "Activate by paying any multiple of 1000 Life Points. Monsters your opponent controls cannot attack if their ATK is less than or equal to the amount you paid.",
+              "name": "Call of The Haunted",
+              "description": "\"Activate this card by targeting 1 monster in your GY; Special Summon that target in Attack Position. When this card leaves the field, destroy that monster. When that monster is destroyed, destroy this card.\"",
               "type": "Trap",
               "price": 3500
             }
           },
-          3
+          1
         ],
         [
           {
             "@type": "Model.Cards.Monster",
             "@val": {
-              "attackPoint": 500,
-              "defensePoint": 500,
-              "level": 2,
-              "attribute": "EARTH",
-              "monsterType": "Rock",
+              "attackPoint": 1300,
+              "defensePoint": 1400,
+              "level": 4,
+              "attribute": "DARK",
+              "monsterType": "Fiend",
               "cardType": "Normal",
-              "name": "Haniwa",
-              "description": "An earthen figure that protects the tomb of an ancient ruler.",
+              "name": "Feral Imp",
+              "description": "\"A playful little fiend that lurks in the dark, waiting to attack an unwary enemy.\"",
               "type": "Monster",
-              "price": 600
+              "price": 2800
             }
           },
-          3
+          4
         ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 3000,
+              "defensePoint": 2500,
+              "level": 8,
+              "attribute": "LIGHT",
+              "monsterType": "Dragon",
+              "cardType": "Normal",
+              "name": "Blue-Eyes white dragon",
+              "description": "\"This legendary dragon is a powerful engine of destruction. Virtually invincible, very few have faced this awesome creature and lived to tell the tale.\"",
+              "type": "Monster",
+              "price": 11300
+            }
+          },
+          4
+        ]
+      ],
+      "decks": [
+        {
+          "mainDeck": {},
+          "sideDeck": {},
+          "deckIsValid": false,
+          "deckName": "armin",
+          "playerName": "ali"
+        },
+        {
+          "mainDeck": {
+            "@root.0.cards.0-key": 3,
+            "@root.0.cards.1-key": 3,
+            "@root.0.cards.2-key": 3,
+            "@root.0.cards.4-key": 3,
+            "@root.0.cards.5-key": 3,
+            "@root.0.cards.6-key": 3,
+            "@root.0.cards.8-key": 3,
+            "@root.0.cards.9-key": 3,
+            "@root.0.cards.11-key": 3,
+            "@root.0.cards.12-key": 3,
+            "@root.0.cards.14-key": 3,
+            "@root.0.cards.16-key": 3,
+            "@root.0.cards.17-key": 3,
+            "@root.0.cards.18-key": 3,
+            "@root.0.cards.19-key": 3
+          },
+          "sideDeck": {},
+          "deckIsValid": true,
+          "deckName": "mydeck",
+          "playerName": "ali"
+        }
+      ],
+      "activeDeck": "@root.0.decks.1"
+    }
+  },
+  {
+    "@type": "Model.Player",
+    "@val": {
+      "username": "shayan",
+      "password": "ramz",
+      "nickname": "jenab",
+      "score": 0,
+      "money": 174800,
+      "cards": [
         [
           {
             "@type": "Model.Cards.Monster",
@@ -630,22 +451,373 @@
           {
             "@type": "Model.Cards.Monster",
             "@val": {
-              "attackPoint": 1200,
-              "defensePoint": 800,
-              "level": 3,
+              "attackPoint": 3000,
+              "defensePoint": 1200,
+              "level": 8,
               "attribute": "EARTH",
-              "monsterType": "Beast",
-              "cardType": "Normal",
-              "name": "Silver Fang",
-              "description": "\"A snow wolf that's beautiful to the eye, but absolutely vicious in battle.\"",
+              "monsterType": "Beast-Warrior",
+              "cardType": "Effect",
+              "name": "Beast King Barbaros",
+              "description": "\"You can Normal Summon/Set this card without Tributing, but its original ATK becomes 1900. You can Tribute 3 monsters to Tribute Summon (but not Set) this card. If Summoned this way: Destroy all cards your opponent controls.\"",
               "type": "Monster",
-              "price": 1700
+              "price": 9200
             }
           },
-          3
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1300,
+              "defensePoint": 1000,
+              "level": 4,
+              "attribute": "FIRE",
+              "monsterType": "Pyro",
+              "cardType": "Normal",
+              "name": "Fireyarou",
+              "description": "A malevolent creature wrapped in flames that attacks enemies with intense fire.",
+              "type": "Monster",
+              "price": 2500
+            }
+          },
+          4
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1000,
+              "defensePoint": 1000,
+              "level": 4,
+              "attribute": "FIRE",
+              "monsterType": "Warrior",
+              "cardType": "Effect",
+              "name": "Command Knight",
+              "description": "\"All Warrior-Type monsters you control gain 400 ATK. If you control another monster, monsters your opponent controls cannot target this card for an attack.\"",
+              "type": "Monster",
+              "price": 2100
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 700,
+              "defensePoint": 1000,
+              "level": 3,
+              "attribute": "EARTH",
+              "monsterType": "Warrior",
+              "cardType": "Normal",
+              "name": "Battle warrior",
+              "description": "A warrior that fights with his bare hands!!!",
+              "type": "Monster",
+              "price": 1300
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 3000,
+              "defensePoint": 2500,
+              "level": 8,
+              "attribute": "LIGHT",
+              "monsterType": "Dragon",
+              "cardType": "Normal",
+              "name": "Blue-Eyes white dragon",
+              "description": "\"This legendary dragon is a powerful engine of destruction. Virtually invincible, very few have faced this awesome creature and lived to tell the tale.\"",
+              "type": "Monster",
+              "price": 11300
+            }
+          },
+          4
+        ],
+        [
+          {
+            "@type": "Model.Cards.Trap",
+            "@val": {
+              "trapType": "Unlimited",
+              "icon": "Continuous",
+              "name": "Call of The Haunted",
+              "description": "\"Activate this card by targeting 1 monster in your GY; Special Summon that target in Attack Position. When this card leaves the field, destroy that monster. When that monster is destroyed, destroy this card.\"",
+              "type": "Trap",
+              "price": 3500
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 200,
+              "defensePoint": 2000,
+              "level": 2,
+              "attribute": "EARTH",
+              "monsterType": "Cyberse",
+              "cardType": "Normal",
+              "name": "Bitron",
+              "description": "A new species found in electronic space. There's not much information on it.",
+              "type": "Monster",
+              "price": 1000
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1300,
+              "defensePoint": 1400,
+              "level": 4,
+              "attribute": "DARK",
+              "monsterType": "Fiend",
+              "cardType": "Normal",
+              "name": "Feral Imp",
+              "description": "\"A playful little fiend that lurks in the dark, waiting to attack an unwary enemy.\"",
+              "type": "Monster",
+              "price": 2800
+            }
+          },
+          4
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Field",
+              "playedRound": 0,
+              "name": "Closed Forest",
+              "description": "All Beast-Type monsters you control gain 100 ATK for each monster in your Graveyard. Field Spell Cards cannot be activated. Field Spell Cards cannot be activated during the turn this card is destroyed.",
+              "type": "Spell",
+              "price": 4300
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1700,
+              "defensePoint": 1150,
+              "level": 4,
+              "attribute": "EARTH",
+              "monsterType": "Warrior",
+              "cardType": "Normal",
+              "name": "Axe Raider",
+              "description": "An axe-wielding monster of tremendous strength and agility.",
+              "type": "Monster",
+              "price": 3100
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 600,
+              "defensePoint": 500,
+              "level": 2,
+              "attribute": "DARK",
+              "monsterType": "Spellcaster",
+              "cardType": "Normal",
+              "name": "Curtain of the dark ones",
+              "description": "\"A curtain that a spellcaster made, it is said to raise a dark power.\"",
+              "type": "Monster",
+              "price": 700
+            }
+          },
+          4
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1600,
+              "defensePoint": 1400,
+              "level": 5,
+              "attribute": "EARTH",
+              "monsterType": "Dragon",
+              "cardType": "Normal",
+              "name": "Crawling dragon",
+              "description": "\"This weakened dragon can no longer fly, but is still a deadly force to be reckoned with.\"",
+              "type": "Monster",
+              "price": 3900
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 2500,
+              "defensePoint": 2100,
+              "level": 7,
+              "attribute": "DARK",
+              "monsterType": "Spellcaster",
+              "cardType": "Normal",
+              "name": "Dark magician",
+              "description": "The ultimate wizard in terms of attack and defense.",
+              "type": "Monster",
+              "price": 8300
+            }
+          },
+          4
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Normal",
+              "playedRound": 0,
+              "name": "Change of Heart",
+              "description": "Target 1 monster your opponent controls; take control of it until the End Phase.",
+              "type": "Spell",
+              "price": 2500
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1800,
+              "defensePoint": 1500,
+              "level": 4,
+              "attribute": "DARK",
+              "monsterType": "Warrior",
+              "cardType": "Normal",
+              "name": "Dark Blade",
+              "description": "\"They say he is a dragon-manipulating warrior from the dark world. His attack is tremendous, using his great swords with vicious power.\"",
+              "type": "Monster",
+              "price": 3500
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Ritual",
+              "playedRound": 0,
+              "name": "Advanced Ritual Art",
+              "description": "This card can be used to Ritual Summon any 1 Ritual Monster. You must also send Normal Monsters from your Deck to the Graveyard whose total Levels equal the Level of that Ritual Monster.",
+              "type": "Spell",
+              "price": 3000
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1700,
+              "defensePoint": 1000,
+              "level": 4,
+              "attribute": "EARTH",
+              "monsterType": "Beast-Warrior",
+              "cardType": "Normal",
+              "name": "Battle OX",
+              "description": "\"A monster with tremendous power, it destroys enemies with a swing of its axe.\"",
+              "type": "Monster",
+              "price": 2900
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 2550,
+              "defensePoint": 2500,
+              "level": 8,
+              "attribute": "WATER",
+              "monsterType": "Aqua",
+              "cardType": "Ritual",
+              "name": "Crab Turtle",
+              "description": "\"This monster can only be Ritual Summoned with the Ritual Spell Card, \"\"Turtle Oath\"\". You must also offer monsters whose total Level Stars equal 8 or more as a Tribute from the field or your hand.\"",
+              "type": "Monster",
+              "price": 10200
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 2000,
+              "defensePoint": 100,
+              "level": 4,
+              "attribute": "LIGHT",
+              "monsterType": "Dragon",
+              "cardType": "Normal",
+              "name": "Alexandrite Dragon",
+              "description": "\"Many of the czars' lost jewels can be found in the scales of this priceless dragon. Its creator remains a mystery, along with how they acquired the imperial treasures. But whosoever finds this dragon has hit the jackpot... whether they know it or not.\"",
+              "type": "Monster",
+              "price": 2600
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1200,
+              "defensePoint": 700,
+              "level": 3,
+              "attribute": "WIND",
+              "monsterType": "Dragon",
+              "cardType": "Normal",
+              "name": "Baby dragon",
+              "description": "\"Much more than just a child, this dragon is gifted with untapped power.\"",
+              "type": "Monster",
+              "price": 1600
+            }
+          },
+          1
         ]
       ],
-      "decks": []
+      "decks": [
+        {
+          "mainDeck": {
+            "@root.1.cards.1-key": 3,
+            "@root.1.cards.3-key": 3,
+            "@root.1.cards.4-key": 3,
+            "@root.1.cards.6-key": 3,
+            "@root.1.cards.7-key": 3,
+            "@root.1.cards.9-key": 3,
+            "@root.1.cards.10-key": 3,
+            "@root.1.cards.12-key": 3,
+            "@root.1.cards.14-key": 3,
+            "@root.1.cards.15-key": 3,
+            "@root.1.cards.16-key": 3,
+            "@root.1.cards.17-key": 3,
+            "@root.1.cards.18-key": 3,
+            "@root.1.cards.19-key": 3,
+            "@root.1.cards.20-key": 3
+          },
+          "sideDeck": {},
+          "deckIsValid": false,
+          "deckName": "mydeck",
+          "playerName": "shayan"
+        }
+      ],
+      "activeDeck": "@root.1.decks.0"
     }
   }
 ]
