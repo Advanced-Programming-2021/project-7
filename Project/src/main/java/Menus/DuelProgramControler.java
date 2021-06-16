@@ -40,15 +40,13 @@ class DuelProgramController {
     public void run(String firstPlayer, String secondPlayer, int round) {
         for (int i = 1; i <= round; i++) {
             setGameDecks(firstPlayer, secondPlayer);
-            supplySquad();
+            //supplySquad();
             keepMessengerOfPeace();
-            drawXCards(1);
-            System.out.println(gameDecks.get(turn).getInHandCards().size());
+            //drawXCards(1);
             // methods to be set after each round
             if (isGameOver(i)) break;
             while (true) {
                 if (phase == Phase.draw) drawCard();
-                System.out.println(gameDecks.get(turn).getInHandCards().size());
                 if (isRoundOver()) break;
                 showGameDeck(turn);
                 String command = CommonTools.scan.nextLine();
@@ -148,10 +146,11 @@ class DuelProgramController {
             System.out.printf("%s\t", myDeck.getSpellZones().get(i).getStatus());
         }
         System.out.printf("\n");
-
+        System.out.println("\t\t\t\t\t\t" + myDeck.getDeck().size());
         for (int i = 0; i < myDeck.getInHandCards().size(); i++) {
             System.out.printf("c\t");
         }
+        System.out.println();
         System.out.println(myDeck.getPlayerNickName() + " : " + myDeck.getPlayerLP());
     }
 
