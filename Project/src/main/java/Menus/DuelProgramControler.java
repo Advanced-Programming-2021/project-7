@@ -36,6 +36,7 @@ class DuelProgramController {
     private Phase phase = Phase.draw;
     private int round = 1;
     private int timeSealTrap = 0;
+    private int isCardDrawn = 0;
 
     public void run(String firstPlayer, String secondPlayer, int round) {
         for (int i = 1; i <= round; i++) {
@@ -44,16 +45,20 @@ class DuelProgramController {
             keepMessengerOfPeace();
             //drawXCards(1);
             // methods to be set after each round
+            for(int j = 0; j < 6; j++){
+                gameDecks.get(turn).drawCard();
+                gameDecks.get(changeTurn(turn)).drawCard();
+            }
             if (isGameOver(i)) break;
             while (true) {
-                if (phase == Phase.draw) drawCard();
+                if (phase == Phase.draw && isCardDrawn == 0) drawCard();
                 if (isRoundOver()) break;
                 showGameDeck(turn);
                 String command = CommonTools.scan.nextLine();
                 if (command.matches("^show graveyard$")) showGraveyard(turn);
                 else if (command.matches("^surrender$")) surrender(turn);
-                else if (command.matches("^select .*$")) selectCard(command);
                 else if (command.matches("^select -d$")) deselect();
+                else if (command.matches("^select .*$")) selectCard(command);
                 else if (command.matches("^summon$")) summonMonster();
                 else if (command.matches("^activate effect$")) activateSpellErrorCheck();
                 else if (command.matches("^activate trap$")) activateTrap();
@@ -210,13 +215,13 @@ class DuelProgramController {
         String hand = CommonTools.takeNameOutOfCommand(address, "--hand");
         String opponent = CommonTools.takeNameOutOfCommand(address, "--opponent");
         if ((monster == null && spell == null && field != null && hand == null) || opponent != null) return false;
-        if (monster != null) {
+        if (address.contains("--monster")) {
             if (Integer.parseInt(monster) > 5 || Integer.parseInt(monster) < 1) return false;
         }
-        if (spell != null) {
+        if (address.contains("--spell")) {
             if (Integer.parseInt(spell) > 5 || Integer.parseInt(spell) < 1) return false;
         }
-        if (hand != null) {
+        if (address.contains("--hand")) {
             if (address.contains("--opponent")) return false;
             if (Integer.parseInt(hand) > gameDecks.get(turn).getInHandCards().size() || Integer.parseInt(hand) < 1)
                 return false;
@@ -255,14 +260,12 @@ class DuelProgramController {
     }
 
     private void selectHand(int position) {
+        position = position - 1;
         ArrayList<Card> inHandCards = gameDecks.get(turn).getInHandCards();
-        if (position > inHandCards.size()) {
-            System.out.println("no card found in the given position");
-            return;
-        }
         selectedCard = inHandCards.get(position);
         selectedCardIndex = position;
         selectedDeck = "hand";
+        System.out.println(selectedCard.getName());
     }
 
     private void selectOpponentMonster(int position) {
@@ -1041,6 +1044,7 @@ class DuelProgramController {
         selectedCardIndex = -1;
         selectedMonsterCardIndex = -1;
         selectedDeck = null;
+        isCardDrawn = 0;
         if (timeSealTrap != 0) timeSealTrap = timeSealTrap - 1;
         turn = changeTurn(turn);
         System.out.println("its " + gameDecks.get(turn).getPlayerNickName() + "'s turn");
@@ -1053,6 +1057,7 @@ class DuelProgramController {
             gameDecks.get(turn).setPlayerLP(0);
             return;
         }
+        isCardDrawn = 1;
         gameDecks.get(turn).drawCard();
     }
 
