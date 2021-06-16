@@ -39,17 +39,19 @@ class DuelProgramController {
 
     public void run(String firstPlayer, String secondPlayer, int round) {
         for (int i = 1; i <= round; i++) {
+            setGameDecks(firstPlayer, secondPlayer);
             supplySquad();
             keepMessengerOfPeace();
             drawXCards(1);
+            System.out.println(gameDecks.get(turn).getInHandCards().size());
             // methods to be set after each round
             if (isGameOver(i)) break;
-            setGameDecks(firstPlayer, secondPlayer);
             while (true) {
                 if (phase == Phase.draw) drawCard();
+                System.out.println(gameDecks.get(turn).getInHandCards().size());
                 if (isRoundOver()) break;
-                String command = CommonTools.scan.nextLine();
                 showGameDeck(turn);
+                String command = CommonTools.scan.nextLine();
                 if (command.matches("^show graveyard$")) showGraveyard(turn);
                 else if (command.matches("^surrender$")) surrender(turn);
                 else if (command.matches("^select .*$")) selectCard(command);
@@ -118,13 +120,13 @@ class DuelProgramController {
         System.out.println(enemyDeck.getDeck().size());
 
         System.out.printf("\t");
-        for (int i = 4; i >= 0; i--) {
+        for (int i = 5; i >= 1; i--) {
             System.out.printf("%s\t", enemyDeck.getSpellZones().get(i).getStatus());
         }
         System.out.printf("\n");
 
         System.out.printf("\t");
-        for (int i = 4; i >= 0; i--) {
+        for (int i = 5; i >= 1; i--) {
             System.out.printf("%s\t", enemyDeck.getMonsterZones().get(i).getStatus());
         }
         System.out.printf("\n");
@@ -136,13 +138,13 @@ class DuelProgramController {
         System.out.println(myDeck.getFieldZoneStatus() + "\t\t\t\t\t\t" + myDeck.getGraveyardCards().size());
 
         System.out.printf("\t");
-        for (int i = 0; i < 5; i++) {
+        for (int i = 1; i <= 5; i++) {
             System.out.printf("%s\t", myDeck.getMonsterZones().get(i).getStatus());
         }
         System.out.printf("\n");
 
         System.out.printf("\t");
-        for (int i = 0; i < 5; i++) {
+        for (int i = 1; i <= 5; i++) {
             System.out.printf("%s\t", myDeck.getSpellZones().get(i).getStatus());
         }
         System.out.printf("\n");
@@ -1181,7 +1183,7 @@ class DuelProgramController {
 
     private void keepMessengerOfPeace() {
         GameDeck myDeck = gameDecks.get(turn);
-        for (int i = 0; i < 5; i++) {
+        for (int i = 1; i <= 5; i++) {
             if ((!myDeck.getMonsterZones().get(i).isEmpty()) &&
                     myDeck.getMonsterZones().get(i).getCurrentMonster().getName().equals("Messenger of peace")) {
                 System.out.println("Do you want to keep Messenger of peace for the cost of 100 LP yes/no");
