@@ -43,6 +43,7 @@ class GameDeck {
                 deck.add(Card.getCardByName(cardEntry.getKey().getName()));
             }
         }
+        Collections.shuffle(deck);
         for (Map.Entry<Card, Integer> cardEntry : sideDeck.entrySet()) {
             for (Integer i = 0; i < cardEntry.getValue(); i++) {
                 // TODO clone
