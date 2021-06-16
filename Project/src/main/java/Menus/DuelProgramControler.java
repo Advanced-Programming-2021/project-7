@@ -45,7 +45,7 @@ class DuelProgramController {
             keepMessengerOfPeace();
             //drawXCards(1);
             // methods to be set after each round
-            for(int j = 0; j < 6; j++){
+            for(int j = 0; j < 4; j++){
                 gameDecks.get(turn).drawCard();
                 gameDecks.get(changeTurn(turn)).drawCard();
             }
