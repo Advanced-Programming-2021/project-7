@@ -33,6 +33,12 @@ class GameDeck {
         this.playerUserName = playerUserName;
         this.playerLP = 8000;
         this.winRounds = 0;
+        for (int i = 1; i <= 5; i++){
+            monsterZones.put(i, new MonsterZone());
+        }
+        for (int i = 1; i <= 5; i++){
+            spellZones.put(i, new SpellZone());
+        }
         for (Map.Entry<Card, Integer> cardEntry : mainDeck.entrySet()) {
             for (Integer i = 0; i < cardEntry.getValue(); i++) {
                 // TODO clone
