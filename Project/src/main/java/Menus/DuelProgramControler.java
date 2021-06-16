@@ -260,12 +260,11 @@ class DuelProgramController {
     }
 
     private void selectHand(int position) {
-        position = position - 1;
         ArrayList<Card> inHandCards = gameDecks.get(turn).getInHandCards();
-        selectedCard = inHandCards.get(position);
+        selectedCard = inHandCards.get(position - 1);
         selectedCardIndex = position;
         selectedDeck = "hand";
-        System.out.println(selectedCard.getName());
+        System.out.println("card selected");
     }
 
     private void selectOpponentMonster(int position) {
@@ -400,7 +399,7 @@ class DuelProgramController {
             System.out.println("action not allowed in this phase");
             return false;
         }
-        if (!monsterZones.containsValue(null)) {
+        if (!gameDecks.get(turn).isMonsterZoneFull()) {
             System.out.println("monster card zone is full");
             return false;
         }
