@@ -196,8 +196,28 @@ class GameDeck {
 
     public void setCardToMonsterZone(String cardName) {
         for (int i = 1; i <= 5; i++) {
-            if (monsterZones.get(i) == null) {
+            if (monsterZones.get(i).getCurrentMonster() == null) {
                 monsterZones.get(i).setCardHidden(Card.getCardByName(cardName));
+                return;
+            }
+        }
+    }
+
+    public void setSpellToSpellZone(String cardName){
+        for (int i = 1; i <= 5; i++) {
+            if (spellZones.get(i).getCurrentCard() == null) {
+                spellZones.get(i).setSpell(Card.getCardByName(cardName));
+                spellZones.get(i).setHidden();
+                return;
+            }
+        }
+    }
+
+    public void setTrapToSpellZone(String cardName){
+        for (int i = 1; i <= 5; i++) {
+            if (spellZones.get(i).getCurrentCard() == null) {
+                spellZones.get(i).setTrap(Card.getCardByName(cardName));
+                spellZones.get(i).setHidden();
                 return;
             }
         }
