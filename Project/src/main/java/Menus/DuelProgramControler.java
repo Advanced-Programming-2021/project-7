@@ -25,7 +25,7 @@ enum Phase {
 
 class DuelProgramController {
     private ArrayList<GameDeck> gameDecks = new ArrayList<>(2);
-    private MonsterPowersController monsterPowersController = new MonsterPowersController(gameDecks);
+    private MonsterPowersController monsterPowersController = new MonsterPowersController(gameDecks, this);
     private int turn = 0; //0 : firstPlayer, 1 : secondPlayer
     private int isSummoned = 0; //0 : is not summoned before, 1 : is summoned before
     private Card selectedCard = null;
@@ -268,6 +268,11 @@ class DuelProgramController {
         selectedCardIndex = position;
         selectedDeck = "hand";
         System.out.println("card selected");
+        monsterPowersController.setSelectedCardIndex(selectedCardIndex);
+        monsterPowersController.setSelectedCard(selectedCard);
+        monsterPowersController.setTurn(turn);
+        monsterPowersController.setPhase(phase);
+        monsterPowersController.monstersWithSpecialSummonPower(selectedCard);
     }
 
     private void selectOpponentMonster(int position) {
@@ -1412,5 +1417,13 @@ class DuelProgramController {
             gameDecks.get(turn).getInHandCards().remove(index);
         }
         activateOrDeactivateFieldCardForAll(1);
+    }
+
+    public void setIsSummoned(int isSummoned) {
+        this.isSummoned = isSummoned;
+    }
+
+    public void setSelectedMonsterCardIndex(int selectedMonsterCardIndex) {
+        this.selectedMonsterCardIndex = selectedMonsterCardIndex;
     }
 }
