@@ -64,6 +64,7 @@ class DuelProgramController {
                 else if (command.matches("^summon$")) summonMonster();
                 else if (command.matches("^activate effect$")) activateSpellErrorCheck();
                 else if (command.matches("^activate trap$")) activateTrap();
+                else if (command.matches("^attack (\\d+)")) attackCard(command);
                 else if (command.matches("^set$")) set();
                 else if (command.matches("^card show --selected$")) cardShow();
                 else if (command.matches("^increase --LP (\\d+)$")) increasePlayerLPCheat(command);
@@ -505,7 +506,7 @@ class DuelProgramController {
 
     private void attackCard(String command) {
         int selectDefender;
-        Matcher matcher = CommonTools.getMatcher(command, "(\\d)");
+        Matcher matcher = CommonTools.getMatcher(command, "(\\d+)");
         matcher.find();
         selectDefender = Integer.parseInt(matcher.group(1));
         GameDeck myDeck = gameDecks.get(turn);
