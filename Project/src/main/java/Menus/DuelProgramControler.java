@@ -239,6 +239,7 @@ class DuelProgramController {
         selectedCard = gameDecks.get(turn).getMonsterZones().get(position).getCurrentMonster();
         selectedCardIndex = position;
         selectedDeck = "monster";
+        System.out.println("card selected");
     }
 
     private void selectSpell(int position) {
@@ -305,6 +306,7 @@ class DuelProgramController {
             gameDecks.get(turn).getInHandCards().remove(position - 1);
         } else if (selectedMonster.getLevel() == 5 || selectedMonster.getLevel() == 6) summonWithOneTribute(position);
         else if (selectedMonster.getLevel() == 7 || selectedMonster.getLevel() == 8) summonWithTwoTribute(position);
+        deselect();
     }
 
     private void summonWithOneTribute(int position) {
@@ -383,12 +385,14 @@ class DuelProgramController {
             return;
         }
         if (!inHandCards.get(position - 1).getType().equals("Monster") &&
-                !inHandCards.get(position - 1).getType().equals("Spell")) { //TODO check is Type correct
+                !inHandCards.get(position - 1).getType().equals("Spell") &&
+                !inHandCards.get(position - 1).getType().equals("Trap")) { //TODO check is Type correct
             System.out.println("you can’t set this card");
             return;
         }
         if (inHandCards.get(position - 1).getType().equals("Monster")) setMonster(position);
         else if (inHandCards.get(position - 1).getType().equals("Spell")) setSpell();
+        else if (inHandCards.get(position - 1).getType().equals("Trap")) setTrap();
     }
 
     private void setMonster(int position) {
@@ -396,6 +400,7 @@ class DuelProgramController {
         System.out.println("set successfully");
         gameDecks.get(turn).setCardToMonsterZone(selectedCard.getName());
         gameDecks.get(turn).getInHandCards().remove(position - 1);
+        deselect();
     }
 
     private boolean isSummonAndSetValid(int position) {
@@ -489,22 +494,6 @@ class DuelProgramController {
             return false;
         }
         return true;
-    }
-
-    private void addToHand(String cardName, GameDeck playerDeck) {
-
-    }
-
-    private void standByPhase(GameDeck playerDeck) {
-
-    }
-
-    private void mainPhase1(GameDeck playerDeck) {
-
-    }
-
-    private void endPhase(GameDeck playerDeck) {
-
     }
 
     private void attackCard(String command) {
@@ -756,6 +745,7 @@ class DuelProgramController {
         } else {
             System.out.println("set successfully");
             Spell spell = (Spell) selectedCard;
+            System.out.println(spell.getSpellIcon());
             if (spell.getSpellIcon().equals("Field")) {
                 if (!(myDeck.isFieldZoneEmpty())) {
                     moveToGraveyard(turn, "field", 0);
@@ -764,13 +754,38 @@ class DuelProgramController {
                 myDeck.setFieldZoneStatus("H");
                 activateOrDeactivateFieldCardForAll(1);
             } else {
-                int freeIndex = myDeck.spellZoneFirstFreeSpace();
-                SpellZone spellZone = myDeck.getSpellZones().get(freeIndex);
-                spellZone.setSpell(selectedCard);
-                spellZone.setHidden();
+                gameDecks.get(turn).setSpellToSpellZone(selectedCard.getName());
             }
+            gameDecks.get(turn).getInHandCards().remove(selectedCardIndex - 1);
+            deselect();
         }
-        deselect();
+    }
+
+    private void setTrap(){
+        GameDeck myDeck = gameDecks.get(turn);
+        if (selectedCard == null) {
+        } else if (!(phase == Phase.main1 || phase == Phase.main2
+                || ((Trap) selectedCard).getTrapIcon().equals("Quick-play"))) {
+            System.out.println("you can’t do this action in this phase");
+        } else if (myDeck.isSpellZoneFull()) {
+            System.out.println("spell card zone is full");
+        } else {
+            System.out.println("set successfully");
+            Trap trap = (Trap) selectedCard;
+            System.out.println(trap.getTrapIcon());
+            if (trap.getTrapIcon().equals("Field")) {
+                if (!(myDeck.isFieldZoneEmpty())) {
+                    moveToGraveyard(turn, "field", 0);
+                }
+                myDeck.setFieldZone(selectedCard);
+                myDeck.setFieldZoneStatus("H");
+                activateOrDeactivateFieldCardForAll(1);
+            } else {
+                gameDecks.get(turn).setTrapToSpellZone(selectedCard.getName());
+            }
+            gameDecks.get(turn).getInHandCards().remove(selectedCardIndex - 1);
+            deselect();
+        }
     }
 
     private void showGraveyard(int turn) {
@@ -1067,8 +1082,11 @@ class DuelProgramController {
     }
 
     private void changePhase() {
+        if (phase == Phase.end) changeGameTurn();
         phase = phase.next();
-        if (phase == phase.end) changeGameTurn();
+        if (isGameStart == 2 && phase == Phase.battle){
+            phase = Phase.end;
+        }
     }
 
     private void checkSpellCard() {
