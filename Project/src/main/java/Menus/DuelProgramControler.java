@@ -309,9 +309,9 @@ class DuelProgramController {
             selectedMonsterCardIndex = selectedCardIndex;
             gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
             gameDecks.get(turn).getInHandCards().remove(position - 1);
+            deselect();
         } else if (selectedMonster.getLevel() == 5 || selectedMonster.getLevel() == 6) summonWithOneTribute(position);
         else if (selectedMonster.getLevel() == 7 || selectedMonster.getLevel() == 8) summonWithTwoTribute(position);
-        deselect();
     }
 
     private void summonWithOneTribute(int position) {
@@ -321,7 +321,7 @@ class DuelProgramController {
             if (monsterZones.get(i).getCurrentMonster() == null)
                 numberOfEmptyMonsterZones = numberOfEmptyMonsterZones + 1;
         }
-        if (numberOfEmptyMonsterZones > 0) {
+        if (numberOfEmptyMonsterZones == 5) {
             System.out.println("there are not enough cards for tribute");
             return;
         }
@@ -337,6 +337,7 @@ class DuelProgramController {
             return;
         }
         System.out.println("summoned successfully");
+        deselect();
         isSummoned = 1;
         selectedMonsterCardIndex = selectedCardIndex;
         gameDecks.get(turn).tributeCardFromMonsterZone(monsterZonePosition);
@@ -351,7 +352,7 @@ class DuelProgramController {
             if (monsterZones.get(i).getCurrentMonster() == null)
                 numberOfEmptyMonsterZones = numberOfEmptyMonsterZones + 1;
         }
-        if (numberOfEmptyMonsterZones > 1) {
+        if (numberOfEmptyMonsterZones == 5 || numberOfEmptyMonsterZones == 4) {
             System.out.println("there are not enough cards for tribute");
             return;
         }
@@ -370,6 +371,7 @@ class DuelProgramController {
             return;
         }
         System.out.println("summoned successfully");
+        deselect();
         isSummoned = 1;
         selectedMonsterCardIndex = selectedCardIndex;
         gameDecks.get(turn).tributeCardFromMonsterZone(firstMonster);
@@ -474,7 +476,7 @@ class DuelProgramController {
     private void flipSummon() {
         HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(turn).getMonsterZones();
         if (!isFlipSummonValid()) return;
-        if (isSummoned != 0 || !monsterZones.get(selectedCardIndex).getStatus().equals("DH")) {
+        if (selectedMonsterCardIndex != -1 || !monsterZones.get(selectedCardIndex).getStatus().equals("DH")) {
             System.out.println("you can’t flip summon this card");
             return;
         }
