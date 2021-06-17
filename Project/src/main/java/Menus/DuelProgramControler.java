@@ -572,12 +572,13 @@ class DuelProgramController {
         int damage = attackerDamage - defenderDamage;
         if (damage > 0) {
             moveToGraveyard(changeTurn(turn), "MonsterZone", selectDefender);
-            enemyDeck.takeDamage(damage);
+
             monsterPowersController.setSelectedCardIndex(selectedCardIndex);
             monsterPowersController.setAttackerCard(selectedCard);
             monsterPowersController.setTurn(turn);
             monsterPowersController.monsterPowersWhenDestroyed(enemyDeck.getMonsterZones()
                     .get(selectDefender).getCurrentMonster());
+            if (monsterPowersController.getIsEnemyTakeDamage()) enemyDeck.takeDamage(damage);
             // TODO: 2021-05-08 check if dead
             System.out.printf("your opponent’s monster is destroyed and your opponent receives"
                     + " %d battle damage\n", damage);

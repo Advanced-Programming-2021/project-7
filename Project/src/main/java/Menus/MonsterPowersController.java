@@ -13,6 +13,7 @@ public class MonsterPowersController {
     private int selectedCardIndex;
     private Card selectedCard;
     private Card attackerCard;
+    private boolean isEnemyTakeDamage = true;
 
     public MonsterPowersController(ArrayList <GameDeck> gameDecks) {
         this.gameDecks = gameDecks;
@@ -34,6 +35,10 @@ public class MonsterPowersController {
         this.selectedCard = selectedCard;
     }
 
+    public boolean getIsEnemyTakeDamage() {
+        return this.isEnemyTakeDamage;
+    }
+
     public void monsterPowersWhenSummon(Card card) {
         String cardName = card.getName();
         if (cardName.equals("Scanner")) ScannerPower(card);
@@ -47,7 +52,9 @@ public class MonsterPowersController {
 
     public void monsterPowersWhenDestroyed(Card card) {
         String cardName = card.getName();
+        isEnemyTakeDamage = true;
         if (cardName.equals("Yomi Ship")) yomiShipPower();
+        else if (cardName.equals("Exploder Dragon")) exploderDragonPower();
     }
 
     public void monsterPowersWhenGetAttacked(Card card) {
@@ -92,6 +99,13 @@ public class MonsterPowersController {
     public void ScannerPower(Card card) {
         GameDeck enemyDeck = gameDecks.get((turn + 1) % 2);
         enemyDeck.getGraveyardCards();
+    }
 
+    public void exploderDragonPower() {
+        GameDeck myDeck = gameDecks.get(turn);
+        Card card = myDeck.getMonsterZones().get(selectedCardIndex).removeCard();
+        myDeck.getGraveyardCards().add(card);
+        System.out.println("Your monster card is destroyed by enemy monster effect");
+        isEnemyTakeDamage = false;
     }
 }
