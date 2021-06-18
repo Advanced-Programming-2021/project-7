@@ -180,13 +180,14 @@ class GameDeck {
         System.out.println("new card added to the hand: " + card.getName());
     }
 
-    public void summonCardToMonsterZone(String cardName) {
+    public int summonCardToMonsterZone(String cardName) {
         for (int i = 1; i <= 5; i++) {
             if (monsterZones.get(i).getCurrentMonster() == null) {
                 monsterZones.get(i).setCardAttack(Card.getCardByName(cardName));
-                return;
+                return i;
             }
         }
+        return 0;
     }
 
     public void tributeCardFromMonsterZone(int position) {
@@ -194,13 +195,14 @@ class GameDeck {
         monsterZones.get(position).removeCard();
     }
 
-    public void setCardToMonsterZone(String cardName) {
+    public int setCardToMonsterZone(String cardName) {
         for (int i = 1; i <= 5; i++) {
             if (monsterZones.get(i).getCurrentMonster() == null) {
                 monsterZones.get(i).setCardHidden(Card.getCardByName(cardName));
-                return;
+                return i;
             }
         }
+        return 0;
     }
 
     public void setSpellToSpellZone(String cardName){
