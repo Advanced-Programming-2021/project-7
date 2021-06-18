@@ -1316,18 +1316,17 @@ class DuelProgramController {
 
     private void activateTrapMirrorForce() {
         System.out.println("trap 'Mirror Force' activated");
+        gameDecks.get(changeTurn(turn)).setIsMirrorForceActive(1);
+    }
+
+    private void doMirrorForce(){
+        System.out.println("trap 'Mirror Force' activated");
         for (int i = 1; i <= 5; i++) {
             if (gameDecks.get(turn).getMonsterZones().get(i).getStatus().equals("OO")) {
                 moveToGraveyard(turn, "MonsterZone", i);
             }
         }
-        int opponentTurn = changeTurn(turn);
-        for (int i = 1; i <= 5; i++) {
-            if (gameDecks.get(opponentTurn).getSpellZones().get(i).getCurrentCard().getName().equals("Mirror Force")) {
-                moveToGraveyard(opponentTurn, "SpellZone", i);
-                break;
-            }
-        }
+        gameDecks.get(turn).setIsMirrorForceActive(0);
     }
 
     private void activateTrapMindCrush() {
