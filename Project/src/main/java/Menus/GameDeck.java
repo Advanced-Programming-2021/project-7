@@ -267,10 +267,6 @@ class GameDeck {
         return Collections.max(playerLPsAfterRound);
     }
 
-    public void setIsMirrorForceActive(int newState){
-        this.isMirrorForceActive = newState;
-    }
-
     public void editBoardCell(int position) {
 
     }
