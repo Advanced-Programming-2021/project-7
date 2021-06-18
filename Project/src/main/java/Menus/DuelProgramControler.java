@@ -219,13 +219,16 @@ class DuelProgramController {
         String opponent = CommonTools.takeNameOutOfCommand(address, "--opponent");
         if ((monster == null && spell == null && field != null && hand == null) || opponent != null) return false;
         if (address.contains("--monster")) {
+            if (monster == null) return false;
             if (Integer.parseInt(monster) > 5 || Integer.parseInt(monster) < 1) return false;
         }
         if (address.contains("--spell")) {
+            if (spell == null) return false;
             if (Integer.parseInt(spell) > 5 || Integer.parseInt(spell) < 1) return false;
         }
         if (address.contains("--hand")) {
             if (address.contains("--opponent")) return false;
+            if (hand == null) return false;
             if (Integer.parseInt(hand) > gameDecks.get(turn).getInHandCards().size() || Integer.parseInt(hand) < 1)
                 return false;
         }
@@ -477,7 +480,7 @@ class DuelProgramController {
     private void flipSummon() {
         HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(turn).getMonsterZones();
         if (!isFlipSummonValid()) return;
-        if (selectedMonsterCardIndex != -1 || !monsterZones.get(selectedCardIndex).getStatus().equals("DH")) {
+        if (selectedMonsterCardIndex == selectedCardIndex || !monsterZones.get(selectedCardIndex).getStatus().equals("DH")) {
             System.out.println("you can’t flip summon this card");
             return;
         }
