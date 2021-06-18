@@ -24,12 +24,14 @@ class GameDeck {
     private String playerUserName;
     private int playerLP;
     private int winRounds;
+    private int isMirrorForceActive;
 
     public GameDeck(String playerNickName, String playerUserName, HashMap<Card, Integer> mainDeck, HashMap<Card, Integer> sideDeck) {
         this.playerNickName = playerNickName;
         this.playerUserName = playerUserName;
         this.playerLP = 8000;
         this.winRounds = 0;
+        this.isMirrorForceActive = 0;
         for (int i = 1; i <= 5; i++){
             MonsterZone monsterZone = new MonsterZone();
             monsterZones.put(i, monsterZone);
@@ -263,6 +265,10 @@ class GameDeck {
 
     public int getMaxPlayerLPAfterRounds() {
         return Collections.max(playerLPsAfterRound);
+    }
+
+    public void setIsMirrorForceActive(int newState){
+        this.isMirrorForceActive = newState;
     }
 
     public void editBoardCell(int position) {
