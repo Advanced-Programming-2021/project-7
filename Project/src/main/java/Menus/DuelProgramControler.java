@@ -53,7 +53,7 @@ class DuelProgramController {
             }
             if (isGameOver(i)) break;
             while (true) {
-                if (phase == Phase.draw && isCardDrawn == 0 && isGameStart == 0) drawCard();
+                if (phase == Phase.draw && isCardDrawn == 0 && isGameStart == 0 && timeSealTrap != 0) drawCard();
                 if (isRoundOver()) break;
                 System.out.println("phase: " + phase);
                 showGameDeck(turn);
@@ -551,12 +551,17 @@ class DuelProgramController {
         boolean doesMirrorForceExist = gameDecks.get(trapTurn).doesTrapExist("Mirror Force");
         boolean doesNegateAttackExist = gameDecks.get(trapTurn).doesTrapExist("Negate Attack");
         if (!doesMirrorForceExist && !doesNegateAttackExist) return false;
-        String username = gameDecks.get(turn).getPlayerUserName();
+        String username = gameDecks.get(trapTurn).getPlayerUserName();
         System.out.printf("now it will be %s's turn\n", username);
-        // todo show board
-        System.out.println("do you want to activate your spell and trap?");
-        String confirmation = CommonTools.scan.nextLine();
-        if (confirmation.equals("no")) return false;
+        showGameDeck(trapTurn);
+        System.out.println("do you want to activate your spell and trap? yes/no");
+        while (true){
+            String confirmation = CommonTools.scan.nextLine();
+            if (confirmation.equals("no")) return false;
+            else if (confirmation.equals("yes")) break;
+            else System.out.println("invalid command");
+        }
+
         if (doesMirrorForceExist && !doesNegateAttackExist) activateTrapMirrorForce();
         else if (!doesMirrorForceExist && doesNegateAttackExist) activateTrapNegateAttack();
         else {
@@ -1314,19 +1319,19 @@ class DuelProgramController {
         }
     }
 
-    private void activateTrapMirrorForce() {
-        System.out.println("trap 'Mirror Force' activated");
-        gameDecks.get(changeTurn(turn)).setIsMirrorForceActive(1);
-    }
-
-    private void doMirrorForce(){
+    private void activateTrapMirrorForce(){
         System.out.println("trap 'Mirror Force' activated");
         for (int i = 1; i <= 5; i++) {
             if (gameDecks.get(turn).getMonsterZones().get(i).getStatus().equals("OO")) {
                 moveToGraveyard(turn, "MonsterZone", i);
             }
         }
-        gameDecks.get(turn).setIsMirrorForceActive(0);
+        for (int i = 1; i <= 5; i++){
+            if (gameDecks.get(changeTurn(turn)).getSpellZones().get(i).getCurrentCard().getName().equals("Mirror Force")) {
+                moveToGraveyard(turn, "SpellZone", i);
+                return;
+            }
+        }
     }
 
     private void activateTrapMindCrush() {
@@ -1354,6 +1359,7 @@ class DuelProgramController {
                 if (card.getName().equals(cardName)) moveToGraveyard(opponentTurn, "inHand", i);
             }
         }
+        moveToGraveyard(turn, "SpellZone", selectedCardIndex);
     }
 
     private void activateTrapTorrentialTribute() {
@@ -1368,11 +1374,13 @@ class DuelProgramController {
                 moveToGraveyard(opponentTurn, "MonsterZone", i);
             }
         }
+        moveToGraveyard(turn, "SpellZone", selectedCardIndex);
     }
 
     private void activateTrapTimeSeal() {
         System.out.println("trap 'Time Seal' activated");
         timeSealTrap = 2;
+        moveToGraveyard(turn, "SpellZone", selectedCardIndex);
     }
 
     private void activateTrapNegateAttack() {
@@ -1410,7 +1418,6 @@ class DuelProgramController {
 
     private void moveToGraveyard(int turn, String place, int index) {
         activateOrDeactivateFieldCardForAll(-1);
-        //GameDeck gameDeck = gameDecks.get(turn);
         if (place.equals("MonsterZone")) {
             Card card = gameDecks.get(turn).getMonsterZones().get(index).removeCard();
             gameDecks.get(turn).getGraveyardCards().add(card);
