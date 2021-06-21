@@ -101,7 +101,6 @@ public class Initialize {
             Trap trap = new Trap(data[0], data[1], data[2], data[3], data[4], Integer.parseInt(data[5]));
         }
         while ((line = csvReader.readLine()) != null) {
-            line = csvReader.readLine();
             String[] data = line.split(",(?=\\S)");
             // date[ 0 ]:name date[ 1 ]:type data[ 2 ]:icon data[ 3 ]:Description data[ 4 ]:status
             // data[ 5 ]:price
