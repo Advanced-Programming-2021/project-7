@@ -596,29 +596,32 @@ class DuelProgramController {
     }
 
     public void attackOO(int selectDefender, GameDeck myDeck, GameDeck enemyDeck) {
-
         Monster selectedMonster = (Monster) selectedCard;
         int attackerDamage = selectedMonster.getAttackPoint();
         int defenderDamage = ((Monster) enemyDeck.getMonsterZones()
                 .get(selectDefender).getCurrentMonster()).getAttackPoint();
         int damage = attackerDamage - defenderDamage;
         System.out.println( attackerDamage + " " + defenderDamage);
+        monsterPowersController.setSelectedCardIndex(selectedCardIndex);
+        monsterPowersController.setAttackerCard(selectedCard);
+        monsterPowersController.setTurn(turn);
         if (damage > 0) {
-            moveToGraveyard(changeTurn(turn), "MonsterZone", selectDefender);
-            monsterPowersController.setSelectedCardIndex(selectedCardIndex);
-            monsterPowersController.setAttackerCard(selectedCard);
-            monsterPowersController.setTurn(turn);
             monsterPowersController.monsterPowersWhenDestroyed(enemyDeck.getMonsterZones()
                     .get(selectDefender).getCurrentMonster());
             if (monsterPowersController.getIsEnemyTakeDamage()) enemyDeck.takeDamage(damage);
+            moveToGraveyard(changeTurn(turn), "MonsterZone", selectDefender);
             System.out.printf("your opponent’s monster is destroyed and your opponent receives"
                     + " %d battle damage\n", damage);
         } else if (damage == 0) {
+            monsterPowersController.monsterPowersWhenDestroyed(enemyDeck.getMonsterZones()
+                    .get(selectDefender).getCurrentMonster());
             moveToGraveyard(turn, "MonsterZone", selectedCardIndex);
             moveToGraveyard(changeTurn(turn), "MonsterZone", selectDefender);
             System.out.println("both you and your opponent monster cards are destroyed and no" +
                     "one receives damage\n");
         } else {
+            monsterPowersController.monsterPowersWhenDestroyed(enemyDeck.getMonsterZones()
+                    .get(selectDefender).getCurrentMonster());
             Card card = myDeck.getMonsterZones().get(selectedCardIndex).removeCard();
             moveToGraveyard(turn, "MonsterZone", selectedCardIndex);
             System.out.printf("Your monster card is destroyed and you received %d battle" +
@@ -634,7 +637,6 @@ class DuelProgramController {
         System.out.println( attackerDamage + " " + defenderDamage);
         int damage = attackerDamage - defenderDamage;
         if (damage > 0) {
-            moveToGraveyard(changeTurn(turn), "MonsterZone", selectDefender);
             monsterPowersController.setSelectedCardIndex(selectedCardIndex);
             monsterPowersController.setAttackerCard(selectedCard);
             monsterPowersController.setTurn(turn);
@@ -660,7 +662,6 @@ class DuelProgramController {
         System.out.println( attackerDamage + " " + defenderDamage);
         int damage = attackerDamage - defenderDamage;
         if (damage > 0) {
-            moveToGraveyard(changeTurn(turn), "MonsterZone", selectDefender);
             monsterPowersController.setSelectedCardIndex(selectedCardIndex);
             monsterPowersController.setAttackerCard(selectedCard);
             monsterPowersController.setTurn(turn);
