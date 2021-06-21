@@ -33,7 +33,9 @@ class PlayMenu {
             System.out.println("there is no player with this username");
             return;
         }
-        if(!isDuelValid(player1, player2, rounds)) return;
+        if(!isDuelValid(player1, player2, rounds)) {
+            return;
+        }
         int round = Integer.parseInt(rounds);
         DuelProgramController duelProgramController = new DuelProgramController();
         duelProgramController.run(player1, player2, round);

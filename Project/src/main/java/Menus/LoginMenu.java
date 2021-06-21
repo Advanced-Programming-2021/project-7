@@ -18,8 +18,10 @@ public class LoginMenu {
                 createPlayer(command);
             else if (command.matches("^user login (?:(--username|--password) (\\S+) ?){2}$"))
                 loginPlayer(command);
-            else if (command.matches("^menu exit$")) return;
-            else if (command.matches("^menu enter (profile|duel|shop|scoreboard|deck)$"))
+            else if (command.matches("^menu exit$")) {
+                System.out.println("GoodBye");
+                return;
+            } else if (command.matches("^menu enter (profile|duel|shop|scoreboard|deck)$"))
                 System.out.println("please login first");
             else if (command.matches("^menu show-current$")) System.out.println("Login");
             else System.out.println("invalid command");

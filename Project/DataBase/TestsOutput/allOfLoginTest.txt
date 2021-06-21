@@ -9,3 +9,5 @@ user created successfully!
 invalid command
 Username and password didn't match!
 user logged in successfully!
+user logged out successfully!
+GoodBye

@@ -9,5 +9,5 @@ user create --username shayan --nickname jenab --password ramz
 user login --username ali --username ali
 user login --username ali --password ali
 user login --username ali --password ramz
-logout
+menu exit
 menu exit

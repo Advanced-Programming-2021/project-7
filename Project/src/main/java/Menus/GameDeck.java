@@ -26,7 +26,8 @@ class GameDeck {
     private int winRounds;
     private int isMirrorForceActive;
 
-    public GameDeck(String playerNickName, String playerUserName, HashMap<Card, Integer> mainDeck, HashMap<Card, Integer> sideDeck) {
+    public GameDeck(String playerNickName, String playerUserName,
+                    HashMap<Card, Integer> mainDeck) {
         this.playerNickName = playerNickName;
         this.playerUserName = playerUserName;
         this.playerLP = 8000;
@@ -46,11 +47,6 @@ class GameDeck {
             }
         }
         Collections.shuffle(deck);
-        for (Map.Entry<Card, Integer> cardEntry : sideDeck.entrySet()) {
-            for (Integer i = 0; i < cardEntry.getValue(); i++) {
-                // TODO clone
-            }
-        }
     }
 
     public void setFieldZoneStatus(String fieldZoneStatus) {
@@ -93,7 +89,8 @@ class GameDeck {
 
     public boolean doesTrapExist(String cardName) {
         for (int i = 1; i <= 5; i++) {
-            if (spellZones.get(i).getCurrentCard().getName().equals(cardName)) {
+            if ((spellZones.get(i) .getCurrentCard() != null)
+                    && spellZones.get(i).getCurrentCard().getName().equals(cardName)) {
                 return true;
             }
         }

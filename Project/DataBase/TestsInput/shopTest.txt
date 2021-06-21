@@ -1,0 +1,9 @@
+user login --username ali --password ramz
+menu enter shop
+menu enter deck
+increase --money 10000
+shop buy Battle Ox
+shop buy Battle OX
+menu exit
+menu exit
+menu exit

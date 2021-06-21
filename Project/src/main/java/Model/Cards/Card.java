@@ -85,4 +85,9 @@ public class Card implements Comparable<Card> {
     public int compareTo(Card card) {
         return this.name.compareTo(card.name);
     }
+
+    @Override
+    public String toString(){
+        return name;
+    }
 }

@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 
 class Shop {
     public void run(String username) throws IOException {
+        System.out.println("Welcome to Shop");
         while (true) {
             String command = CommonTools.scan.nextLine();
             if (command.matches("^shop buy .+$")) buyCard(username, command);
