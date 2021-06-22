@@ -4,7 +4,8 @@ public class AI {
     private GameDeck AIDeck;
     private GameDeck playerDeck;
     private Phase phase;
-    private boolean isSelected = false;
+    private boolean isSpellSelected = false;
+    private int isMonsterEntered = 0;
 
     public void updateAI(GameDeck AIDeck, GameDeck playerDeck, Phase phase){
         this.AIDeck = AIDeck;
@@ -12,7 +13,7 @@ public class AI {
         this.phase = phase;
     }
 
-    public String decision(GameDeck AIDeck, GameDeck playerDeck, Phase phase){
+    public String decision(){
         String decision = null;
         if (phase == Phase.draw) decision = drawPhase();
         else if (phase == Phase.standby) decision = standbyPhase();
@@ -32,17 +33,29 @@ public class AI {
     }
 
     private String main1Phase(){
-        if (!isSelected){
+        if (!isSpellSelected){
             if (!AIDeck.isSpellZoneFull()){
-                for (int i = 0; i <= AIDeck.getInHandCards().size(); i++){
+                for (int i = 0; i < AIDeck.getInHandCards().size(); i++){
                     if (AIDeck.getInHandCards().get(i).getType().equals("Spell")){
-                        isSelected = true;
+                        isSpellSelected = true;
                         return "select --hand " + i + 1;
                     }
                 }
             }
         } else {
-            isSelected = false;
+            isSpellSelected = false;
+            return "set";
+        }
+        if (isMonsterEntered == 0 && !AIDeck.isMonsterZoneFull()){
+            for (int i = 0; i < AIDeck.getInHandCards().size(); i++){
+                if (AIDeck.getInHandCards().get(i).getType().equals("Monster")){
+                    isMonsterEntered = 1;
+                    return "select --hand " + i + 1;
+                }
+            }
+        }
+        else if (isMonsterEntered == 1){
+            isMonsterEntered = 2;
             return "set";
         }
         return "next phase";
@@ -57,6 +70,8 @@ public class AI {
     }
 
     private String endPhase(){
+        isMonsterEntered = 0;
+        isSpellSelected = false;
         return "next phase";
     }
 }
