@@ -52,12 +52,17 @@ class DuelProgramController {
                 gameDecks.get(changeTurn(turn)).drawCard();
             }
             if (isGameOver(i)) break;
+            AI ai = new AI();
             while (true) {
                 if (phase == Phase.draw && isCardDrawn == 0 && isGameStart == 0 && timeSealTrap != 0) drawCard();
                 if (isRoundOver()) break;
                 System.out.println("phase: " + phase);
                 showGameDeck(turn);
                 String command = CommonTools.scan.nextLine();
+                if (secondPlayer.equals("ai")){
+                    ai.updateAI(gameDecks.get(1), gameDecks.get(0), phase);
+                    command = ai.decision();
+                }
                 if (command.matches("^show graveyard$")) showGraveyard(turn);
                 else if (command.matches("^surrender$")) surrender(turn);
                 else if (command.matches("^select -d$")) deselect();
