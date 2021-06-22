@@ -227,4 +227,12 @@ public class Deck implements Comparable<Deck> {
             System.out.printf("%s: %s\n", spellsAndTraps.get(i).getName(), spellsAndTraps.get(i).getDescription());
         }
     }
+
+    public HashMap<Card, Integer> getMainDeck() {
+        return mainDeck;
+    }
+
+    public HashMap<Card, Integer> getSideDeck() {
+        return sideDeck;
+    }
 }

@@ -247,4 +247,8 @@ public class Player implements Comparable<Player> {
             System.out.printf("%s:%s\n", cardsArray.get(i).getName(), cardsArray.get(i).getDescription());
         }
     }
+
+    public ArrayList<Deck> getDecks() {
+        return decks;
+    }
 }

@@ -4,6 +4,8 @@ import Model.*;
 import Model.Cards.Card;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -87,7 +89,7 @@ class DeckMenu {
     }
 
     private void addCardToDeck(String username, String command) throws IOException {
-        String pattern = "^deck add-card --card ([^-]+) --deck ([^-]*)( --side)*$";
+        String pattern = "^deck add-card --card ([^-]+) --deck ([^-]+)( --side)?$";
         Pattern r = Pattern.compile(pattern);
         Matcher m = r.matcher(command);
         m.find();
@@ -128,7 +130,7 @@ class DeckMenu {
     }
 
     private void removeCardFromDeck(String username, String command) throws IOException {
-        String pattern = "^deck rm-card --card ([^-]*) --deck ([^-]*)( --side)*$";
+        String pattern = "^deck rm-card --card ([^-]+) --deck ([^-]+)( --side)?$";
         Pattern r = Pattern.compile(pattern);
         Matcher m = r.matcher(command);
         m.find();
@@ -230,6 +232,22 @@ class DeckMenu {
     }
 
     private void showCards(String username) {
-        Objects.requireNonNull(Player.getPlayerByUsername(username)).showCards();
+        Player player = Objects.requireNonNull(Player.getPlayerByUsername(username));
+        player.showCards();
+        ArrayList<Deck> decks = player.getDecks();
+        for (Deck deck : decks) {
+            HashMap<Card, Integer> mainDeck = deck.getMainDeck();
+            HashMap<Card, Integer> sideDeck = deck.getSideDeck();
+            for (Map.Entry<Card, Integer> e : mainDeck.entrySet()) {
+                for (int k = 0; k < e.getValue(); k++) {
+                    System.out.printf("%s:%s\n", e.getKey().getName(), e.getKey().getDescription());
+                }
+            }
+            for (Map.Entry<Card, Integer> e : sideDeck.entrySet()) {
+                for (int k = 0; k < e.getValue(); k++) {
+                    System.out.printf("%s:%s\n", e.getKey().getName(), e.getKey().getDescription());
+                }
+            }
+        }
     }
 }
