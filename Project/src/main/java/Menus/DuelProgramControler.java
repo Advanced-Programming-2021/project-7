@@ -54,7 +54,7 @@ class DuelProgramController {
             if (isGameOver(i)) break;
             AI ai = new AI();
             while (true) {
-                if (phase == Phase.draw && isCardDrawn == 0 && isGameStart == 0 && timeSealTrap != 0) drawCard();
+                if (phase == Phase.draw && isCardDrawn == 0 && isGameStart == 0 && timeSealTrap == 0) drawCard();
                 if (isRoundOver()) break;
                 System.out.println("phase: " + phase);
                 showGameDeck(turn);
