@@ -58,10 +58,12 @@ class DuelProgramController {
                 if (isRoundOver()) break;
                 System.out.println("phase: " + phase);
                 showGameDeck(turn);
-                String command = CommonTools.scan.nextLine();
+                String command = null;
                 if (secondPlayer.equals("ai") && turn == 1){
                     ai.updateAI(gameDecks.get(1), gameDecks.get(0), phase);
                     command = ai.decision();
+                } else{
+                    command = CommonTools.scan.nextLine();
                 }
                 if (command.matches("^show graveyard$")) showGraveyard(turn);
                 else if (command.matches("^surrender$")) surrender(turn);
