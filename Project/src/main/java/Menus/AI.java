@@ -1,11 +1,13 @@
 package Menus;
 
+import Model.Cards.Monster;
+
 public class AI {
     private GameDeck AIDeck;
     private GameDeck playerDeck;
     private Phase phase;
-    private boolean isSpellSelected = false;
-    private int isMonsterEntered = 0;
+    private static int isSpellSelected = 0;
+    private static int isMonsterEntered = 0;
 
     public void updateAI(GameDeck AIDeck, GameDeck playerDeck, Phase phase){
         this.AIDeck = AIDeck;
@@ -33,28 +35,28 @@ public class AI {
     }
 
     private String main1Phase(){
-        if (!isSpellSelected){
-            if (!AIDeck.isSpellZoneFull()){
-                for (int i = 0; i < AIDeck.getInHandCards().size(); i++){
-                    if (AIDeck.getInHandCards().get(i).getType().equals("Spell")){
-                        isSpellSelected = true;
-                        return "select --hand " + i + 1;
-                    }
+        if (isSpellSelected == 0 && !AIDeck.isSpellZoneFull()){
+            for (int i = 0; i < AIDeck.getInHandCards().size(); i++){
+                if (AIDeck.getInHandCards().get(i).getType().equals("Spell") ||
+                        AIDeck.getInHandCards().get(i).getType().equals("Trap")) {
+                    isSpellSelected = 1;
+                    int j = i + 1;
+                    return "select --hand " + j;
                 }
             }
-        } else {
-            isSpellSelected = false;
+        } else if (isSpellSelected == 1){
+            isSpellSelected = 0;
             return "set";
         }
         if (isMonsterEntered == 0 && !AIDeck.isMonsterZoneFull()){
             for (int i = 0; i < AIDeck.getInHandCards().size(); i++){
-                if (AIDeck.getInHandCards().get(i).getType().equals("Monster")){
+                if (AIDeck.getInHandCards().get(i).getType().equals("Monster")) {
                     isMonsterEntered = 1;
-                    return "select --hand " + i + 1;
+                    int j = i + 1;
+                    return "select --hand " + j;
                 }
             }
-        }
-        else if (isMonsterEntered == 1){
+        } else if (isMonsterEntered == 1){
             isMonsterEntered = 2;
             return "set";
         }
@@ -71,7 +73,7 @@ public class AI {
 
     private String endPhase(){
         isMonsterEntered = 0;
-        isSpellSelected = false;
+        isSpellSelected = 0;
         return "next phase";
     }
 }
