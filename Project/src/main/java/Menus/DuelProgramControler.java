@@ -379,8 +379,8 @@ class DuelProgramController {
             monsterZonePosition = 1;
         } else {
             monsterZonePosition = CommonTools.scan.nextInt();
+            CommonTools.scan.nextLine();
         }
-        CommonTools.scan.nextLine();
         if (monsterZonePosition < 1 || monsterZonePosition > 5) {
             System.out.println("there no monsters on this address");
             return;
@@ -391,9 +391,9 @@ class DuelProgramController {
         }
         System.out.println("summoned successfully");
         isSummoned = 1;
-        enteredMonsterCardIndex = gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
         gameDecks.get(turn).tributeCardFromMonsterZone(monsterZonePosition);
         gameDecks.get(turn).getInHandCards().remove(position - 1);
+        enteredMonsterCardIndex = gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
         deselect();
     }
 
@@ -414,13 +414,13 @@ class DuelProgramController {
         if (isAI == 1){
             firstMonster = 1;
             secondMonster = 2;
-            
+
         } else {
             firstMonster = CommonTools.scan.nextInt();
             CommonTools.scan.nextLine();
             secondMonster = CommonTools.scan.nextInt();
+            CommonTools.scan.nextLine();
         }
-        CommonTools.scan.nextLine();
         if (firstMonster < 1 || firstMonster > 5 || secondMonster < 1 || secondMonster > 5) {
             System.out.println("there are no monsters on one of this addresses");
             return;
@@ -432,10 +432,10 @@ class DuelProgramController {
         }
         System.out.println("summoned successfully");
         isSummoned = 1;
-        enteredMonsterCardIndex = gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
         gameDecks.get(turn).tributeCardFromMonsterZone(firstMonster);
         gameDecks.get(turn).tributeCardFromMonsterZone(secondMonster);
         gameDecks.get(turn).getInHandCards().remove(position - 1);
+        enteredMonsterCardIndex = gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
         deselect();
     }
 
