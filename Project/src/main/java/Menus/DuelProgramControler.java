@@ -39,6 +39,7 @@ class DuelProgramController {
     private int timeSealTrap = 0;
     private int isCardDrawn = 0;
     private int isGameStart = 2;
+    private int isAI = 0;
 
     public void run(String firstPlayer, String secondPlayer, int round) {
         for (int i = 1; i <= round; i++) {
@@ -60,6 +61,7 @@ class DuelProgramController {
                 if (secondPlayer.equals("ai") && turn == 1) {
                     ai.updateAI(gameDecks.get(1), gameDecks.get(0), phase);
                     command = ai.decision();
+                    isAI = 1;
                 } else {
                     command = CommonTools.scan.nextLine();
                 }
@@ -372,7 +374,12 @@ class DuelProgramController {
             return;
         }
         System.out.println("enter position of tribute monster in monster zone:");
-        int monsterZonePosition = CommonTools.scan.nextInt();
+        int monsterZonePosition = 0;
+        if (isAI == 1){
+            monsterZonePosition = 1;
+        } else {
+            monsterZonePosition = CommonTools.scan.nextInt();
+        }
         CommonTools.scan.nextLine();
         if (monsterZonePosition < 1 || monsterZonePosition > 5) {
             System.out.println("there no monsters on this address");
@@ -383,11 +390,11 @@ class DuelProgramController {
             return;
         }
         System.out.println("summoned successfully");
-        deselect();
         isSummoned = 1;
         enteredMonsterCardIndex = gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
         gameDecks.get(turn).tributeCardFromMonsterZone(monsterZonePosition);
         gameDecks.get(turn).getInHandCards().remove(position - 1);
+        deselect();
     }
 
     private void summonWithTwoTribute(int position) {
@@ -402,9 +409,17 @@ class DuelProgramController {
             return;
         }
         System.out.println("enter position of tribute monster in monster zone:");
-        int firstMonster = CommonTools.scan.nextInt();
-        CommonTools.scan.nextLine();
-        int secondMonster = CommonTools.scan.nextInt();
+        int firstMonster = 0;
+        int secondMonster = 0;
+        if (isAI == 1){
+            firstMonster = 1;
+            secondMonster = 2;
+            
+        } else {
+            firstMonster = CommonTools.scan.nextInt();
+            CommonTools.scan.nextLine();
+            secondMonster = CommonTools.scan.nextInt();
+        }
         CommonTools.scan.nextLine();
         if (firstMonster < 1 || firstMonster > 5 || secondMonster < 1 || secondMonster > 5) {
             System.out.println("there are no monsters on one of this addresses");
@@ -416,12 +431,12 @@ class DuelProgramController {
             return;
         }
         System.out.println("summoned successfully");
-        deselect();
         isSummoned = 1;
         enteredMonsterCardIndex = gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
         gameDecks.get(turn).tributeCardFromMonsterZone(firstMonster);
         gameDecks.get(turn).tributeCardFromMonsterZone(secondMonster);
         gameDecks.get(turn).getInHandCards().remove(position - 1);
+        deselect();
     }
 
     private void set() {
