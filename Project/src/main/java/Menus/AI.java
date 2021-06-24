@@ -9,6 +9,8 @@ public class AI {
     private Phase phase;
     private static int isSpellSelected = 0;
     private static int isMonsterEntered = 0;
+    private static int isMonsterSelectedForAttack = 0;
+    private static int indexOfSelectedMonster = 1;
 
     public void updateAI(GameDeck AIDeck, GameDeck playerDeck, Phase phase) {
         this.AIDeck = AIDeck;
@@ -76,7 +78,40 @@ public class AI {
     }
 
     private String battlePhase() {
-        
+        if (playerDeck.isMonsterZoneEmpty() && !AIDeck.isMonsterZoneEmpty()) {
+            if (isMonsterSelectedForAttack == 0) {
+                for (int i = indexOfSelectedMonster; i <= 5; i++) {
+                    if (AIDeck.getMonsterZones().get(i).getCurrentMonster() != null) {
+                        isMonsterSelectedForAttack = 1;
+                        int index = indexOfSelectedMonster;
+                        indexOfSelectedMonster = i + 1;
+                        return "select --monster " + index;
+                    }
+                }
+            } else if (isMonsterSelectedForAttack == 1) {
+                isMonsterSelectedForAttack = 0;
+                return "attack direct";
+            }
+        } else if (!playerDeck.isMonsterZoneEmpty()) {
+            if (isMonsterSelectedForAttack == 0) {
+                for (int i = indexOfSelectedMonster; i <= 5; i++) {
+                    if (AIDeck.getMonsterZones().get(i).getCurrentMonster() != null) {
+                        isMonsterSelectedForAttack = 1;
+                        int index = indexOfSelectedMonster;
+                        indexOfSelectedMonster = i + 1;
+                        return "select --monster " + index;
+                    }
+                }
+            } else if (isMonsterSelectedForAttack == 1) {
+                isMonsterSelectedForAttack = 0;
+                while (true) {
+                    int randomIndex = (int) Math.floor(Math.random() * 5 + 1);
+                    if (playerDeck.getMonsterZones().get(randomIndex).getCurrentMonster() != null) {
+                        return "attack " + randomIndex;
+                    }
+                }
+            }
+        }
         return "next phase";
     }
 
@@ -87,6 +122,8 @@ public class AI {
     private String endPhase() {
         isMonsterEntered = 0;
         isSpellSelected = 0;
+        isMonsterSelectedForAttack = 0;
+        indexOfSelectedMonster = 1;
         return "next phase";
     }
 
