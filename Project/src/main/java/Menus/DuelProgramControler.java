@@ -303,16 +303,31 @@ class DuelProgramController {
     }
 
     private void selectOpponentMonster(int position) {
+        if (gameDecks.get(changeTurn(turn)).getMonsterZones().get(position).isEmpty()) {
+            System.out.println("no card found in the given position");
+            return;
+        }
+        selectedCard = gameDecks.get(changeTurn(turn)).getMonsterZones().get(position).getCurrentMonster();
         selectedCardIndex = position;
         selectedDeck = "opponentMonster";
     }
 
     private void selectOpponentSpell(int position) {
+        if (gameDecks.get(changeTurn(turn)).getSpellZones().get(position).isEmpty()) {
+            System.out.println("no card found in the given position");
+            return;
+        }
+        selectedCard = gameDecks.get(changeTurn(turn)).getSpellZones().get(position).getCurrentCard();
         selectedCardIndex = position;
         selectedDeck = "opponentSpell";
     }
 
     private void selectOpponentField() {
+        if (gameDecks.get(changeTurn(turn)).isSpellZoneEmpty()) {
+            System.out.println("no card found in the given position");
+            return;
+        }
+        selectedCard = gameDecks.get(changeTurn(turn)).getFieldZone();
         selectedCardIndex = -1;
         selectedDeck = "opponentField";
     }
