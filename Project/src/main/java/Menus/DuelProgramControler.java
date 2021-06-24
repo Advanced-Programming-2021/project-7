@@ -57,10 +57,10 @@ class DuelProgramController {
                 System.out.println("phase: " + phase);
                 showGameDeck(turn);
                 String command = null;
-                if (secondPlayer.equals("ai") && turn == 1){
+                if (secondPlayer.equals("ai") && turn == 1) {
                     ai.updateAI(gameDecks.get(1), gameDecks.get(0), phase);
                     command = ai.decision();
-                } else{
+                } else {
                     command = CommonTools.scan.nextLine();
                 }
                 if (command.matches("^show graveyard$")) showGraveyard(turn);
@@ -1153,8 +1153,6 @@ class DuelProgramController {
         for (int i = 1; i < 6; i++) {
             gameDecks.get(turn).getMonsterZones().get(i).resetAttack();
         }
-        if (isGameStart == 0)
-            drawXCards(1);
         System.out.println("its " + gameDecks.get(turn).getPlayerNickName() + "'s turn");
         round++;
     }
