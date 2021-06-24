@@ -3,7 +3,7 @@ package Model.Cards;
 public class MonsterZone {
     private Card currentMonster = null;
     private String status = "E";
-    private boolean hasAttackedThisRound = false; // TODO: 2021-05-08 reset at the start of the round
+    private boolean hasAttackedThisRound = false;
 
     public MonsterZone(){
 
@@ -51,6 +51,7 @@ public class MonsterZone {
     }
 
     public Card removeCard(){
+        hasAttackedThisRound = false;
         Card card = currentMonster;
         currentMonster = null;
         status = "E";

@@ -43,9 +43,7 @@ class DuelProgramController {
     public void run(String firstPlayer, String secondPlayer, int round) {
         for (int i = 1; i <= round; i++) {
             setGameDecks(firstPlayer, secondPlayer);
-            //supplySquad();
             keepMessengerOfPeace();
-            //drawXCards(1);
             // methods to be set after each round
             for (int j = 0; j < 5; j++) {
                 gameDecks.get(turn).drawCard();
@@ -132,11 +130,14 @@ class DuelProgramController {
     }
 
     private void showGameDeck(int turn) {
+
         GameDeck myDeck = gameDecks.get(turn);
         GameDeck enemyDeck = gameDecks.get(changeTurn(turn));
+        System.out.println("**************************");
         showEnemyDeck(enemyDeck);
         System.out.println("--------------------------");
         showMyDeck(myDeck);
+        System.out.println("**************************");
     }
 
     private void showEnemyDeck(GameDeck enemyDeck) {
@@ -277,6 +278,7 @@ class DuelProgramController {
         selectedCard = gameDecks.get(turn).getSpellZones().get(position).getCurrentCard();
         selectedCardIndex = position;
         selectedDeck = "spell";
+        System.out.println("card selected");
     }
 
     private void selectField() {
@@ -287,6 +289,7 @@ class DuelProgramController {
         selectedCard = gameDecks.get(turn).getFieldZone();
         selectedCardIndex = -1;
         selectedDeck = "field";
+        System.out.println("card selected");
     }
 
     private void selectHand(int position) {
@@ -347,9 +350,11 @@ class DuelProgramController {
         Monster selectedMonster = (Monster) selectedCard;
         if (selectedMonster.getLevel() <= 4) {
             System.out.println("summoned successfully");
+            activateOrDeactivateFieldCardForAll(-1);
             isSummoned = 1;
             enteredMonsterCardIndex = gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
             gameDecks.get(turn).getInHandCards().remove(position - 1);
+            activateOrDeactivateFieldCardForAll(1);
             deselect();
         } else if (selectedMonster.getLevel() == 5 || selectedMonster.getLevel() == 6) summonWithOneTribute(position);
         else if (selectedMonster.getLevel() == 7 || selectedMonster.getLevel() == 8) summonWithTwoTribute(position);
@@ -444,9 +449,11 @@ class DuelProgramController {
     private void setMonster(int position) {
         if (!isSummonAndSetValid(position)) return;
         System.out.println("set successfully");
+        activateOrDeactivateFieldCardForAll(-1);
         enteredMonsterCardIndex = gameDecks.get(turn).setCardToMonsterZone(selectedCard.getName());
         gameDecks.get(turn).getInHandCards().remove(position - 1);
         isSummoned = 1;
+        activateOrDeactivateFieldCardForAll(1);
         deselect();
     }
 
@@ -562,6 +569,11 @@ class DuelProgramController {
         } else if (phase != Phase.battle) {
             System.out.println("you can’t do this action in this phase");
             return;
+
+        } else if (!myDeck.getMonsterZones().get(selectedCardIndex).getStatus().equals("OO")) {
+            System.out.println("This card is not in attacking position");
+            return;
+
         } else if (myDeck.getMonsterZones().get(selectedCardIndex).getHasAttackedThisRound()) {
             System.out.println("this card already attacked");
             return;
@@ -572,6 +584,7 @@ class DuelProgramController {
             return;
         } else {
             if (!checkTrap()) {
+                gameDecks.get(turn).getMonsterZones().get(selectedCardIndex).attack();
                 if (enemyDeck.getMonsterZones().get(selectDefender).getStatus().equals("OO")) {
                     attackOO(selectDefender, myDeck, enemyDeck);
                 } else if (enemyDeck.getMonsterZones().get(selectDefender).getStatus().equals("DO")) {
@@ -623,7 +636,7 @@ class DuelProgramController {
         int defenderDamage = ((Monster) enemyDeck.getMonsterZones()
                 .get(selectDefender).getCurrentMonster()).getAttackPoint();
         int damage = attackerDamage - defenderDamage;
-        System.out.println( attackerDamage + " " + defenderDamage);
+        System.out.println(attackerDamage + " " + defenderDamage);
         monsterPowersController.setSelectedCardIndex(selectedCardIndex);
         monsterPowersController.setAttackerCard(selectedCard);
         monsterPowersController.setTurn(turn);
@@ -632,6 +645,7 @@ class DuelProgramController {
                     .get(selectDefender).getCurrentMonster());
             if (monsterPowersController.getIsEnemyTakeDamage()) enemyDeck.takeDamage(damage);
             moveToGraveyard(changeTurn(turn), "MonsterZone", selectDefender);
+            enemyDeck.takeDamage(damage);
             System.out.printf("your opponent’s monster is destroyed and your opponent receives"
                     + " %d battle damage\n", damage);
         } else if (damage == 0) {
@@ -646,6 +660,7 @@ class DuelProgramController {
                     .get(selectDefender).getCurrentMonster());
             Card card = myDeck.getMonsterZones().get(selectedCardIndex).removeCard();
             moveToGraveyard(turn, "MonsterZone", selectedCardIndex);
+            myDeck.takeDamage(-1 * damage);
             System.out.printf("Your monster card is destroyed and you received %d battle" +
                     "damage", damage);
         }
@@ -656,7 +671,7 @@ class DuelProgramController {
         int attackerDamage = selectedMonster.getAttackPoint();
         int defenderDamage = ((Monster) enemyDeck.getMonsterZones().get(selectDefender)
                 .getCurrentMonster()).getDefensePoint();
-        System.out.println( attackerDamage + " " + defenderDamage);
+        System.out.println(attackerDamage + " " + defenderDamage);
         int damage = attackerDamage - defenderDamage;
         if (damage > 0) {
             monsterPowersController.setSelectedCardIndex(selectedCardIndex);
@@ -669,7 +684,7 @@ class DuelProgramController {
         } else if (attackerDamage == defenderDamage) {
             System.out.println("no card is destroyed");
         } else {
-            myDeck.takeDamage(damage);
+            myDeck.takeDamage(-1 * damage);
             System.out.printf("no card is destroyed and you received %d battle damage\n", damage);
         }
     }
@@ -681,7 +696,7 @@ class DuelProgramController {
         int attackerDamage = selectedMonster.getAttackPoint();
         int defenderDamage = ((Monster) enemyDeck.getMonsterZones().get(selectDefender)
                 .getCurrentMonster()).getDefensePoint();
-        System.out.println( attackerDamage + " " + defenderDamage);
+        System.out.println(attackerDamage + " " + defenderDamage);
         int damage = attackerDamage - defenderDamage;
         if (damage > 0) {
             monsterPowersController.setSelectedCardIndex(selectedCardIndex);
@@ -694,7 +709,7 @@ class DuelProgramController {
         } else if (damage == 0) {
             System.out.printf("enemy card was %s no card is destroyed\n", enemyCardName);
         } else {
-            myDeck.takeDamage(defenderDamage - attackerDamage);
+            myDeck.takeDamage(-1 * damage);
             System.out.printf("enemy card was %s no card is destroyed and you received %d battle damage\n"
                     , enemyCardName, damage);
         }
@@ -709,9 +724,12 @@ class DuelProgramController {
             System.out.println("you can’t attack with this card");
         } else if (phase != Phase.battle) {
             System.out.println("you can’t do this action in this phase");
+        } else if (!myDeck.getMonsterZones().get(selectedCardIndex).getStatus().equals("OO")) {
+            System.out.println("This card is not in attacking position");
         } else if (myDeck.getMonsterZones().get(selectedCardIndex).getHasAttackedThisRound()) {
             System.out.println("this card already attacked");
         } else {
+            gameDecks.get(turn).getMonsterZones().get(selectedCardIndex).attack();
             Monster selectedMonster = (Monster) selectedCard;
             int attackerDamage = selectedMonster.getAttackPoint();
             enemyDeck.takeDamage(attackerDamage);
@@ -736,8 +754,7 @@ class DuelProgramController {
             System.out.println("you have already activated this card");
             return;
         } else if (gameDecks.get(turn).isSpellZoneFull() && ((CommonTools.getMatcher
-                (((Spell) selectedCard).getSpellIcon(), "Continuous|Field").matches()
-                || (selectedCard).getName().equals("Swords of Revealing Light")))) {
+                (((Spell) selectedCard).getSpellIcon(), "Continuous|Field").matches()))) {
             System.out.println("spell card zone is full");
             return;
         }
@@ -745,32 +762,43 @@ class DuelProgramController {
         spellAbsorptionCheck();
         Spell spell = (Spell) selectedCard;
         if (selectedDeck.equals("hand")) {
-            if (CommonTools.getMatcher(spell.getSpellIcon(), "Continuous|Field").matches()
-                    || spell.getName().equals("Swords of Revealing Light")) {
+            if (CommonTools.getMatcher(spell.getSpellIcon(), "Continuous").matches()) {
                 int freeIndex = gameDecks.get(turn).spellZoneFirstFreeSpace();
                 SpellZone spellZone = gameDecks.get(turn).getSpellZones().get(freeIndex);
                 spellZone.setSpell(selectedCard);
                 spellZone.setVisible();
+                System.out.println("Spell activated");
+                return;
+            } else if (CommonTools.getMatcher(spell.getSpellIcon(), "Field").matches()) {
+                activateOrDeactivateFieldCardForAll(-1);
+                if (!gameDecks.get(turn).isFieldZoneEmpty())
+                    moveToGraveyard(turn, "field", 0);
+                gameDecks.get(turn).setFieldZone(selectedCard);
+                gameDecks.get(turn).setFieldZoneStatus("O");
+                activateOrDeactivateFieldCardForAll(1);
+                System.out.println("Field activated");
                 return;
             } else {
                 moveToGraveyard(turn, "inHand", selectedCardIndex);
             }
         } else if (selectedDeck.equals("spell")) {
-            if (CommonTools.getMatcher(spell.getSpellIcon(), "Continuous").matches()
-                    || spell.getName().equals("Swords of Revealing Light")) {
+            if (CommonTools.getMatcher(spell.getSpellIcon(), "Continuous").matches()) {
                 int freeIndex = gameDecks.get(turn).spellZoneFirstFreeSpace();
                 SpellZone spellZone = gameDecks.get(turn).getSpellZones().get(freeIndex);
                 spellZone.setVisible();
+                System.out.println("Spell activated");
                 return;
             } else {
-                moveToGraveyard(turn, "inHand", selectedCardIndex);
+                moveToGraveyard(turn, "spell", selectedCardIndex);
             }
         } else if (selectedDeck.equals("field")) {
             gameDecks.get(turn).setFieldZoneStatus("O");
             activateOrDeactivateFieldCardForAll(1);
+            return;
         }
         checkSpellCard();
         deselect();
+
     }
 
     private void activateTrap() { // todo complete commands
@@ -801,14 +829,12 @@ class DuelProgramController {
         } else {
             System.out.println("set successfully");
             Spell spell = (Spell) selectedCard;
-            System.out.println(spell.getSpellIcon());
             if (spell.getSpellIcon().equals("Field")) {
                 if (!(myDeck.isFieldZoneEmpty())) {
                     moveToGraveyard(turn, "field", 0);
                 }
                 myDeck.setFieldZone(selectedCard);
                 myDeck.setFieldZoneStatus("H");
-                activateOrDeactivateFieldCardForAll(1);
             } else {
                 gameDecks.get(turn).setSpellToSpellZone(selectedCard.getName());
             }
@@ -1124,6 +1150,11 @@ class DuelProgramController {
         if (timeSealTrap != 0) timeSealTrap = timeSealTrap - 1;
         if (isGameStart != 0) isGameStart = isGameStart - 1;
         turn = changeTurn(turn);
+        for (int i = 1; i < 6; i++) {
+            gameDecks.get(turn).getMonsterZones().get(i).resetAttack();
+        }
+        if (isGameStart == 0)
+            drawXCards(1);
         System.out.println("its " + gameDecks.get(turn).getPlayerNickName() + "'s turn");
         round++;
     }
@@ -1144,7 +1175,6 @@ class DuelProgramController {
         if (isGameStart == 2 && phase == Phase.battle) {
             phase = Phase.end;
         }
-        System.out.println(phase.toString());
     }
 
     private void checkSpellCard() {
@@ -1155,6 +1185,7 @@ class DuelProgramController {
             drawXCards(1);
         } else if (spell.getName().equals("Raigeki")) {
             Raigeki();
+            System.out.println("All enemy monsters were destroyed");
         } else if (spell.getName().equals("Harpie’s Feather Duster")) {
             HarpieFeatherDuster();
         } else if (spell.getName().equals("Dark Hole")) {
@@ -1171,13 +1202,15 @@ class DuelProgramController {
         for (int i = 0; i < myDeck.getDeck().size(); i++) {
             if (myDeck.getDeck().get(i).getType().equals("Spell")) {
                 Spell spell = (Spell) myDeck.getDeck().get(i);
-                if (spell.getSpellType().equals("Field")) {
+                if (spell.getSpellIcon().equals("Field")) {
                     myDeck.getInHandCards().add(myDeck.getDeck().get(i));
                     myDeck.getDeck().remove(i);
+                    System.out.println("A field card was drawn");
                     return;
                 }
             }
         }
+        System.out.println("No field card was found");
     }
 
     private void drawXCards(int x) {
@@ -1208,6 +1241,7 @@ class DuelProgramController {
                 moveToGraveyard(changeTurn(turn), "SpellZone", i);
             }
         }
+        System.out.println("All enemy spell were destroyed");
     }
 
     private void darkHole() {
@@ -1215,6 +1249,7 @@ class DuelProgramController {
         turn = changeTurn(turn);
         Raigeki();
         turn = changeTurn(turn);
+        System.out.println("All cards were destroyed");
     }
 
     private void supplySquad() { // TODO: 2021-06-20  
@@ -1232,8 +1267,10 @@ class DuelProgramController {
             for (int i1 = 1; i1 <= 5; i1++) {
                 if (!deck.getSpellZones().get(i1).getStatus().equals("O"))
                     continue;
-                if (deck.getSpellZones().get(i1).getCurrentCard().getName().equals("Spell Absorption"))
+                if (deck.getSpellZones().get(i1).getCurrentCard().getName().equals("Spell Absorption")) {
                     deck.increaseLP(500);
+                    System.out.println("Health gained from spell absorption +500");
+                }
             }
         }
     }
@@ -1244,7 +1281,8 @@ class DuelProgramController {
                 GameDeck deck = gameDecks.get(i);
                 for (int i1 = 1; i1 <= 5; i1++) {
                     if ((!deck.getMonsterZones().get(i1).isEmpty()) &&
-                            deck.getMonsterZones().get(i1).getCurrentMonster().getName().equals("Messenger of peace")) {
+                            deck.getMonsterZones().get(i1).getCurrentMonster().getName()
+                                    .equals("Messenger of peace")) {
                         return true;
                     }
                 }
@@ -1266,12 +1304,14 @@ class DuelProgramController {
                     moveToGraveyard(turn, "Spell", i);
                 } else {
                     System.out.println("invalid answer");
+                    keepMessengerOfPeace();
+                    return;
                 }
             }
         }
     }
 
-    private void twinTwisters() { // TODO: 2021-05-16 change it after graphic
+    private void twinTwisters() {
         GameDeck myDeck = gameDecks.get(turn);
         GameDeck enemyDeck = gameDecks.get(changeTurn(turn));
         System.out.println("Choose which card you want to discard");
@@ -1282,7 +1322,7 @@ class DuelProgramController {
             return;
         }
         moveToGraveyard(turn, "inHand", index);
-        System.out.println("choose index of 2 cards you want to destroy");
+        System.out.println("choose index of 2 cards you want to destroy (in 2 separate lines)");
         int[] enemyCardIndexes = new int[2];
         enemyCardIndexes[0] = CommonTools.scan.nextInt();
         enemyCardIndexes[1] = CommonTools.scan.nextInt();
@@ -1293,6 +1333,7 @@ class DuelProgramController {
                 }
             }
         }
+        System.out.println("Chosen cards were destroyed");
     }
 
     private void mysticalTyphoon() {
@@ -1300,10 +1341,11 @@ class DuelProgramController {
         System.out.println("Enter the index of the enemy card you want to destroy");
         int index = CommonTools.scan.nextInt();
         if (index < 1 || index > 5) {
-            System.out.println("This index is not valid");
+            System.out.println("This square is not valid");
             mysticalTyphoon();
             return;
         }
+        System.out.println("Enemy card destroyed");
         moveToGraveyard(changeTurn(turn), "SpellZone", index);
     }
 
@@ -1423,7 +1465,7 @@ class DuelProgramController {
             if (!gameDecks.get(i).getFieldZoneStatus().equals("O"))
                 continue;
             String fieldCardName = gameDecks.get(i).getFieldZone().getName();
-            for (int i1 = 0; i1 < gameDecks.get(i).getMonsterZones().size(); i1++) {
+            for (int i1 = 1; i1 < 6; i1++) {
                 if (gameDecks.get(i).getMonsterZones().get(i1).isEmpty())
                     continue;
                 if (fieldCardName.equals("Yami")) {

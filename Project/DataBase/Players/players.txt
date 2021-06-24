@@ -4,7 +4,7 @@
     "@val": {
       "username": "ali",
       "password": "ramz1",
-      "nickname": "ali2",
+      "nickname": "agha",
       "score": 0,
       "money": 76700,
       "cards": [
