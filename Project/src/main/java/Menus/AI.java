@@ -1,6 +1,7 @@
 package Menus;
 
 import Model.Cards.Monster;
+import Model.Deck;
 
 public class AI {
     private GameDeck AIDeck;
@@ -9,13 +10,13 @@ public class AI {
     private static int isSpellSelected = 0;
     private static int isMonsterEntered = 0;
 
-    public void updateAI(GameDeck AIDeck, GameDeck playerDeck, Phase phase){
+    public void updateAI(GameDeck AIDeck, GameDeck playerDeck, Phase phase) {
         this.AIDeck = AIDeck;
         this.playerDeck = playerDeck;
         this.phase = phase;
     }
 
-    public String decision(){
+    public String decision() {
         String decision = null;
         if (phase == Phase.draw) decision = drawPhase();
         else if (phase == Phase.standby) decision = standbyPhase();
@@ -26,17 +27,17 @@ public class AI {
         return decision;
     }
 
-    private String drawPhase(){
+    private String drawPhase() {
         return "next phase";
     }
 
-    private String standbyPhase(){
+    private String standbyPhase() {
         return "next phase";
     }
 
-    private String main1Phase(){
-        if (isSpellSelected == 0 && !AIDeck.isSpellZoneFull()){
-            for (int i = 0; i < AIDeck.getInHandCards().size(); i++){
+    private String main1Phase() {
+        if (isSpellSelected == 0 && !AIDeck.isSpellZoneFull()) {
+            for (int i = 0; i < AIDeck.getInHandCards().size(); i++) {
                 if (AIDeck.getInHandCards().get(i).getType().equals("Spell") ||
                         AIDeck.getInHandCards().get(i).getType().equals("Trap")) {
                     isSpellSelected = 1;
@@ -44,36 +45,58 @@ public class AI {
                     return "select --hand " + j;
                 }
             }
-        } else if (isSpellSelected == 1){
+        } else if (isSpellSelected == 1) {
             isSpellSelected = 0;
             return "set";
         }
-        if (isMonsterEntered == 0 && !AIDeck.isMonsterZoneFull()){
-            for (int i = 0; i < AIDeck.getInHandCards().size(); i++){
+        if (isMonsterEntered == 0 && !AIDeck.isMonsterZoneFull()) {
+            for (int i = 0; i < AIDeck.getInHandCards().size(); i++) {
                 if (AIDeck.getInHandCards().get(i).getType().equals("Monster")) {
-                    isMonsterEntered = 1;
-                    int j = i + 1;
-                    return "select --hand " + j;
+                    Monster selectedMonster = (Monster) AIDeck.getInHandCards().get(i);
+                    if ((selectedMonster.getLevel() == 7 || selectedMonster.getLevel() == 8) && numberOfMonsters(AIDeck) >= 2) {
+                        isMonsterEntered = 1;
+                        int j = i + 1;
+                        return "select --hand " + j;
+                    } else if ((selectedMonster.getLevel() == 5 || selectedMonster.getLevel() == 6) && numberOfMonsters(AIDeck) >= 1) {
+                        isMonsterEntered = 1;
+                        int j = i + 1;
+                        return "select --hand " + j;
+                    } else if (selectedMonster.getLevel() <= 4) {
+                        isMonsterEntered = 1;
+                        int j = i + 1;
+                        return "select --hand " + j;
+                    }
                 }
             }
-        } else if (isMonsterEntered == 1){
+        } else if (isMonsterEntered == 1) {
             isMonsterEntered = 2;
-            return "set";
+            return "summon";
         }
         return "next phase";
     }
 
-    private String battlePhase(){
+    private String battlePhase() {
+        
         return "next phase";
     }
 
-    private String main2Phase(){
+    private String main2Phase() {
         return "next phase";
     }
 
-    private String endPhase(){
+    private String endPhase() {
         isMonsterEntered = 0;
         isSpellSelected = 0;
         return "next phase";
+    }
+
+    private int numberOfMonsters(GameDeck gameDeck) {
+        int number = 0;
+        for (int i = 1; i <= 5; i++) {
+            if (gameDeck.getMonsterZones().get(i).getCurrentMonster() != null) {
+                number = number + 1;
+            }
+        }
+        return number;
     }
 }
