@@ -80,7 +80,11 @@ public class Monster extends Card {
         return cardNumber;
     }
 
-//    public Monster Clone1(){
+    public String getCardType() {
+        return cardType;
+    }
+
+    //    public Monster Clone1(){
 //        return new Monster(name, level, attribute, monsterType
 //                , cardType, attackPoint, defensePoint, description, price, type);
 //    }

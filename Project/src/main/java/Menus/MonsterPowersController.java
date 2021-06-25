@@ -117,7 +117,24 @@ public class MonsterPowersController {
 
     public void ScannerPower(Card card) {
         GameDeck enemyDeck = gameDecks.get((turn + 1) % 2);
-        enemyDeck.getGraveyardCards();
+        duelProgramController.showGraveyard((turn + 1) % 2);
+        System.out.println("please select one of enemy graveyard cards: ");
+        while (true) {
+            int cardNumber = CommonTools.scan.nextInt();
+            CommonTools.scan.nextLine();
+            if (cardNumber < 1 || cardNumber > enemyDeck.getGraveyardCards().size() + 1) {
+                System.out.println("there is no card with that number");
+                continue;
+            }
+            Monster cardToBeScan = (Monster) enemyDeck.getGraveyardCards().get(cardNumber - 1);
+            if (!(cardToBeScan.getCardType().equals("Monster"))) {
+                System.out.println("selected card is not a monster card");
+                continue;
+            }
+            Monster monster = (Monster) card;
+            monster.setAttackPoint(cardToBeScan.getAttackPoint());
+            monster.setDefensePoint(cardToBeScan.getDefensePoint());
+        }
     }
 
     public void exploderDragonPower() {

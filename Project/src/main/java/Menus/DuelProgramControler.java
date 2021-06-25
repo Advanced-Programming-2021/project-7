@@ -352,6 +352,8 @@ class DuelProgramController {
         Monster selectedMonster = (Monster) selectedCard;
         if (selectedMonster.getLevel() <= 4) {
             System.out.println("summoned successfully");
+            monsterPowersController.setTurn(turn);
+            monsterPowersController.monsterPowersWhenSummon(selectedCard);
             activateOrDeactivateFieldCardForAll(-1);
             isSummoned = 1;
             enteredMonsterCardIndex = gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
@@ -912,7 +914,7 @@ class DuelProgramController {
         }
     }
 
-    private void showGraveyard(int turn) {
+    public void showGraveyard(int turn) {
         GameDeck gameDeck;
         if (turn == 0)
             gameDeck = gameDecks.get(0);
