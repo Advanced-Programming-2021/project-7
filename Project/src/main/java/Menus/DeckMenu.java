@@ -4,10 +4,7 @@ import Model.*;
 import Model.Cards.Card;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -233,21 +230,32 @@ class DeckMenu {
 
     private void showCards(String username) {
         Player player = Objects.requireNonNull(Player.getPlayerByUsername(username));
-        player.showCards();
+        ArrayList<Card> allCards = new ArrayList<>();
+        HashMap<Card, Integer> notInDeckCards = player.getCards();
+        for (Map.Entry<Card, Integer> e : notInDeckCards.entrySet()) {
+            for (int k = 0; k < e.getValue(); k++) {
+                allCards.add(e.getKey());
+            }
+        }
         ArrayList<Deck> decks = player.getDecks();
         for (Deck deck : decks) {
             HashMap<Card, Integer> mainDeck = deck.getMainDeck();
             HashMap<Card, Integer> sideDeck = deck.getSideDeck();
             for (Map.Entry<Card, Integer> e : mainDeck.entrySet()) {
                 for (int k = 0; k < e.getValue(); k++) {
-                    System.out.printf("%s:%s\n", e.getKey().getName(), e.getKey().getDescription());
+                    allCards.add(e.getKey());
                 }
             }
             for (Map.Entry<Card, Integer> e : sideDeck.entrySet()) {
                 for (int k = 0; k < e.getValue(); k++) {
+                    allCards.add(e.getKey());
                     System.out.printf("%s:%s\n", e.getKey().getName(), e.getKey().getDescription());
                 }
             }
+        }
+        Collections.sort(allCards);
+        for(Card card : allCards) {
+            System.out.printf("%s:%s\n", card.getName(), card.getDescription());
         }
     }
 }
