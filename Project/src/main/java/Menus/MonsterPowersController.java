@@ -135,6 +135,10 @@ public class MonsterPowersController {
         System.out.println("Do you want special summon selected monster?");
         String command = CommonTools.scan.nextLine().trim().toLowerCase(Locale.ROOT);
         if (command.equals("no")) return;
+        if (gameDecks.get(turn).getInHandCards().size() < 2) {
+            System.out.println("there is no way you could special summon a monster");
+            return;
+        }
         System.out.println("Please select one card from your hand to tribute");
         while (true) {
             command = CommonTools.scan.nextLine();
@@ -142,6 +146,10 @@ public class MonsterPowersController {
                 Matcher matcher = CommonTools.getMatcher(command, "(\\d)");
                 matcher.find();
                 int position = Integer.parseInt(matcher.group(1));
+                if (position < 1 || position > 5) {
+                    System.out.println("invalid selection");
+                    continue;
+                }
                 ArrayList<Card> inHandCards = gameDecks.get(turn).getInHandCards();
                 Card selectedCardFromHand = inHandCards.get(position - 1);
                 if (selectedCardFromHand != null) {
@@ -155,7 +163,7 @@ public class MonsterPowersController {
                     System.out.println("no card found in the given position");
                 }
             } else {
-                System.out.println("invalid selection");
+                System.out.println("you should special summon right now");
             }
         }
     }
