@@ -1,7 +1,6 @@
 package Menus;
 
 import Model.Cards.Monster;
-import Model.Deck;
 
 public class AI {
     private GameDeck AIDeck;
@@ -105,9 +104,9 @@ public class AI {
             } else if (isMonsterSelectedForAttack == 1) {
                 isMonsterSelectedForAttack = 0;
                 while (true) {
-                    int randomIndex = (int) Math.floor(Math.random() * 5 + 1);
-                    if (playerDeck.getMonsterZones().get(randomIndex).getCurrentMonster() != null) {
-                        return "attack " + randomIndex;
+                    int index = indexOfLestPowerfulMonster();
+                    if (playerDeck.getMonsterZones().get(index).getCurrentMonster() != null) {
+                        return "attack " + index;
                     }
                 }
             }
@@ -153,5 +152,27 @@ public class AI {
             }
         }
         return number;
+    }
+
+    private int indexOfLestPowerfulMonster() {
+        int index = 1;
+        int power = 100000;
+        for (int i = 1; i <= 5; i++) {
+            if (playerDeck.getMonsterZones().get(i).getCurrentMonster() != null) {
+                Monster monster = (Monster) playerDeck.getMonsterZones().get(i).getCurrentMonster();
+                if (playerDeck.getMonsterZones().get(i).getStatus().equals("OO")) {
+                    if (monster.getAttackPoint() <= power) {
+                        power = monster.getAttackPoint();
+                        index = i;
+                    }
+                } else {
+                    if (monster.getDefensePoint() <= power) {
+                        power = monster.getAttackPoint();
+                        index = i;
+                    }
+                }
+            }
+        }
+        return index;
     }
 }
