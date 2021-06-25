@@ -95,7 +95,7 @@ class DeckMenu {
         String cardName = m.group(1);
         String deckName = m.group(2);
         String side = CommonTools.takeNameOutOfCommand(command, "--side");
-        if(cardName == null || deckName == null || side != null){
+        if (cardName == null || deckName == null || side != null) {
             System.out.println("invalid command");
             return;
         }
@@ -135,7 +135,7 @@ class DeckMenu {
         m.find();
         String cardName = m.group(1);
         String deckName = m.group(2);
-        if(cardName == null || deckName == null){
+        if (cardName == null || deckName == null) {
             System.out.println("invalid command");
             return;
         }
