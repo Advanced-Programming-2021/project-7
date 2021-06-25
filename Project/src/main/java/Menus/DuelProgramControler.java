@@ -67,9 +67,8 @@ class DuelProgramController {
                     command = ai.decision();
                 } else {
                     isAI = 1;
-                } else {
                     command = CommonTools.scan.nextLine();
-                }
+                } 
                 if (command.matches("^show graveyard$")) showGraveyard(turn);
                 else if (command.matches("^surrender$")) surrender(turn);
                 else if (command.matches("^select --hand --force$")) inHandCardCheat();

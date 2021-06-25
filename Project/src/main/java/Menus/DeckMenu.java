@@ -88,7 +88,7 @@ class DeckMenu {
     }
 
     private void addCardToDeck(String username, String command) throws IOException {
-        String pattern = "^deck add-card --card ([^-]+) --deck ([^-]+)( --side)?$";
+        String pattern = "^deck add-card --card ([^-]+-?[^-]*) --deck ([^-]+)( --side)?$";
         Pattern r = Pattern.compile(pattern);
         Matcher m = r.matcher(command);
         m.find();
@@ -129,7 +129,7 @@ class DeckMenu {
     }
 
     private void removeCardFromDeck(String username, String command) throws IOException {
-        String pattern = "^deck rm-card --card ([^-]+) --deck ([^-]+)( --side)?$";
+        String pattern = "^deck rm-card --card ([^-]+-?[^-]*) --deck ([^-]+)( --side)?$";
         Pattern r = Pattern.compile(pattern);
         Matcher m = r.matcher(command);
         m.find();
