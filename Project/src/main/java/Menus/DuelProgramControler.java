@@ -643,7 +643,12 @@ class DuelProgramController {
         showGameDeck(trapTurn);
         System.out.println("do you want to activate your spell and trap? yes/no");
         while (true) {
-            String confirmation = CommonTools.scan.nextLine();
+            String confirmation;
+            if (isAI == 1){
+                confirmation = "no";
+            } else{
+                confirmation = CommonTools.scan.nextLine();
+            }
             if (confirmation.equals("no")) return false;
             else if (confirmation.equals("yes")) break;
             else System.out.println("invalid command");
