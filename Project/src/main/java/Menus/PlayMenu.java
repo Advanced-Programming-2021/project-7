@@ -8,6 +8,7 @@ class PlayMenu {
 
 
     public void run(String username) {
+        System.out.println("Welcome to duel");
         while (true) {
             String command = CommonTools.scan.nextLine();
             if (command.matches("^duel --new (?:(?:--second-player|--rounds) ([^ ]+) ?){2}$"))
@@ -16,6 +17,7 @@ class PlayMenu {
                 System.out.println("menu navigation is not possible");
             else if (command.matches("^menu show-current$")) System.out.println("duel");
             else if (command.matches("^menu exit$")) {
+                System.out.println("MainMenu");
                 return;
             } else System.out.println("invalid command!");
         }

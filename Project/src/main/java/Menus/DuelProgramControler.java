@@ -39,11 +39,11 @@ class DuelProgramController {
     private int timeSealTrap = 0;
     private int isCardDrawn = 0;
     private int isGameStart = 2;
+    private boolean messengerChecked = false;
 
     public void run(String firstPlayer, String secondPlayer, int round) {
         for (int i = 1; i <= round; i++) {
             setGameDecks(firstPlayer, secondPlayer);
-            keepMessengerOfPeace();
             // methods to be set after each round
             for (int j = 0; j < 5; j++) {
                 gameDecks.get(turn).drawCard();
@@ -56,17 +56,21 @@ class DuelProgramController {
                 if (isRoundOver()) break;
                 System.out.println("phase: " + phase);
                 showGameDeck(turn);
+                if (phase == Phase.standby && messengerChecked == false) {
+                    keepMessengerOfPeace();
+                    messengerChecked = true;
+                }
                 String command = null;
-                if (secondPlayer.equals("ai") && turn == 1){
+                if (secondPlayer.equals("ai") && turn == 1) {
                     ai.updateAI(gameDecks.get(1), gameDecks.get(0), phase);
                     command = ai.decision();
-                } else{
+                } else {
                     command = CommonTools.scan.nextLine();
                 }
                 if (command.matches("^show graveyard$")) showGraveyard(turn);
                 else if (command.matches("^surrender$")) surrender(turn);
                 else if (command.matches("^select -d$")) deselect();
-                else if (command.matches("^show card$")) showCard();
+                else if (command.matches("^s$")) showCard();
                 else if (command.matches("^select .*$")) selectCard(command);
                 else if (command.matches("^summon$")) summonMonster();
                 else if (command.matches("^activate effect$")) activateSpellErrorCheck();
@@ -79,7 +83,7 @@ class DuelProgramController {
                 else if (command.matches("^duel set-winner \\S+$")) setWinnerCheat(command);
                 else if (command.matches("^set --position (attack|defence)$")) setPositionMonster(command);
                 else if (command.matches("^flip-summon$")) flipSummon();
-                else if (command.matches("^next phase$")) changePhase();
+                else if (command.matches("^n$")) changePhase();
                 else System.out.println("invalid command");
             }
         }
@@ -645,7 +649,6 @@ class DuelProgramController {
                     .get(selectDefender).getCurrentMonster());
             if (monsterPowersController.getIsEnemyTakeDamage()) enemyDeck.takeDamage(damage);
             moveToGraveyard(changeTurn(turn), "MonsterZone", selectDefender);
-            enemyDeck.takeDamage(damage);
             System.out.printf("your opponent’s monster is destroyed and your opponent receives"
                     + " %d battle damage\n", damage);
         } else if (damage == 0) {
@@ -726,6 +729,8 @@ class DuelProgramController {
             System.out.println("you can’t do this action in this phase");
         } else if (!myDeck.getMonsterZones().get(selectedCardIndex).getStatus().equals("OO")) {
             System.out.println("This card is not in attacking position");
+        } else if (messengerOfPeaceBlocks(((Monster) selectedCard).getAttackPoint())) {
+            System.out.println("An Spell Card Stops this monster from attacking");
         } else if (myDeck.getMonsterZones().get(selectedCardIndex).getHasAttackedThisRound()) {
             System.out.println("this card already attacked");
         } else {
@@ -758,11 +763,11 @@ class DuelProgramController {
             System.out.println("spell card zone is full");
             return;
         }
-        System.out.println("spell activated");
         spellAbsorptionCheck();
         Spell spell = (Spell) selectedCard;
         if (selectedDeck.equals("hand")) {
             if (CommonTools.getMatcher(spell.getSpellIcon(), "Continuous").matches()) {
+                moveToGraveyard(turn, "inHand", selectedCardIndex - 1);
                 int freeIndex = gameDecks.get(turn).spellZoneFirstFreeSpace();
                 SpellZone spellZone = gameDecks.get(turn).getSpellZones().get(freeIndex);
                 spellZone.setSpell(selectedCard);
@@ -770,6 +775,7 @@ class DuelProgramController {
                 System.out.println("Spell activated");
                 return;
             } else if (CommonTools.getMatcher(spell.getSpellIcon(), "Field").matches()) {
+                moveToGraveyard(turn, "inHand", selectedCardIndex - 1);
                 activateOrDeactivateFieldCardForAll(-1);
                 if (!gameDecks.get(turn).isFieldZoneEmpty())
                     moveToGraveyard(turn, "field", 0);
@@ -779,23 +785,23 @@ class DuelProgramController {
                 System.out.println("Field activated");
                 return;
             } else {
-                moveToGraveyard(turn, "inHand", selectedCardIndex);
+                moveToGraveyard(turn, "inHand", selectedCardIndex - 1);
             }
         } else if (selectedDeck.equals("spell")) {
             if (CommonTools.getMatcher(spell.getSpellIcon(), "Continuous").matches()) {
-                int freeIndex = gameDecks.get(turn).spellZoneFirstFreeSpace();
-                SpellZone spellZone = gameDecks.get(turn).getSpellZones().get(freeIndex);
+                SpellZone spellZone = gameDecks.get(turn).getSpellZones().get(selectedCardIndex);
                 spellZone.setVisible();
                 System.out.println("Spell activated");
                 return;
             } else {
-                moveToGraveyard(turn, "spell", selectedCardIndex);
+                moveToGraveyard(turn, "SpellZone", selectedCardIndex);
             }
         } else if (selectedDeck.equals("field")) {
             gameDecks.get(turn).setFieldZoneStatus("O");
             activateOrDeactivateFieldCardForAll(1);
             return;
         }
+        System.out.println("Spell activated");
         checkSpellCard();
         deselect();
 
@@ -973,8 +979,9 @@ class DuelProgramController {
                 System.out.println("entered position is empty");
             } else {
                 Card card = gameDecks.get(opponentTurn).getMonsterZones().get(position).getCurrentMonster();
-                gameDecks.get(turn).summonCardToMonsterZone(card.getName());
+                int index = gameDecks.get(turn).summonCardToMonsterZone(card.getName());
                 gameDecks.get(opponentTurn).getSpellZones().get(position).removeCard();
+                gameDecks.get(turn).getMonsterZones().get(index).hasBeenChanged = true;
                 System.out.println("opponent's monster added to your monster zone");
                 break;
             }
@@ -1003,12 +1010,6 @@ class DuelProgramController {
         System.out.println("all the monsters on the game board destroyed");
     }
 
-    private void spellActivateSpellAbsorption() {
-        int amountOfLP = 500;
-        GameDeck myDeck = gameDecks.get(turn);
-        myDeck.increaseLP(amountOfLP);
-    }
-
     private void TwinTwisters() {
         if (gameDecks.get(turn).getInHandCards().size() == 0) {
             System.out.println("your hand is empty");
@@ -1025,8 +1026,7 @@ class DuelProgramController {
             if (removePosition > gameDecks.get(turn).getInHandCards().size()) {
                 System.out.println("entered index more than in hand cards");
             } else {
-                gameDecks.get(turn).getInHandCards().remove(removePosition - 1);
-                //Todo move to graveyard
+                moveToGraveyard(turn, "inHand", removePosition - 1);
                 break;
             }
         }
@@ -1040,8 +1040,7 @@ class DuelProgramController {
             } else if (gameDecks.get(opponentTurn).getSpellZones().get(destroyedPosition1).isEmpty()) {
                 System.out.println("entered position is empty");
             } else {
-                //Todo move to graveyard
-                gameDecks.get(opponentTurn).getSpellZones().get(destroyedPosition1).removeCard();
+                moveToGraveyard(changeTurn(turn), "SpellZone", destroyedPosition1);
                 System.out.println("first card removed");
                 break;
             }
@@ -1054,6 +1053,7 @@ class DuelProgramController {
                 System.out.println("entered position is empty");
             } else {
                 //Todo move to graveyard
+                moveToGraveyard(changeTurn(turn), "SpellZone", destroyedPosition2);
                 gameDecks.get(opponentTurn).getSpellZones().get(destroyedPosition2).removeCard();
                 System.out.println("second card removed");
                 break;
@@ -1140,6 +1140,16 @@ class DuelProgramController {
     }
 
     private void changeGameTurn() {
+        for (int i = 1; i < 6; i++) {
+            if ((!gameDecks.get(turn).getMonsterZones().get(i).isEmpty()) &&
+                    gameDecks.get(turn).getMonsterZones().get(i).hasBeenChanged) {
+                gameDecks.get(turn).getMonsterZones().get(i).hasBeenChanged = false;
+                Card card = gameDecks.get(turn).getMonsterZones().get(i).removeCard();
+                gameDecks.get(changeTurn(turn)).summonCardToMonsterZone(card.getName());
+            }
+        }
+        gameDecks.get(turn).supplyCheck = false;
+        messengerChecked = false;
         selectedCard = null;
         isSummoned = 0;
         selectedCardIndex = -1;
@@ -1153,8 +1163,6 @@ class DuelProgramController {
         for (int i = 1; i < 6; i++) {
             gameDecks.get(turn).getMonsterZones().get(i).resetAttack();
         }
-        if (isGameStart == 0)
-            drawXCards(1);
         System.out.println("its " + gameDecks.get(turn).getPlayerNickName() + "'s turn");
         round++;
     }
@@ -1182,7 +1190,8 @@ class DuelProgramController {
         if (spell.getName().equals("Terraforming")) {
             Terraforming();
         } else if (spell.getName().equals("Pot of Greed")) {
-            drawXCards(1);
+            gameDecks.get(turn).drawCard();
+            gameDecks.get(turn).drawCard();
         } else if (spell.getName().equals("Raigeki")) {
             Raigeki();
             System.out.println("All enemy monsters were destroyed");
@@ -1191,9 +1200,11 @@ class DuelProgramController {
         } else if (spell.getName().equals("Dark Hole")) {
             darkHole();
         } else if (spell.getName().equals("Twin Twisters")) {
-            twinTwisters();
+            TwinTwisters();
         } else if (spell.getName().equals("Mystical space typhoon")) {
             mysticalTyphoon();
+        } else if (spell.getName().equals("Change of Heart")) {
+            spellActivateChangeOfHeart();
         }
     }
 
@@ -1211,18 +1222,6 @@ class DuelProgramController {
             }
         }
         System.out.println("No field card was found");
-    }
-
-    private void drawXCards(int x) {
-        if (timeSealTrap == 1) {
-            System.out.println("you cant draw card in this round");
-            return;
-        }
-        GameDeck myDeck = gameDecks.get(turn);
-        for (int i = 0; i < x; i++) {
-            myDeck.getInHandCards().add(myDeck.getDeck().get(0));
-            myDeck.getDeck().remove(0);
-        }
     }
 
     private void Raigeki() {
@@ -1252,13 +1251,18 @@ class DuelProgramController {
         System.out.println("All cards were destroyed");
     }
 
-    private void supplySquad() { // TODO: 2021-06-20  
-        if (gameDecks.get(turn).isMonsterZoneEmpty()) {
-            System.out.println("Do you want to draw a card yes/no");
-            String answer = CommonTools.scan.nextLine();
-            if (answer.equals("yes"))
-                drawXCards(1);
+    private void supplySquad(int turn) {
+        if (gameDecks.get(turn).supplyCheck)
+            return;
+        for (int i = 1; i < 6; i++) {
+            SpellZone spellZone = gameDecks.get(turn).getSpellZones().get(i);
+            if ((!spellZone.isEmpty()) && spellZone.getCurrentCard().getName().equals("Supply Squad")
+                    && spellZone.getStatus().equals("O")) {
+                System.out.println("Supply Squad for " + gameDecks.get(turn).getPlayerNickName());
+                gameDecks.get(turn).drawCard();
+            }
         }
+        gameDecks.get(turn).supplyCheck = true;
     }
 
     private void spellAbsorptionCheck() {
@@ -1269,7 +1273,7 @@ class DuelProgramController {
                     continue;
                 if (deck.getSpellZones().get(i1).getCurrentCard().getName().equals("Spell Absorption")) {
                     deck.increaseLP(500);
-                    System.out.println("Health gained from spell absorption +500");
+                    System.out.println(deck.getPlayerNickName() + " Gained health from spell absorption +500");
                 }
             }
         }
@@ -1280,8 +1284,8 @@ class DuelProgramController {
             for (int i = 0; i < gameDecks.size(); i++) {
                 GameDeck deck = gameDecks.get(i);
                 for (int i1 = 1; i1 <= 5; i1++) {
-                    if ((!deck.getMonsterZones().get(i1).isEmpty()) &&
-                            deck.getMonsterZones().get(i1).getCurrentMonster().getName()
+                    if ((!deck.getSpellZones().get(i1).isEmpty()) &&
+                            deck.getSpellZones().get(i1).getCurrentCard().getName()
                                     .equals("Messenger of peace")) {
                         return true;
                     }
@@ -1294,14 +1298,16 @@ class DuelProgramController {
     private void keepMessengerOfPeace() {
         GameDeck myDeck = gameDecks.get(turn);
         for (int i = 1; i <= 5; i++) {
-            if ((!myDeck.getMonsterZones().get(i).isEmpty()) &&
-                    myDeck.getMonsterZones().get(i).getCurrentMonster().getName().equals("Messenger of peace")) {
+            if ((!myDeck.getSpellZones().get(i).isEmpty()) &&
+                    myDeck.getSpellZones().get(i).getCurrentCard().getName().equals("Messenger of peace")) {
                 System.out.println("Do you want to keep Messenger of peace for the cost of 100 LP yes/no");
                 String answer = CommonTools.scan.nextLine();
-                if (answer.equals("yes"))
+                if (answer.equals("yes")) {
                     myDeck.decreaseLP(100);
-                else if (answer.equals("no")) {
-                    moveToGraveyard(turn, "Spell", i);
+                    System.out.println("You lost 100 LP");
+                } else if (answer.equals("no")) {
+                    moveToGraveyard(turn, "SpellZone", i);
+                    System.out.println("You lost Messenger of Peace");
                 } else {
                     System.out.println("invalid answer");
                     keepMessengerOfPeace();
@@ -1315,13 +1321,15 @@ class DuelProgramController {
         GameDeck myDeck = gameDecks.get(turn);
         GameDeck enemyDeck = gameDecks.get(changeTurn(turn));
         System.out.println("Choose which card you want to discard");
-        int index = CommonTools.scan.nextInt();
-        if (index < 1 || index > myDeck.getInHandCards().size() + 1) {
-            System.out.println("index is not valid");
-            twinTwisters();
-            return;
+        while (true) {
+            int index = CommonTools.scan.nextInt();
+            if (index < 1 || index > myDeck.getInHandCards().size() + 1) {
+                System.out.println("index is not valid");
+                continue;
+            }
+            moveToGraveyard(turn, "inHand", index - 1);
+            break;
         }
-        moveToGraveyard(turn, "inHand", index);
         System.out.println("choose index of 2 cards you want to destroy (in 2 separate lines)");
         int[] enemyCardIndexes = new int[2];
         enemyCardIndexes[0] = CommonTools.scan.nextInt();
@@ -1337,16 +1345,17 @@ class DuelProgramController {
     }
 
     private void mysticalTyphoon() {
-        GameDeck enemyDeck = gameDecks.get(changeTurn(turn));
         System.out.println("Enter the index of the enemy card you want to destroy");
-        int index = CommonTools.scan.nextInt();
-        if (index < 1 || index > 5) {
-            System.out.println("This square is not valid");
-            mysticalTyphoon();
-            return;
+        while (true) {
+            int index = CommonTools.scan.nextInt();
+            if (index < 1 || index > 5 || !gameDecks.get(changeTurn(turn)).getSpellZones().get(index).isEmpty()) {
+                System.out.println("This square is not valid");
+                continue;
+            }
+            System.out.println("Enemy card destroyed");
+            moveToGraveyard(changeTurn(turn), "SpellZone", index);
+            break;
         }
-        System.out.println("Enemy card destroyed");
-        moveToGraveyard(changeTurn(turn), "SpellZone", index);
     }
 
     private void yami(Monster monster, int activeMode) {
@@ -1378,7 +1387,7 @@ class DuelProgramController {
     }
 
     private void Umiiruka(Monster monster, int activeMode) {
-        if (monster.getMonsterType().equals("Aqua")) {
+        if (monster.getAttribute().equals("WATER")) {
             monster.changeAttackPoint(activeMode * 500);
             monster.changeDefensePoint(activeMode * -400);
         }
@@ -1470,12 +1479,21 @@ class DuelProgramController {
                     continue;
                 if (fieldCardName.equals("Yami")) {
                     yami((Monster) gameDecks.get(i).getMonsterZones().get(i1).getCurrentMonster(), activeMode);
+                    if (!gameDecks.get(changeTurn(i)).getMonsterZones().get(i1).isEmpty())
+                        yami((Monster) gameDecks.get(changeTurn(i)).getMonsterZones().get(i1).getCurrentMonster(), activeMode);
+
                 } else if (fieldCardName.equals("Forest")) {
                     forest((Monster) gameDecks.get(i).getMonsterZones().get(i1).getCurrentMonster(), activeMode);
+                    if (!gameDecks.get(changeTurn(i)).getMonsterZones().get(i1).isEmpty())
+                        forest((Monster) gameDecks.get(changeTurn(i)).getMonsterZones().get(i1).getCurrentMonster(), activeMode);
+
                 } else if (fieldCardName.equals("Closed Forest")) {
                     closedForest((Monster) gameDecks.get(i).getMonsterZones().get(i1).getCurrentMonster(), i, activeMode);
+
                 } else if (fieldCardName.equals("Umiiruka")) {
                     Umiiruka((Monster) gameDecks.get(i).getMonsterZones().get(i1).getCurrentMonster(), activeMode);
+                    if (!gameDecks.get(changeTurn(i)).getMonsterZones().get(i1).isEmpty())
+                        Umiiruka((Monster) gameDecks.get(changeTurn(i)).getMonsterZones().get(i1).getCurrentMonster(), activeMode);
                 }
             }
         }
@@ -1486,6 +1504,7 @@ class DuelProgramController {
         if (place.equals("MonsterZone")) {
             Card card = gameDecks.get(turn).getMonsterZones().get(index).removeCard();
             gameDecks.get(turn).getGraveyardCards().add(card);
+            supplySquad(turn);
         } else if (place.equals("SpellZone")) {
             Card card = gameDecks.get(turn).getSpellZones().get(index).removeCard();
             gameDecks.get(turn).getGraveyardCards().add(card);

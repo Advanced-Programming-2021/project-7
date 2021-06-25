@@ -22,6 +22,7 @@ class Shop {
             else if (command.matches("^menu show-current$")) System.out.println("shop");
             else if (command.matches("^increase --money \\d+$")) increaseMoney(command, username);
             else if (command.matches("^menu exit$")) {
+                System.out.println("MainMenu");
                 return;
             } else System.out.println("invalid command!");
         }

@@ -25,6 +25,7 @@ class GameDeck {
     private int playerLP;
     private int winRounds;
     private int isMirrorForceActive;
+    public boolean supplyCheck = false;
 
     public GameDeck(String playerNickName, String playerUserName,
                     HashMap<Card, Integer> mainDeck) {
@@ -103,6 +104,7 @@ class GameDeck {
 
     public void emptyFieldZone() {
         fieldZone = null;
+        fieldZoneStatus = "E";
     }
 
     public boolean isFieldZoneEmpty() {

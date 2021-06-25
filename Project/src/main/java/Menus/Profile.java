@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 
 class Profile {
     public void run(String username) throws IOException {
+        System.out.println("Welcome to profile settings");
         while (true) {
             String command = CommonTools.scan.nextLine();
             if (command.matches("^profile change --nickname [^ ]+$")) changeNickname(username, command);
@@ -19,6 +20,7 @@ class Profile {
                 System.out.println("menu navigation is not possible");
             else if (command.matches("^menu show-current$")) System.out.println("profile");
             else if (command.matches("^menu exit$")) {
+                System.out.println("MainMenu");
                 return;
             } else System.out.println("invalid command!");
         }

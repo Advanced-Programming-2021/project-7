@@ -16,6 +16,7 @@ class DeckMenu {
 
 
     public void run(String username) throws IOException {
+        System.out.println("Welcome to deck menu");
         while (true) {
             String command = CommonTools.scan.nextLine();
             if (command.matches("^deck create [^ ]+$")) createDeck(username, command);
@@ -33,6 +34,7 @@ class DeckMenu {
                 System.out.println("menu navigation is not possible");
             else if (command.matches("^menu show-current$")) System.out.println("deck");
             else if (command.matches("^menu exit$")) {
+                System.out.println("MainMenu");
                 return;
             } else System.out.println("invalid command!");
         }

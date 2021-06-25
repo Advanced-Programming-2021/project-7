@@ -4,6 +4,7 @@ public class MonsterZone {
     private Card currentMonster = null;
     private String status = "E";
     private boolean hasAttackedThisRound = false;
+    public boolean hasBeenChanged = false;
 
     public MonsterZone(){
 
@@ -51,6 +52,7 @@ public class MonsterZone {
     }
 
     public Card removeCard(){
+        hasBeenChanged = false;
         hasAttackedThisRound = false;
         Card card = currentMonster;
         currentMonster = null;
