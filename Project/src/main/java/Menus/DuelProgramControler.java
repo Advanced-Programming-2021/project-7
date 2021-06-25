@@ -67,6 +67,7 @@ class DuelProgramController {
                 }
                 if (command.matches("^show graveyard$")) showGraveyard(turn);
                 else if (command.matches("^surrender$")) surrender(turn);
+                else if (command.matches("^select --hand --force$")) inHandCardCheat();
                 else if (command.matches("^select -d$")) deselect();
                 else if (command.matches("^show card$")) showCard();
                 else if (command.matches("^select .*$")) selectCard(command);
@@ -1207,6 +1208,13 @@ class DuelProgramController {
             gameDecks.get(turn).setPlayerLP(0);
             return;
         }
+        isCardDrawn = 1;
+        gameDecks.get(turn).drawCard();
+    }
+
+    private void inHandCardCheat() {
+        ArrayList<Card> deck = gameDecks.get(turn).getDeck();
+        if (deck.size() == 0) return;
         isCardDrawn = 1;
         gameDecks.get(turn).drawCard();
     }
