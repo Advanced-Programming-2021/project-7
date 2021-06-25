@@ -6,8 +6,26 @@
       "password": "ramz1",
       "nickname": "agha",
       "score": 0,
-      "money": 63400,
+      "money": 698900,
       "cards": [
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 3000,
+              "defensePoint": 1200,
+              "level": 8,
+              "attribute": "EARTH",
+              "monsterType": "Beast-Warrior",
+              "cardType": "Effect",
+              "name": "Beast King Barbaros",
+              "description": "\"You can Normal Summon/Set this card without Tributing, but its original ATK becomes 1900. You can Tribute 3 monsters to Tribute Summon (but not Set) this card. If Summoned this way: Destroy all cards your opponent controls.\"",
+              "type": "Monster",
+              "price": 9200
+            }
+          },
+          4
+        ],
         [
           {
             "@type": "Model.Cards.Spell",
@@ -24,132 +42,14 @@
         ],
         [
           {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 1700,
-              "defensePoint": 1000,
-              "level": 4,
-              "attribute": "EARTH",
-              "monsterType": "Beast",
-              "cardType": "Normal",
-              "name": "Silver Fang",
-              "description": "\"A snow wolf that's beautiful to the eye, but absolutely vicious in battle.\"",
-              "type": "Monster",
-              "price": 1700
-            }
-          },
-          5
-        ],
-        [
-          {
-            "@type": "Model.Cards.Spell",
-            "@val": {
-              "icon": "Field",
-              "playedRound": 0,
-              "name": "Yami",
-              "description": "\"All Fiend and Spellcaster monsters on the field gain 200 ATK/DEF, also all Fairy monsters on the field lose 200 ATK/DEF.\"",
-              "type": "Spell",
-              "price": 4300
-            }
-          },
-          1
-        ],
-        [
-          {
-            "@type": "Model.Cards.Spell",
-            "@val": {
-              "icon": "Ritual",
-              "playedRound": 0,
-              "name": "Advanced Ritual Art",
-              "description": "This card can be used to Ritual Summon any 1 Ritual Monster. You must also send Normal Monsters from your Deck to the Graveyard whose total Levels equal the Level of that Ritual Monster.",
-              "type": "Spell",
-              "price": 3000
-            }
-          },
-          3
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 2000,
-              "defensePoint": 100,
-              "level": 4,
-              "attribute": "LIGHT",
-              "monsterType": "Dragon",
-              "cardType": "Normal",
-              "name": "Alexandrite Dragon",
-              "description": "\"Many of the czars' lost jewels can be found in the scales of this priceless dragon. Its creator remains a mystery, along with how they acquired the imperial treasures. But whosoever finds this dragon has hit the jackpot... whether they know it or not.\"",
-              "type": "Monster",
-              "price": 2600
-            }
-          },
-          0
-        ],
-        [
-          {
             "@type": "Model.Cards.Spell",
             "@val": {
               "icon": "Normal",
               "playedRound": 0,
-              "name": "Terraforming",
-              "description": "Add 1 Field Spell from your Deck to your hand.",
+              "name": "Dark Hole",
+              "description": "Destroy all monsters on the field.",
               "type": "Spell",
               "price": 2500
-            }
-          },
-          1
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 450,
-              "defensePoint": 600,
-              "level": 2,
-              "attribute": "EARTH",
-              "monsterType": "Insect",
-              "cardType": "Effect",
-              "name": "Man-Eater Bug",
-              "description": "FLIP: Target 1 monster on the field; destroy that target.",
-              "type": "Monster",
-              "price": 600
-            }
-          },
-          3
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 0,
-              "defensePoint": 0,
-              "level": 1,
-              "attribute": "LIGHT",
-              "monsterType": "Machine",
-              "cardType": "Effect",
-              "name": "Scanner",
-              "description": "\"Once per turn, you can select 1 of your opponent's monsters that is removed from play. Until the End Phase, this card's name is treated as the selected monster's name, and this card has the same Attribute, Level, ATK, and DEF as the selected monster. If this card is removed from the field while this effect is applied, remove it from play.\"",
-              "type": "Monster",
-              "price": 8000
-            }
-          },
-          0
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 2000,
-              "defensePoint": 1200,
-              "level": 5,
-              "attribute": "WIND",
-              "monsterType": "Spellcaster",
-              "cardType": "Effect",
-              "name": "The Tricky",
-              "description": "You can Special Summon this card (from your hand) by discarding 1 card.",
-              "type": "Monster",
-              "price": 4300
             }
           },
           0
@@ -168,6 +68,20 @@
               "description": "\"A monster with tremendous power, it destroys enemies with a swing of its axe.\"",
               "type": "Monster",
               "price": 2900
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Field",
+              "playedRound": 0,
+              "name": "Umiiruka",
+              "description": "Increase the ATK of all WATER monsters by 500 points and decrease their DEF by 400 points.",
+              "type": "Spell",
+              "price": 4300
             }
           },
           0
@@ -186,74 +100,6 @@
               "description": "\"This monster can only be Ritual Summoned with the Ritual Spell Card, \"\"Turtle Oath\"\". You must also offer monsters whose total Level Stars equal 8 or more as a Tribute from the field or your hand.\"",
               "type": "Monster",
               "price": 10200
-            }
-          },
-          3
-        ],
-        [
-          {
-            "@type": "Model.Cards.Spell",
-            "@val": {
-              "icon": "Quick-play",
-              "playedRound": 0,
-              "name": "Mystical space typhoon",
-              "description": "Target 1 Spell/Trap on the field; destroy that target.",
-              "type": "Spell",
-              "price": 3500
-            }
-          },
-          0
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 1700,
-              "defensePoint": 1000,
-              "level": 4,
-              "attribute": "EARTH",
-              "monsterType": "Beast-Warrior",
-              "cardType": "Normal",
-              "name": "Battle OX",
-              "description": "\"A monster with tremendous power, it destroys enemies with a swing of its axe.\"",
-              "type": "Monster",
-              "price": 2900
-            }
-          },
-          0
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 1000,
-              "defensePoint": 1000,
-              "level": 4,
-              "attribute": "FIRE",
-              "monsterType": "Warrior",
-              "cardType": "Effect",
-              "name": "Command Knight",
-              "description": "\"All Warrior-Type monsters you control gain 400 ATK. If you control another monster, monsters your opponent controls cannot target this card for an attack.\"",
-              "type": "Monster",
-              "price": 2100
-            }
-          },
-          0
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 1100,
-              "defensePoint": 1000,
-              "level": 3,
-              "attribute": "EARTH",
-              "monsterType": "Warrior",
-              "cardType": "Normal",
-              "name": "Hero of the east",
-              "description": "Feel da strength ah dis sword-swinging samurai from da Far East.",
-              "type": "Monster",
-              "price": 1700
             }
           },
           0
@@ -278,35 +124,57 @@
         ],
         [
           {
-            "@type": "Model.Cards.Spell",
+            "@type": "Model.Cards.Monster",
             "@val": {
-              "icon": "Continuous",
-              "playedRound": 0,
-              "name": "Supply Squad",
-              "description": "\"Once per turn, if a monster(s) you control is destroyed by battle or card effect: Draw 1 card.\"",
-              "type": "Spell",
-              "price": 4000
+              "attackPoint": 450,
+              "defensePoint": 600,
+              "level": 2,
+              "attribute": "EARTH",
+              "monsterType": "Insect",
+              "cardType": "Effect",
+              "name": "Man-Eater Bug",
+              "description": "FLIP: Target 1 monster on the field; destroy that target.",
+              "type": "Monster",
+              "price": 600
             }
           },
-          10
+          4
         ],
         [
           {
             "@type": "Model.Cards.Monster",
             "@val": {
-              "attackPoint": 3750,
-              "defensePoint": 3400,
-              "level": 11,
-              "attribute": "DARK",
-              "monsterType": "Warrior",
-              "cardType": "Effect",
-              "name": "Gate Guardian",
-              "description": "\"Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by Tributing 1 \"\"Sanga of the Thunder\"\", \"\"Kazejin\"\", and \"\"Suijin\"\".\"",
+              "attackPoint": 1700,
+              "defensePoint": 1000,
+              "level": 4,
+              "attribute": "EARTH",
+              "monsterType": "Beast-Warrior",
+              "cardType": "Normal",
+              "name": "Battle OX",
+              "description": "\"A monster with tremendous power, it destroys enemies with a swing of its axe.\"",
               "type": "Monster",
-              "price": 20000
+              "price": 2900
             }
           },
-          3
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 0,
+              "defensePoint": 0,
+              "level": 1,
+              "attribute": "LIGHT",
+              "monsterType": "Machine",
+              "cardType": "Effect",
+              "name": "Scanner",
+              "description": "\"Once per turn, you can select 1 of your opponent's monsters that is removed from play. Until the End Phase, this card's name is treated as the selected monster's name, and this card has the same Attribute, Level, ATK, and DEF as the selected monster. If this card is removed from the field while this effect is applied, remove it from play.\"",
+              "type": "Monster",
+              "price": 8000
+            }
+          },
+          1
         ],
         [
           {
@@ -314,8 +182,8 @@
             "@val": {
               "icon": "Normal",
               "playedRound": 0,
-              "name": "Harpie's Feather Duster",
-              "description": "Destroy all Spells and Traps your opponent controls.",
+              "name": "Pot of Greed",
+              "description": "Draw 2 cards.",
               "type": "Spell",
               "price": 2500
             }
@@ -324,91 +192,18 @@
         ],
         [
           {
-            "@type": "Model.Cards.Spell",
-            "@val": {
-              "icon": "Continuous",
-              "playedRound": 0,
-              "name": "Messenger of peace",
-              "description": "\"Monsters with 1500 or more ATK cannot declare an attack. Once per turn, during your Standby Phase, pay 100 LP or destroy this card.\"",
-              "type": "Spell",
-              "price": 4000
-            }
-          },
-          1
-        ],
-        [
-          {
-            "@type": "Model.Cards.Spell",
-            "@val": {
-              "icon": "Field",
-              "playedRound": 0,
-              "name": "Closed Forest",
-              "description": "All Beast-Type monsters you control gain 100 ATK for each monster in your Graveyard. Field Spell Cards cannot be activated. Field Spell Cards cannot be activated during the turn this card is destroyed.",
-              "type": "Spell",
-              "price": 4300
-            }
-          },
-          2
-        ],
-        [
-          {
-            "@type": "Model.Cards.Spell",
-            "@val": {
-              "playedRound": 0,
-              "name": "Slot Machine",
-              "description": "The machine's ability is said to vary according to its slot results.",
-              "type": "Monster",
-              "price": 7500
-            }
-          },
-          5
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 1700,
-              "defensePoint": 1150,
-              "level": 4,
-              "attribute": "EARTH",
-              "monsterType": "Warrior",
-              "cardType": "Normal",
-              "name": "Axe Raider",
-              "description": "An axe-wielding monster of tremendous strength and agility.",
-              "type": "Monster",
-              "price": 3100
-            }
-          },
-          0
-        ],
-        [
-          {
-            "@type": "Model.Cards.Spell",
-            "@val": {
-              "icon": "Field",
-              "playedRound": 0,
-              "name": "Closed Forest",
-              "description": "All Beast-Type monsters you control gain 100 ATK for each monster in your Graveyard. Field Spell Cards cannot be activated. Field Spell Cards cannot be activated during the turn this card is destroyed.",
-              "type": "Spell",
-              "price": 4300
-            }
-          },
-          2
-        ],
-        [
-          {
             "@type": "Model.Cards.Monster",
             "@val": {
               "attackPoint": 1000,
-              "defensePoint": 500,
-              "level": 3,
-              "attribute": "LIGHT",
-              "monsterType": "Thunder",
-              "cardType": "Normal",
-              "name": "Wattkid",
-              "description": "A creature that electrocutes opponents with bolts of lightning.",
+              "defensePoint": 1000,
+              "level": 4,
+              "attribute": "FIRE",
+              "monsterType": "Warrior",
+              "cardType": "Effect",
+              "name": "Command Knight",
+              "description": "\"All Warrior-Type monsters you control gain 400 ATK. If you control another monster, monsters your opponent controls cannot target this card for an attack.\"",
               "type": "Monster",
-              "price": 1300
+              "price": 2100
             }
           },
           0
@@ -435,16 +230,579 @@
           {
             "@type": "Model.Cards.Monster",
             "@val": {
+              "attackPoint": 0,
+              "defensePoint": 0,
+              "level": 2,
+              "attribute": "LIGHT",
+              "monsterType": "Thunder",
+              "cardType": "Effect",
+              "name": "The Calculator",
+              "description": "The ATK of this card is the combined Levels of all face-up monsters you control x 300.",
+              "type": "Monster",
+              "price": 8000
+            }
+          },
+          4
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 2550,
+              "defensePoint": 2500,
+              "level": 8,
+              "attribute": "WATER",
+              "monsterType": "Aqua",
+              "cardType": "Ritual",
+              "name": "Crab Turtle",
+              "description": "\"This monster can only be Ritual Summoned with the Ritual Spell Card, \"\"Turtle Oath\"\". You must also offer monsters whose total Level Stars equal 8 or more as a Tribute from the field or your hand.\"",
+              "type": "Monster",
+              "price": 10200
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 200,
+              "defensePoint": 2000,
+              "level": 2,
+              "attribute": "EARTH",
+              "monsterType": "Cyberse",
+              "cardType": "Normal",
+              "name": "Bitron",
+              "description": "A new species found in electronic space. There's not much information on it.",
+              "type": "Monster",
+              "price": 1000
+            }
+          },
+          4
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 0,
+              "defensePoint": 0,
+              "level": 1,
+              "attribute": "LIGHT",
+              "monsterType": "Machine",
+              "cardType": "Effect",
+              "name": "Scanner",
+              "description": "\"Once per turn, you can select 1 of your opponent's monsters that is removed from play. Until the End Phase, this card's name is treated as the selected monster's name, and this card has the same Attribute, Level, ATK, and DEF as the selected monster. If this card is removed from the field while this effect is applied, remove it from play.\"",
+              "type": "Monster",
+              "price": 8000
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "playedRound": 0,
+              "name": "Slot Machine",
+              "description": "The machine's ability is said to vary according to its slot results.",
+              "type": "Monster",
+              "price": 7500
+            }
+          },
+          5
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 0,
+              "defensePoint": 0,
+              "level": 1,
+              "attribute": "LIGHT",
+              "monsterType": "Machine",
+              "cardType": "Effect",
+              "name": "Scanner",
+              "description": "\"Once per turn, you can select 1 of your opponent's monsters that is removed from play. Until the End Phase, this card's name is treated as the selected monster's name, and this card has the same Attribute, Level, ATK, and DEF as the selected monster. If this card is removed from the field while this effect is applied, remove it from play.\"",
+              "type": "Monster",
+              "price": 8000
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1300,
+              "defensePoint": 1400,
+              "level": 4,
+              "attribute": "DARK",
+              "monsterType": "Fiend",
+              "cardType": "Normal",
+              "name": "Feral Imp",
+              "description": "\"A playful little fiend that lurks in the dark, waiting to attack an unwary enemy.\"",
+              "type": "Monster",
+              "price": 2800
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Normal",
+              "playedRound": 0,
+              "name": "Terraforming",
+              "description": "Add 1 Field Spell from your Deck to your hand.",
+              "type": "Spell",
+              "price": 2500
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Normal",
+              "playedRound": 0,
+              "name": "Pot of Greed",
+              "description": "Draw 2 cards.",
+              "type": "Spell",
+              "price": 2500
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1100,
+              "defensePoint": 1000,
+              "level": 3,
+              "attribute": "EARTH",
+              "monsterType": "Warrior",
+              "cardType": "Normal",
+              "name": "Hero of the east",
+              "description": "Feel da strength ah dis sword-swinging samurai from da Far East.",
+              "type": "Monster",
+              "price": 1700
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Quick-play",
+              "playedRound": 0,
+              "name": "Mystical space typhoon",
+              "description": "Target 1 Spell/Trap on the field; destroy that target.",
+              "type": "Spell",
+              "price": 3500
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 2000,
+              "defensePoint": 1200,
+              "level": 5,
+              "attribute": "WIND",
+              "monsterType": "Spellcaster",
+              "cardType": "Effect",
+              "name": "The Tricky",
+              "description": "You can Special Summon this card (from your hand) by discarding 1 card.",
+              "type": "Monster",
+              "price": 4300
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Field",
+              "playedRound": 0,
+              "name": "Forest",
+              "description": "\"All Insect, Beast, Plant, and Beast-Warrior monsters on the field gain 200 ATK/DEF.\"",
+              "type": "Spell",
+              "price": 4300
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1000,
+              "defensePoint": 500,
+              "level": 3,
+              "attribute": "LIGHT",
+              "monsterType": "Thunder",
+              "cardType": "Normal",
+              "name": "Wattkid",
+              "description": "A creature that electrocutes opponents with bolts of lightning.",
+              "type": "Monster",
+              "price": 1300
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Field",
+              "playedRound": 0,
+              "name": "Yami",
+              "description": "\"All Fiend and Spellcaster monsters on the field gain 200 ATK/DEF, also all Fairy monsters on the field lose 200 ATK/DEF.\"",
+              "type": "Spell",
+              "price": 4300
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Field",
+              "playedRound": 0,
+              "name": "Forest",
+              "description": "\"All Insect, Beast, Plant, and Beast-Warrior monsters on the field gain 200 ATK/DEF.\"",
+              "type": "Spell",
+              "price": 4300
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 450,
+              "defensePoint": 600,
+              "level": 2,
+              "attribute": "EARTH",
+              "monsterType": "Insect",
+              "cardType": "Effect",
+              "name": "Man-Eater Bug",
+              "description": "FLIP: Target 1 monster on the field; destroy that target.",
+              "type": "Monster",
+              "price": 600
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Normal",
+              "playedRound": 0,
+              "name": "Dark Hole",
+              "description": "Destroy all monsters on the field.",
+              "type": "Spell",
+              "price": 2500
+            }
+          },
+          2
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Field",
+              "playedRound": 0,
+              "name": "Closed Forest",
+              "description": "All Beast-Type monsters you control gain 100 ATK for each monster in your Graveyard. Field Spell Cards cannot be activated. Field Spell Cards cannot be activated during the turn this card is destroyed.",
+              "type": "Spell",
+              "price": 4300
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
               "attackPoint": 1700,
+              "defensePoint": 1150,
+              "level": 4,
+              "attribute": "EARTH",
+              "monsterType": "Warrior",
+              "cardType": "Normal",
+              "name": "Axe Raider",
+              "description": "An axe-wielding monster of tremendous strength and agility.",
+              "type": "Monster",
+              "price": 3100
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1000,
+              "defensePoint": 0,
+              "level": 3,
+              "attribute": "EARTH",
+              "monsterType": "Dragon",
+              "cardType": "Effect",
+              "name": "Exploder Dragon",
+              "description": "If this card is destroyed by battle and sent to the Graveyard: Destroy the monster that destroyed it. Neither player takes any battle damage from attacks involving this attacking card.",
+              "type": "Monster",
+              "price": 1000
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Field",
+              "playedRound": 0,
+              "name": "Closed Forest",
+              "description": "All Beast-Type monsters you control gain 100 ATK for each monster in your Graveyard. Field Spell Cards cannot be activated. Field Spell Cards cannot be activated during the turn this card is destroyed.",
+              "type": "Spell",
+              "price": 4300
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Normal",
+              "playedRound": 0,
+              "name": "Dark Hole",
+              "description": "Destroy all monsters on the field.",
+              "type": "Spell",
+              "price": 2500
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Continuous",
+              "playedRound": 0,
+              "name": "Spell Absorption",
+              "description": "\"Each time a Spell Card is activated, gain 500 Life Points immediately after it resolves.\"",
+              "type": "Spell",
+              "price": 4000
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 800,
+              "defensePoint": 1400,
+              "level": 3,
+              "attribute": "WATER",
+              "monsterType": "Aqua",
+              "cardType": "Effect",
+              "name": "Yomi Ship",
+              "description": "If this card is destroyed by battle and sent to the GY: Destroy the monster that destroyed this card.",
+              "type": "Monster",
+              "price": 1700
+            }
+          },
+          4
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Continuous",
+              "playedRound": 0,
+              "name": "Supply Squad",
+              "description": "\"Once per turn, if a monster(s) you control is destroyed by battle or card effect: Draw 1 card.\"",
+              "type": "Spell",
+              "price": 4000
+            }
+          },
+          10
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Field",
+              "playedRound": 0,
+              "name": "Closed Forest",
+              "description": "All Beast-Type monsters you control gain 100 ATK for each monster in your Graveyard. Field Spell Cards cannot be activated. Field Spell Cards cannot be activated during the turn this card is destroyed.",
+              "type": "Spell",
+              "price": 4300
+            }
+          },
+          2
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Ritual",
+              "playedRound": 0,
+              "name": "Advanced Ritual Art",
+              "description": "This card can be used to Ritual Summon any 1 Ritual Monster. You must also send Normal Monsters from your Deck to the Graveyard whose total Levels equal the Level of that Ritual Monster.",
+              "type": "Spell",
+              "price": 3000
+            }
+          },
+          2
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Field",
+              "playedRound": 0,
+              "name": "Umiiruka",
+              "description": "Increase the ATK of all WATER monsters by 500 points and decrease their DEF by 400 points.",
+              "type": "Spell",
+              "price": 4300
+            }
+          },
+          2
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Ritual",
+              "playedRound": 0,
+              "name": "Advanced Ritual Art",
+              "description": "This card can be used to Ritual Summon any 1 Ritual Monster. You must also send Normal Monsters from your Deck to the Graveyard whose total Levels equal the Level of that Ritual Monster.",
+              "type": "Spell",
+              "price": 3000
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Field",
+              "playedRound": 0,
+              "name": "Yami",
+              "description": "\"All Fiend and Spellcaster monsters on the field gain 200 ATK/DEF, also all Fairy monsters on the field lose 200 ATK/DEF.\"",
+              "type": "Spell",
+              "price": 4300
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Continuous",
+              "playedRound": 0,
+              "name": "Spell Absorption",
+              "description": "\"Each time a Spell Card is activated, gain 500 Life Points immediately after it resolves.\"",
+              "type": "Spell",
+              "price": 4000
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 3750,
+              "defensePoint": 3400,
+              "level": 11,
+              "attribute": "DARK",
+              "monsterType": "Warrior",
+              "cardType": "Effect",
+              "name": "Gate Guardian",
+              "description": "\"Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by Tributing 1 \"\"Sanga of the Thunder\"\", \"\"Kazejin\"\", and \"\"Suijin\"\".\"",
+              "type": "Monster",
+              "price": 20000
+            }
+          },
+          3
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Normal",
+              "playedRound": 0,
+              "name": "Change of Heart",
+              "description": "Target 1 monster your opponent controls; take control of it until the End Phase.",
+              "type": "Spell",
+              "price": 2500
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 450,
+              "defensePoint": 600,
+              "level": 2,
+              "attribute": "EARTH",
+              "monsterType": "Insect",
+              "cardType": "Effect",
+              "name": "Man-Eater Bug",
+              "description": "FLIP: Target 1 monster on the field; destroy that target.",
+              "type": "Monster",
+              "price": 600
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1300,
               "defensePoint": 1000,
               "level": 4,
               "attribute": "EARTH",
-              "monsterType": "Beast-Warrior",
+              "monsterType": "Warrior",
               "cardType": "Normal",
-              "name": "Battle OX",
-              "description": "\"A monster with tremendous power, it destroys enemies with a swing of its axe.\"",
+              "name": "Axe Raider",
+              "description": "An axe-wielding monster of tremendous strength and agility.",
               "type": "Monster",
-              "price": 2900
+              "price": 3100
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Trap",
+            "@val": {
+              "trapType": "Unlimited",
+              "icon": "Normal",
+              "name": "Mirror Force",
+              "description": "When an opponent's monster declares an attack: Destroy all your opponent's Attack Position monsters.",
+              "type": "Trap",
+              "price": 2000
             }
           },
           1
@@ -471,39 +829,12 @@
           {
             "@type": "Model.Cards.Spell",
             "@val": {
-              "icon": "Normal",
+              "icon": "Field",
               "playedRound": 0,
-              "name": "Pot of Greed",
-              "description": "Draw 2 cards.",
+              "name": "Yami",
+              "description": "\"All Fiend and Spellcaster monsters on the field gain 200 ATK/DEF, also all Fairy monsters on the field lose 200 ATK/DEF.\"",
               "type": "Spell",
-              "price": 2500
-            }
-          },
-          0
-        ],
-        [
-          {
-            "@type": "Model.Cards.Spell",
-            "@val": {
-              "playedRound": 0,
-              "name": "The Calculator",
-              "description": "The ATK of this card is the combined Levels of all face-up monsters you control x 300.",
-              "type": "Monster",
-              "price": 8000
-            }
-          },
-          0
-        ],
-        [
-          {
-            "@type": "Model.Cards.Spell",
-            "@val": {
-              "icon": "Normal",
-              "playedRound": 0,
-              "name": "Dark Hole",
-              "description": "Destroy all monsters on the field.",
-              "type": "Spell",
-              "price": 2500
+              "price": 4300
             }
           },
           1
@@ -512,52 +843,51 @@
           {
             "@type": "Model.Cards.Monster",
             "@val": {
-              "attackPoint": 1300,
-              "defensePoint": 1400,
-              "level": 4,
-              "attribute": "DARK",
-              "monsterType": "Fiend",
-              "cardType": "Normal",
-              "name": "Feral Imp",
-              "description": "\"A playful little fiend that lurks in the dark, waiting to attack an unwary enemy.\"",
-              "type": "Monster",
-              "price": 2800
-            }
-          },
-          0
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 1300,
+              "attackPoint": 1700,
               "defensePoint": 1000,
               "level": 4,
               "attribute": "EARTH",
-              "monsterType": "Warrior",
+              "monsterType": "Beast",
               "cardType": "Normal",
-              "name": "Axe Raider",
-              "description": "An axe-wielding monster of tremendous strength and agility.",
+              "name": "Silver Fang",
+              "description": "\"A snow wolf that's beautiful to the eye, but absolutely vicious in battle.\"",
               "type": "Monster",
-              "price": 3100
+              "price": 1700
+            }
+          },
+          5
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 2000,
+              "defensePoint": 100,
+              "level": 4,
+              "attribute": "LIGHT",
+              "monsterType": "Dragon",
+              "cardType": "Normal",
+              "name": "Alexandrite Dragon",
+              "description": "\"Many of the czars' lost jewels can be found in the scales of this priceless dragon. Its creator remains a mystery, along with how they acquired the imperial treasures. But whosoever finds this dragon has hit the jackpot... whether they know it or not.\"",
+              "type": "Monster",
+              "price": 2600
             }
           },
           0
         ],
         [
           {
-            "@type": "Model.Cards.Monster",
+            "@type": "Model.Cards.Spell",
             "@val": {
-              "attackPoint": 0,
-              "defensePoint": 0,
-              "level": 0,
-              "name": "Yami",
-              "description": "\"All Fiend and Spellcaster monsters on the field gain 200 ATK/DEF, also all Fairy monsters on the field lose 200 ATK/DEF.\"",
+              "icon": "Field",
+              "playedRound": 0,
+              "name": "Closed Forest",
+              "description": "All Beast-Type monsters you control gain 100 ATK for each monster in your Graveyard. Field Spell Cards cannot be activated. Field Spell Cards cannot be activated during the turn this card is destroyed.",
               "type": "Spell",
               "price": 4300
             }
           },
-          7
+          4
         ],
         [
           {
@@ -579,14 +909,116 @@
         ],
         [
           {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1700,
+              "defensePoint": 1000,
+              "level": 4,
+              "attribute": "EARTH",
+              "monsterType": "Beast-Warrior",
+              "cardType": "Normal",
+              "name": "Battle OX",
+              "description": "\"A monster with tremendous power, it destroys enemies with a swing of its axe.\"",
+              "type": "Monster",
+              "price": 2900
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Quick-play",
+              "playedRound": 0,
+              "name": "Twin Twisters",
+              "description": "\"Discard 1 card, then target up to 2 Spells/Traps on the field; destroy them.\"",
+              "type": "Spell",
+              "price": 3500
+            }
+          },
+          4
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "playedRound": 0,
+              "name": "The Calculator",
+              "description": "The ATK of this card is the combined Levels of all face-up monsters you control x 300.",
+              "type": "Monster",
+              "price": 8000
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Normal",
+              "playedRound": 0,
+              "name": "Terraforming",
+              "description": "Add 1 Field Spell from your Deck to your hand.",
+              "type": "Spell",
+              "price": 2500
+            }
+          },
+          4
+        ],
+        [
+          {
             "@type": "Model.Cards.Spell",
             "@val": {
               "icon": "Continuous",
               "playedRound": 0,
-              "name": "Spell Absorption",
-              "description": "\"Each time a Spell Card is activated, gain 500 Life Points immediately after it resolves.\"",
+              "name": "Messenger of peace",
+              "description": "\"Monsters with 1500 or more ATK cannot declare an attack. Once per turn, during your Standby Phase, pay 100 LP or destroy this card.\"",
               "type": "Spell",
               "price": 4000
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 0,
+              "defensePoint": 0,
+              "level": 0,
+              "name": "Yami",
+              "description": "\"All Fiend and Spellcaster monsters on the field gain 200 ATK/DEF, also all Fairy monsters on the field lose 200 ATK/DEF.\"",
+              "type": "Spell",
+              "price": 4300
+            }
+          },
+          7
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Normal",
+              "playedRound": 0,
+              "name": "Harpie's Feather Duster",
+              "description": "Destroy all Spells and Traps your opponent controls.",
+              "type": "Spell",
+              "price": 2500
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Normal",
+              "playedRound": 0,
+              "name": "Raigeki",
+              "description": "Destroy all monsters your opponent controls.",
+              "type": "Spell",
+              "price": 2500
             }
           },
           1
@@ -641,6 +1073,38 @@
               {
                 "@type": "Model.Cards.Spell",
                 "@val": {
+                  "icon": "Normal",
+                  "playedRound": 0,
+                  "name": "Harpie's Feather Duster",
+                  "description": "Destroy all Spells and Traps your opponent controls.",
+                  "type": "Spell",
+                  "price": 2500
+                }
+              },
+              3
+            ],
+            [
+              {
+                "@type": "Model.Cards.Monster",
+                "@val": {
+                  "attackPoint": 1000,
+                  "defensePoint": 500,
+                  "level": 3,
+                  "attribute": "LIGHT",
+                  "monsterType": "Thunder",
+                  "cardType": "Normal",
+                  "name": "Wattkid",
+                  "description": "A creature that electrocutes opponents with bolts of lightning.",
+                  "type": "Monster",
+                  "price": 1300
+                }
+              },
+              3
+            ],
+            [
+              {
+                "@type": "Model.Cards.Spell",
+                "@val": {
                   "icon": "Quick-play",
                   "playedRound": 0,
                   "name": "Mystical space typhoon",
@@ -650,35 +1114,6 @@
                 }
               },
               3
-            ],
-            [
-              {
-                "@type": "Model.Cards.Monster",
-                "@val": {
-                  "attackPoint": 0,
-                  "defensePoint": 0,
-                  "level": 0,
-                  "name": "Closed Forest",
-                  "description": "All Beast-Type monsters you control gain 100 ATK for each monster in your Graveyard. Field Spell Cards cannot be activated. Field Spell Cards cannot be activated during the turn this card is destroyed.",
-                  "type": "Spell",
-                  "price": 4300
-                }
-              },
-              3
-            ],
-            [
-              {
-                "@type": "Model.Cards.Spell",
-                "@val": {
-                  "icon": "Continuous",
-                  "playedRound": 0,
-                  "name": "Yami",
-                  "description": "\"All Fiend and Spellcaster monsters on the field gain 200 ATK/DEF, also all Fairy monsters on the field lose 200 ATK/DEF.\"",
-                  "type": "Spell",
-                  "price": 4000
-                }
-              },
-              2
             ],
             [
               {
@@ -696,13 +1131,36 @@
             ],
             [
               {
-                "@type": "Model.Cards.Spell",
+                "@type": "Model.Cards.Monster",
                 "@val": {
-                  "playedRound": 0,
-                  "name": "Silver Fang",
-                  "description": "\"A snow wolf that's beautiful to the eye, but absolutely vicious in battle.\"",
+                  "attackPoint": 1700,
+                  "defensePoint": 1150,
+                  "level": 4,
+                  "attribute": "EARTH",
+                  "monsterType": "Warrior",
+                  "cardType": "Normal",
+                  "name": "Axe Raider",
+                  "description": "An axe-wielding monster of tremendous strength and agility.",
                   "type": "Monster",
-                  "price": 1700
+                  "price": 3100
+                }
+              },
+              3
+            ],
+            [
+              {
+                "@type": "Model.Cards.Monster",
+                "@val": {
+                  "attackPoint": 500,
+                  "defensePoint": 500,
+                  "level": 2,
+                  "attribute": "EARTH",
+                  "monsterType": "Rock",
+                  "cardType": "Normal",
+                  "name": "Haniwa",
+                  "description": "An earthen figure that protects the tomb of an ancient ruler.",
+                  "type": "Monster",
+                  "price": 600
                 }
               },
               3
@@ -729,12 +1187,11 @@
               {
                 "@type": "Model.Cards.Spell",
                 "@val": {
-                  "icon": "Normal",
                   "playedRound": 0,
-                  "name": "Harpie's Feather Duster",
-                  "description": "Destroy all Spells and Traps your opponent controls.",
-                  "type": "Spell",
-                  "price": 2500
+                  "name": "Silver Fang",
+                  "description": "\"A snow wolf that's beautiful to the eye, but absolutely vicious in battle.\"",
+                  "type": "Monster",
+                  "price": 1700
                 }
               },
               3
@@ -759,43 +1216,31 @@
             ],
             [
               {
-                "@type": "Model.Cards.Monster",
+                "@type": "Model.Cards.Spell",
                 "@val": {
-                  "attackPoint": 1000,
-                  "defensePoint": 500,
-                  "level": 3,
-                  "attribute": "LIGHT",
-                  "monsterType": "Thunder",
-                  "cardType": "Normal",
-                  "name": "Wattkid",
-                  "description": "A creature that electrocutes opponents with bolts of lightning.",
-                  "type": "Monster",
-                  "price": 1300
+                  "icon": "Normal",
+                  "playedRound": 0,
+                  "name": "Harpie's Feather Duster",
+                  "description": "Destroy all Spells and Traps your opponent controls.",
+                  "type": "Spell",
+                  "price": 2500
                 }
               },
               3
             ],
             [
               {
-                "@type": "Model.Cards.Monster",
+                "@type": "Model.Cards.Spell",
                 "@val": {
-                  "attackPoint": 500,
-                  "defensePoint": 500,
-                  "level": 2,
-                  "attribute": "EARTH",
-                  "monsterType": "Rock",
-                  "cardType": "Normal",
-                  "name": "Haniwa",
-                  "description": "An earthen figure that protects the tomb of an ancient ruler.",
-                  "type": "Monster",
-                  "price": 600
+                  "icon": "Continuous",
+                  "playedRound": 0,
+                  "name": "Yami",
+                  "description": "\"All Fiend and Spellcaster monsters on the field gain 200 ATK/DEF, also all Fairy monsters on the field lose 200 ATK/DEF.\"",
+                  "type": "Spell",
+                  "price": 4000
                 }
               },
-              3
-            ],
-            [
-              "@root.0.cards.7-key",
-              3
+              2
             ],
             [
               {
@@ -816,33 +1261,20 @@
               3
             ],
             [
-              {
-                "@type": "Model.Cards.Monster",
-                "@val": {
-                  "attackPoint": 1700,
-                  "defensePoint": 1150,
-                  "level": 4,
-                  "attribute": "EARTH",
-                  "monsterType": "Warrior",
-                  "cardType": "Normal",
-                  "name": "Axe Raider",
-                  "description": "An axe-wielding monster of tremendous strength and agility.",
-                  "type": "Monster",
-                  "price": 3100
-                }
-              },
+              "@root.0.cards.16-key",
               3
             ],
             [
               {
-                "@type": "Model.Cards.Spell",
+                "@type": "Model.Cards.Monster",
                 "@val": {
-                  "icon": "Normal",
-                  "playedRound": 0,
-                  "name": "Harpie's Feather Duster",
-                  "description": "Destroy all Spells and Traps your opponent controls.",
+                  "attackPoint": 0,
+                  "defensePoint": 0,
+                  "level": 0,
+                  "name": "Closed Forest",
+                  "description": "All Beast-Type monsters you control gain 100 ATK for each monster in your Graveyard. Field Spell Cards cannot be activated. Field Spell Cards cannot be activated during the turn this card is destroyed.",
                   "type": "Spell",
-                  "price": 2500
+                  "price": 4300
                 }
               },
               3
@@ -891,19 +1323,40 @@
         },
         {
           "mainDeck": {
-            "@root.0.cards.25-key": 3,
-            "@root.0.cards.8-key": 3,
-            "@root.0.cards.3-key": 3,
-            "@root.0.cards.13-key": 3,
-            "@root.0.cards.4-key": 3,
-            "@root.0.cards.14-key": 3,
-            "@root.0.cards.33-key": 3,
-            "@root.0.cards.35-key": 3,
-            "@root.0.cards.15-key": 3
+            "@root.0.cards.24-key": 3,
+            "@root.0.cards.53-key": 3,
+            "@root.0.cards.6-key": 3,
+            "@root.0.cards.42-key": 3,
+            "@root.0.cards.36-key": 3,
+            "@root.0.cards.12-key": 3,
+            "@root.0.cards.11-key": 3,
+            "@root.0.cards.61-key": 3,
+            "@root.0.cards.22-key": 3
           },
           "sideDeck": {},
           "deckIsValid": false,
           "deckName": "molaDeck",
+          "playerName": "ali"
+        },
+        {
+          "mainDeck": {
+            "@root.0.cards.28-key": 3,
+            "@root.0.cards.43-key": 3,
+            "@root.0.cards.44-key": 2,
+            "@root.0.cards.46-key": 3,
+            "@root.0.cards.49-key": 3,
+            "@root.0.cards.30-key": 3,
+            "@root.0.cards.54-key": 3,
+            "@root.0.cards.33-key": 3,
+            "@root.0.cards.4-key": 3,
+            "@root.0.cards.5-key": 3,
+            "@root.0.cards.9-key": 3,
+            "@root.0.cards.63-key": 3,
+            "@root.0.cards.10-key": 3
+          },
+          "sideDeck": {},
+          "deckIsValid": false,
+          "deckName": "mydeck",
           "playerName": "ali"
         }
       ],
@@ -926,16 +1379,58 @@
               {
                 "@type": "Model.Cards.Monster",
                 "@val": {
-                  "attackPoint": 1200,
-                  "defensePoint": 800,
-                  "level": 3,
-                  "attribute": "EARTH",
-                  "monsterType": "Beast",
+                  "attackPoint": 2000,
+                  "defensePoint": 2300,
+                  "level": 7,
+                  "attribute": "DARK",
+                  "monsterType": "Machine",
                   "cardType": "Normal",
-                  "name": "Silver Fang",
-                  "description": "\"A snow wolf that's beautiful to the eye, but absolutely vicious in battle.\"",
+                  "name": "Slot Machine",
+                  "description": "The machine's ability is said to vary according to its slot results.",
                   "type": "Monster",
-                  "price": 1700
+                  "price": 7500
+                }
+              },
+              3
+            ],
+            [
+              {
+                "@type": "Model.Cards.Spell",
+                "@val": {
+                  "icon": "Field",
+                  "playedRound": 0,
+                  "name": "Yami",
+                  "description": "\"All Fiend and Spellcaster monsters on the field gain 200 ATK/DEF, also all Fairy monsters on the field lose 200 ATK/DEF.\"",
+                  "type": "Spell",
+                  "price": 4300
+                }
+              },
+              2
+            ],
+            [
+              {
+                "@type": "Model.Cards.Spell",
+                "@val": {
+                  "icon": "Normal",
+                  "playedRound": 0,
+                  "name": "Harpie's Feather Duster",
+                  "description": "Destroy all Spells and Traps your opponent controls.",
+                  "type": "Spell",
+                  "price": 2500
+                }
+              },
+              3
+            ],
+            [
+              {
+                "@type": "Model.Cards.Spell",
+                "@val": {
+                  "icon": "Normal",
+                  "playedRound": 0,
+                  "name": "Pot of Greed",
+                  "description": "Draw 2 cards.",
+                  "type": "Spell",
+                  "price": 2500
                 }
               },
               3
@@ -944,16 +1439,26 @@
               {
                 "@type": "Model.Cards.Monster",
                 "@val": {
-                  "attackPoint": 1300,
-                  "defensePoint": 1000,
-                  "level": 4,
-                  "attribute": "DARK",
-                  "monsterType": "Fiend",
-                  "cardType": "Normal",
-                  "name": "Horn Imp",
-                  "description": "\"A small fiend that dwells in the dark, its single horn makes it a formidable opponent.\"",
+                  "attackPoint": 0,
+                  "defensePoint": 0,
+                  "level": 0,
+                  "name": "Mystical space typhoon",
+                  "description": "Target 1 Spell/Trap on the field; destroy that target.",
+                  "type": "Spell",
+                  "price": 3500
+                }
+              },
+              3
+            ],
+            [
+              {
+                "@type": "Model.Cards.Spell",
+                "@val": {
+                  "playedRound": 0,
+                  "name": "Wattkid",
+                  "description": "A creature that electrocutes opponents with bolts of lightning.",
                   "type": "Monster",
-                  "price": 2500
+                  "price": 1300
                 }
               },
               3
@@ -972,6 +1477,20 @@
                   "description": "\"A monster with tremendous power, it destroys enemies with a swing of its axe.\"",
                   "type": "Monster",
                   "price": 2900
+                }
+              },
+              3
+            ],
+            [
+              {
+                "@type": "Model.Cards.Spell",
+                "@val": {
+                  "icon": "Field",
+                  "playedRound": 0,
+                  "name": "Yami",
+                  "description": "\"All Fiend and Spellcaster monsters on the field gain 200 ATK/DEF, also all Fairy monsters on the field lose 200 ATK/DEF.\"",
+                  "type": "Spell",
+                  "price": 4300
                 }
               },
               3
@@ -998,18 +1517,58 @@
               {
                 "@type": "Model.Cards.Monster",
                 "@val": {
-                  "attackPoint": 500,
-                  "defensePoint": 500,
-                  "level": 2,
-                  "attribute": "EARTH",
-                  "monsterType": "Rock",
+                  "attackPoint": 1300,
+                  "defensePoint": 1400,
+                  "level": 4,
+                  "attribute": "DARK",
+                  "monsterType": "Fiend",
                   "cardType": "Normal",
-                  "name": "Haniwa",
-                  "description": "An earthen figure that protects the tomb of an ancient ruler.",
+                  "name": "Feral Imp",
+                  "description": "\"A playful little fiend that lurks in the dark, waiting to attack an unwary enemy.\"",
                   "type": "Monster",
-                  "price": 600
+                  "price": 2800
                 }
               },
+              3
+            ],
+            [
+              {
+                "@type": "Model.Cards.Monster",
+                "@val": {
+                  "attackPoint": 1300,
+                  "defensePoint": 1000,
+                  "level": 4,
+                  "attribute": "DARK",
+                  "monsterType": "Fiend",
+                  "cardType": "Normal",
+                  "name": "Horn Imp",
+                  "description": "\"A small fiend that dwells in the dark, its single horn makes it a formidable opponent.\"",
+                  "type": "Monster",
+                  "price": 2500
+                }
+              },
+              3
+            ],
+            [
+              {
+                "@type": "Model.Cards.Monster",
+                "@val": {
+                  "attackPoint": 1200,
+                  "defensePoint": 800,
+                  "level": 3,
+                  "attribute": "EARTH",
+                  "monsterType": "Beast",
+                  "cardType": "Normal",
+                  "name": "Silver Fang",
+                  "description": "\"A snow wolf that's beautiful to the eye, but absolutely vicious in battle.\"",
+                  "type": "Monster",
+                  "price": 1700
+                }
+              },
+              3
+            ],
+            [
+              "@root.0.cards.36-key",
               3
             ],
             [
@@ -1020,6 +1579,34 @@
                   "playedRound": 0,
                   "name": "Mystical space typhoon",
                   "description": "Target 1 Spell/Trap on the field; destroy that target.",
+                  "type": "Spell",
+                  "price": 3500
+                }
+              },
+              3
+            ],
+            [
+              {
+                "@type": "Model.Cards.Spell",
+                "@val": {
+                  "icon": "Normal",
+                  "playedRound": 0,
+                  "name": "Closed Forest",
+                  "description": "All Beast-Type monsters you control gain 100 ATK for each monster in your Graveyard. Field Spell Cards cannot be activated. Field Spell Cards cannot be activated during the turn this card is destroyed.",
+                  "type": "Spell",
+                  "price": 2500
+                }
+              },
+              3
+            ],
+            [
+              {
+                "@type": "Model.Cards.Spell",
+                "@val": {
+                  "icon": "Quick-play",
+                  "playedRound": 0,
+                  "name": "Twin Twisters",
+                  "description": "\"Discard 1 card, then target up to 2 Spells/Traps on the field; destroy them.\"",
                   "type": "Spell",
                   "price": 3500
                 }
@@ -1048,150 +1635,16 @@
               {
                 "@type": "Model.Cards.Monster",
                 "@val": {
-                  "attackPoint": 0,
-                  "defensePoint": 0,
-                  "level": 0,
-                  "name": "Mystical space typhoon",
-                  "description": "Target 1 Spell/Trap on the field; destroy that target.",
-                  "type": "Spell",
-                  "price": 3500
-                }
-              },
-              3
-            ],
-            [
-              {
-                "@type": "Model.Cards.Spell",
-                "@val": {
-                  "icon": "Normal",
-                  "playedRound": 0,
-                  "name": "Closed Forest",
-                  "description": "All Beast-Type monsters you control gain 100 ATK for each monster in your Graveyard. Field Spell Cards cannot be activated. Field Spell Cards cannot be activated during the turn this card is destroyed.",
-                  "type": "Spell",
-                  "price": 2500
-                }
-              },
-              3
-            ],
-            [
-              {
-                "@type": "Model.Cards.Spell",
-                "@val": {
-                  "icon": "Normal",
-                  "playedRound": 0,
-                  "name": "Harpie's Feather Duster",
-                  "description": "Destroy all Spells and Traps your opponent controls.",
-                  "type": "Spell",
-                  "price": 2500
-                }
-              },
-              3
-            ],
-            [
-              {
-                "@type": "Model.Cards.Spell",
-                "@val": {
-                  "icon": "Quick-play",
-                  "playedRound": 0,
-                  "name": "Twin Twisters",
-                  "description": "\"Discard 1 card, then target up to 2 Spells/Traps on the field; destroy them.\"",
-                  "type": "Spell",
-                  "price": 3500
-                }
-              },
-              3
-            ],
-            [
-              {
-                "@type": "Model.Cards.Monster",
-                "@val": {
-                  "attackPoint": 1300,
-                  "defensePoint": 1400,
-                  "level": 4,
-                  "attribute": "DARK",
-                  "monsterType": "Fiend",
+                  "attackPoint": 500,
+                  "defensePoint": 500,
+                  "level": 2,
+                  "attribute": "EARTH",
+                  "monsterType": "Rock",
                   "cardType": "Normal",
-                  "name": "Feral Imp",
-                  "description": "\"A playful little fiend that lurks in the dark, waiting to attack an unwary enemy.\"",
+                  "name": "Haniwa",
+                  "description": "An earthen figure that protects the tomb of an ancient ruler.",
                   "type": "Monster",
-                  "price": 2800
-                }
-              },
-              3
-            ],
-            [
-              {
-                "@type": "Model.Cards.Spell",
-                "@val": {
-                  "playedRound": 0,
-                  "name": "Wattkid",
-                  "description": "A creature that electrocutes opponents with bolts of lightning.",
-                  "type": "Monster",
-                  "price": 1300
-                }
-              },
-              3
-            ],
-            [
-              {
-                "@type": "Model.Cards.Spell",
-                "@val": {
-                  "icon": "Field",
-                  "playedRound": 0,
-                  "name": "Yami",
-                  "description": "\"All Fiend and Spellcaster monsters on the field gain 200 ATK/DEF, also all Fairy monsters on the field lose 200 ATK/DEF.\"",
-                  "type": "Spell",
-                  "price": 4300
-                }
-              },
-              3
-            ],
-            [
-              {
-                "@type": "Model.Cards.Spell",
-                "@val": {
-                  "icon": "Field",
-                  "playedRound": 0,
-                  "name": "Yami",
-                  "description": "\"All Fiend and Spellcaster monsters on the field gain 200 ATK/DEF, also all Fairy monsters on the field lose 200 ATK/DEF.\"",
-                  "type": "Spell",
-                  "price": 4300
-                }
-              },
-              2
-            ],
-            [
-              {
-                "@type": "Model.Cards.Spell",
-                "@val": {
-                  "icon": "Normal",
-                  "playedRound": 0,
-                  "name": "Pot of Greed",
-                  "description": "Draw 2 cards.",
-                  "type": "Spell",
-                  "price": 2500
-                }
-              },
-              3
-            ],
-            [
-              "@root.0.cards.35-key",
-              3
-            ],
-            [
-              {
-                "@type": "Model.Cards.Monster",
-                "@val": {
-                  "attackPoint": 2000,
-                  "defensePoint": 2300,
-                  "level": 7,
-                  "attribute": "DARK",
-                  "monsterType": "Machine",
-                  "cardType": "Normal",
-                  "name": "Slot Machine",
-                  "description": "The machine's ability is said to vary according to its slot results.",
-                  "type": "Monster",
-                  "price": 7500
+                  "price": 600
                 }
               },
               3
@@ -1215,130 +1668,6 @@
       "score": 0,
       "money": 184400,
       "cards": [
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 0,
-              "defensePoint": 0,
-              "level": 2,
-              "attribute": "LIGHT",
-              "monsterType": "Thunder",
-              "cardType": "Effect",
-              "name": "The Calculator",
-              "description": "The ATK of this card is the combined Levels of all face-up monsters you control x 300.",
-              "type": "Monster",
-              "price": 8000
-            }
-          },
-          4
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 200,
-              "defensePoint": 2000,
-              "level": 2,
-              "attribute": "EARTH",
-              "monsterType": "Cyberse",
-              "cardType": "Normal",
-              "name": "Bitron",
-              "description": "A new species found in electronic space. There's not much information on it.",
-              "type": "Monster",
-              "price": 1000
-            }
-          },
-          4
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 2550,
-              "defensePoint": 2500,
-              "level": 8,
-              "attribute": "WATER",
-              "monsterType": "Aqua",
-              "cardType": "Ritual",
-              "name": "Crab Turtle",
-              "description": "\"This monster can only be Ritual Summoned with the Ritual Spell Card, \"\"Turtle Oath\"\". You must also offer monsters whose total Level Stars equal 8 or more as a Tribute from the field or your hand.\"",
-              "type": "Monster",
-              "price": 10200
-            }
-          },
-          1
-        ],
-        [
-          {
-            "@type": "Model.Cards.Spell",
-            "@val": {
-              "icon": "Continuous",
-              "playedRound": 0,
-              "name": "Spell Absorption",
-              "description": "\"Each time a Spell Card is activated, gain 500 Life Points immediately after it resolves.\"",
-              "type": "Spell",
-              "price": 4000
-            }
-          },
-          1
-        ],
-        [
-          {
-            "@type": "Model.Cards.Spell",
-            "@val": {
-              "icon": "Normal",
-              "playedRound": 0,
-              "name": "Raigeki",
-              "description": "Destroy all monsters your opponent controls.",
-              "type": "Spell",
-              "price": 2500
-            }
-          },
-          1
-        ],
-        [
-          {
-            "@type": "Model.Cards.Trap",
-            "@val": {
-              "trapType": "Unlimited",
-              "icon": "Normal",
-              "name": "Mirror Force",
-              "description": "When an opponent's monster declares an attack: Destroy all your opponent's Attack Position monsters.",
-              "type": "Trap",
-              "price": 2000
-            }
-          },
-          1
-        ],
-        [
-          {
-            "@type": "Model.Cards.Spell",
-            "@val": {
-              "icon": "Field",
-              "playedRound": 0,
-              "name": "Yami",
-              "description": "\"All Fiend and Spellcaster monsters on the field gain 200 ATK/DEF, also all Fairy monsters on the field lose 200 ATK/DEF.\"",
-              "type": "Spell",
-              "price": 4300
-            }
-          },
-          1
-        ],
-        [
-          {
-            "@type": "Model.Cards.Spell",
-            "@val": {
-              "icon": "Field",
-              "playedRound": 0,
-              "name": "Forest",
-              "description": "\"All Insect, Beast, Plant, and Beast-Warrior monsters on the field gain 200 ATK/DEF.\"",
-              "type": "Spell",
-              "price": 4300
-            }
-          },
-          1
-        ],
         [
           {
             "@type": "Model.Cards.Monster",
@@ -1373,12 +1702,246 @@
         ],
         [
           {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 200,
+              "defensePoint": 2000,
+              "level": 2,
+              "attribute": "EARTH",
+              "monsterType": "Cyberse",
+              "cardType": "Normal",
+              "name": "Bitron",
+              "description": "A new species found in electronic space. There's not much information on it.",
+              "type": "Monster",
+              "price": 1000
+            }
+          },
+          4
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Normal",
+              "playedRound": 0,
+              "name": "Raigeki",
+              "description": "Destroy all monsters your opponent controls.",
+              "type": "Spell",
+              "price": 2500
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 0,
+              "defensePoint": 0,
+              "level": 2,
+              "attribute": "LIGHT",
+              "monsterType": "Thunder",
+              "cardType": "Effect",
+              "name": "The Calculator",
+              "description": "The ATK of this card is the combined Levels of all face-up monsters you control x 300.",
+              "type": "Monster",
+              "price": 8000
+            }
+          },
+          4
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Field",
+              "playedRound": 0,
+              "name": "Umiiruka",
+              "description": "Increase the ATK of all WATER monsters by 500 points and decrease their DEF by 400 points.",
+              "type": "Spell",
+              "price": 4300
+            }
+          },
+          1
+        ],
+        [
+          {
             "@type": "Model.Cards.Spell",
             "@val": {
               "icon": "Normal",
               "playedRound": 0,
               "name": "Dark Hole",
               "description": "Destroy all monsters on the field.",
+              "type": "Spell",
+              "price": 2500
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Normal",
+              "playedRound": 0,
+              "name": "Pot of Greed",
+              "description": "Draw 2 cards.",
+              "type": "Spell",
+              "price": 2500
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Trap",
+            "@val": {
+              "trapType": "Unlimited",
+              "icon": "Normal",
+              "name": "Mirror Force",
+              "description": "When an opponent's monster declares an attack: Destroy all your opponent's Attack Position monsters.",
+              "type": "Trap",
+              "price": 2000
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Continuous",
+              "playedRound": 0,
+              "name": "Spell Absorption",
+              "description": "\"Each time a Spell Card is activated, gain 500 Life Points immediately after it resolves.\"",
+              "type": "Spell",
+              "price": 4000
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 450,
+              "defensePoint": 600,
+              "level": 2,
+              "attribute": "EARTH",
+              "monsterType": "Insect",
+              "cardType": "Effect",
+              "name": "Man-Eater Bug",
+              "description": "FLIP: Target 1 monster on the field; destroy that target.",
+              "type": "Monster",
+              "price": 600
+            }
+          },
+          4
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Field",
+              "playedRound": 0,
+              "name": "Closed Forest",
+              "description": "All Beast-Type monsters you control gain 100 ATK for each monster in your Graveyard. Field Spell Cards cannot be activated. Field Spell Cards cannot be activated during the turn this card is destroyed.",
+              "type": "Spell",
+              "price": 4300
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 2550,
+              "defensePoint": 2500,
+              "level": 8,
+              "attribute": "WATER",
+              "monsterType": "Aqua",
+              "cardType": "Ritual",
+              "name": "Crab Turtle",
+              "description": "\"This monster can only be Ritual Summoned with the Ritual Spell Card, \"\"Turtle Oath\"\". You must also offer monsters whose total Level Stars equal 8 or more as a Tribute from the field or your hand.\"",
+              "type": "Monster",
+              "price": 10200
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 3000,
+              "defensePoint": 1200,
+              "level": 8,
+              "attribute": "EARTH",
+              "monsterType": "Beast-Warrior",
+              "cardType": "Effect",
+              "name": "Beast King Barbaros",
+              "description": "\"You can Normal Summon/Set this card without Tributing, but its original ATK becomes 1900. You can Tribute 3 monsters to Tribute Summon (but not Set) this card. If Summoned this way: Destroy all cards your opponent controls.\"",
+              "type": "Monster",
+              "price": 9200
+            }
+          },
+          4
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Field",
+              "playedRound": 0,
+              "name": "Forest",
+              "description": "\"All Insect, Beast, Plant, and Beast-Warrior monsters on the field gain 200 ATK/DEF.\"",
+              "type": "Spell",
+              "price": 4300
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 0,
+              "defensePoint": 0,
+              "level": 1,
+              "attribute": "LIGHT",
+              "monsterType": "Machine",
+              "cardType": "Effect",
+              "name": "Scanner",
+              "description": "\"Once per turn, you can select 1 of your opponent's monsters that is removed from play. Until the End Phase, this card's name is treated as the selected monster's name, and this card has the same Attribute, Level, ATK, and DEF as the selected monster. If this card is removed from the field while this effect is applied, remove it from play.\"",
+              "type": "Monster",
+              "price": 8000
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Field",
+              "playedRound": 0,
+              "name": "Yami",
+              "description": "\"All Fiend and Spellcaster monsters on the field gain 200 ATK/DEF, also all Fairy monsters on the field lose 200 ATK/DEF.\"",
+              "type": "Spell",
+              "price": 4300
+            }
+          },
+          1
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Normal",
+              "playedRound": 0,
+              "name": "Change of Heart",
+              "description": "Target 1 monster your opponent controls; take control of it until the End Phase.",
               "type": "Spell",
               "price": 2500
             }
@@ -1407,84 +1970,6 @@
           {
             "@type": "Model.Cards.Spell",
             "@val": {
-              "icon": "Normal",
-              "playedRound": 0,
-              "name": "Change of Heart",
-              "description": "Target 1 monster your opponent controls; take control of it until the End Phase.",
-              "type": "Spell",
-              "price": 2500
-            }
-          },
-          1
-        ],
-        [
-          {
-            "@type": "Model.Cards.Spell",
-            "@val": {
-              "icon": "Normal",
-              "playedRound": 0,
-              "name": "Pot of Greed",
-              "description": "Draw 2 cards.",
-              "type": "Spell",
-              "price": 2500
-            }
-          },
-          1
-        ],
-        [
-          {
-            "@type": "Model.Cards.Spell",
-            "@val": {
-              "icon": "Field",
-              "playedRound": 0,
-              "name": "Umiiruka",
-              "description": "Increase the ATK of all WATER monsters by 500 points and decrease their DEF by 400 points.",
-              "type": "Spell",
-              "price": 4300
-            }
-          },
-          1
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 450,
-              "defensePoint": 600,
-              "level": 2,
-              "attribute": "EARTH",
-              "monsterType": "Insect",
-              "cardType": "Effect",
-              "name": "Man-Eater Bug",
-              "description": "FLIP: Target 1 monster on the field; destroy that target.",
-              "type": "Monster",
-              "price": 600
-            }
-          },
-          4
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 3000,
-              "defensePoint": 1200,
-              "level": 8,
-              "attribute": "EARTH",
-              "monsterType": "Beast-Warrior",
-              "cardType": "Effect",
-              "name": "Beast King Barbaros",
-              "description": "\"You can Normal Summon/Set this card without Tributing, but its original ATK becomes 1900. You can Tribute 3 monsters to Tribute Summon (but not Set) this card. If Summoned this way: Destroy all cards your opponent controls.\"",
-              "type": "Monster",
-              "price": 9200
-            }
-          },
-          4
-        ],
-        [
-          {
-            "@type": "Model.Cards.Spell",
-            "@val": {
               "icon": "Quick-play",
               "playedRound": 0,
               "name": "Twin Twisters",
@@ -1494,61 +1979,11 @@
             }
           },
           4
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 0,
-              "defensePoint": 0,
-              "level": 1,
-              "attribute": "LIGHT",
-              "monsterType": "Machine",
-              "cardType": "Effect",
-              "name": "Scanner",
-              "description": "\"Once per turn, you can select 1 of your opponent's monsters that is removed from play. Until the End Phase, this card's name is treated as the selected monster's name, and this card has the same Attribute, Level, ATK, and DEF as the selected monster. If this card is removed from the field while this effect is applied, remove it from play.\"",
-              "type": "Monster",
-              "price": 8000
-            }
-          },
-          1
-        ],
-        [
-          {
-            "@type": "Model.Cards.Spell",
-            "@val": {
-              "icon": "Field",
-              "playedRound": 0,
-              "name": "Closed Forest",
-              "description": "All Beast-Type monsters you control gain 100 ATK for each monster in your Graveyard. Field Spell Cards cannot be activated. Field Spell Cards cannot be activated during the turn this card is destroyed.",
-              "type": "Spell",
-              "price": 4300
-            }
-          },
-          1
         ]
       ],
       "decks": [
         {
           "mainDeck": [
-            [
-              {
-                "@type": "Model.Cards.Trap",
-                "@val": {
-                  "trapType": "Unlimited",
-                  "icon": "Normal",
-                  "name": "Mirror Force",
-                  "description": "When an opponent's monster declares an attack: Destroy all your opponent's Attack Position monsters.",
-                  "type": "Trap",
-                  "price": 2000
-                }
-              },
-              3
-            ],
-            [
-              "@root.2.cards.2-key",
-              3
-            ],
             [
               {
                 "@type": "Model.Cards.Spell",
@@ -1565,32 +2000,30 @@
             ],
             [
               {
-                "@type": "Model.Cards.Monster",
+                "@type": "Model.Cards.Trap",
                 "@val": {
-                  "attackPoint": 800,
-                  "defensePoint": 1400,
-                  "level": 3,
-                  "attribute": "WATER",
-                  "monsterType": "Aqua",
-                  "cardType": "Effect",
-                  "name": "Yomi Ship",
-                  "description": "If this card is destroyed by battle and sent to the GY: Destroy the monster that destroyed this card.",
-                  "type": "Monster",
-                  "price": 1700
+                  "trapType": "Unlimited",
+                  "icon": "Normal",
+                  "name": "Mirror Force",
+                  "description": "When an opponent's monster declares an attack: Destroy all your opponent's Attack Position monsters.",
+                  "type": "Trap",
+                  "price": 2000
                 }
               },
               3
             ],
             [
-              "@root.2.cards.6-key",
-              3
-            ],
-            [
-              "@root.2.cards.7-key",
-              3
-            ],
-            [
-              "@root.2.cards.10-key",
+              {
+                "@type": "Model.Cards.Spell",
+                "@val": {
+                  "icon": "Continuous",
+                  "playedRound": 0,
+                  "name": "Spell Absorption",
+                  "description": "\"Each time a Spell Card is activated, gain 500 Life Points immediately after it resolves.\"",
+                  "type": "Spell",
+                  "price": 4000
+                }
+              },
               3
             ],
             [
@@ -1608,7 +2041,7 @@
               3
             ],
             [
-              "@root.2.cards.11-key",
+              "@root.2.cards.5-key",
               3
             ],
             [
@@ -1630,17 +2063,11 @@
               3
             ],
             [
-              {
-                "@type": "Model.Cards.Spell",
-                "@val": {
-                  "icon": "Continuous",
-                  "playedRound": 0,
-                  "name": "Spell Absorption",
-                  "description": "\"Each time a Spell Card is activated, gain 500 Life Points immediately after it resolves.\"",
-                  "type": "Spell",
-                  "price": 4000
-                }
-              },
+              "@root.2.cards.6-key",
+              3
+            ],
+            [
+              "@root.2.cards.11-key",
               3
             ],
             [
@@ -1652,7 +2079,33 @@
               3
             ],
             [
-              "@root.2.cards.19-key",
+              "@root.2.cards.16-key",
+              3
+            ],
+            [
+              {
+                "@type": "Model.Cards.Monster",
+                "@val": {
+                  "attackPoint": 800,
+                  "defensePoint": 1400,
+                  "level": 3,
+                  "attribute": "WATER",
+                  "monsterType": "Aqua",
+                  "cardType": "Effect",
+                  "name": "Yomi Ship",
+                  "description": "If this card is destroyed by battle and sent to the GY: Destroy the monster that destroyed this card.",
+                  "type": "Monster",
+                  "price": 1700
+                }
+              },
+              3
+            ],
+            [
+              "@root.2.cards.17-key",
+              3
+            ],
+            [
+              "@root.2.cards.18-key",
               3
             ]
           ],
