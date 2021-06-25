@@ -376,7 +376,7 @@ class DuelProgramController {
         System.out.println("enter position of tribute monster in monster zone:");
         int monsterZonePosition = 0;
         if (isAI == 1){
-            monsterZonePosition = 1;
+            monsterZonePosition = firstTributeIndex();
         } else {
             monsterZonePosition = CommonTools.scan.nextInt();
             CommonTools.scan.nextLine();
@@ -397,6 +397,28 @@ class DuelProgramController {
         deselect();
     }
 
+    private int firstTributeIndex(){
+        for (int i = 1; i <= 5; i++){
+            if (gameDecks.get(turn).getMonsterZones().get(i).getCurrentMonster() != null){
+                return i;
+            }
+        }
+        return 1;
+    }
+
+    private int secondTributeIndex(){
+        int state = 0;
+        for (int i = 1; i <= 5; i++){
+            if (gameDecks.get(turn).getMonsterZones().get(i).getCurrentMonster() != null){
+                state = state + 1;
+            }
+            if (state == 2){
+                return i;
+            }
+        }
+        return 2;
+    }
+
     private void summonWithTwoTribute(int position) {
         HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(turn).getMonsterZones();
         int numberOfEmptyMonsterZones = 0;
@@ -412,8 +434,8 @@ class DuelProgramController {
         int firstMonster = 0;
         int secondMonster = 0;
         if (isAI == 1){
-            firstMonster = 1;
-            secondMonster = 2;
+            firstMonster = firstTributeIndex();
+            secondMonster = secondTributeIndex();
 
         } else {
             firstMonster = CommonTools.scan.nextInt();
