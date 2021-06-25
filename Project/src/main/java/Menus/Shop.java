@@ -6,9 +6,7 @@ import Model.FileHandler;
 import Model.Player;
 
 import java.io.IOException;
-import java.security.SecureRandom;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 class Shop {
     public void run(String username) throws IOException {

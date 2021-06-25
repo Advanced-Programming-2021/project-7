@@ -1,8 +1,6 @@
 package Menus;
 
 import Model.CommonTools;
-import Model.Deck;
-import Model.Player;
 
 import java.io.IOException;
 
