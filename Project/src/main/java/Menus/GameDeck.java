@@ -129,7 +129,7 @@ class GameDeck {
     }
 
     public boolean isMonsterZoneFull() {
-        for (int i = 1; i <= monsterZones.size(); i++) {
+        for (int i = 1; i <= 5; i++) {
             if (monsterZones.get(i).isEmpty()) {
                 return false;
             }

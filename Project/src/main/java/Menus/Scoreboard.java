@@ -22,7 +22,6 @@ public class Scoreboard {
     public void run() {
         while (true) {
             String command = CommonTools.scan.nextLine();
-            // TODO: 2021-04-25
             if (command.equals("scoreboard show"))
                 showBoard();
             else if (command.equals("menu exit"))

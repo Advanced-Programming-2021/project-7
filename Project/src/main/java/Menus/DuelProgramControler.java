@@ -57,7 +57,7 @@ class DuelProgramController {
                 if (isRoundOver()) break;
                 System.out.println("phase: " + phase);
                 showGameDeck(turn);
-                if (phase == Phase.standby && messengerChecked == false) {
+                if (phase == Phase.standby && !messengerChecked) {
                     keepMessengerOfPeace();
                     messengerChecked = true;
                 }
@@ -65,7 +65,6 @@ class DuelProgramController {
                 if (secondPlayer.equals("ai") && turn == 1) {
                     ai.updateAI(gameDecks.get(1), gameDecks.get(0), phase);
                     command = ai.decision();
-                } else {
                     isAI = 1;
                     command = CommonTools.scan.nextLine();
                 } 
@@ -382,7 +381,7 @@ class DuelProgramController {
         }
         System.out.println("enter position of tribute monster in monster zone:");
         int monsterZonePosition = 0;
-        if (isAI == 1){
+        if (isAI == 1) {
             monsterZonePosition = firstTributeIndex();
         } else {
             monsterZonePosition = CommonTools.scan.nextInt();
@@ -404,22 +403,22 @@ class DuelProgramController {
         deselect();
     }
 
-    private int firstTributeIndex(){
-        for (int i = 1; i <= 5; i++){
-            if (gameDecks.get(turn).getMonsterZones().get(i).getCurrentMonster() != null){
+    private int firstTributeIndex() {
+        for (int i = 1; i <= 5; i++) {
+            if (gameDecks.get(turn).getMonsterZones().get(i).getCurrentMonster() != null) {
                 return i;
             }
         }
         return 1;
     }
 
-    private int secondTributeIndex(){
+    private int secondTributeIndex() {
         int state = 0;
-        for (int i = 1; i <= 5; i++){
-            if (gameDecks.get(turn).getMonsterZones().get(i).getCurrentMonster() != null){
+        for (int i = 1; i <= 5; i++) {
+            if (gameDecks.get(turn).getMonsterZones().get(i).getCurrentMonster() != null) {
                 state = state + 1;
             }
-            if (state == 2){
+            if (state == 2) {
                 return i;
             }
         }
@@ -440,7 +439,7 @@ class DuelProgramController {
         System.out.println("enter positions of tribute monster in monster zone:");
         int firstMonster = 0;
         int secondMonster = 0;
-        if (isAI == 1){
+        if (isAI == 1) {
             firstMonster = firstTributeIndex();
             secondMonster = secondTributeIndex();
 
@@ -651,9 +650,9 @@ class DuelProgramController {
         System.out.println("do you want to activate your spell and trap? yes/no");
         while (true) {
             String confirmation;
-            if (isAI == 1){
+            if (isAI == 1) {
                 confirmation = "no";
-            } else{
+            } else {
                 confirmation = CommonTools.scan.nextLine();
             }
             if (confirmation.equals("no")) return false;
@@ -1010,7 +1009,7 @@ class DuelProgramController {
             System.out.println("opponent's monster zone is empty");
             return;
         }
-        if (!gameDecks.get(turn).isMonsterZoneFull()) {
+        if (gameDecks.get(turn).isMonsterZoneFull()) {
             System.out.println("your monster zone is full");
             return;
         }
@@ -1025,7 +1024,7 @@ class DuelProgramController {
             } else {
                 Card card = gameDecks.get(opponentTurn).getMonsterZones().get(position).getCurrentMonster();
                 int index = gameDecks.get(turn).summonCardToMonsterZone(card.getName());
-                gameDecks.get(opponentTurn).getSpellZones().get(position).removeCard();
+                gameDecks.get(opponentTurn).getMonsterZones().get(position).removeCard();
                 gameDecks.get(turn).getMonsterZones().get(index).hasBeenChanged = true;
                 System.out.println("opponent's monster added to your monster zone");
                 break;
@@ -1628,23 +1627,25 @@ class DuelProgramController {
                 continue;
             String fieldCardName = gameDecks.get(i).getFieldZone().getName();
             for (int i1 = 1; i1 < 6; i1++) {
-                if (gameDecks.get(i).getMonsterZones().get(i1).isEmpty())
-                    continue;
                 if (fieldCardName.equals("Yami")) {
-                    yami((Monster) gameDecks.get(i).getMonsterZones().get(i1).getCurrentMonster(), activeMode);
+                    if (!gameDecks.get(i).getMonsterZones().get(i1).isEmpty())
+                        yami((Monster) gameDecks.get(i).getMonsterZones().get(i1).getCurrentMonster(), activeMode);
                     if (!gameDecks.get(changeTurn(i)).getMonsterZones().get(i1).isEmpty())
                         yami((Monster) gameDecks.get(changeTurn(i)).getMonsterZones().get(i1).getCurrentMonster(), activeMode);
 
                 } else if (fieldCardName.equals("Forest")) {
-                    forest((Monster) gameDecks.get(i).getMonsterZones().get(i1).getCurrentMonster(), activeMode);
+                    if (!gameDecks.get(i).getMonsterZones().get(i1).isEmpty())
+                        forest((Monster) gameDecks.get(i).getMonsterZones().get(i1).getCurrentMonster(), activeMode);
                     if (!gameDecks.get(changeTurn(i)).getMonsterZones().get(i1).isEmpty())
                         forest((Monster) gameDecks.get(changeTurn(i)).getMonsterZones().get(i1).getCurrentMonster(), activeMode);
 
                 } else if (fieldCardName.equals("Closed Forest")) {
-                    closedForest((Monster) gameDecks.get(i).getMonsterZones().get(i1).getCurrentMonster(), i, activeMode);
+                    if (!gameDecks.get(i).getMonsterZones().get(i1).isEmpty())
+                        closedForest((Monster) gameDecks.get(i).getMonsterZones().get(i1).getCurrentMonster(), i, activeMode);
 
                 } else if (fieldCardName.equals("Umiiruka")) {
-                    Umiiruka((Monster) gameDecks.get(i).getMonsterZones().get(i1).getCurrentMonster(), activeMode);
+                    if (!gameDecks.get(i).getMonsterZones().get(i1).isEmpty())
+                        Umiiruka((Monster) gameDecks.get(i).getMonsterZones().get(i1).getCurrentMonster(), activeMode);
                     if (!gameDecks.get(changeTurn(i)).getMonsterZones().get(i1).isEmpty())
                         Umiiruka((Monster) gameDecks.get(changeTurn(i)).getMonsterZones().get(i1).getCurrentMonster(), activeMode);
                 }

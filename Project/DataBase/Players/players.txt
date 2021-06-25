@@ -90,19 +90,19 @@
           {
             "@type": "Model.Cards.Spell",
             "@val": {
-              "icon": "Normal",
+              "icon": "Quick-play",
               "playedRound": 0,
               "name": "Terraforming",
               "description": "Add 1 Field Spell from your Deck to your hand.",
               "type": "Spell",
-              "price": 2500
+              "price": 3500
             }
           },
-          1
+          0
         ],
         [
           {
-            "@type": "Model.Cards.Monster",
+            "@type": "Model.Cards.Spell",
             "@val": {
               "attackPoint": 450,
               "defensePoint": 600,
@@ -170,7 +170,7 @@
               "price": 2900
             }
           },
-          0
+          1
         ],
         [
           {
@@ -208,6 +208,24 @@
           {
             "@type": "Model.Cards.Monster",
             "@val": {
+              "attackPoint": 1000,
+              "defensePoint": 500,
+              "level": 3,
+              "attribute": "LIGHT",
+              "monsterType": "Thunder",
+              "cardType": "Normal",
+              "name": "Wattkid",
+              "description": "A creature that electrocutes opponents with bolts of lightning.",
+              "type": "Monster",
+              "price": 1300
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
               "attackPoint": 1700,
               "defensePoint": 1000,
               "level": 4,
@@ -220,7 +238,7 @@
               "price": 2900
             }
           },
-          0
+          1
         ],
         [
           {
@@ -280,12 +298,12 @@
           {
             "@type": "Model.Cards.Spell",
             "@val": {
-              "icon": "Continuous",
+              "icon": "Field",
               "playedRound": 0,
               "name": "Supply Squad",
               "description": "\"Once per turn, if a monster(s) you control is destroyed by battle or card effect: Draw 1 card.\"",
               "type": "Spell",
-              "price": 4000
+              "price": 4300
             }
           },
           10
@@ -397,21 +415,17 @@
         ],
         [
           {
-            "@type": "Model.Cards.Monster",
+            "@type": "Model.Cards.Spell",
             "@val": {
-              "attackPoint": 1000,
-              "defensePoint": 500,
-              "level": 3,
-              "attribute": "LIGHT",
-              "monsterType": "Thunder",
-              "cardType": "Normal",
-              "name": "Wattkid",
-              "description": "A creature that electrocutes opponents with bolts of lightning.",
-              "type": "Monster",
-              "price": 1300
+              "icon": "Normal",
+              "playedRound": 0,
+              "name": "Dark Hole",
+              "description": "Destroy all monsters on the field.",
+              "type": "Spell",
+              "price": 2500
             }
           },
-          0
+          1
         ],
         [
           {
@@ -435,16 +449,16 @@
           {
             "@type": "Model.Cards.Monster",
             "@val": {
-              "attackPoint": 1700,
-              "defensePoint": 1000,
-              "level": 4,
-              "attribute": "EARTH",
-              "monsterType": "Beast-Warrior",
+              "attackPoint": 1200,
+              "defensePoint": 700,
+              "level": 3,
+              "attribute": "WIND",
+              "monsterType": "Dragon",
               "cardType": "Normal",
-              "name": "Battle OX",
-              "description": "\"A monster with tremendous power, it destroys enemies with a swing of its axe.\"",
+              "name": "Baby dragon",
+              "description": "\"Much more than just a child, this dragon is gifted with untapped power.\"",
               "type": "Monster",
-              "price": 2900
+              "price": 1600
             }
           },
           1
@@ -524,7 +538,7 @@
               "price": 2800
             }
           },
-          0
+          5
         ],
         [
           {
@@ -542,7 +556,7 @@
               "price": 3100
             }
           },
-          0
+          1
         ],
         [
           {
@@ -579,7 +593,7 @@
         ],
         [
           {
-            "@type": "Model.Cards.Spell",
+            "@type": "Model.Cards.Monster",
             "@val": {
               "icon": "Continuous",
               "playedRound": 0,
@@ -602,6 +616,10 @@
         },
         {
           "mainDeck": [
+            [
+              "@root.0.cards.10-key",
+              3
+            ],
             [
               {
                 "@type": "Model.Cards.Spell",
@@ -668,7 +686,7 @@
             ],
             [
               {
-                "@type": "Model.Cards.Spell",
+                "@type": "Model.Cards.Monster",
                 "@val": {
                   "icon": "Continuous",
                   "playedRound": 0,
@@ -684,12 +702,12 @@
               {
                 "@type": "Model.Cards.Spell",
                 "@val": {
-                  "icon": "Normal",
+                  "icon": "Continuous",
                   "playedRound": 0,
                   "name": "Pot of Greed",
                   "description": "Draw 2 cards.",
                   "type": "Spell",
-                  "price": 2500
+                  "price": 4000
                 }
               },
               3
@@ -726,8 +744,12 @@
               3
             ],
             [
+              "@root.0.cards.19-key",
+              3
+            ],
+            [
               {
-                "@type": "Model.Cards.Spell",
+                "@type": "Model.Cards.Monster",
                 "@val": {
                   "icon": "Normal",
                   "playedRound": 0,
@@ -759,7 +781,7 @@
             ],
             [
               {
-                "@type": "Model.Cards.Monster",
+                "@type": "Model.Cards.Spell",
                 "@val": {
                   "attackPoint": 1000,
                   "defensePoint": 500,
@@ -817,18 +839,14 @@
             ],
             [
               {
-                "@type": "Model.Cards.Monster",
+                "@type": "Model.Cards.Spell",
                 "@val": {
-                  "attackPoint": 1700,
-                  "defensePoint": 1150,
-                  "level": 4,
-                  "attribute": "EARTH",
-                  "monsterType": "Warrior",
-                  "cardType": "Normal",
-                  "name": "Axe Raider",
-                  "description": "An axe-wielding monster of tremendous strength and agility.",
-                  "type": "Monster",
-                  "price": 3100
+                  "icon": "Normal",
+                  "playedRound": 0,
+                  "name": "Harpie's Feather Duster",
+                  "description": "Destroy all Spells and Traps your opponent controls.",
+                  "type": "Spell",
+                  "price": 2500
                 }
               },
               3
@@ -1106,15 +1124,15 @@
                 "@type": "Model.Cards.Monster",
                 "@val": {
                   "attackPoint": 1300,
-                  "defensePoint": 1400,
+                  "defensePoint": 1000,
                   "level": 4,
                   "attribute": "DARK",
                   "monsterType": "Fiend",
                   "cardType": "Normal",
-                  "name": "Feral Imp",
-                  "description": "\"A playful little fiend that lurks in the dark, waiting to attack an unwary enemy.\"",
+                  "name": "Horn Imp",
+                  "description": "\"A small fiend that dwells in the dark, its single horn makes it a formidable opponent.\"",
                   "type": "Monster",
-                  "price": 2800
+                  "price": 2500
                 }
               },
               3
@@ -1166,10 +1184,10 @@
                 "@val": {
                   "icon": "Normal",
                   "playedRound": 0,
-                  "name": "Pot of Greed",
-                  "description": "Draw 2 cards.",
+                  "name": "Messenger of peace",
+                  "description": "\"Monsters with 1500 or more ATK cannot declare an attack. Once per turn, during your Standby Phase, pay 100 LP or destroy this card.\"",
                   "type": "Spell",
-                  "price": 2500
+                  "price": 4000
                 }
               },
               3
@@ -1613,6 +1631,20 @@
             ],
             [
               {
+                "@type": "Model.Cards.Spell",
+                "@val": {
+                  "icon": "Normal",
+                  "playedRound": 0,
+                  "name": "Dark Hole",
+                  "description": "Destroy all monsters on the field.",
+                  "type": "Spell",
+                  "price": 2500
+                }
+              },
+              3
+            ],
+            [
+              {
                 "@type": "Model.Cards.Monster",
                 "@val": {
                   "attackPoint": 0,
@@ -1625,6 +1657,24 @@
                   "description": "\"Once per turn, you can select 1 of your opponent's monsters that is removed from play. Until the End Phase, this card's name is treated as the selected monster's name, and this card has the same Attribute, Level, ATK, and DEF as the selected monster. If this card is removed from the field while this effect is applied, remove it from play.\"",
                   "type": "Monster",
                   "price": 8000
+                }
+              },
+              3
+            ],
+            [
+              {
+                "@type": "Model.Cards.Monster",
+                "@val": {
+                  "attackPoint": 2000,
+                  "defensePoint": 2300,
+                  "level": 7,
+                  "attribute": "DARK",
+                  "monsterType": "Machine",
+                  "cardType": "Normal",
+                  "name": "Slot Machine",
+                  "description": "The machine's ability is said to vary according to its slot results.",
+                  "type": "Monster",
+                  "price": 7500
                 }
               },
               3
