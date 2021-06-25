@@ -2,13 +2,10 @@ package Menus;
 
 import Model.Cards.Card;
 import Model.Cards.Monster;
-import Model.Cards.MonsterZone;
 import Model.CommonTools;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 
 public class MonsterPowersController {
@@ -58,7 +55,7 @@ public class MonsterPowersController {
     public void monsterPowersWhenSummon(Card card) {
         String cardName = card.getName();
         if (cardName.equals("Scanner")) ScannerPower(card);
-
+        else if (cardName.equals("The Calculator")) calculatorPower(card);
     }
 
     public void monsterPowersWhenFlipsummon(Card card) {
@@ -228,6 +225,21 @@ public class MonsterPowersController {
                 System.out.println("you should special summon right now");
             }
         }
+    }
+
+    public void calculatorPower(Card card) {
+        ArrayList<Monster> monsterZoneCards = new ArrayList<>();
+        for (int i = 1; i <= 5; i++) {
+            if (!(gameDecks.get(turn).getMonsterZones().get(i).getStatus().equals("OO"))) continue;
+            Monster monsterCard = (Monster) gameDecks.get(turn).getMonsterZones().get(i).getCurrentMonster();
+            if (monsterCard != null) monsterZoneCards.add(monsterCard);
+        }
+        int sumOflevel = 0;
+        for (Monster monster : monsterZoneCards) {
+            sumOflevel += monster.getLevel();
+        }
+        Monster monster = (Monster) card;
+        monster.setAttackPoint(sumOflevel * 300);
     }
 
     private boolean isSummonAndSetValid() {
