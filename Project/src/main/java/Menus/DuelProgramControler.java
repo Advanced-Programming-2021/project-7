@@ -430,7 +430,7 @@ class DuelProgramController {
             System.out.println("there are not enough cards for tribute");
             return;
         }
-        System.out.println("enter position of tribute monster in monster zone:");
+        System.out.println("enter positions of tribute monster in monster zone:");
         int firstMonster = 0;
         int secondMonster = 0;
         if (isAI == 1){
