@@ -1274,7 +1274,61 @@ class DuelProgramController {
     }
 
     private void ritualSummon() {
+        while (true) {
+            System.out.println("please select a ritual monster to summon");
+            String command = CommonTools.scan.nextLine();
+            if (command.matches("^cancel$")) break;
+            Matcher matcher = CommonTools.getMatcher(command, "^select --hand (\\d+)$");
+            matcher.find();
+            int position = Integer.parseInt(matcher.group(1));
+            if (position < 1 || position > 5) {
+                System.out.println("invalid selection");
+                continue;
+            }
+            ArrayList<Card> inHandCards = gameDecks.get(turn).getInHandCards();
+            selectedCard = inHandCards.get(position - 1);
+            selectedCardIndex = position;
+            selectedDeck = "hand";
+            if (!(inHandCards.get(position - 1).getName().equals("Crab Turtle")
+                    || inHandCards.get(position - 1).getName().equals("Skull Guardian"))) {
+                System.out.println("you should ritual summon right now");
+                continue;
+            }
+            System.out.println("card selected");
+            while (true) {
+                System.out.println("enter positions of tribute monster in monster zone:");
+                boolean isSummonSuccessful = false;
+                int sumOfLevels = 0;
+                ArrayList<Integer> positionOfTributeMonsters = new ArrayList<>();
+                while (true) {
+                    int monsterZonePosition = 0;
+                    monsterZonePosition = CommonTools.scan.nextInt();
+                    CommonTools.scan.nextLine();
+                    if (monsterZonePosition < 1 || monsterZonePosition > 5) {
+                        System.out.println("there no monsters on this address");
+                        continue;
+                    }
+                    Monster tributeMonster = (Monster) gameDecks.get(turn).getMonsterZones().get(monsterZonePosition).getCurrentMonster();
+                    if (tributeMonster == null) {
+                        System.out.println("there no monsters on this address");
+                        continue;
+                    }
+                    positionOfTributeMonsters.add(position);
+                    sumOfLevels += tributeMonster.getLevel();
+                    if (sumOfLevels > 7) {
+                        System.out.println("selected monsters levels don't match with ritual monster");
+                        break;
+                    } else if (sumOfLevels == 7) {
+                        isSummonSuccessful = true;
+                        break;
+                    }
+                }
+                if (isSummonSuccessful) {
 
+                    break;
+                }
+            }
+        }
     }
 
     private void Terraforming() {
