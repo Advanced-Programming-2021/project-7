@@ -1,13 +1,10 @@
 package Menus;
 
-import Model.Cards.Card;
 import Model.CommonTools;
 import Model.FileHandler;
 import Model.Player;
 
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class LoginMenu {
 

@@ -1,8 +1,6 @@
 package Menus;
 
 import Model.CommonTools;
-import Model.Deck;
-import Model.Player;
 
 import java.io.IOException;
 
@@ -24,6 +22,8 @@ class MainMenu {
                 deck(username);
             else if (command.matches("^menu enter shop$"))
                 shop(username);
+            else if (command.matches("^menu enter import-export$"))
+                importExport();
             else System.out.println("invalid command");
         }
     }
@@ -46,5 +46,10 @@ class MainMenu {
     public static void shop(String username) throws IOException {
         Shop shop = new Shop();
         shop.run(username);
+    }
+
+    public static void importExport() {
+        ImportExportMenu importExportMenu = new ImportExportMenu();
+        importExportMenu.run();
     }
 }

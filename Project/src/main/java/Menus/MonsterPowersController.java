@@ -1,13 +1,11 @@
 package Menus;
 
 import Model.Cards.Card;
-import Model.Cards.MonsterZone;
+import Model.Cards.Monster;
 import Model.CommonTools;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 
 public class MonsterPowersController {
@@ -57,7 +55,7 @@ public class MonsterPowersController {
     public void monsterPowersWhenSummon(Card card) {
         String cardName = card.getName();
         if (cardName.equals("Scanner")) ScannerPower(card);
-
+        else if (cardName.equals("The Calculator")) calculatorPower(card);
     }
 
     public void monsterPowersWhenFlipsummon(Card card) {
@@ -116,7 +114,24 @@ public class MonsterPowersController {
 
     public void ScannerPower(Card card) {
         GameDeck enemyDeck = gameDecks.get((turn + 1) % 2);
-        enemyDeck.getGraveyardCards();
+        duelProgramController.showGraveyard((turn + 1) % 2);
+        System.out.println("please select one of enemy graveyard cards: ");
+        while (true) {
+            int cardNumber = CommonTools.scan.nextInt();
+            CommonTools.scan.nextLine();
+            if (cardNumber < 1 || cardNumber > enemyDeck.getGraveyardCards().size() + 1) {
+                System.out.println("there is no card with that number");
+                continue;
+            }
+            Monster cardToBeScan = (Monster) enemyDeck.getGraveyardCards().get(cardNumber - 1);
+            if (!(cardToBeScan.getCardType().equals("Monster"))) {
+                System.out.println("selected card is not a monster card");
+                continue;
+            }
+            Monster monster = (Monster) card;
+            monster.setAttackPoint(cardToBeScan.getAttackPoint());
+            monster.setDefensePoint(cardToBeScan.getDefensePoint());
+        }
     }
 
     public void exploderDragonPower() {
@@ -128,13 +143,60 @@ public class MonsterPowersController {
     }
 
     public void gateGuardianPower() {
-
+        System.out.println("Do you want special summon selected monster?");
+        String command = CommonTools.scan.nextLine().trim().toLowerCase(Locale.ROOT);
+        if (command.equals("no")) return;
+        ArrayList<Card> monsterZoneCards = new ArrayList<>();
+        for (int i = 1; i <= 5; i++) {
+            Card monsterCard = gameDecks.get(turn).getMonsterZones().get(i).getCurrentMonster();
+            if (monsterCard != null) monsterZoneCards.add(monsterCard);
+        }
+        if (monsterZoneCards.size() < 4) {
+            System.out.println("there is no way you could special summon a monster");
+            return;
+        }
+        while (true) {
+            System.out.println("enter positions of tribute monster in monster zone:");
+            int numberOfTribute = 0;
+            ArrayList<Integer> positionOfTributeMonsters = new ArrayList<>();
+            while (true) {
+                int monsterZonePosition = 0;
+                monsterZonePosition = CommonTools.scan.nextInt();
+                CommonTools.scan.nextLine();
+                if (monsterZonePosition < 1 || monsterZonePosition > 5) {
+                    System.out.println("there no monsters on this address");
+                    continue;
+                }
+                Monster tributeMonster = (Monster) gameDecks.get(turn).getMonsterZones().get(monsterZonePosition).getCurrentMonster();
+                if (tributeMonster == null) {
+                    System.out.println("there no monsters on this address");
+                    continue;
+                }
+                positionOfTributeMonsters.add(monsterZonePosition);
+                numberOfTribute += tributeMonster.getLevel();
+                if (numberOfTribute == 3) break;
+            }
+            System.out.println("summoned successfully");
+            isSummoned = 1;
+            for (int monsterZonePosition : positionOfTributeMonsters) {
+                gameDecks.get(turn).tributeCardFromMonsterZone(monsterZonePosition);
+            }
+            gameDecks.get(turn).getInHandCards().remove(selectedCardIndex - 1);
+            duelProgramController.setEnteredMonsterCardIndex(
+                    gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName()));
+            duelProgramController.deselect();
+            break;
+        }
     }
 
     public void theTrickyPower() {
         System.out.println("Do you want special summon selected monster?");
         String command = CommonTools.scan.nextLine().trim().toLowerCase(Locale.ROOT);
         if (command.equals("no")) return;
+        if (gameDecks.get(turn).getInHandCards().size() < 2) {
+            System.out.println("there is no way you could special summon a monster");
+            return;
+        }
         System.out.println("Please select one card from your hand to tribute");
         while (true) {
             command = CommonTools.scan.nextLine();
@@ -142,6 +204,10 @@ public class MonsterPowersController {
                 Matcher matcher = CommonTools.getMatcher(command, "(\\d)");
                 matcher.find();
                 int position = Integer.parseInt(matcher.group(1));
+                if (position < 1 || position > 5) {
+                    System.out.println("invalid selection");
+                    continue;
+                }
                 ArrayList<Card> inHandCards = gameDecks.get(turn).getInHandCards();
                 Card selectedCardFromHand = inHandCards.get(position - 1);
                 if (selectedCardFromHand != null) {
@@ -151,13 +217,29 @@ public class MonsterPowersController {
                     gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
                     gameDecks.get(turn).getInHandCards().remove(position - 1);
                     gameDecks.get(turn).getInHandCards().remove(selectedCardIndex - 1);
+                    duelProgramController.deselect();
                 } else {
                     System.out.println("no card found in the given position");
                 }
             } else {
-                System.out.println("invalid selection");
+                System.out.println("you should special summon right now");
             }
         }
+    }
+
+    public void calculatorPower(Card card) {
+        ArrayList<Monster> monsterZoneCards = new ArrayList<>();
+        for (int i = 1; i <= 5; i++) {
+            if (!(gameDecks.get(turn).getMonsterZones().get(i).getStatus().equals("OO"))) continue;
+            Monster monsterCard = (Monster) gameDecks.get(turn).getMonsterZones().get(i).getCurrentMonster();
+            if (monsterCard != null) monsterZoneCards.add(monsterCard);
+        }
+        int sumOflevel = 0;
+        for (Monster monster : monsterZoneCards) {
+            sumOflevel += monster.getLevel();
+        }
+        Monster monster = (Monster) card;
+        monster.setAttackPoint(sumOflevel * 300);
     }
 
     private boolean isSummonAndSetValid() {

@@ -40,6 +40,7 @@ class DuelProgramController {
     private int isCardDrawn = 0;
     private int isGameStart = 2;
     private boolean messengerChecked = false;
+    private int isAI = 0;
 
     public void run(String firstPlayer, String secondPlayer, int round) {
         for (int i = 1; i <= round; i++) {
@@ -65,10 +66,13 @@ class DuelProgramController {
                     ai.updateAI(gameDecks.get(1), gameDecks.get(0), phase);
                     command = ai.decision();
                 } else {
+                    isAI = 1;
+                } else {
                     command = CommonTools.scan.nextLine();
                 }
                 if (command.matches("^show graveyard$")) showGraveyard(turn);
                 else if (command.matches("^surrender$")) surrender(turn);
+                else if (command.matches("^select --hand --force$")) inHandCardCheat();
                 else if (command.matches("^select -d$")) deselect();
                 else if (command.matches("^s$")) showCard();
                 else if (command.matches("^select .*$")) selectCard(command);
@@ -201,7 +205,7 @@ class DuelProgramController {
         else selectMyDeck(address);
     }
 
-    private void deselect() {
+    public void deselect() {
         if (selectedCard == null) {
             System.out.println("no card is selected yet");
             return;
@@ -354,6 +358,8 @@ class DuelProgramController {
         Monster selectedMonster = (Monster) selectedCard;
         if (selectedMonster.getLevel() <= 4) {
             System.out.println("summoned successfully");
+            monsterPowersController.setTurn(turn);
+            monsterPowersController.monsterPowersWhenSummon(selectedCard);
             activateOrDeactivateFieldCardForAll(-1);
             isSummoned = 1;
             enteredMonsterCardIndex = gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
@@ -376,8 +382,13 @@ class DuelProgramController {
             return;
         }
         System.out.println("enter position of tribute monster in monster zone:");
-        int monsterZonePosition = CommonTools.scan.nextInt();
-        CommonTools.scan.nextLine();
+        int monsterZonePosition = 0;
+        if (isAI == 1){
+            monsterZonePosition = firstTributeIndex();
+        } else {
+            monsterZonePosition = CommonTools.scan.nextInt();
+            CommonTools.scan.nextLine();
+        }
         if (monsterZonePosition < 1 || monsterZonePosition > 5) {
             System.out.println("there no monsters on this address");
             return;
@@ -387,11 +398,33 @@ class DuelProgramController {
             return;
         }
         System.out.println("summoned successfully");
-        deselect();
         isSummoned = 1;
-        enteredMonsterCardIndex = gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
         gameDecks.get(turn).tributeCardFromMonsterZone(monsterZonePosition);
         gameDecks.get(turn).getInHandCards().remove(position - 1);
+        enteredMonsterCardIndex = gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
+        deselect();
+    }
+
+    private int firstTributeIndex(){
+        for (int i = 1; i <= 5; i++){
+            if (gameDecks.get(turn).getMonsterZones().get(i).getCurrentMonster() != null){
+                return i;
+            }
+        }
+        return 1;
+    }
+
+    private int secondTributeIndex(){
+        int state = 0;
+        for (int i = 1; i <= 5; i++){
+            if (gameDecks.get(turn).getMonsterZones().get(i).getCurrentMonster() != null){
+                state = state + 1;
+            }
+            if (state == 2){
+                return i;
+            }
+        }
+        return 2;
     }
 
     private void summonWithTwoTribute(int position) {
@@ -405,11 +438,19 @@ class DuelProgramController {
             System.out.println("there are not enough cards for tribute");
             return;
         }
-        System.out.println("enter position of tribute monster in monster zone:");
-        int firstMonster = CommonTools.scan.nextInt();
-        CommonTools.scan.nextLine();
-        int secondMonster = CommonTools.scan.nextInt();
-        CommonTools.scan.nextLine();
+        System.out.println("enter positions of tribute monster in monster zone:");
+        int firstMonster = 0;
+        int secondMonster = 0;
+        if (isAI == 1){
+            firstMonster = firstTributeIndex();
+            secondMonster = secondTributeIndex();
+
+        } else {
+            firstMonster = CommonTools.scan.nextInt();
+            CommonTools.scan.nextLine();
+            secondMonster = CommonTools.scan.nextInt();
+            CommonTools.scan.nextLine();
+        }
         if (firstMonster < 1 || firstMonster > 5 || secondMonster < 1 || secondMonster > 5) {
             System.out.println("there are no monsters on one of this addresses");
             return;
@@ -420,12 +461,12 @@ class DuelProgramController {
             return;
         }
         System.out.println("summoned successfully");
-        deselect();
         isSummoned = 1;
-        enteredMonsterCardIndex = gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
         gameDecks.get(turn).tributeCardFromMonsterZone(firstMonster);
         gameDecks.get(turn).tributeCardFromMonsterZone(secondMonster);
         gameDecks.get(turn).getInHandCards().remove(position - 1);
+        enteredMonsterCardIndex = gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
+        deselect();
     }
 
     private void set() {
@@ -610,7 +651,12 @@ class DuelProgramController {
         showGameDeck(trapTurn);
         System.out.println("do you want to activate your spell and trap? yes/no");
         while (true) {
-            String confirmation = CommonTools.scan.nextLine();
+            String confirmation;
+            if (isAI == 1){
+                confirmation = "no";
+            } else{
+                confirmation = CommonTools.scan.nextLine();
+            }
             if (confirmation.equals("no")) return false;
             else if (confirmation.equals("yes")) break;
             else System.out.println("invalid command");
@@ -876,7 +922,7 @@ class DuelProgramController {
         }
     }
 
-    private void showGraveyard(int turn) {
+    public void showGraveyard(int turn) {
         GameDeck gameDeck;
         if (turn == 0)
             gameDeck = gameDecks.get(0);
@@ -1177,6 +1223,13 @@ class DuelProgramController {
         gameDecks.get(turn).drawCard();
     }
 
+    private void inHandCardCheat() {
+        ArrayList<Card> deck = gameDecks.get(turn).getDeck();
+        if (deck.size() == 0) return;
+        isCardDrawn = 1;
+        gameDecks.get(turn).drawCard();
+    }
+
     private void changePhase() {
         if (phase == Phase.end) changeGameTurn();
         phase = phase.next();
@@ -1205,6 +1258,107 @@ class DuelProgramController {
             mysticalTyphoon();
         } else if (spell.getName().equals("Change of Heart")) {
             spellActivateChangeOfHeart();
+        } else if (spell.getName().equals("Advance Ritual Art")) {
+            advanceRitualArt();
+        }
+    }
+
+    private void advanceRitualArt() {
+        ArrayList<Card> inHandCards = gameDecks.get(turn).getInHandCards();
+        int isRitualSummonPossible = 0;
+        for (Card card : inHandCards) {
+            if (card.getName().equals("Crab Turtle") || card.getName().equals("Skull Guardian")) {
+                isRitualSummonPossible++;
+                break;
+            }
+        }
+        ArrayList<Card> monsterZoneCards = new ArrayList<>();
+        for (int i = 1; i <= 5; i++) {
+            Card monsterCard = gameDecks.get(turn).getMonsterZones().get(i).getCurrentMonster();
+            if (monsterCard != null) monsterZoneCards.add(monsterCard);
+        }
+        for (int i = 0; i < monsterZoneCards.size(); i++) {
+            Monster firstMonster = (Monster) monsterZoneCards.get(i);
+            int sumOfLevels = firstMonster.getLevel();
+            for (int j = i + 1; j < monsterZoneCards.size(); j++) {
+                if (sumOfLevels == 7) {
+                    isRitualSummonPossible++;
+                    break;
+                }
+                Monster secondMonster = (Monster) monsterZoneCards.get(i);
+                sumOfLevels += secondMonster.getLevel();
+            }
+        }
+        if (isSummoned == 0) isRitualSummonPossible++;
+        if (isRitualSummonPossible == 3) {
+            ritualSummon();
+        } else {
+            System.out.println("there is no way you could ritual summon a monster");
+        }
+    }
+
+    private void ritualSummon() {
+        while (true) {
+            System.out.println("please select a ritual monster to summon");
+            String command = CommonTools.scan.nextLine();
+            if (command.matches("^cancel$")) break;
+            Matcher matcher = CommonTools.getMatcher(command, "^select --hand (\\d+)$");
+            matcher.find();
+            int position = Integer.parseInt(matcher.group(1));
+            if (position < 1 || position > 5) {
+                System.out.println("invalid selection");
+                continue;
+            }
+            ArrayList<Card> inHandCards = gameDecks.get(turn).getInHandCards();
+            selectedCard = inHandCards.get(position - 1);
+            selectedCardIndex = position;
+            selectedDeck = "hand";
+            if (!(inHandCards.get(position - 1).getName().equals("Crab Turtle")
+                    || inHandCards.get(position - 1).getName().equals("Skull Guardian"))) {
+                System.out.println("you should ritual summon right now");
+                continue;
+            }
+            System.out.println("card selected");
+            while (true) {
+                System.out.println("enter positions of tribute monster in monster zone:");
+                boolean isSummonSuccessful = false;
+                int sumOfLevels = 0;
+                ArrayList<Integer> positionOfTributeMonsters = new ArrayList<>();
+                while (true) {
+                    int monsterZonePosition = 0;
+                    monsterZonePosition = CommonTools.scan.nextInt();
+                    CommonTools.scan.nextLine();
+                    if (monsterZonePosition < 1 || monsterZonePosition > 5) {
+                        System.out.println("there no monsters on this address");
+                        continue;
+                    }
+                    Monster tributeMonster = (Monster) gameDecks.get(turn).getMonsterZones().get(monsterZonePosition).getCurrentMonster();
+                    if (tributeMonster == null) {
+                        System.out.println("there no monsters on this address");
+                        continue;
+                    }
+                    positionOfTributeMonsters.add(monsterZonePosition);
+                    sumOfLevels += tributeMonster.getLevel();
+                    if (sumOfLevels > 7) {
+                        System.out.println("selected monsters levels don't match with ritual monster");
+                        break;
+                    } else if (sumOfLevels == 7) {
+                        isSummonSuccessful = true;
+                        break;
+                    }
+                }
+                if (isSummonSuccessful) {
+                    System.out.println("summoned successfully");
+                    isSummoned = 1;
+                    for (int monsterZonePosition : positionOfTributeMonsters) {
+                        gameDecks.get(turn).tributeCardFromMonsterZone(monsterZonePosition);
+                    }
+                    gameDecks.get(turn).getInHandCards().remove(position - 1);
+                    enteredMonsterCardIndex = gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
+                    deselect();
+                    break;
+                }
+            }
         }
     }
 
@@ -1524,5 +1678,9 @@ class DuelProgramController {
 
     public void setSelectedMonsterCardIndex(int selectedMonsterCardIndex) {
         this.enteredMonsterCardIndex = selectedMonsterCardIndex;
+    }
+
+    public void setEnteredMonsterCardIndex(int enteredMonsterCardIndex) {
+        this.enteredMonsterCardIndex = enteredMonsterCardIndex;
     }
 }
