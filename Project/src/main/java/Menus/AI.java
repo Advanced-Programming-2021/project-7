@@ -112,10 +112,28 @@ public class AI {
                 }
             }
         }
+        isSpellSelected = 0;
         return "next phase";
     }
 
     private String main2Phase() {
+        if (isSpellSelected == 0) {
+            for (int i = 1; i <= 5; i++) {
+                if (AIDeck.getSpellZones().get(i).getCurrentCard() != null) {
+                    if (AIDeck.getSpellZones().get(i).getStatus().equals("H")) {
+                        String cardName = AIDeck.getSpellZones().get(i).getCurrentCard().getName();
+                        if (cardName.equals("Terraforming") || cardName.equals("Pot of Greed") || cardName.equals("Raigeki") ||
+                                cardName.equals("Harpie’s Feather Duster") || cardName.equals("Dark Hole")) {
+                            isSpellSelected = 1;
+                            return "select --spell " + i;
+                        }
+                    }
+                }
+            }
+        } else if (isSpellSelected == 1) {
+            isSpellSelected = 2;
+            return "activate effect";
+        }
         return "next phase";
     }
 
