@@ -87,7 +87,7 @@ class DuelProgramController {
                 else if (command.matches("^duel set-winner \\S+$")) setWinnerCheat(command);
                 else if (command.matches("^set --position (attack|defence)$")) setPositionMonster(command);
                 else if (command.matches("^flip-summon$")) flipSummon();
-                else if (command.matches("^n$")) changePhase();
+                else if (command.matches("^next phase$")) changePhase();
                 else System.out.println("invalid command");
             }
         }
