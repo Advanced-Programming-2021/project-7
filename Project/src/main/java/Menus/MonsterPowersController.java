@@ -114,6 +114,7 @@ public class MonsterPowersController {
 
     public void ScannerPower(Card card) {
         GameDeck enemyDeck = gameDecks.get((turn + 1) % 2);
+        if (enemyDeck.getGraveyardCards().size() == 0) return;
         duelProgramController.showGraveyard((turn + 1) % 2);
         System.out.println("please select one of enemy graveyard cards: ");
         while (true) {
@@ -131,6 +132,7 @@ public class MonsterPowersController {
             Monster monster = (Monster) card;
             monster.setAttackPoint(cardToBeScan.getAttackPoint());
             monster.setDefensePoint(cardToBeScan.getDefensePoint());
+            break;
         }
     }
 
