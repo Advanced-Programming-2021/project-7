@@ -1313,7 +1313,7 @@ class DuelProgramController {
                         System.out.println("there no monsters on this address");
                         continue;
                     }
-                    positionOfTributeMonsters.add(position);
+                    positionOfTributeMonsters.add(monsterZonePosition);
                     sumOfLevels += tributeMonster.getLevel();
                     if (sumOfLevels > 7) {
                         System.out.println("selected monsters levels don't match with ritual monster");
@@ -1324,7 +1324,14 @@ class DuelProgramController {
                     }
                 }
                 if (isSummonSuccessful) {
-
+                    System.out.println("summoned successfully");
+                    isSummoned = 1;
+                    for (int monsterZonePosition : positionOfTributeMonsters) {
+                        gameDecks.get(turn).tributeCardFromMonsterZone(monsterZonePosition);
+                    }
+                    gameDecks.get(turn).getInHandCards().remove(position - 1);
+                    enteredMonsterCardIndex = gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
+                    deselect();
                     break;
                 }
             }
