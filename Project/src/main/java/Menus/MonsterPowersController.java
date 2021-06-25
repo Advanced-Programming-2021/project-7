@@ -1,6 +1,7 @@
 package Menus;
 
 import Model.Cards.Card;
+import Model.Cards.Monster;
 import Model.Cards.MonsterZone;
 import Model.CommonTools;
 
@@ -128,7 +129,50 @@ public class MonsterPowersController {
     }
 
     public void gateGuardianPower() {
-
+        System.out.println("Do you want special summon selected monster?");
+        String command = CommonTools.scan.nextLine().trim().toLowerCase(Locale.ROOT);
+        if (command.equals("no")) return;
+        ArrayList<Card> monsterZoneCards = new ArrayList<>();
+        for (int i = 1; i <= 5; i++) {
+            Card monsterCard = gameDecks.get(turn).getMonsterZones().get(i).getCurrentMonster();
+            if (monsterCard != null) monsterZoneCards.add(monsterCard);
+        }
+        if (monsterZoneCards.size() < 4) {
+            System.out.println("there is no way you could special summon a monster");
+            return;
+        }
+        while (true) {
+            System.out.println("enter positions of tribute monster in monster zone:");
+            int numberOfTribute = 0;
+            ArrayList<Integer> positionOfTributeMonsters = new ArrayList<>();
+            while (true) {
+                int monsterZonePosition = 0;
+                monsterZonePosition = CommonTools.scan.nextInt();
+                CommonTools.scan.nextLine();
+                if (monsterZonePosition < 1 || monsterZonePosition > 5) {
+                    System.out.println("there no monsters on this address");
+                    continue;
+                }
+                Monster tributeMonster = (Monster) gameDecks.get(turn).getMonsterZones().get(monsterZonePosition).getCurrentMonster();
+                if (tributeMonster == null) {
+                    System.out.println("there no monsters on this address");
+                    continue;
+                }
+                positionOfTributeMonsters.add(monsterZonePosition);
+                numberOfTribute += tributeMonster.getLevel();
+                if (numberOfTribute == 3) break;
+            }
+            System.out.println("summoned successfully");
+            isSummoned = 1;
+            for (int monsterZonePosition : positionOfTributeMonsters) {
+                gameDecks.get(turn).tributeCardFromMonsterZone(monsterZonePosition);
+            }
+            gameDecks.get(turn).getInHandCards().remove(selectedCardIndex - 1);
+            duelProgramController.setEnteredMonsterCardIndex(
+                    gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName()));
+            duelProgramController.deselect();
+            break;
+        }
     }
 
     public void theTrickyPower() {
@@ -159,6 +203,7 @@ public class MonsterPowersController {
                     gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
                     gameDecks.get(turn).getInHandCards().remove(position - 1);
                     gameDecks.get(turn).getInHandCards().remove(selectedCardIndex - 1);
+                    duelProgramController.deselect();
                 } else {
                     System.out.println("no card found in the given position");
                 }

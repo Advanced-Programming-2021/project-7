@@ -199,7 +199,7 @@ class DuelProgramController {
         else selectMyDeck(address);
     }
 
-    private void deselect() {
+    public void deselect() {
         if (selectedCard == null) {
             System.out.println("no card is selected yet");
             return;
@@ -1646,5 +1646,9 @@ class DuelProgramController {
 
     public void setSelectedMonsterCardIndex(int selectedMonsterCardIndex) {
         this.enteredMonsterCardIndex = selectedMonsterCardIndex;
+    }
+
+    public void setEnteredMonsterCardIndex(int enteredMonsterCardIndex) {
+        this.enteredMonsterCardIndex = enteredMonsterCardIndex;
     }
 }
