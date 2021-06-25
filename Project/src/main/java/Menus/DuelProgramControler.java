@@ -1234,7 +1234,47 @@ class DuelProgramController {
             twinTwisters();
         } else if (spell.getName().equals("Mystical space typhoon")) {
             mysticalTyphoon();
+        } else if (spell.getName().equals("Advance Ritual Art")) {
+            advanceRitualArt();
         }
+    }
+
+    private void advanceRitualArt() {
+        ArrayList<Card> inHandCards = gameDecks.get(turn).getInHandCards();
+        int isRitualSummonPossible = 0;
+        for (Card card : inHandCards) {
+            if (card.getName().equals("Crab Turtle") || card.getName().equals("Skull Guardian")) {
+                isRitualSummonPossible++;
+                break;
+            }
+        }
+        ArrayList<Card> monsterZoneCards = new ArrayList<>();
+        for (int i = 1; i <= 5; i++) {
+            Card monsterCard = gameDecks.get(turn).getMonsterZones().get(i).getCurrentMonster();
+            if (monsterCard != null) monsterZoneCards.add(monsterCard);
+        }
+        for (int i = 0; i < monsterZoneCards.size(); i++) {
+            Monster firstMonster = (Monster) monsterZoneCards.get(i);
+            int sumOfLevels = firstMonster.getLevel();
+            for (int j = i + 1; j < monsterZoneCards.size(); j++) {
+                if (sumOfLevels == 7) {
+                    isRitualSummonPossible++;
+                    break;
+                }
+                Monster secondMonster = (Monster) monsterZoneCards.get(i);
+                sumOfLevels += secondMonster.getLevel();
+            }
+        }
+        if (isSummoned == 0) isRitualSummonPossible++;
+        if (isRitualSummonPossible == 3) {
+            ritualSummon();
+        } else {
+            System.out.println("there is no way you could ritual summon a monster");
+        }
+    }
+
+    private void ritualSummon() {
+
     }
 
     private void Terraforming() {
