@@ -4,6 +4,7 @@ import Model.Cards.Card;
 import Model.CommonTools;
 import Model.FileHandler;
 import Model.Player;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
