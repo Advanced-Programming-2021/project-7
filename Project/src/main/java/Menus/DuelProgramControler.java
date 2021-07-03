@@ -73,7 +73,7 @@ class DuelProgramController {
                 else if (command.matches("^surrender$")) surrender(turn);
                 else if (command.matches("^select --hand --force$")) inHandCardCheat();
                 else if (command.matches("^select -d$")) deselect();
-                else if (command.matches("^s$")) showCard();
+                else if (command.matches("^show card$")) showCard();
                 else if (command.matches("^select .*$")) selectCard(command);
                 else if (command.matches("^summon$")) summonMonster();
                 else if (command.matches("^activate effect$")) activateSpellErrorCheck();
