@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="319.0" prefWidth="214.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ItemController">
+    <children>
+        <ImageView fx:id="image" fitHeight="272.0" fitWidth="198.0" layoutX="8.0" layoutY="23.0" onMouseClicked="#click" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: Hand;" />
+    </children>
+</AnchorPane>

@@ -82,6 +82,14 @@ public class Card implements Comparable<Card> {
         this.cardNumber = cardNumber;
     }
 
+    public static ArrayList<Card> getCards() {
+        return cards;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
     public int compareTo(Card card) {
         return this.name.compareTo(card.name);
     }

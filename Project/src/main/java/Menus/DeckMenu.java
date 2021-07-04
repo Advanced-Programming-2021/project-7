@@ -2,17 +2,27 @@ package Menus;
 
 import Model.*;
 import Model.Cards.Card;
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class DeckMenu {
+public class DeckMenu extends Application {
     private Player loggedInUser;
 
 
     public void run(String username) throws IOException {
+        launch();
         System.out.println("Welcome to deck menu");
         while (true) {
             String command = CommonTools.scan.nextLine();
@@ -259,5 +269,18 @@ class DeckMenu {
         for(Card card : allCards) {
             System.out.printf("%s:%s\n", card.getName(), card.getDescription());
         }
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        stage.setMaximized(true);
+        BorderPane borderPane = new BorderPane();
+        BackgroundFill backgroundFill = new BackgroundFill(Color.BLACK,
+                CornerRadii.EMPTY, Insets.EMPTY);
+        Background background = new Background(backgroundFill);
+        borderPane.setBackground(background);
+        Scene scene = new Scene(borderPane, 1600, 800);
+        stage.setScene(scene);
+        stage.show();
     }
 }

@@ -70,13 +70,15 @@ public class Player implements Comparable<Player> {
     }
 
     public void addCard(Card card) {
-        if (cards.containsKey(card)) {
-            int numberOfCards = cards.get(card);
-            numberOfCards++;
-            cards.put(card, numberOfCards);
-        } else {
-            cards.put(card, 1);
+        for (Map.Entry<Card, Integer> cardIntegerEntry : cards.entrySet()) {
+            if (cardIntegerEntry.getKey().getName().equals(card.getName())) {
+                int numberOfCards = cardIntegerEntry.getValue();
+                numberOfCards++;
+                cards.put(card, numberOfCards);
+                return;
+            }
         }
+        cards.put(card, 1);
     }
 
     public HashMap<Card, Integer> getCards() {
@@ -84,11 +86,11 @@ public class Player implements Comparable<Player> {
     }
 
     public void removeCard(Card card) {
-        if (cards == null){
+        if (cards == null) {
             return;
         }
         for (Map.Entry<Card, Integer> e : cards.entrySet()) {
-            if (e.getKey().getName().equals(card.getName()) && e.getValue() != 0){
+            if (e.getKey().getName().equals(card.getName()) && e.getValue() != 0) {
                 e.setValue(e.getValue() - 1);
                 return;
             }
@@ -102,7 +104,7 @@ public class Player implements Comparable<Player> {
                 cardsArray.add(e.getKey());
             }
         }
-        for (int i = 0; i < cardsArray.size(); i++){
+        for (int i = 0; i < cardsArray.size(); i++) {
             if (cardsArray.get(i).getName().equals(cardName)) return true;
         }
         return false;
@@ -250,5 +252,14 @@ public class Player implements Comparable<Player> {
 
     public ArrayList<Deck> getDecks() {
         return decks;
+    }
+
+    public int getNumberOfCards(String name) {
+        for (Map.Entry<Card, Integer> cardIntegerEntry : cards.entrySet()) {
+            if (cardIntegerEntry.getKey().getName().equals(name)) {
+                return cardIntegerEntry.getValue();
+            }
+        }
+        return 0;
     }
 }

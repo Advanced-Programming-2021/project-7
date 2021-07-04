@@ -1,0 +1,12 @@
+.shop{
+    -fx-background-image: url("../Images/shopBackground.jpg");
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+
+.shopButton{
+    -fx-background-color: #d7c751;
+    -fx-background-radius: 25px;
+    background-repeat: no-repeat;
+    -fx-background-size: 100,100;
+}

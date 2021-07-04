@@ -25,7 +25,7 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>12.0.2</version>
+            <version>16</version>
         </dependency>
 
         <dependency>
@@ -34,13 +34,11 @@
             <version>16</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-media -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-media</artifactId>
             <version>15</version>
         </dependency>
-
     </dependencies>
 
     <properties>

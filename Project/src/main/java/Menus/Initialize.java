@@ -1,9 +1,11 @@
 package Menus;
 
+import Model.Cards.Card;
 import Model.Cards.Monster;
 import Model.Cards.Spell;
 import Model.Cards.Trap;
 import Model.Player;
+import View.CardView;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 

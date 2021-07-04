@@ -5,7 +5,7 @@ import Model.CommonTools;
 import java.io.IOException;
 
 class MainMenu {
-    public void run(String username) throws IOException {
+    public void run(String username) throws IOException  {
         while (true) {
             String command = CommonTools.scan.nextLine();
             if (command.matches("^menu enter scoreboard$"))
