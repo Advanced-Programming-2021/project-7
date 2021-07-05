@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700" prefWidth="1200" styleClass="main-menu-back" stylesheets="@../CSS/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainMenuController">
     <children>
-        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="416.0" layoutY="210.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="367.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="New duel" textAlignment="CENTER" textFill="#ddd78a">
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="378.0" layoutY="210.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="417.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="New Duel" textAlignment="CENTER" textFill="#ddd78a">
             <font>
                 <Font name="Algerian" size="22.0" />
             </font>
@@ -15,7 +15,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="416.0" layoutY="280.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="367.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Deck" textAlignment="CENTER" textFill="#ddd78a">
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="378.0" layoutY="280.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="417.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Deck" textAlignment="CENTER" textFill="#ddd78a">
             <font>
                 <Font name="Algerian" size="22.0" />
             </font>
@@ -23,7 +23,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="416.0" layoutY="350.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="367.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Shop" textAlignment="CENTER" textFill="#ddd78a">
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="378.0" layoutY="350.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="417.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Shop" textAlignment="CENTER" textFill="#ddd78a">
             <font>
                 <Font name="Algerian" size="22.0" />
             </font>
@@ -31,7 +31,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="416.0" layoutY="420.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="367.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Score board" textAlignment="CENTER" textFill="#ddd78a">
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="378.0" layoutY="420.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="417.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Score board" textAlignment="CENTER" textFill="#ddd78a">
             <font>
                 <Font name="Algerian" size="22.0" />
             </font>
@@ -39,7 +39,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="416.0" layoutY="490.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="367.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Profile" textAlignment="CENTER" textFill="#ddd78a">
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="378.0" layoutY="490.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="417.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Profile" textAlignment="CENTER" textFill="#ddd78a">
             <font>
                 <Font name="Algerian" size="22.0" />
             </font>
@@ -47,7 +47,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="416.0" layoutY="560.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="367.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Import/Export" textAlignment="CENTER" textFill="#ddd78a">
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="378.0" layoutY="560.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="417.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Import/Export" textAlignment="CENTER" textFill="#ddd78a">
             <font>
                 <Font name="Algerian" size="22.0" />
             </font>
@@ -55,7 +55,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="416" layoutY="630" mnemonicParsing="false" onAction="#logout" prefHeight="51.0" prefWidth="367.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="logout" textAlignment="CENTER" textFill="#ddd78a">
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="378.0" layoutY="630.0" mnemonicParsing="false" onAction="#logout" prefHeight="51.0" prefWidth="417.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="logout" textAlignment="CENTER" textFill="#ddd78a">
             <font>
                 <Font name="Algerian" size="22.0" />
             </font>
@@ -63,7 +63,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Label fx:id="commandLabel" alignment="CENTER" layoutX="338.0" layoutY="78.0" prefHeight="35.0" prefWidth="523.0" text="Welcome" textFill="#ddd78a">
+        <Label fx:id="commandLabel" alignment="CENTER" layoutX="325.0" layoutY="82.0" prefHeight="35.0" prefWidth="523.0" text="Welcome" textFill="#ddd78a">
             <font>
                 <Font name="Gabriola" size="26.0" />
             </font>
