@@ -26,7 +26,7 @@ public class MainProgramView extends Application {
         stage.getIcons().add(icon);
         stage.setTitle("Yu-Gi-Oh!");
         stage.setWidth(1200);
-        stage.setHeight(700);
+        stage.setHeight(735);
         stage.setResizable(false);
         stage.setOnCloseRequest(event -> {
             event.consume();

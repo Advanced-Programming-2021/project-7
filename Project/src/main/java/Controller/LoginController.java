@@ -25,7 +25,7 @@ public class LoginController {
     private Scene scene;
     private AnchorPane root;
 
-    public void loginAction(ActionEvent event) {
+    public void loginAction(ActionEvent event) throws IOException {
         String username = usernameTextField.getText();
         String password = passwordTextField.getText();
         if (username.equals("")) {
@@ -47,10 +47,20 @@ public class LoginController {
         }
         Player.setActivePlayer(player);
         commandLabel.setText("Login was successful!");
+        loadMainMenu(event);
     }
 
     public void back(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_program_view.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void loadMainMenu(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_menu_view.fxml"));
         root = loader.load();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
