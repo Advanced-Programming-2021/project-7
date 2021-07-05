@@ -39,10 +39,11 @@ public class ScoreboardController {
             label.setAlignment(Pos.CENTER);
             label.setFont(Font.font("Gabriola", 26));
             label.getStylesheets().add(getClass().getResource("/CSS/Main.css").toExternalForm());
-            label.getStyleClass().add("text-field");
+            label.getStyleClass().add("score-lab");
             if (i % 4 == 3) yPosition += 50;
             if (i < players.size()) {
                 Player player = players.get(i);
+                if (player.equals(Player.getActivePlayer())) label.setTextFill(Color.valueOf("#dddddd"));
                 label.setText(counter + ". " + player.getNickname() + "     Score: " + player.getScore());
             }
             counter++;

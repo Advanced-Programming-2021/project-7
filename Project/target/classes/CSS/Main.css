@@ -38,6 +38,15 @@
     -fx-prompt-text-fill: #ddd78a;
 }
 
+.score-lab {
+    -fx-background-color: "black";
+    -fx-background-radius: 200;
+    -fx-border-radius: 200;
+    -fx-border-color: #ddd78a;
+    -fx-border-width: 2;
+    -fx-prompt-text-fill: #ddd78a;
+}
+
 .textspinner {
     -fx-background-color: "black";
     -fx-background-radius: 200;
