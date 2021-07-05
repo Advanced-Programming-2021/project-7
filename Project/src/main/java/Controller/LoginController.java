@@ -16,8 +16,6 @@ import java.io.IOException;
 
 public class LoginController {
     @FXML
-    private Button backButton;
-    @FXML
     private TextField usernameTextField;
     @FXML
     private TextField passwordTextField;
@@ -71,9 +69,8 @@ public class LoginController {
         commandLabel.setText("Login was successful!");
     }
 
-
     public void back(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/main_program_view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_program_view.fxml"));
         root = loader.load();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
