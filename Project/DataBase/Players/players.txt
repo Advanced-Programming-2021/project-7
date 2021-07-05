@@ -71,5 +71,29 @@
       "cards": {},
       "decks": []
     }
+  },
+  {
+    "@type": "Model.Player",
+    "@val": {
+      "username": "Reza",
+      "password": "1234",
+      "nickname": "reza",
+      "score": 0,
+      "money": 100000,
+      "cards": {},
+      "decks": []
+    }
+  },
+  {
+    "@type": "Model.Player",
+    "@val": {
+      "username": "Shayan",
+      "password": "1234",
+      "nickname": "Shayan",
+      "score": 0,
+      "money": 100000,
+      "cards": {},
+      "decks": []
+    }
   }
 ]

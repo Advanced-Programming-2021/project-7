@@ -1,5 +1,6 @@
 package Controller;
 
+import View.CardView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -19,6 +20,13 @@ public class MainMenuController {
         root = loader.load();
         ScoreboardController scoreboardController = loader.getController();
         scoreboardController.show(root);
+        makeStage(event);
+    }
+
+    public void shop(ActionEvent event) throws IOException {
+        CardView.init();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Shop.fxml"));
+        root = loader.load();
         makeStage(event);
     }
 

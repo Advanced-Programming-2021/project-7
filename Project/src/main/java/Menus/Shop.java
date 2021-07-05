@@ -43,7 +43,7 @@ public class Shop extends Application{
         buyButton.setDisable(true);
         scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        Money.setText("Money: " + Player.getPlayerByUsername(username).getMoney());
+//        Money.setText("Money: " + Player.getPlayerByUsername(username).getMoney());
         int column = 0;
         int row = 0;
         for (int i = 0; i < CardView.cardViews.size(); i++) {
