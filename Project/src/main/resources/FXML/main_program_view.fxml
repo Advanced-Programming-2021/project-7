@@ -8,7 +8,7 @@
 
 <AnchorPane fx:id="scenePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700" prefWidth="1200" styleClass="main-back" stylesheets="@../CSS/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainProgramController">
    <children>
-      <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="650" layoutY="380" mnemonicParsing="false" onAction="#scoreBoardAction" prefHeight="41.0" prefWidth="274.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Register" textAlignment="CENTER" textFill="#ddd78a">
+      <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="650" layoutY="380" mnemonicParsing="false" onAction="#register" prefHeight="41.0" prefWidth="274.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Register" textAlignment="CENTER" textFill="#ddd78a">
          <font>
             <Font name="Algerian" size="22.0" />
          </font>
@@ -22,7 +22,7 @@
                </light>
             </Lighting>
          </effect></Button>
-      <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="276" layoutY="380" mnemonicParsing="false" onAction="#startAction" prefHeight="41.0" prefWidth="274.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Login" textAlignment="CENTER" textFill="#ddd78a">
+      <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="276" layoutY="380" mnemonicParsing="false" onAction="#login" prefHeight="41.0" prefWidth="274.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Login" textAlignment="CENTER" textFill="#ddd78a">
          <font>
             <Font name="Algerian" size="22.0" />
          </font>

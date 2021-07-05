@@ -10,7 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class MainProgramView extends Application {
-    public static void run() { launch(); };
+    public static void run() { launch(); }
 
     @Override
     public void start(Stage stage) throws Exception {

@@ -57,6 +57,10 @@ public class Player implements Comparable<Player> {
         return false;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }

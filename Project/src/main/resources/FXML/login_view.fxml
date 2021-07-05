@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" styleClass="loginBack"  xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
+   <children>
+      <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="518.0" layoutY="412.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="184.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@main_scene.css" text="Change Password" textAlignment="CENTER" textFill="#ddd78a">
+         <font>
+            <Font name="Jokerman" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="396.0" layoutY="363.0" mnemonicParsing="false" onAction="#signupAction" prefHeight="59.0" prefWidth="122.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@main_scene.css" text="Create" textAlignment="CENTER" textFill="#ddd78a">
+         <font>
+            <Font name="Jokerman" size="22.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="142.0" layoutY="313.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="59.0" prefWidth="122.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@main_scene.css" text="Login" textAlignment="CENTER" textFill="#ddd78a">
+         <font>
+            <Font name="Jokerman" size="22.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="backButton" alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="702.0" layoutY="461.0" mnemonicParsing="false" onAction="#back" prefHeight="59.0" prefWidth="122.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@main_scene.css" text="Back" textAlignment="CENTER" textFill="#ddd78a">
+         <font>
+            <Font name="Jokerman" size="22.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="274.0" layoutY="313.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="122.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@main_scene.css" text="Remove" textAlignment="CENTER" textFill="#ddd78a">
+         <font>
+            <Font name="Jokerman" size="22.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="10.0" layoutY="313.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="122.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@main_scene.css" text="Log out" textAlignment="CENTER" textFill="#ddd78a">
+         <font>
+            <Font name="Jokerman" size="22.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TextField fx:id="usernameTextField" layoutX="664.0" layoutY="47.0" prefHeight="35.0" prefWidth="210.0" promptText="username" styleClass="text-field" stylesheets="@main_scene.css">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font name="Book Antiqua" size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="548.0" layoutY="47.0" prefHeight="35.0" prefWidth="110.0" text="Username:" textFill="#ddd78a">
+         <font>
+            <Font name="Gabriola" size="26.0" />
+         </font>
+      </Label>
+      <TextField fx:id="passwordTextField" layoutX="664.0" layoutY="97.0" prefHeight="35.0" prefWidth="210.0" promptText="password" styleClass="text-field" stylesheets="@main_scene.css">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font name="Book Antiqua" size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="548.0" layoutY="97.0" prefHeight="35.0" prefWidth="110.0" text="Password:" textFill="#ddd78a">
+         <font>
+            <Font name="Gabriola" size="26.0" />
+         </font>
+      </Label>
+      <Label fx:id="commandLabel" alignment="CENTER" layoutX="1.0" layoutY="47.0" prefHeight="35.0" prefWidth="523.0" text="Please enter your account's information:" textFill="#ddd78a">
+         <font>
+            <Font name="Gabriola" size="26.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
