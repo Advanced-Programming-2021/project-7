@@ -17,6 +17,8 @@ public class MainMenuController {
     public void scoreboard(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/score_board_view.fxml"));
         root = loader.load();
+        ScoreboardController scoreboardController = loader.getController();
+        scoreboardController.show(root);
         makeStage(event);
     }
 

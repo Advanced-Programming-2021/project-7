@@ -268,6 +268,30 @@ public class Player implements Comparable<Player> {
         return 0;
     }
 
+    public static void sortPlayers() {
+        for (int i = 0; i < players.size(); i++) {
+            for (int j = i + 1; j < players.size(); j++) {
+                Player first = players.get(i);
+                Player second = players.get(j);
+                if (second.compare(first)) {
+                    players.set(i, second);
+                    players.set(j, first);
+                }
+            }
+        }
+    }
+
+    public boolean compare(Player player) {
+        if (this.score > player.score) {
+            return true;
+        } else if (this.score == player.score) {
+            if (this.username.compareTo(player.username) > 0) return false;
+            else return true;
+        } else {
+            return false;
+        }
+    }
+
     public static void setActivePlayer(Player player) {
         activePlayer = player;
     }
