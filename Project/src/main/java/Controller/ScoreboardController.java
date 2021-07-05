@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ScoreboardController {
-    private int yPosition = 60;
+    private int yPosition = 230;
     private int counter = 1;
 
     private Stage stage;
@@ -26,20 +26,24 @@ public class ScoreboardController {
     public void makeLabels() {
         Player.sortPlayers();
         ArrayList<Player> players = Player.getPlayers();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
             Label label = new Label();
-            label.setPrefWidth(945);
+            label.setPrefWidth(250);
             label.setPrefHeight(35);
             label.setTextFill(Color.valueOf("#ddd78a"));
             label.setLayoutY(yPosition);
+            if (i % 4 == 0) label.setLayoutX(15);
+            if (i % 4 == 1) label.setLayoutX(315);
+            if (i % 4 == 2) label.setLayoutX(615);
+            if (i % 4 == 3) label.setLayoutX(915);
             label.setAlignment(Pos.CENTER);
             label.setFont(Font.font("Gabriola", 26));
             label.getStylesheets().add(getClass().getResource("/CSS/Main.css").toExternalForm());
             label.getStyleClass().add("text-field");
-            yPosition += 40;
+            if (i % 4 == 3) yPosition += 50;
             if (i < players.size()) {
                 Player player = players.get(i);
-                label.setText(counter + ". " + player.getNickname() + "   Score: " + player.getScore());
+                label.setText(counter + ". " + player.getNickname() + "     Score: " + player.getScore());
             }
             counter++;
             root.getChildren().add(label);
