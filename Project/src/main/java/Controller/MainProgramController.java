@@ -38,7 +38,7 @@ public class MainProgramController {
 
     public void login(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/login_view.fxml"));
-        root = loader.load();
+        root = loader. load();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
