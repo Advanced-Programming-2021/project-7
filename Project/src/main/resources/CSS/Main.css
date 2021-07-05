@@ -75,7 +75,7 @@
 }
 
 .main-menu-back {
-    -fx-background-image: url("../Images/MainMenuBack.jpg");
+    -fx-background-image: url("../Images/MainMenuBack.png");
     -fx-background-repeat: stretch;
     -fx-background-size: 1200 700;
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);

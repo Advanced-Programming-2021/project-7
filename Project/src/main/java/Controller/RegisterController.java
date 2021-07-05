@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.FileHandler;
 import Model.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,7 +28,7 @@ public class RegisterController {
     private Scene scene;
     private AnchorPane root;
 
-    public void registerAction(ActionEvent event) {
+    public void registerAction(ActionEvent event) throws IOException {
         String username = usernameTextField.getText();
         String password = passwordTextField.getText();
         String nickname = nicknameTextField.getText();
@@ -48,6 +49,7 @@ public class RegisterController {
             return;
         }
         Player player = new Player(username, password, nickname);
+        FileHandler.updatePlayers();
         commandLabel.setText("User created successfully!");
     }
 
