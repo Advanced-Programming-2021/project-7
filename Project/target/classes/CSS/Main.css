@@ -10,3 +10,59 @@
     background-repeat: no-repeat;
     -fx-background-size: 100,100;
 }
+
+.button {
+    -fx-background-radius: 100;
+    -fx-text-fill: #ddd78a;
+    -fx-border-color: #ddd78a;
+    -fx-border-radius: 100;
+    -fx-border-width: 5;
+}
+
+.button:hover {
+    -fx-text-fill: #dddddd;
+    -fx-border-color: #dddddd;
+}
+
+.button:pressed {
+    -fx-translate-y: +3;
+}
+
+.text-field {
+    -fx-background-color: "black";
+    -fx-background-radius: 200;
+    -fx-border-radius: 200;
+    -fx-border-color: #ddd78a;
+    -fx-border-width: 2;
+    -fx-text-fill: "yellow";
+    -fx-prompt-text-fill: #ddd78a;
+}
+
+.textspinner {
+    -fx-background-color: "black";
+    -fx-background-radius: 200;
+    -fx-border-radius: 200;
+    -fx-border-color: #ddd78a;
+    -fx-border-width: 2;
+    -fx-text-fill: "yellow";
+    -fx-prompt-text-fill: #ddd78a;
+    -fx-font-size: 18;
+}
+
+.choice-box {
+    -fx-background-color: #dddddd;
+    -fx-background-radius: 200;
+    -fx-border-radius: 200;
+    -fx-border-color: #ddd78a;
+    -fx-border-width: 2;
+    -fx-text-fill: "yellow";
+    -fx-prompt-text-fill: #ddd78a;
+    -fx-font-size: 18;
+}
+
+.main-back {
+    -fx-background-image: url("../Images/MainBack.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 1200 700;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
