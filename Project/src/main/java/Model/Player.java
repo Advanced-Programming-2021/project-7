@@ -7,6 +7,7 @@ import java.util.*;
 
 public class Player implements Comparable<Player> {
     private static ArrayList<Player> players = new ArrayList<Player>();
+    private static Player activePlayer;
     private String username;
     private String password;
     private String nickname;
@@ -265,5 +266,13 @@ public class Player implements Comparable<Player> {
             }
         }
         return 0;
+    }
+
+    public static void setActivePlayer(Player player) {
+        activePlayer = player;
+    }
+
+    public static Player getActivePlayer() {
+        return activePlayer;
     }
 }
