@@ -27,8 +27,11 @@ public class MainMenuController {
 
     public void shop(ActionEvent event) throws IOException {
         Shop shop = new Shop();
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        shop.run(Player.getActivePlayer().getUsername(), stage);
+        try {
+            shop.run(Player.getActivePlayer().getUsername());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void logout(ActionEvent event) throws IOException {

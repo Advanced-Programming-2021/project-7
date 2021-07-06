@@ -6,7 +6,7 @@
       "password": "ramz",
       "nickname": "agha",
       "score": 0,
-      "money": 37400,
+      "money": 0,
       "profile": 0,
       "cards": [
         [
@@ -31,19 +31,19 @@
           {
             "@type": "Model.Cards.Monster",
             "@val": {
-              "attackPoint": 1800,
-              "defensePoint": 1200,
+              "attackPoint": 1700,
+              "defensePoint": 1150,
               "level": 4,
               "attribute": "EARTH",
               "monsterType": "Warrior",
-              "cardType": "Effect",
-              "name": "\"Terratiger, the Empowered Warrior\"",
-              "description": "When this card is Normal Summoned: You can Special Summon 1 Level 4 or lower Normal Monster from your hand in Defense Position.",
+              "cardType": "Normal",
+              "name": "Axe Raider",
+              "description": "An axe-wielding monster of tremendous strength and agility.",
               "type": "Monster",
-              "price": 3200
+              "price": 3100
             }
           },
-          2
+          12
         ]
       ],
       "decks": []

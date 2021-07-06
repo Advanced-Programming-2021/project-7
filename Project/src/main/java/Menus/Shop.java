@@ -7,6 +7,7 @@ import Model.FileHandler;
 import Model.Player;
 import View.CardView;
 import View.ItemController;
+import View.MainProgramView;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,7 +44,7 @@ public class Shop extends Application{
         buyButton.setDisable(true);
         scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-//        Money.setText("Money: " + Player.getPlayerByUsername(username).getMoney());
+        Money.setText("Money: " + Player.getPlayerByUsername(username).getMoney());
         int column = 0;
         int row = 0;
         for (int i = 0; i < CardView.cardViews.size(); i++) {
@@ -91,27 +92,23 @@ public class Shop extends Application{
             buyButton.setDisable(false);
     }
 
-    public void run(String username, Stage stage) throws IOException {
+    public void run(String username) throws Exception {
         Shop.username = username;
-        try {
-            start(stage);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        start(MainProgramView.stage);
         System.out.println("Welcome to Shop");
-        while (true) {
-            String command = CommonTools.scan.nextLine();
-            if (command.matches("^shop buy .+$")) buyCard(username, command);
-            else if (command.matches("^shop show --all$")) showAll();
-            else if (command.matches("^menu enter (profile|duel|deck|shop|scoreboard)$"))
-                System.out.println("menu navigation is not possible");
-            else if (command.matches("^menu show-current$")) System.out.println("shop");
-            else if (command.matches("^increase --money \\d+$")) increaseMoney(command, username);
-            else if (command.matches("^menu exit$")) {
-                System.out.println("MainMenu");
-                return;
-            } else System.out.println("invalid command!");
-        }
+//        while (true) {
+//            String command = CommonTools.scan.nextLine();
+//            if (command.matches("^shop buy .+$")) buyCard(username, command);
+//            else if (command.matches("^shop show --all$")) showAll();
+//            else if (command.matches("^menu enter (profile|duel|deck|shop|scoreboard)$"))
+//                System.out.println("menu navigation is not possible");
+//            else if (command.matches("^menu show-current$")) System.out.println("shop");
+//            else if (command.matches("^increase --money \\d+$")) increaseMoney(command, username);
+//            else if (command.matches("^menu exit$")) {
+//                System.out.println("MainMenu");
+//                return;
+//            } else System.out.println("invalid command!");
+//        }
     }
 
     public void increaseMoney(String command, String playerName) {

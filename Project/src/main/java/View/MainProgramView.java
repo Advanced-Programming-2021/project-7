@@ -11,9 +11,11 @@ import javafx.stage.Stage;
 
 public class MainProgramView extends Application {
     public static void run() { launch(); }
+    public static Stage stage;
 
     @Override
     public void start(Stage stage) throws Exception {
+        MainProgramView.stage = stage;
         AnchorPane root = FXMLLoader.load(getClass().getResource("/FXML/main_program_view.fxml"));
         Scene scene = new Scene(root);
         setStage(stage);
