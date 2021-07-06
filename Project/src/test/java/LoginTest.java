@@ -27,7 +27,7 @@ public class LoginTest {
 
 
     @Test
-    public void myATest() throws IOException {
+    public void myATest() throws Exception {
         Path pathInput = Path.of("DataBase//TestsInput//allOfLoginTest.txt");
         Path pathOutput = Path.of("DataBase//TestsOutput//allOfLoginTest.txt");
         String command = Files.readString(pathInput);
@@ -44,7 +44,7 @@ public class LoginTest {
 
 
     @Test
-    public void myBTest() throws IOException {
+    public void myBTest() throws Exception {
         Path pathInput = Path.of("DataBase//TestsInput//shopTest.txt");
         Path pathOutput = Path.of("DataBase//TestsOutput//shopTest.txt");
         String command = Files.readString(pathInput);
@@ -60,7 +60,7 @@ public class LoginTest {
     }
 
     @Test
-    public void myCTest() throws IOException {
+    public void myCTest() throws Exception {
         Path pathInput = Path.of("DataBase//TestsInput//profileTest.txt");
         Path pathOutput = Path.of("DataBase//TestsOutput//profileTest.txt");
         String command = Files.readString(pathInput);
