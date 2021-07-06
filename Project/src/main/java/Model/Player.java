@@ -13,6 +13,7 @@ public class Player implements Comparable<Player> {
     private String nickname;
     private int score;
     private int money;
+    private int profile;
     private HashMap<Card, Integer> cards = new HashMap<>();
     private ArrayList<Deck> decks = new ArrayList<>();
     private Deck activeDeck = null;
@@ -298,5 +299,13 @@ public class Player implements Comparable<Player> {
 
     public static Player getActivePlayer() {
         return activePlayer;
+    }
+
+    public int getProfile() {
+        return profile;
+    }
+
+    public void setProfile(int profile) {
+        this.profile = profile;
     }
 }

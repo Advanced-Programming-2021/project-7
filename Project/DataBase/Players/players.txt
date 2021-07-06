@@ -7,6 +7,7 @@
       "nickname": "agha",
       "score": 0,
       "money": 37400,
+      "profile": 0,
       "cards": [
         [
           {
@@ -56,6 +57,7 @@
       "nickname": "Mamad",
       "score": 0,
       "money": 100000,
+      "profile": 0,
       "cards": {},
       "decks": []
     }
@@ -68,6 +70,7 @@
       "nickname": "Ali",
       "score": 0,
       "money": 100000,
+      "profile": 0,
       "cards": {},
       "decks": []
     }
@@ -80,6 +83,7 @@
       "nickname": "reza",
       "score": 0,
       "money": 100000,
+      "profile": 0,
       "cards": {},
       "decks": []
     }
@@ -92,6 +96,7 @@
       "nickname": "Shayan",
       "score": 0,
       "money": 100000,
+      "profile": 0,
       "cards": {},
       "decks": []
     }
@@ -104,6 +109,46 @@
       "nickname": "Yas",
       "score": 0,
       "money": 100000,
+      "profile": 0,
+      "cards": {},
+      "decks": []
+    }
+  },
+  {
+    "@type": "Model.Player",
+    "@val": {
+      "username": "Shahin",
+      "password": "1234",
+      "nickname": "Shah",
+      "score": 0,
+      "money": 100000,
+      "profile": 0,
+      "cards": {},
+      "decks": []
+    }
+  },
+  {
+    "@type": "Model.Player",
+    "@val": {
+      "username": "Yasinn",
+      "password": "1234",
+      "nickname": "Yas",
+      "score": 0,
+      "money": 100000,
+      "profile": 0,
+      "cards": {},
+      "decks": []
+    }
+  },
+  {
+    "@type": "Model.Player",
+    "@val": {
+      "username": "Lale",
+      "password": "1234",
+      "nickname": "Lale",
+      "score": 0,
+      "money": 100000,
+      "profile": 0,
       "cards": {},
       "decks": []
     }

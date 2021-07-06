@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700" prefWidth="1200" styleClass="login-back" stylesheets="@../CSS/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RegisterProfileController">
     <children>
-        <Label fx:id="commandLabel" alignment="CENTER" layoutY="76.0" prefHeight="35.0" prefWidth="523.0" text="Please select your profile image:" textFill="#ddd78a">
+        <Label fx:id="commandLabel" alignment="CENTER" layoutX="23.0" layoutY="78.0" prefHeight="35.0" prefWidth="523.0" text="Please select your profile image:" textFill="#ddd78a">
             <font>
                 <Font name="Gabriola" size="26.0" />
             </font>
         </Label>
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="148.0" layoutY="620.0" mnemonicParsing="false" onAction="#select" prefHeight="41.0" prefWidth="274.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Select" textAlignment="CENTER" textFill="#ddd78a">
+            <font>
+                <Font name="Algerian" size="22.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
     </children>
 </AnchorPane>
