@@ -1,5 +1,4 @@
 import Menus.Initialize;
-import Menus.LoginMenu;
 import View.MainProgramView;
 
 import java.io.IOException;

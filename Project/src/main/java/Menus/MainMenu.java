@@ -44,8 +44,7 @@ class MainMenu {
     }
 
     public static void shop(String username) throws IOException {
-        Shop shop = new Shop();
-        shop.run(username);
+
     }
 
     public static void importExport() {

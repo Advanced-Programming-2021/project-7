@@ -91,9 +91,13 @@ public class Shop extends Application{
             buyButton.setDisable(false);
     }
 
-    public void run(String username) throws IOException {
+    public void run(String username, Stage stage) throws IOException {
         Shop.username = username;
-        launch();
+        try {
+            start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         System.out.println("Welcome to Shop");
         while (true) {
             String command = CommonTools.scan.nextLine();

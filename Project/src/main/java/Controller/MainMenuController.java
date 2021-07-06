@@ -1,5 +1,7 @@
 package Controller;
 
+import Menus.Shop;
+import Model.Player;
 import View.CardView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -24,10 +26,9 @@ public class MainMenuController {
     }
 
     public void shop(ActionEvent event) throws IOException {
-        CardView.init();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Shop.fxml"));
-        root = loader.load();
-        makeStage(event);
+        Shop shop = new Shop();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        shop.run(Player.getActivePlayer().getUsername(), stage);
     }
 
     public void logout(ActionEvent event) throws IOException {
