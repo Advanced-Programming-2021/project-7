@@ -3,6 +3,7 @@ package Menus;
 import Model.*;
 import Model.Cards.Card;
 import View.CardView;
+import View.MainProgramView;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -29,32 +30,34 @@ import java.util.regex.Pattern;
 public class DeckMenu extends Application {
     private static String logged;
     public CardView card;
+    public static Stage stage;
 
-    public void run(String username) throws IOException {
-        this.logged = username;
-        launch();
+    public void run(String username) throws Exception {
+        logged = username;
+        this.stage = MainProgramView.stage;
+        start(stage);
         System.out.println("Welcome to deck menu");
-        while (true) {
-            String command = CommonTools.scan.nextLine();
-            if (command.matches("^deck create [^ ]+$")) createDeck(username, command);
-            else if (command.matches("^deck delete [^ ]+$")) deleteDeck(username, command);
-            else if (command.matches("^deck set-activate [^ ]+$")) setActiveDeck(username, command);
-            else if (command.matches("^deck add-card (?:(?:--card|--deck|--side)( (.+))* ?){2,3}$"))
-                addCardToDeck(username, command);
-            else if (command.matches("^deck rm-card (?:(?:--card|--deck|--side)( (.+))* ?){2,3}$"))
-                removeCardFromDeck(username, command);
-            else if (command.matches("^deck show --all")) showAllDecks(username);
-            else if (command.matches("^deck show (?:(?:--deck-name|--side)( ([^ ]+))* ?){1,2}$"))
-                showDeck(username, command);
-            else if (command.matches("^deck show --cards$")) showCards(username);
-            else if (command.matches("^menu enter (profile|duel|deck|shop|scoreboard)$"))
-                System.out.println("menu navigation is not possible");
-            else if (command.matches("^menu show-current$")) System.out.println("deck");
-            else if (command.matches("^menu exit$")) {
-                System.out.println("MainMenu");
-                return;
-            } else System.out.println("invalid command!");
-        }
+//        while (true) {
+//            String command = CommonTools.scan.nextLine();
+//            if (command.matches("^deck create [^ ]+$")) createDeck(username, command);
+//            else if (command.matches("^deck delete [^ ]+$")) deleteDeck(username, command);
+//            else if (command.matches("^deck set-activate [^ ]+$")) setActiveDeck(username, command);
+//            else if (command.matches("^deck add-card (?:(?:--card|--deck|--side)( (.+))* ?){2,3}$"))
+//                addCardToDeck(username, command);
+//            else if (command.matches("^deck rm-card (?:(?:--card|--deck|--side)( (.+))* ?){2,3}$"))
+//                removeCardFromDeck(username, command);
+//            else if (command.matches("^deck show --all")) showAllDecks(username);
+//            else if (command.matches("^deck show (?:(?:--deck-name|--side)( ([^ ]+))* ?){1,2}$"))
+//                showDeck(username, command);
+//            else if (command.matches("^deck show --cards$")) showCards(username);
+//            else if (command.matches("^menu enter (profile|duel|deck|shop|scoreboard)$"))
+//                System.out.println("menu navigation is not possible");
+//            else if (command.matches("^menu show-current$")) System.out.println("deck");
+//            else if (command.matches("^menu exit$")) {
+//                System.out.println("MainMenu");
+//                return;
+//            } else System.out.println("invalid command!");
+//        }
     }
 
     private void createDeck(String username, String command) throws IOException {
@@ -284,7 +287,7 @@ public class DeckMenu extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        stage.setMaximized(true);
+        //stage.setMaximized(true);
         BorderPane borderPane = new BorderPane();
         Background background = getBackground();
         Group group = new Group();
@@ -327,8 +330,13 @@ public class DeckMenu extends Application {
         VBox vBox = new VBox(group);
         vBox.setAlignment(Pos.CENTER);
         borderPane.setCenter(vBox);
+//        borderPane.setLayoutX(-250);
+//        borderPane.setLayoutY(-150);
         borderPane.setBackground(background);
-        Scene scene = new Scene(borderPane, 1600, 800);
+        stage.setWidth(1600);
+        stage.setHeight(800);
+        stage.setX(0);
+        Scene scene = new Scene(borderPane, 300, 300);
         stage.setScene(scene);
         stage.show();
     }
@@ -364,14 +372,15 @@ public class DeckMenu extends Application {
         backV.setAlignment(Pos.CENTER);
         borderPane.setCenter(backV);
         borderPane.setBackground(background);
+        stage.setResizable(true);
         Scene scene = new Scene(borderPane, 1600, 800);
         stage.setScene(scene);
         stage.show();
     }
 
     private void seeDecks(Stage stage) throws IOException {
+        //stage.setMaximized(true);
         FileHandler.updatePlayers();
-        stage.setMaximized(true);
         BorderPane borderPane = new BorderPane();
         Background background = getBackground();
         Player player = Objects.requireNonNull(Player.getPlayerByUsername(logged));
@@ -413,6 +422,7 @@ public class DeckMenu extends Application {
         title.setFill(Color.WHITE);
         borderPane.setTop(v);
         VBox vBox = new VBox(group);
+        vBox.setPrefHeight(200);
         Button back = getButton();
         back.setText("Back");
         back.setOnAction(actionEvent -> {
@@ -423,12 +433,18 @@ public class DeckMenu extends Application {
             }
         });
         VBox backV = new VBox(back);
-        backV.setAlignment(Pos.CENTER);
+        //backV.setAlignment(Pos.CENTER);
         vBox.setAlignment(Pos.CENTER);
         borderPane.setCenter(vBox);
         borderPane.setBottom(backV);
         borderPane.setBackground(background);
-        Scene scene = new Scene(borderPane, 1600, 800);
+//        stage.setWidth(1600);
+//        stage.setHeight(800);
+//        stage.setX(0);
+//        stage.setY(0);
+        borderPane.setLayoutX(-250);
+        borderPane.setLayoutY(-100);
+        Scene scene = new Scene(borderPane);
         stage.setScene(scene);
         stage.show();
     }
@@ -663,7 +679,8 @@ public class DeckMenu extends Application {
         VBox backV = new VBox(back);
         backV.setAlignment(Pos.CENTER);
         borderPane.setBottom(backV);
-        Scene scene = new Scene(borderPane, 1600, 800);
+        stage.setY(0);
+        Scene scene = new Scene(borderPane);
         stage.setScene(scene);
         stage.show();
     }
