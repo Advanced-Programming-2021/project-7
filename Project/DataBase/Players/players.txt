@@ -152,5 +152,31 @@
       "cards": {},
       "decks": []
     }
+  },
+  {
+    "@type": "Model.Player",
+    "@val": {
+      "username": "Mohsen",
+      "password": "1234",
+      "nickname": "Mohsen",
+      "score": 0,
+      "money": 100000,
+      "profile": 0,
+      "cards": {},
+      "decks": []
+    }
+  },
+  {
+    "@type": "Model.Player",
+    "@val": {
+      "username": "Sahand",
+      "password": "1234",
+      "nickname": "Sahand",
+      "score": 0,
+      "money": 100000,
+      "profile": 0,
+      "cards": {},
+      "decks": []
+    }
   }
 ]
