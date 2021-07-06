@@ -48,9 +48,17 @@ public class RegisterController {
             commandLabel.setText("A user exists with this username!");
             return;
         }
-        Player player = new Player(username, password, nickname);
-        FileHandler.updatePlayers();
         commandLabel.setText("User created successfully!");
+//        Player player = new Player(username, password, nickname);
+//        FileHandler.updatePlayers();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/register_profile_view.fxml"));
+        root = loader.load();
+        RegisterProfileController registerProfileController = loader.getController();
+        registerProfileController.show(root);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void back(ActionEvent event) throws IOException {
