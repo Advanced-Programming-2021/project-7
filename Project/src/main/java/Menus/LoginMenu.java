@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class LoginMenu {
 
-    public void run() throws IOException {
+    public void run() throws Exception {
         while (true) {
             String command = CommonTools.scan.nextLine();
             if (command.matches("^user create (?:(?:--username|--nickname|--password) ([^ ]+) ?){3}$"))
@@ -47,7 +47,7 @@ public class LoginMenu {
         }
     }
 
-    public void loginPlayer(String command) throws IOException {
+    public void loginPlayer(String command) throws Exception {
         String username = CommonTools.takeNameOutOfCommand(command, "--username");
         String password = CommonTools.takeNameOutOfCommand(command, "--password");
         if (username == null || password == null) {
