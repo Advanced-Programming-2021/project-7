@@ -1,5 +1,6 @@
 package Controller;
 
+import Menus.DeckMenu;
 import Menus.Shop;
 import Model.Player;
 import View.CardView;
@@ -45,5 +46,14 @@ public class MainMenuController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void deck(){
+        DeckMenu deckMenu = new DeckMenu();
+        try {
+            deckMenu.run(Player.getActivePlayer().getUsername());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
