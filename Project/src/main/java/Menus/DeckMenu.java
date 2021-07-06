@@ -287,7 +287,7 @@ public class DeckMenu extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        //stage.setMaximized(true);
+        stage.setMaximized(true);
         BorderPane borderPane = new BorderPane();
         Background background = getBackground();
         Group group = new Group();
@@ -336,7 +336,7 @@ public class DeckMenu extends Application {
         stage.setWidth(1600);
         stage.setHeight(800);
         stage.setX(0);
-        Scene scene = new Scene(borderPane, 300, 300);
+        Scene scene = new Scene(borderPane, 1600, 800);
         stage.setScene(scene);
         stage.show();
     }
@@ -422,7 +422,6 @@ public class DeckMenu extends Application {
         title.setFill(Color.WHITE);
         borderPane.setTop(v);
         VBox vBox = new VBox(group);
-        vBox.setPrefHeight(200);
         Button back = getButton();
         back.setText("Back");
         back.setOnAction(actionEvent -> {
@@ -433,7 +432,7 @@ public class DeckMenu extends Application {
             }
         });
         VBox backV = new VBox(back);
-        //backV.setAlignment(Pos.CENTER);
+        backV.setAlignment(Pos.CENTER);
         vBox.setAlignment(Pos.CENTER);
         borderPane.setCenter(vBox);
         borderPane.setBottom(backV);
@@ -442,9 +441,9 @@ public class DeckMenu extends Application {
 //        stage.setHeight(800);
 //        stage.setX(0);
 //        stage.setY(0);
-        borderPane.setLayoutX(-250);
-        borderPane.setLayoutY(-100);
-        Scene scene = new Scene(borderPane);
+//        borderPane.setLayoutX(-250);
+//        borderPane.setLayoutY(-100);
+        Scene scene = new Scene(borderPane, 1600, 800);
         stage.setScene(scene);
         stage.show();
     }
@@ -626,9 +625,9 @@ public class DeckMenu extends Application {
         int number = 0;
         Group group = new Group();
         for (int i = 0; i < 15 && number < allCards.size(); i++) {
-            for (int j = 0; j < 6 && number < allCards.size(); j++) {
+            for (int j = 0; j < 5 && number < allCards.size(); j++) {
                 Button button = new Button();
-                button.setLayoutX(220 * j + 200);
+                button.setLayoutX(250 * j + 200);
                 button.setLayoutY(300 * i + 200);
                 button.setText(allCards.get(number).getName());
                 button.setMaxWidth(0);
@@ -659,6 +658,7 @@ public class DeckMenu extends Application {
         scrollPane.setVmax(1400);
         scrollPane.setStyle("-fx-background: transparent; -fx-background-color: transparent;");
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         VBox vBox = new VBox(scrollPane);
         vBox.setMaxWidth(1400);
         borderPane.setCenter(vBox);
@@ -680,7 +680,7 @@ public class DeckMenu extends Application {
         backV.setAlignment(Pos.CENTER);
         borderPane.setBottom(backV);
         stage.setY(0);
-        Scene scene = new Scene(borderPane);
+        Scene scene = new Scene(borderPane, 1600, 800);
         stage.setScene(scene);
         stage.show();
     }
