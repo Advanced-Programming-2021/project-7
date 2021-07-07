@@ -219,5 +219,31 @@
       "cards": {},
       "decks": []
     }
+  },
+  {
+    "@type": "Model.Player",
+    "@val": {
+      "username": "Lalel",
+      "password": "1234",
+      "nickname": "Lale",
+      "score": 0,
+      "money": 100000,
+      "profile": 0,
+      "cards": {},
+      "decks": []
+    }
+  },
+  {
+    "@type": "Model.Player",
+    "@val": {
+      "username": "Sara",
+      "password": "1234",
+      "nickname": "Sara",
+      "score": 0,
+      "money": 100000,
+      "profile": 7,
+      "cards": {},
+      "decks": []
+    }
   }
 ]

@@ -1,6 +1,5 @@
 package Controller;
 
-import Model.FileHandler;
 import Model.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -50,7 +49,6 @@ public class RegisterController {
         }
         commandLabel.setText("User created successfully!");
         Player player = new Player(username, password, nickname);
-        FileHandler.updatePlayers();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/register_profile_view.fxml"));
         root = loader.load();
         RegisterProfileController registerProfileController = loader.getController();

@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.FileHandler;
 import Model.Player;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
@@ -10,7 +11,6 @@ import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
@@ -152,6 +152,7 @@ public class RegisterProfileController {
         }
         commandLabel.setText("User created successfully!");
         createdPlayer.setProfile(counter);
+        FileHandler.updatePlayers();
         alertUserCreated();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_program_view.fxml"));
         root = loader.load();

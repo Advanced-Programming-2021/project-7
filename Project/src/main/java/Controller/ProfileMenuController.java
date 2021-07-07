@@ -33,7 +33,6 @@ public class ProfileMenuController {
         nicknameLabel.setText("Nickname: " + Player.getActivePlayer().getNickname());
         Integer counter = Player.getActivePlayer().getProfile();
         if (counter == 0) counter = 1;
-        System.out.println(counter);
         Image image = new Image(getClass().
                 getResource("/Images/Profiles/profile" + counter + ".png").toExternalForm());
         Rectangle mainProfile = new Rectangle();
