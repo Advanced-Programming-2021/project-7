@@ -56,6 +56,8 @@ public class MainMenuController {
     public void profile(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/profile_menu_view.fxml"));
         root = loader.load();
+        ProfileMenuController profileMenuController = loader.getController();
+        profileMenuController.show(root);
         makeStage(event);
     }
 

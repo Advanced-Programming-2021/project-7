@@ -39,12 +39,12 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Label fx:id="usernameLabel" alignment="CENTER" layoutX="400.0" layoutY="82.0" prefHeight="35.0" prefWidth="523.0" text="Username:" textFill="#ddd78a">
+        <Label fx:id="usernameLabel" alignment="CENTER_LEFT" layoutX="607.0" layoutY="82.0" prefHeight="35.0" prefWidth="316.0" text="Username:" textFill="#ddd78a">
             <font>
                 <Font name="Gabriola" size="26.0" />
             </font>
         </Label>
-        <Label fx:id="nicknameLabel" alignment="CENTER" layoutX="400.0" layoutY="122.0" prefHeight="35.0" prefWidth="523.0" text="Nickname:" textFill="#ddd78a">
+        <Label fx:id="nicknameLabel" alignment="CENTER_LEFT" layoutX="607.0" layoutY="122.0" prefHeight="35.0" prefWidth="316.0" text="Nickname:" textFill="#ddd78a">
             <font>
                 <Font name="Gabriola" size="26.0" />
             </font>

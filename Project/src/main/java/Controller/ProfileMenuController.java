@@ -1,9 +1,12 @@
 package Controller;
 
+import Model.Player;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -13,6 +16,21 @@ public class ProfileMenuController {
     private Stage stage;
     private Scene scene;
     private AnchorPane root;
+
+    @FXML
+    private Label usernameLabel;
+    @FXML
+    private Label nicknameLabel;
+
+    public void makeLabels() {
+        usernameLabel.setText("Username: " + Player.getActivePlayer().getUsername());
+        nicknameLabel.setText("Nickname: " + Player.getActivePlayer().getNickname());
+    }
+
+    public void show(AnchorPane root) {
+        this.root = root;
+        makeLabels();
+    }
 
     public void changePassword(ActionEvent event) {
 
