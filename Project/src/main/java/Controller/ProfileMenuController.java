@@ -52,8 +52,10 @@ public class ProfileMenuController {
         makeLabels();
     }
 
-    public void changePassword(ActionEvent event) {
-
+    public void changePassword(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/change_password_view.fxml"));
+        root = loader.load();
+        makeStage(event);
     }
 
     public void changeNickname(ActionEvent event) {
@@ -76,6 +78,10 @@ public class ProfileMenuController {
     public void back(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_menu_view.fxml"));
         root = loader.load();
+        makeStage(event);
+    }
+
+    public void makeStage(ActionEvent event) {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
