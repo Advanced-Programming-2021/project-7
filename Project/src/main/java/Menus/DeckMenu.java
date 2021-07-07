@@ -1,11 +1,14 @@
 package Menus;
 
-import Model.*;
 import Model.Cards.Card;
+import Model.CommonTools;
+import Model.Deck;
+import Model.FileHandler;
+import Model.Player;
 import View.CardView;
 import View.MainProgramView;
 import javafx.application.Application;
-import javafx.geometry.Insets;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -31,6 +34,10 @@ public class DeckMenu extends Application {
     private static String logged;
     public CardView card;
     public static Stage stage;
+
+    private Stage mainStage;
+    private Scene mainScene;
+    private AnchorPane mainRoot;
 
     public void run(String username) throws Exception {
         logged = username;
@@ -294,18 +301,35 @@ public class DeckMenu extends Application {
         Button seeCards = getButton();
         Button seeDecks = getButton();
         Button createDeck = getButton();
+        Button back = getButton();
         seeDecks.setText("See Decks");
         seeCards.setText("See Inventory");
         createDeck.setText("Create Deck");
+        back.setText("Back");
+        back.setLayoutY(200);
         seeDecks.setLayoutY(-100);
         seeCards.setLayoutY(0);
         createDeck.setLayoutY(100);
+        back.setMinWidth(350);
         seeCards.setMinWidth(350);
         seeDecks.setMinWidth(350);
         createDeck.setMinWidth(350);
         group.getChildren().add(seeDecks);
         group.getChildren().add(seeCards);
         group.getChildren().add(createDeck);
+        group.getChildren().add(back);
+        back.setOnAction(actionEvent -> {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_menu_view.fxml"));
+            try {
+                mainRoot = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            mainStage = MainProgramView.stage;
+            mainStage.setMaximized(false);
+            mainScene = new Scene(mainRoot);
+            mainStage.setScene(mainScene);
+        });
         seeCards.setOnAction(actionEvent -> {
             try {
                 seeCards(stage);
