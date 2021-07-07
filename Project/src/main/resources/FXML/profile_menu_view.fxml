@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700" prefWidth="1200" stylesheets="@../CSS/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.DuelMenuController">
+    <children>
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="133.0" layoutY="450.0" mnemonicParsing="false" onAction="#newRound" prefHeight="51.0" prefWidth="417.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Change Password" textAlignment="CENTER" textFill="#ddd78a">
+            <font>
+                <Font name="Algerian" size="22.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="650" layoutY="450" mnemonicParsing="false" onAction="#newMatch" prefHeight="51.0" prefWidth="417.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Change Nickname" textAlignment="CENTER" textFill="#ddd78a">
+            <font>
+                <Font name="Algerian" size="22.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="378.0" layoutY="530.0" mnemonicParsing="false" onAction="#back" prefHeight="51.0" prefWidth="417.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Back" textAlignment="CENTER" textFill="#ddd78a">
+            <font>
+                <Font name="Algerian" size="22.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Label fx:id="commandLabel" alignment="CENTER" layoutX="325.0" layoutY="82.0" prefHeight="35.0" prefWidth="523.0" text="Select what type of duel you want to start:" textFill="#ddd78a">
+            <font>
+                <Font name="Gabriola" size="26.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>
