@@ -20,17 +20,17 @@ public class DuelMenuController {
     private AnchorPane root;
 
     public void newRound(ActionEvent event) {
+        getSecondPlayerName();
 
     }
 
     public void newMatch(ActionEvent event) {
-
+        getSecondPlayerName();
     }
 
     public void getSecondPlayerName() {
         secondPlayer = JOptionPane.showInputDialog("Enter your opponent's nickname:");
         isDuelValid(firstPlayer, secondPlayer);
-        JOptionPane.showMessageDialog(null, "hey");
     }
 
     private boolean isDuelValid(String player1, String player2){
