@@ -58,8 +58,10 @@ public class ProfileMenuController {
         makeStage(event);
     }
 
-    public void changeNickname(ActionEvent event) {
-
+    public void changeNickname(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/change_nickname_view.fxml"));
+        root = loader.load();
+        makeStage(event);
     }
 
     public void changeProfile(ActionEvent event) {
