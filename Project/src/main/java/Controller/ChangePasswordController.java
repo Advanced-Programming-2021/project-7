@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.FileHandler;
 import Model.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,6 +44,7 @@ public class ChangePasswordController {
             return;
         }
         player.setPassword(newPassword);
+        FileHandler.updatePlayers();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Change Password");
         alert.setHeaderText("Password changed successfully!");

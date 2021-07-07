@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.FileHandler;
 import Model.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,6 +32,7 @@ public class ChangeNicknameController {
             return;
         }
         Player.getActivePlayer().setNickName(nickname);
+        FileHandler.updatePlayers();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Change Nickname");
         alert.setHeaderText("Nickname changed successfully!");
