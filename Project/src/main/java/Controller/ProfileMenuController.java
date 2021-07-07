@@ -22,6 +22,10 @@ public class ProfileMenuController {
 
     }
 
+    public void changeProfile(ActionEvent event) {
+
+    }
+
     public void back(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_menu_view.fxml"));
         root = loader.load();
