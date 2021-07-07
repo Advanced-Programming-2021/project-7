@@ -206,5 +206,18 @@
       "cards": {},
       "decks": []
     }
+  },
+  {
+    "@type": "Model.Player",
+    "@val": {
+      "username": "Yas",
+      "password": "1234",
+      "nickname": "Yas",
+      "score": 0,
+      "money": 100000,
+      "profile": 0,
+      "cards": {},
+      "decks": []
+    }
   }
 ]
