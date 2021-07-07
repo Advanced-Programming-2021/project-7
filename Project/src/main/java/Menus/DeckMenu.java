@@ -1,14 +1,12 @@
 package Menus;
 
+import Model.*;
 import Model.Cards.Card;
-import Model.CommonTools;
-import Model.Deck;
-import Model.FileHandler;
-import Model.Player;
 import View.CardView;
 import View.MainProgramView;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -34,7 +32,6 @@ public class DeckMenu extends Application {
     private static String logged;
     public CardView card;
     public static Stage stage;
-
     private Stage mainStage;
     private Scene mainScene;
     private AnchorPane mainRoot;
@@ -294,30 +291,33 @@ public class DeckMenu extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        stage.setMaximized(true);
+        stage.setHeight(700);
+        stage.setWidth(1400);
+        stage.setX(0);
+        stage.setY(0);
         BorderPane borderPane = new BorderPane();
         Background background = getBackground();
         Group group = new Group();
         Button seeCards = getButton();
         Button seeDecks = getButton();
         Button createDeck = getButton();
-        Button back = getButton();
         seeDecks.setText("See Decks");
         seeCards.setText("See Inventory");
         createDeck.setText("Create Deck");
-        back.setText("Back");
-        back.setLayoutY(200);
         seeDecks.setLayoutY(-100);
         seeCards.setLayoutY(0);
         createDeck.setLayoutY(100);
-        back.setMinWidth(350);
         seeCards.setMinWidth(350);
         seeDecks.setMinWidth(350);
         createDeck.setMinWidth(350);
         group.getChildren().add(seeDecks);
         group.getChildren().add(seeCards);
         group.getChildren().add(createDeck);
-        group.getChildren().add(back);
+
+        Button back = getButton();
+        back.setText("Back");
+        back.setLayoutY(200);
+        back.setMinWidth(350);
         back.setOnAction(actionEvent -> {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_menu_view.fxml"));
             try {
@@ -351,16 +351,16 @@ public class DeckMenu extends Application {
                 e.printStackTrace();
             }
         });
+        back.setLayoutY(200);
+        group.getChildren().add(back);
         VBox vBox = new VBox(group);
         vBox.setAlignment(Pos.CENTER);
         borderPane.setCenter(vBox);
-//        borderPane.setLayoutX(-250);
-//        borderPane.setLayoutY(-150);
         borderPane.setBackground(background);
-        stage.setWidth(1600);
-        stage.setHeight(800);
-        stage.setX(0);
-        Scene scene = new Scene(borderPane, 1600, 800);
+        borderPane.setPrefHeight(800);
+        borderPane.setPrefWidth(1600);
+        Scene scene = new Scene(borderPane);
+        stage.sizeToScene();
         stage.setScene(scene);
         stage.show();
     }
@@ -403,7 +403,7 @@ public class DeckMenu extends Application {
     }
 
     private void seeDecks(Stage stage) throws IOException {
-        //stage.setMaximized(true);
+        stage.setMaximized(true);
         FileHandler.updatePlayers();
         BorderPane borderPane = new BorderPane();
         Background background = getBackground();
@@ -461,13 +461,9 @@ public class DeckMenu extends Application {
         borderPane.setCenter(vBox);
         borderPane.setBottom(backV);
         borderPane.setBackground(background);
-//        stage.setWidth(1600);
-//        stage.setHeight(800);
-//        stage.setX(0);
-//        stage.setY(0);
-//        borderPane.setLayoutX(-250);
-//        borderPane.setLayoutY(-100);
         Scene scene = new Scene(borderPane, 1600, 800);
+        borderPane.prefHeightProperty().bind(scene.heightProperty());
+        borderPane.prefWidthProperty().bind(scene.widthProperty());
         stage.setScene(scene);
         stage.show();
     }
@@ -477,9 +473,6 @@ public class DeckMenu extends Application {
         stage.setMaximized(true);
         BorderPane borderPane = new BorderPane();
         Background background = getBackground();
-        Player player = Objects.requireNonNull(Player.getPlayerByUsername(logged));
-        ArrayList<Deck> decks = player.getDecks();
-        Text title = new Text();
         Button seeCards = getButton();
         Button setActivate = getButton();
         Button deleteDeck = getButton();
@@ -512,19 +505,13 @@ public class DeckMenu extends Application {
                 e.printStackTrace();
             }
         });
-        VBox v = new VBox(title);
-        v.setAlignment(Pos.CENTER);
-        title.setText("\nChoose A Deck");
-        title.setFont(Font.font(65));
-        title.setFill(Color.WHITE);
-        borderPane.setTop(v);
         VBox vBox = new VBox(seeCards, setActivate, deleteDeck);
         vBox.setSpacing(20);
         Button back = getButton();
         back.setText("Back");
         back.setOnAction(actionEvent -> {
             try {
-                start(stage);
+                seeDecks(stage);
             } catch (Exception e) {
                 e.printStackTrace();
             }
