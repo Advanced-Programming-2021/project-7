@@ -3,7 +3,6 @@ package Controller;
 import Menus.DeckMenu;
 import Menus.Shop;
 import Model.Player;
-import View.CardView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -46,6 +45,12 @@ public class MainMenuController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void newDuel(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/duel_menu_view.fxml"));
+        root = loader.load();
+        makeStage(event);
     }
 
     public void deck(){
