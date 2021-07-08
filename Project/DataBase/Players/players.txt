@@ -7,7 +7,7 @@
       "nickname": "agha",
       "score": 0,
       "money": 0,
-      "profile": 0,
+      "profile": 2,
       "cards": [
         [
           {

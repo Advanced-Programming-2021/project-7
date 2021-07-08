@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700" prefWidth="1200" styleClass="profile-menu-back" stylesheets="@../CSS/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RegisterProfileController">
     <children>
-        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="148.0" layoutY="549.0" mnemonicParsing="false" onAction="#change" prefHeight="41.0" prefWidth="274.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Change" textAlignment="CENTER" textFill="#ddd78a">
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="148.0" layoutY="568.0" mnemonicParsing="false" onAction="#change" prefHeight="41.0" prefWidth="274.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Change" textAlignment="CENTER" textFill="#ddd78a">
             <font>
                 <Font name="Algerian" size="22.0" />
             </font>
@@ -15,7 +15,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="148.0" layoutY="615.0" mnemonicParsing="false" onAction="#back" prefHeight="41.0" prefWidth="274.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Back" textAlignment="CENTER" textFill="#ddd78a">
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="148.0" layoutY="634.0" mnemonicParsing="false" onAction="#back" prefHeight="41.0" prefWidth="274.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Back" textAlignment="CENTER" textFill="#ddd78a">
             <font>
                 <Font name="Algerian" size="22.0" />
             </font>
