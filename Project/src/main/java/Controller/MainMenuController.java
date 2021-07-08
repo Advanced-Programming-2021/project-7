@@ -1,7 +1,6 @@
 package Controller;
 
 import Menus.DeckMenu;
-import Menus.Shop;
 import Model.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;

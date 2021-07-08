@@ -5,19 +5,26 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700" prefWidth="1200" styleClass="score-board-back" stylesheets="@../CSS/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ScoreboardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700"
+            prefWidth="1200" styleClass="score-board-back" stylesheets="@../CSS/Main.css"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controller.ScoreboardController">
     <children>
-        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="378.0" layoutY="630.0" mnemonicParsing="false" onAction="#back" prefHeight="51.0" prefWidth="417.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Back" textAlignment="CENTER" textFill="#ddd78a">
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="378.0" layoutY="630.0"
+                mnemonicParsing="false" onAction="#back" prefHeight="51.0" prefWidth="417.0"
+                style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Back"
+                textAlignment="CENTER" textFill="#ddd78a">
             <font>
-                <Font name="Algerian" size="22.0" />
+                <Font name="Algerian" size="22.0"/>
             </font>
             <cursor>
-                <Cursor fx:constant="HAND" />
+                <Cursor fx:constant="HAND"/>
             </cursor>
         </Button>
-        <Label fx:id="commandLabel" alignment="CENTER" layoutX="325.0" prefHeight="35.0" prefWidth="523.0" text="Score board" textFill="#ddd78a">
+        <Label fx:id="commandLabel" alignment="CENTER" layoutX="325.0" prefHeight="35.0" prefWidth="523.0"
+               text="Score board" textFill="#ddd78a">
             <font>
-                <Font name="Algerian" size="28.0" />
+                <Font name="Algerian" size="28.0"/>
             </font>
         </Label>
     </children>
