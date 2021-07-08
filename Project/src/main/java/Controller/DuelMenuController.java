@@ -4,8 +4,8 @@ import Model.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import javax.swing.*;
@@ -17,20 +17,26 @@ public class DuelMenuController {
 
     private Stage stage;
     private Scene scene;
-    private AnchorPane root;
+    private Parent root;
 
-    public void newRound(ActionEvent event) {
-        getSecondPlayerName();
+    public void newRound(ActionEvent event) throws IOException {
+        if (!getSecondPlayerName()) return;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/game_board.fxml"));
+        root = loader.load();
+        makeStage(event);
 
     }
 
-    public void newMatch(ActionEvent event) {
-        getSecondPlayerName();
+    public void newMatch(ActionEvent event) throws IOException {
+        if (!getSecondPlayerName()) return;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/game_board.fxml"));
+        root = loader.load();
+        makeStage(event);
     }
 
-    public void getSecondPlayerName() {
+    public boolean getSecondPlayerName() {
         secondPlayer = JOptionPane.showInputDialog("Enter your opponent's nickname:");
-        isDuelValid(firstPlayer, secondPlayer);
+        return isDuelValid(firstPlayer, secondPlayer);
     }
 
     private boolean isDuelValid(String player1, String player2){
@@ -60,6 +66,10 @@ public class DuelMenuController {
     public void back(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_menu_view.fxml"));
         root = loader.load();
+        makeStage(event);
+    }
+
+    public void makeStage(ActionEvent event) {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
