@@ -97,6 +97,12 @@
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
 }
 
+.game-board{
+    -fx-background-image: url("../Images/Field/fie_normal.bmp");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+
 .duel-menu-back {
     -fx-background-image: url("../Images/DuelMenuBack.jpg");
     -fx-background-repeat: stretch;

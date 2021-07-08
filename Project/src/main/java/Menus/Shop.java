@@ -96,19 +96,6 @@ public class Shop extends Application{
         Shop.username = username;
         start(MainProgramView.stage);
         System.out.println("Welcome to Shop");
-//        while (true) {
-//            String command = CommonTools.scan.nextLine();
-//            if (command.matches("^shop buy .+$")) buyCard(username, command);
-//            else if (command.matches("^shop show --all$")) showAll();
-//            else if (command.matches("^menu enter (profile|duel|deck|shop|scoreboard)$"))
-//                System.out.println("menu navigation is not possible");
-//            else if (command.matches("^menu show-current$")) System.out.println("shop");
-//            else if (command.matches("^increase --money \\d+$")) increaseMoney(command, username);
-//            else if (command.matches("^menu exit$")) {
-//                System.out.println("MainMenu");
-//                return;
-//            } else System.out.println("invalid command!");
-//        }
     }
 
     public void increaseMoney(String command, String playerName) {
