@@ -160,7 +160,8 @@ public class RockPaperScissors extends Application {
                     e.printStackTrace();
                 }
                 makeStage();
-//                new DuelProgramController().run(firstPlayer, secondPlayer, 1);
+                DuelProgramController.firstPlayer = firstPlayer;
+                DuelProgramController.secondPlayer = secondPlayer;
             });
         } else if (secondPlayerChoice.equals("paper") && firstPlayerChoice.equals("rock") ||
                 (secondPlayerChoice.equals("scissors") && firstPlayerChoice.equals("paper")) ||
@@ -179,7 +180,8 @@ public class RockPaperScissors extends Application {
                     e.printStackTrace();
                 }
                 makeStage();
-//                new DuelProgramController().run(secondPlayer, firstPlayer, 1);
+                DuelProgramController.firstPlayer = secondPlayer;
+                DuelProgramController.secondPlayer = firstPlayer;
             });
         } else {
             new RockPaperScissors().run(firstPlayer, secondPlayer);
