@@ -1,5 +1,6 @@
 package Controller;
 
+import Menus.RockPaperScissors;
 import Model.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -12,26 +13,30 @@ import javax.swing.*;
 import java.io.IOException;
 
 public class DuelMenuController {
-    private String firstPlayer = Player.getActivePlayer().getUsername();
-    private String secondPlayer;
+    public static String firstPlayer = Player.getActivePlayer().getUsername();
+    public static String secondPlayer;
 
     private Stage stage;
     private Scene scene;
     private Parent root;
 
-    public void newRound(ActionEvent event) throws IOException {
+    public void newRound(ActionEvent event) throws Exception {
         if (!getSecondPlayerName()) return;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/game_board.fxml"));
-        root = loader.load();
-        makeStage(event);
+        RockPaperScissors rockPaperScissors = new RockPaperScissors();
+        rockPaperScissors.run(firstPlayer, secondPlayer);
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/game_board.fxml"));
+//        root = loader.load();
+//        makeStage(event);
 
     }
 
-    public void newMatch(ActionEvent event) throws IOException {
+    public void newMatch(ActionEvent event) throws Exception {
         if (!getSecondPlayerName()) return;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/game_board.fxml"));
-        root = loader.load();
-        makeStage(event);
+        RockPaperScissors rockPaperScissors = new RockPaperScissors();
+        rockPaperScissors.run(firstPlayer, secondPlayer);
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/game_board.fxml"));
+//        root = loader.load();
+//        makeStage(event);
     }
 
     public boolean getSecondPlayerName() {

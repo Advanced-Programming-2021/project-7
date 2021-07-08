@@ -35,6 +35,7 @@ public class GameBoardView extends Application {
                 myGrid.add(rectangle1,i, i1);
             }
         }
+//        new DuelProgramController().run(DuelMenuController.firstPlayer, DuelMenuController.secondPlayer, 1);
     }
 
     @Override
