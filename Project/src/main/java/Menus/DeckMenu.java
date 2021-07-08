@@ -419,7 +419,7 @@ public class DeckMenu extends Application {
                 button.setLayoutY(70 * j);
                 String deckText = decks.get(number).getDeckName();
                 if (Player.getActiveDeckByUsername(logged) != null &&
-                        Player.getActiveDeckByUsername(logged).getDeckName().equals(deckText)){
+                        Player.getActiveDeckByUsername(logged).getDeckName().equals(deckText)) {
                     deckText = deckText + " (Active Deck)";
                 }
                 button.setText(deckText);
@@ -581,7 +581,7 @@ public class DeckMenu extends Application {
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         VBox vBox = new VBox(scrollPane);
         vBox.setMaxWidth(1400);
-        if (cardName[0].equals("")){
+        if (cardName[0].equals("")) {
             delete.setTextFill(Color.web("#727070"));
         }
         borderPane.setCenter(vBox);
@@ -826,7 +826,7 @@ public class DeckMenu extends Application {
         return background;
     }
 
-    private Button getDeckButton(){
+    private Button getDeckButton() {
         Font font = Font.font("Albertus Medium", 30);
         Button button = new Button();
         button.setLayoutX(0);

@@ -160,4 +160,12 @@ public class Shop extends Application{
         if (Card.getCardByName(card.name).getPrice() > Player.getPlayerByUsername(username).getMoney())
             buyButton.setDisable(true);
     }
+
+    public void back(MouseEvent mouseEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/FXML/main_menu_view.fxml"));
+        Stage stage = MainProgramView.stage;
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }
