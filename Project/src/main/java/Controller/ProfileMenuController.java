@@ -64,8 +64,10 @@ public class ProfileMenuController {
         makeStage(event);
     }
 
-    public void changeProfile(ActionEvent event) {
-
+    public void changeProfile(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/change_profile_view.fxml"));
+        root = loader.load();
+        makeStage(event);
     }
 
     public void makeMainProfileEffect(Rectangle rectangle) {

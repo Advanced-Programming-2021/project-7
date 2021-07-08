@@ -162,6 +162,33 @@ public class RegisterProfileController {
         stage.show();
     }
 
+    public void change(ActionEvent event) throws IOException {
+        if (mainProfile.isVisible() == false) {
+            commandLabel.setText("You have not selected any picture!");
+            return;
+        }
+        commandLabel.setText("Profile changed successfully!");
+        createdPlayer = Player.getActivePlayer();
+        createdPlayer.setProfile(counter);
+        FileHandler.updatePlayers();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Change Profile");
+        alert.setHeaderText("Profile changed successfully!");
+        alert.showAndWait();
+        back(event);
+    }
+
+    public void back(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/profile_menu_view.fxml"));
+        root = loader.load();
+        ProfileMenuController profileMenuController = loader.getController();
+        profileMenuController.show(root);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public void alertUserCreated() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Register");
