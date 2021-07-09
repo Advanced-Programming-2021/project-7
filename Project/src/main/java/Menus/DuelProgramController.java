@@ -5,6 +5,12 @@ import Model.CommonTools;
 import Model.Deck;
 import Model.Player;
 import View.CardView;
+import javafx.beans.Observable;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.NumberBinding;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ObservableDoubleValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -66,11 +72,13 @@ public class DuelProgramController {
     public ImageView selectedCardShow;
     public ImageView myGrave;
     public HBox inHandCards;
+    public HBox enemyHand;
     public Button nextPhaseButton;
 
     @FXML
     public void initialize(){
         inHandCards.setSpacing(20);
+        enemyHand.setSpacing(20);
         setGameDecks("Mohsen", "Mohsen");
         for (int j = 0; j < 5; j++) {
             gameDecks.get(turn).drawCard();
@@ -82,10 +90,10 @@ public class DuelProgramController {
         });
         selectedCardShow.setImage(new Image(getClass().getResource("/Images/Cards/Unknown.jpg").toExternalForm()));
         myGrave.setImage(new Image(getClass().getResource("/Images/Cards/Unknown.jpg").toExternalForm()));
-        enemyGrid.setHgap(40);
-        enemyGrid.setVgap(25);
-        myGrid.setHgap(30);
-        myGrid.setVgap(25);
+        enemyGrid.setHgap(43);
+        enemyGrid.setVgap(35);
+        myGrid.setHgap(44);
+        myGrid.setVgap(30);
         setField();
     }
 
@@ -94,17 +102,26 @@ public class DuelProgramController {
         for (int i = 0; i < 5; i++) {
             for (int i1 = 0; i1 < 2; i1++) {
                 Rectangle rectangle = new Rectangle(60,90);
-                rectangle.setFill(Color.BLACK);
+//                rectangle.setFill(Color.BLACK);
                 Rectangle rectangle1 = new Rectangle(60,90);
                 if (!gameDecks.get(turn).getMonsterZones().get(i + 1).isEmpty() && i1 == 0){
                     Image image = cardView(gameDecks.get(turn).getMonsterZones().get(i + 1).getCurrentMonster().getName());
                     rectangle.setFill(new ImagePattern(image));
                 }
-                rectangle1.setFill(Color.RED);
+//                rectangle1.setFill(Color.RED);
                 int finalI1 = i1;
                 rectangle.setOnMouseClicked(EventHandler->{
                     if (finalI1 == 0) summonMonster();
                     setField();
+                });
+                rectangle.setOnMouseMoved(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        if (rectangle.getFill() instanceof ImagePattern){
+                            Image image = ((ImagePattern) rectangle.getFill()).getImage();
+                            selectedCardShow.setImage(image);
+                        }
+                    }
                 });
                 enemyGrid.add(rectangle,i, i1);
                 myGrid.add(rectangle1,i, i1);
@@ -120,6 +137,22 @@ public class DuelProgramController {
                 selectHand(finalI +1);
                 System.out.println(selectedCard.getName());
             });
+            rectangle.setOnMouseMoved(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    if (rectangle.getFill() instanceof ImagePattern){
+                        Image image = ((ImagePattern) rectangle.getFill()).getImage();
+                        selectedCardShow.setImage(image);
+                    }
+                }
+            });
+        }
+
+        enemyHand.getChildren().clear();
+        for (int i = 0; i < gameDecks.get(changeTurn(turn)).getInHandCards().size(); i++){
+            Rectangle rectangle = new Rectangle(60,90);
+            rectangle.setFill(new ImagePattern(new Image(getClass().getResource("/Images/Cards/Unknown.jpg").toExternalForm())));
+            enemyHand.getChildren().add(rectangle);
         }
 
     }
