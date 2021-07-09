@@ -103,7 +103,6 @@ public class DuelProgramController {
         for (int i = 0; i < 5; i++) {
             for (int i1 = 0; i1 < 2; i1++) {
                 Rectangle rectangle = new Rectangle(60,90);
-//                rectangle.setFill(Color.BLACK);
                 Rectangle rectangle1 = new Rectangle(60,90);
                 if (!gameDecks.get(turn).getMonsterZones().get(i + 1).isEmpty() && i1 == 0){
                     Image image = cardView(gameDecks.get(turn).getMonsterZones().get(i + 1).getCurrentMonster().getName());
@@ -112,7 +111,13 @@ public class DuelProgramController {
                     Image image = cardView(gameDecks.get(turn).getSpellZones().get(i + 1).getCurrentCard().getName());
                     rectangle.setFill(new ImagePattern(image));
                 }
-//                rectangle1.setFill(Color.RED);
+                if (!gameDecks.get(changeTurn(turn)).getMonsterZones().get(6 - i - 1).isEmpty() && i1 == 1){
+                    Image image = cardView(gameDecks.get(changeTurn(turn)).getMonsterZones().get(6 - i - 1).getCurrentMonster().getName());
+                    rectangle1.setFill(new ImagePattern(image));
+                } else if (!gameDecks.get(changeTurn(turn)).getSpellZones().get(6 - i - 1).isEmpty() && i1 == 0){
+                    Image image = cardView("Unknown");
+                    rectangle1.setFill(new ImagePattern(image));
+                }
                 int finalI1 = i1;
                 rectangle.setOnMouseClicked(EventHandler->{
                     if (finalI1 == 0) summonMonster();
