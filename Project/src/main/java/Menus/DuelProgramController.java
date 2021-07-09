@@ -4,6 +4,8 @@ import Model.Cards.*;
 import Model.CommonTools;
 import Model.Deck;
 import Model.Player;
+import View.GameBoardView;
+import View.MainProgramView;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -17,6 +19,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.beans.EventHandler;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -38,8 +41,6 @@ enum Phase {
 
 
 public class DuelProgramController {
-    public static String firstPlayer;
-    public static String secondPlayer;
     private ArrayList<GameDeck> gameDecks = new ArrayList<>(2);
     private MonsterPowersController monsterPowersController = new MonsterPowersController(gameDecks, this);
     private int turn = 0; //0 : firstPlayer, 1 : secondPlayer
@@ -64,15 +65,19 @@ public class DuelProgramController {
     public ImageView selectedCardShow;
     public ImageView myGrave;
     public ScrollPane inHandCards;
+    public Button nextPhaseButton;
 
     @FXML
     public void initialize(){
-        phase = Phase.main1;
         setGameDecks("Mohsen", "Mohsen");
         for (int j = 0; j < 5; j++) {
             gameDecks.get(turn).drawCard();
             gameDecks.get(changeTurn(turn)).drawCard();
         }
+        nextPhaseButton.setOnAction(actionEvent -> {
+            changePhase();
+            setField();
+        });
         selectedCardShow.setImage(new Image(getClass().getResource("/Images/Cards/Unknown.jpg").toExternalForm()));
         myGrave.setImage(new Image(getClass().getResource("/Images/Cards/Unknown.jpg").toExternalForm()));
         enemyGrid.setHgap(30);
@@ -83,6 +88,7 @@ public class DuelProgramController {
     }
 
     public void setField(){
+        nextPhaseButton.setText( "next phase. current phase : " + phase);
         VBox vBox = new VBox();
         for (int i = 0; i < 5; i++) {
             for (int i1 = 0; i1 < 2; i1++) {
@@ -1308,6 +1314,7 @@ public class DuelProgramController {
         if (isGameStart == 2 && phase == Phase.battle) {
             phase = Phase.end;
         }
+        System.out.println(phase);
     }
 
     private void checkSpellCard() {
