@@ -4,6 +4,7 @@ import Model.Cards.*;
 import Model.CommonTools;
 import Model.Deck;
 import Model.Player;
+import View.CardView;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -11,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -63,12 +65,13 @@ public class DuelProgramController {
     public GridPane myGrid;
     public ImageView selectedCardShow;
     public ImageView myGrave;
-    public ScrollPane inHandCards;
+    public HBox inHandCards;
     public Button nextPhaseButton;
 
     @FXML
     public void initialize(){
-        setGameDecks("Mohsen", "Mohsen");
+        inHandCards.setSpacing(20);
+        setGameDecks(firstPlayer, secondPlayer);
         for (int j = 0; j < 5; j++) {
             gameDecks.get(turn).drawCard();
             gameDecks.get(changeTurn(turn)).drawCard();
@@ -79,7 +82,7 @@ public class DuelProgramController {
         });
         selectedCardShow.setImage(new Image(getClass().getResource("/Images/Cards/Unknown.jpg").toExternalForm()));
         myGrave.setImage(new Image(getClass().getResource("/Images/Cards/Unknown.jpg").toExternalForm()));
-        enemyGrid.setHgap(30);
+        enemyGrid.setHgap(40);
         enemyGrid.setVgap(25);
         myGrid.setHgap(30);
         myGrid.setVgap(25);
@@ -88,7 +91,6 @@ public class DuelProgramController {
 
     public void setField(){
         nextPhaseButton.setText( "next phase. current phase : " + phase);
-        VBox vBox = new VBox();
         for (int i = 0; i < 5; i++) {
             for (int i1 = 0; i1 < 2; i1++) {
                 Rectangle rectangle = new Rectangle(60,90);
@@ -108,16 +110,18 @@ public class DuelProgramController {
                 myGrid.add(rectangle1,i, i1);
             }
         }
+        inHandCards.getChildren().clear();
         for (int i = 0; i < gameDecks.get(turn).getInHandCards().size(); i++){
-            Button button = new Button(gameDecks.get(turn).getInHandCards().get(i).getName());
-            vBox.getChildren().add(button);
+            Rectangle rectangle = new Rectangle(60,90);
+            rectangle.setFill(new ImagePattern(CardView.getCardViewByName(gameDecks.get(turn).getInHandCards().get(i).getName()).imageView.getImage()));
+            inHandCards.getChildren().add(rectangle);
             int finalI = i;
-            button.setOnAction(actionEvent -> {
+            rectangle.setOnMouseClicked(actionEvent -> {
                 selectHand(finalI +1);
                 System.out.println(selectedCard.getName());
             });
         }
-        inHandCards.setContent(vBox);
+
     }
 
     public void run(String firstPlayer, String secondPlayer, int round) {
@@ -1765,7 +1769,7 @@ public class DuelProgramController {
     }
 
     public void showMyGrave(MouseEvent mouseEvent) {
-        //GraveYardController.graveYard = gameDecks.get(turn).getGraveyardCards();
+        GraveYardController.graveYard = gameDecks.get(turn).getGraveyardCards();
         try {
             new GraveYardController().start(new Stage());
         } catch (Exception e) {

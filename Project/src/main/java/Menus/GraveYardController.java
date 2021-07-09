@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -19,6 +20,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class GraveYardController extends Application {
     public static ArrayList<Card> graveYard;
@@ -40,12 +42,21 @@ public class GraveYardController extends Application {
         gridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
         gridPane.setPrefHeight(Region.USE_COMPUTED_SIZE);
         gridPane.setMaxHeight(Region.USE_PREF_SIZE);
-        for (int i = 0; i < 2; i++) {
-            for (int i1 = 0; i1 < 10; i1++) {
-                Rectangle rectangle = new Rectangle(240, 360);
-                rectangle.setFill(new ImagePattern(CardView.getCardViewByName("Trap Hole").imageView.getImage()));
-                gridPane.add(rectangle, i, i1);
+
+        int column = 0;
+        int row = 0;
+
+        for (int i = 0; i < graveYard.size(); i++) {
+            if (column == 2){
+                row++;
+                column = 0;
             }
+
+            Rectangle rectangle = new Rectangle(240, 360);
+            ImageView imageView = new ImageView();
+            rectangle.setFill(new ImagePattern(Objects.requireNonNull(CardView.getCardViewByName(graveYard.get(i).getName())).imageView.getImage()));
+            gridPane.add(rectangle, column++, row);
+
         }
 
     }
