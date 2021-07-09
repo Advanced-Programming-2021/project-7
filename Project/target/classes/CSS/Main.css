@@ -116,3 +116,9 @@
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover;
 }
+
+.grave{
+    -fx-background-image: url("../Images/grave.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
