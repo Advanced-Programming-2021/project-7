@@ -24,8 +24,6 @@ enum Phase {
 }
 
 class DuelProgramController {
-    public static String firstPlayer;
-    public static String secondPlayer;
     private ArrayList<GameDeck> gameDecks = new ArrayList<>(2);
     private MonsterPowersController monsterPowersController = new MonsterPowersController(gameDecks, this);
     private int turn = 0; //0 : firstPlayer, 1 : secondPlayer
