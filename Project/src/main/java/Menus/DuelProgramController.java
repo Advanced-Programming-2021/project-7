@@ -5,10 +5,13 @@ import Model.CommonTools;
 import Model.Deck;
 import Model.Player;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -57,15 +60,33 @@ public class DuelProgramController {
     public GridPane myGrid;
     public ImageView selectedCardShow;
     public ImageView myGrave;
+    public ScrollPane inHandCards;
 
     @FXML
     public void initialize(){
+        setGameDecks("Mohsen", "Mohsen");
+        for (int j = 0; j < 5; j++) {
+            gameDecks.get(turn).drawCard();
+            gameDecks.get(changeTurn(turn)).drawCard();
+        }
         selectedCardShow.setImage(new Image(getClass().getResource("/Images/Cards/Unknown.jpg").toExternalForm()));
         myGrave.setImage(new Image(getClass().getResource("/Images/Cards/Unknown.jpg").toExternalForm()));
         enemyGrid.setHgap(30);
         enemyGrid.setVgap(25);
         myGrid.setHgap(30);
         myGrid.setVgap(25);
+        VBox vBox = new VBox();
+        for (int i = 0; i < gameDecks.get(turn).getInHandCards().size(); i++){
+            Button button = new Button(gameDecks.get(turn).getInHandCards().get(i).getName());
+            vBox.getChildren().add(button);
+            int finalI = i;
+            button.setOnAction(actionEvent -> {
+                selectHand(finalI +1);
+                System.out.println(selectedCard.getName());
+            });
+        }
+        inHandCards.setContent(vBox);
+
         for (int i = 0; i < 5; i++) {
             for (int i1 = 0; i1 < 2; i1++) {
                 Rectangle rectangle = new Rectangle(60,90);
@@ -341,11 +362,11 @@ public class DuelProgramController {
         selectedCardIndex = position;
         selectedDeck = "hand";
         System.out.println("card selected");
-        monsterPowersController.setSelectedCardIndex(selectedCardIndex);
-        monsterPowersController.setSelectedCard(selectedCard);
-        monsterPowersController.setTurn(turn);
-        monsterPowersController.setPhase(phase);
-        monsterPowersController.monstersWithSpecialSummonPower(selectedCard);
+//        monsterPowersController.setSelectedCardIndex(selectedCardIndex);
+//        monsterPowersController.setSelectedCard(selectedCard);
+//        monsterPowersController.setTurn(turn);
+//        monsterPowersController.setPhase(phase);
+//        monsterPowersController.monstersWithSpecialSummonPower(selectedCard);
     }
 
     private void selectOpponentMonster(int position) {
