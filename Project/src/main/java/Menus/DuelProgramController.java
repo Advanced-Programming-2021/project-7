@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
@@ -79,13 +80,20 @@ public class DuelProgramController {
         myGrid.setHgap(30);
         myGrid.setVgap(25);
         setField();
+    }
+
+    public void setField(){
+        VBox vBox = new VBox();
         for (int i = 0; i < 5; i++) {
             for (int i1 = 0; i1 < 2; i1++) {
                 Rectangle rectangle = new Rectangle(60,90);
                 rectangle.setFill(Color.BLACK);
                 Rectangle rectangle1 = new Rectangle(60,90);
+                if (!gameDecks.get(turn).getMonsterZones().get(i + 1).isEmpty() && i1 == 0){
+                    Image image = cardView(gameDecks.get(turn).getMonsterZones().get(i + 1).getCurrentMonster().getName());
+                    rectangle.setFill(new ImagePattern(image));
+                }
                 rectangle1.setFill(Color.RED);
-                int finalI = i;
                 int finalI1 = i1;
                 rectangle.setOnMouseClicked(EventHandler->{
                     if (finalI1 == 0) summonMonster();
@@ -95,10 +103,6 @@ public class DuelProgramController {
                 myGrid.add(rectangle1,i, i1);
             }
         }
-    }
-
-    public void setField(){
-        VBox vBox = new VBox();
         for (int i = 0; i < gameDecks.get(turn).getInHandCards().size(); i++){
             Button button = new Button(gameDecks.get(turn).getInHandCards().get(i).getName());
             vBox.getChildren().add(button);
@@ -1761,5 +1765,18 @@ public class DuelProgramController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private Image cardView(String name) {
+        ImageView imageView = new ImageView();
+        if (name.equals("\"Terratiger, the Empowered Warrior\""))
+            name = "Terratiger";
+        String searchName = name.replace("of", "Of").replace(" ", "").replace("-", "");
+        String url = "/Images/Cards/" + searchName + ".jpg";
+        Image image = new Image(getClass().getResource(url).toExternalForm());
+        imageView.setImage(image);
+        imageView.setFitWidth(198);
+        imageView.setFitHeight(272);
+        return image;
     }
 }
