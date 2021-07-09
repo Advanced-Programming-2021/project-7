@@ -98,6 +98,7 @@ public class DuelProgramController {
     }
 
     public void setField(){
+        if (phase == Phase.draw && isCardDrawn == 0 && isGameStart == 0 && timeSealTrap == 0) drawCard();
         nextPhaseButton.setText( "next phase. current phase : " + phase);
         for (int i = 0; i < 5; i++) {
             for (int i1 = 0; i1 < 2; i1++) {
@@ -107,11 +108,17 @@ public class DuelProgramController {
                 if (!gameDecks.get(turn).getMonsterZones().get(i + 1).isEmpty() && i1 == 0){
                     Image image = cardView(gameDecks.get(turn).getMonsterZones().get(i + 1).getCurrentMonster().getName());
                     rectangle.setFill(new ImagePattern(image));
+                } else if (!gameDecks.get(turn).getSpellZones().get(i + 1).isEmpty() && i1 == 1){
+                    Image image = cardView(gameDecks.get(turn).getSpellZones().get(i + 1).getCurrentCard().getName());
+                    rectangle.setFill(new ImagePattern(image));
                 }
 //                rectangle1.setFill(Color.RED);
                 int finalI1 = i1;
                 rectangle.setOnMouseClicked(EventHandler->{
                     if (finalI1 == 0) summonMonster();
+                    else if (selectedCard.getType().equals("Spell") || selectedCard.getType().equals("Trap")){
+                        set();
+                    }
                     setField();
                 });
                 rectangle.setOnMouseMoved(new EventHandler<MouseEvent>() {
