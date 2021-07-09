@@ -4,8 +4,6 @@ import Model.Cards.*;
 import Model.CommonTools;
 import Model.Deck;
 import Model.Player;
-import View.GameBoardView;
-import View.MainProgramView;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -18,7 +16,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-import java.beans.EventHandler;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -40,6 +37,8 @@ enum Phase {
 
 
 public class DuelProgramController {
+    public static String firstPlayer;
+    public static String secondPlayer;
     private ArrayList<GameDeck> gameDecks = new ArrayList<>(2);
     private MonsterPowersController monsterPowersController = new MonsterPowersController(gameDecks, this);
     private int turn = 0; //0 : firstPlayer, 1 : secondPlayer

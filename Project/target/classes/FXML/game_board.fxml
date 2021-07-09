@@ -9,7 +9,7 @@
         <AnchorPane prefHeight="800.0" prefWidth="294" style="-fx-background-color: #e28155;" BorderPane.alignment="CENTER">
             <children>
                 <ImageView fx:id="selectedCardShow" fitHeight="428.0" fitWidth="294.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true" />
-                <ScrollPane layoutY="524.0" prefHeight="200.0" prefWidth="294.0" />
+                <ScrollPane fx:id="inHandCards" layoutY="524.0" prefHeight="200.0" prefWidth="294.0" />
             </children>
         </AnchorPane>
     </left>
