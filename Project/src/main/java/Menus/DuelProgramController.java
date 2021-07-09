@@ -4,6 +4,8 @@ import Model.Cards.*;
 import Model.CommonTools;
 import Model.Deck;
 import Model.Player;
+import View.GameBoardView;
+import View.MainProgramView;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -16,6 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.beans.EventHandler;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -64,6 +67,7 @@ public class DuelProgramController {
 
     @FXML
     public void initialize(){
+        phase = Phase.main1;
         setGameDecks("Mohsen", "Mohsen");
         for (int j = 0; j < 5; j++) {
             gameDecks.get(turn).drawCard();
@@ -75,6 +79,26 @@ public class DuelProgramController {
         enemyGrid.setVgap(25);
         myGrid.setHgap(30);
         myGrid.setVgap(25);
+        setField();
+        for (int i = 0; i < 5; i++) {
+            for (int i1 = 0; i1 < 2; i1++) {
+                Rectangle rectangle = new Rectangle(60,90);
+                rectangle.setFill(Color.BLACK);
+                Rectangle rectangle1 = new Rectangle(60,90);
+                rectangle1.setFill(Color.RED);
+                int finalI = i;
+                int finalI1 = i1;
+                rectangle.setOnMouseClicked(EventHandler->{
+                    if (finalI1 == 0) summonMonster();
+                    setField();
+                });
+                enemyGrid.add(rectangle,i, i1);
+                myGrid.add(rectangle1,i, i1);
+            }
+        }
+    }
+
+    public void setField(){
         VBox vBox = new VBox();
         for (int i = 0; i < gameDecks.get(turn).getInHandCards().size(); i++){
             Button button = new Button(gameDecks.get(turn).getInHandCards().get(i).getName());
@@ -86,17 +110,6 @@ public class DuelProgramController {
             });
         }
         inHandCards.setContent(vBox);
-
-        for (int i = 0; i < 5; i++) {
-            for (int i1 = 0; i1 < 2; i1++) {
-                Rectangle rectangle = new Rectangle(60,90);
-                rectangle.setFill(Color.BLACK);
-                Rectangle rectangle1 = new Rectangle(60,90);
-                rectangle.setFill(Color.RED);
-                enemyGrid.add(rectangle,i, i1);
-                myGrid.add(rectangle1,i, i1);
-            }
-        }
     }
 
     public void run(String firstPlayer, String secondPlayer, int round) {
