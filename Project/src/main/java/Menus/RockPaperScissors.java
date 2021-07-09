@@ -212,8 +212,12 @@ public class RockPaperScissors extends Application {
 
     public void makeStage() {
         stage = MainProgramView.stage;
+        stage.setResizable(true);
+        stage.setMaximized(true);
         stage.setWidth(1020);
         stage.setHeight(820);
+        stage.setY(40);
+        stage.setX(100);
         scene = new Scene(root, 800, 1020);
         stage.setScene(scene);
         stage.show();
