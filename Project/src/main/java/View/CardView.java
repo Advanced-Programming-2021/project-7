@@ -22,7 +22,8 @@ public class CardView implements Comparable<CardView> {
     public CardView(String name){
         this.name = name;
         imageView = new ImageView();
-        String searchName = name.replace("of", "Of").replace(" ", "").replace("-", "").replace("\"", "");
+        String searchName = name.replace("of", "Of").replace(" ", "")
+                .replace("-", "").replace("\"", "");
         String url = "/Images/Cards/" + searchName + ".jpg";
         Image image = new Image(getClass().getResource(url).toExternalForm());
         imageView.setImage(image);

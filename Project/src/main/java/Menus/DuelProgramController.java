@@ -71,7 +71,7 @@ public class DuelProgramController {
     @FXML
     public void initialize(){
         inHandCards.setSpacing(20);
-        setGameDecks(firstPlayer, secondPlayer);
+        setGameDecks("Mohsen", "Mohsen");
         for (int j = 0; j < 5; j++) {
             gameDecks.get(turn).drawCard();
             gameDecks.get(changeTurn(turn)).drawCard();
@@ -113,7 +113,7 @@ public class DuelProgramController {
         inHandCards.getChildren().clear();
         for (int i = 0; i < gameDecks.get(turn).getInHandCards().size(); i++){
             Rectangle rectangle = new Rectangle(60,90);
-            rectangle.setFill(new ImagePattern(CardView.getCardViewByName(gameDecks.get(turn).getInHandCards().get(i).getName()).imageView.getImage()));
+            rectangle.setFill(new ImagePattern(cardView(gameDecks.get(turn).getInHandCards().get(i).getName())));
             inHandCards.getChildren().add(rectangle);
             int finalI = i;
             rectangle.setOnMouseClicked(actionEvent -> {
@@ -1779,14 +1779,11 @@ public class DuelProgramController {
 
     private Image cardView(String name) {
         ImageView imageView = new ImageView();
-        if (name.equals("\"Terratiger, the Empowered Warrior\""))
-            name = "Terratiger";
-        String searchName = name.replace("of", "Of").replace(" ", "").replace("-", "");
+        String searchName = name.replace("of", "Of")
+                .replace(" ", "").replace("-", "").replace("\"", "");
         String url = "/Images/Cards/" + searchName + ".jpg";
         Image image = new Image(getClass().getResource(url).toExternalForm());
         imageView.setImage(image);
-        imageView.setFitWidth(198);
-        imageView.setFitHeight(272);
         return image;
     }
 }
