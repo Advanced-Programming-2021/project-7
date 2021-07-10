@@ -134,8 +134,14 @@ public class DuelProgramController {
                 int finalI = i;
                 rectangle.setOnMouseClicked(EventHandler->{
                     if (phase != Phase.battle) {
-                        if (finalI1 == 0) JOptionPane.showMessageDialog(null,summonMonster());
-                        else if (selectedCard.getType().equals("Spell") || selectedCard.getType().equals("Trap")) {
+                        if (finalI1 == 0 && selectedCard.getType().equals("Monster")) {
+                            String[] buttons = {"Set", "Summon"};
+                            int returnValue = JOptionPane.showOptionDialog(null, "Summon or Set Monster", "Summon or Set Monster",
+                                    JOptionPane.OK_OPTION, 1, null, buttons, buttons[0]);
+                            if (returnValue == 0) set();
+                            else if (returnValue == 1) summonMonster();
+                        }
+                        else if (finalI1 == 1 && (selectedCard.getType().equals("Spell") || selectedCard.getType().equals("Trap"))){
                             set();
                         }
                         setField();
