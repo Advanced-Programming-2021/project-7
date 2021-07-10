@@ -629,6 +629,7 @@ public class DuelProgramController {
             String string1 = JOptionPane.showInputDialog("Enter position of first tribute monster in monster zone:");
             String string2 = JOptionPane.showInputDialog("Enter position of second tribute monster in monster zone:");
             if (!string1.matches("\\d+") || !string2.matches("\\d+")) return "Wrong input";
+            if (string2.equals(string1)) return "Wrong input";
             firstMonster = Integer.parseInt(string1);
             secondMonster = Integer.parseInt(string2);
         }
@@ -636,7 +637,7 @@ public class DuelProgramController {
             return ("there are no monsters on one of this addresses");
         }
         if (monsterZones.get(firstMonster).getCurrentMonster() == null ||
-                monsterZones.get(firstMonster).getCurrentMonster() == null) {
+                monsterZones.get(secondMonster).getCurrentMonster() == null) {
             return ("there are no monsters on one of this addresses");
         }
         isSummoned = 1;
