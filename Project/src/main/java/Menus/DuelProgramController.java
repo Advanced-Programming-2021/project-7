@@ -25,6 +25,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -120,7 +121,13 @@ public class DuelProgramController {
                 }
                 int finalI1 = i1;
                 rectangle.setOnMouseClicked(EventHandler->{
-                    if (finalI1 == 0) summonMonster();
+                    if (finalI1 == 0) {
+                        String[] buttons = {"Set", "Summon"};
+                        int returnValue = JOptionPane.showOptionDialog(null, "Summon or Set Monster", "Summon or Set Monster",
+                                JOptionPane.OK_OPTION, 1, null, buttons, buttons[0]);
+                        if (returnValue == 0) set();
+                        else if (returnValue == 1) summonMonster();
+                    }
                     else if (selectedCard.getType().equals("Spell") || selectedCard.getType().equals("Trap")){
                         set();
                     }
