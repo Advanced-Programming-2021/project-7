@@ -52,6 +52,12 @@ public class MainMenuController {
         makeStage(event);
     }
 
+    public void importMenu(ActionEvent event) throws  IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/import_menu_view.fxml"));
+        root = loader.load();
+        makeStage(event);
+    }
+
     public void profile(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/profile_menu_view.fxml"));
         root = loader.load();

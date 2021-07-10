@@ -47,7 +47,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="378.0" layoutY="560.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="417.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Import/Export" textAlignment="CENTER" textFill="#ddd78a">
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="378.0" layoutY="560.0" mnemonicParsing="false" onAction="#importMenu" prefHeight="51.0" prefWidth="417.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Import/Export" textAlignment="CENTER" textFill="#ddd78a">
             <font>
                 <Font name="Algerian" size="22.0" />
             </font>
