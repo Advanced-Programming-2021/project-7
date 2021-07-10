@@ -59,4 +59,8 @@ public class MonsterZone {
         status = "E";
         return card;
     }
+
+    public void setAttacked(){
+        status = "DO";
+    }
 }

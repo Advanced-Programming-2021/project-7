@@ -13,6 +13,7 @@ import javafx.beans.value.ObservableDoubleValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -46,7 +47,6 @@ enum Phase {
 }
 
 
-
 public class DuelProgramController {
     public static String firstPlayer;
     public static String secondPlayer;
@@ -78,9 +78,11 @@ public class DuelProgramController {
     public HBox enemyHand;
     public Button nextPhaseButton;
     public Circle attackSign;
+    public Label enemyName;
+    public Label myName;
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         attackSign = new Circle(20);
         attackSign.setFill(new ImagePattern(new Image("/Images/Attack.png")));
         inHandCards.setSpacing(20);
@@ -105,34 +107,44 @@ public class DuelProgramController {
         setField();
     }
 
-    public void setField(){
+    public void setField() {
         if (phase == Phase.draw && isCardDrawn == 0 && isGameStart == 0 && timeSealTrap == 0) drawCard();
-        nextPhaseButton.setText( "next phase. current phase : " + phase);
+        nextPhaseButton.setText("next phase. current phase : " + phase);
+        enemyGrid.getChildren().clear();
+        myGrid.getChildren().clear();
+        enemyName.setText(gameDecks.get(changeTurn(turn)).getPlayerNickName() + " : " + gameDecks.get(changeTurn(turn)).getPlayerLP());
+        myName.setText(gameDecks.get((turn)).getPlayerNickName() + " : " + gameDecks.get((turn)).getPlayerLP());
         for (int i = 0; i < 5; i++) {
             for (int i1 = 0; i1 < 2; i1++) {
-                Rectangle rectangle = new Rectangle(60,90);
-                Rectangle rectangle1 = new Rectangle(60,90);
-                if (!gameDecks.get(turn).getMonsterZones().get(i + 1).isEmpty() && i1 == 0){
+                Rectangle rectangle = new Rectangle(60, 90);
+                rectangle.setFill(Color.TRANSPARENT); // TODO optional
+                Rectangle rectangle1 = new Rectangle(60, 90);
+                rectangle1.setFill(Color.TRANSPARENT); // TODO optional
+                if (!gameDecks.get(turn).getMonsterZones().get(i + 1).isEmpty() && i1 == 0) {
                     Image image = cardView(gameDecks.get(turn).getMonsterZones().get(i + 1).getCurrentMonster().getName());
                     rectangle.setFill(new ImagePattern(image));
-                } else if (!gameDecks.get(turn).getSpellZones().get(i + 1).isEmpty() && i1 == 1){
+                    if (!gameDecks.get(turn).getMonsterZones().get(i + 1).getStatus().equals("OO"))
+                        rectangle.setRotate(90);
+                } else if (!gameDecks.get(turn).getSpellZones().get(i + 1).isEmpty() && i1 == 1) {
                     Image image = cardView(gameDecks.get(turn).getSpellZones().get(i + 1).getCurrentCard().getName());
                     rectangle.setFill(new ImagePattern(image));
                 }
-                if (!gameDecks.get(changeTurn(turn)).getMonsterZones().get(6 - i - 1).isEmpty() && i1 == 1){
+                if (!gameDecks.get(changeTurn(turn)).getMonsterZones().get(6 - i - 1).isEmpty() && i1 == 1) {
                     Image image = cardView(gameDecks.get(changeTurn(turn)).getMonsterZones().get(6 - i - 1).getCurrentMonster().getName());
                     rectangle1.setFill(new ImagePattern(image));
-                    if (!gameDecks.get(changeTurn(turn)).getMonsterZones().get(6 - i - 1).getStatus().equals("OO")){
+                    if (gameDecks.get(changeTurn(turn)).getMonsterZones().get(6 - i - 1).getStatus().equals("DH")) {
                         image = cardView("Unknown");
                         rectangle1.setFill(new ImagePattern(image));
                     }
-                } else if (!gameDecks.get(changeTurn(turn)).getSpellZones().get(6 - i - 1).isEmpty() && i1 == 0){
+                    if (!gameDecks.get(changeTurn(turn)).getMonsterZones().get(6 - i - 1).getStatus().equals("OO"))
+                        rectangle1.setRotate(90);
+                } else if (!gameDecks.get(changeTurn(turn)).getSpellZones().get(6 - i - 1).isEmpty() && i1 == 0) {
                     Image image = cardView("Unknown");
                     rectangle1.setFill(new ImagePattern(image));
                 }
                 int finalI1 = i1;
                 int finalI = i;
-                rectangle.setOnMouseClicked(EventHandler->{
+                rectangle.setOnMouseClicked(EventHandler -> {
                     if (phase != Phase.battle) {
                         if (finalI1 == 0 && selectedCard.getType().equals("Monster")) {
                             String[] buttons = {"Set", "Summon"};
@@ -140,13 +152,13 @@ public class DuelProgramController {
                                     JOptionPane.OK_OPTION, 1, null, buttons, buttons[0]);
                             if (returnValue == 0) set();
                             else if (returnValue == 1) summonMonster();
-                        }
-                        else if (finalI1 == 1 && (selectedCard.getType().equals("Spell") || selectedCard.getType().equals("Trap"))){
+                        } else if (finalI1 == 1 && (selectedCard.getType().equals("Spell")
+                                || selectedCard.getType().equals("Trap"))) {
                             set();
                         }
                         setField();
-                    } else if (phase == Phase.battle){
-                        if (finalI1 == 0){
+                    } else if (phase == Phase.battle) {
+                        if (finalI1 == 0) {
                             String message = selectMonster(finalI + 1);
                             JOptionPane.showMessageDialog(null, message);
                             if (message.equals("card selected")) {
@@ -154,14 +166,14 @@ public class DuelProgramController {
                                 enemyGrid.add(attackSign, finalI, finalI1);
                             }
                         } else {
-                            JOptionPane.showMessageDialog(null,selectSpell(finalI + 1));
+                            JOptionPane.showMessageDialog(null, selectSpell(finalI + 1));
                         }
                     }
                 });
                 rectangle.setOnMouseMoved(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
-                        if (rectangle.getFill() instanceof ImagePattern){
+                        if (rectangle.getFill() instanceof ImagePattern) {
                             Image image = ((ImagePattern) rectangle.getFill()).getImage();
                             selectedCardShow.setImage(image);
                         }
@@ -170,32 +182,32 @@ public class DuelProgramController {
                 rectangle1.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
-                        if (phase == Phase.battle){
+                        if (phase == Phase.battle) {
                             if (finalI1 == 1)
-                            JOptionPane.showMessageDialog(null, attackCard("attack " + (5 - finalI)));
+                                JOptionPane.showMessageDialog(null, attackCard("attack " + (5 - finalI)));
+                            setField();
                         }
-                        setField();
                     }
                 });
-                enemyGrid.add(rectangle,i, i1);
-                myGrid.add(rectangle1,i, i1);
+                enemyGrid.add(rectangle, i, i1);
+                myGrid.add(rectangle1, i, i1);
             }
         }
 
         inHandCards.getChildren().clear();
-        for (int i = 0; i < gameDecks.get(turn).getInHandCards().size(); i++){
-            Rectangle rectangle = new Rectangle(60,90);
+        for (int i = 0; i < gameDecks.get(turn).getInHandCards().size(); i++) {
+            Rectangle rectangle = new Rectangle(60, 90);
             rectangle.setFill(new ImagePattern(cardView(gameDecks.get(turn).getInHandCards().get(i).getName())));
             inHandCards.getChildren().add(rectangle);
             int finalI = i;
             rectangle.setOnMouseClicked(actionEvent -> {
-                selectHand(finalI +1);
+                selectHand(finalI + 1);
                 System.out.println(selectedCard.getName());
             });
             rectangle.setOnMouseMoved(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    if (rectangle.getFill() instanceof ImagePattern){
+                    if (rectangle.getFill() instanceof ImagePattern) {
                         Image image = ((ImagePattern) rectangle.getFill()).getImage();
                         selectedCardShow.setImage(image);
                     }
@@ -204,8 +216,8 @@ public class DuelProgramController {
         }
 
         enemyHand.getChildren().clear();
-        for (int i = 0; i < gameDecks.get(changeTurn(turn)).getInHandCards().size(); i++){
-            Rectangle rectangle = new Rectangle(60,90);
+        for (int i = 0; i < gameDecks.get(changeTurn(turn)).getInHandCards().size(); i++) {
+            Rectangle rectangle = new Rectangle(60, 90);
             rectangle.setFill(new ImagePattern(new Image(getClass().getResource("/Images/Cards/Unknown.jpg").toExternalForm())));
             enemyHand.getChildren().add(rectangle);
         }
@@ -932,6 +944,8 @@ public class DuelProgramController {
         int attackerDamage = selectedMonster.getAttackPoint();
         int defenderDamage = ((Monster) enemyDeck.getMonsterZones().get(selectDefender)
                 .getCurrentMonster()).getDefensePoint();
+        enemyDeck.getMonsterZones().get(selectDefender).setAttacked();
+        enemyDeck.getMonsterZones().get(selectDefender);
         System.out.println(attackerDamage + " " + defenderDamage);
         int damage = attackerDamage - defenderDamage;
         if (damage > 0) {

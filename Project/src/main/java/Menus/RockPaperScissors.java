@@ -215,8 +215,9 @@ public class RockPaperScissors extends Application {
         stage.setMaximized(true);
         stage.setWidth(1020);
         stage.setHeight(820);
-        scene = new Scene(root, 800,1020);
+        scene = new Scene(root);
         stage.setScene(scene);
+        stage.sizeToScene();
         stage.show();
     }
 }

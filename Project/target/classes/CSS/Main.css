@@ -129,3 +129,8 @@
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover;
 }
+
+.wall{
+    -fx-background-image: url("../Images/Wall.jpg");
+    -fx-background-size: auto;
+}
