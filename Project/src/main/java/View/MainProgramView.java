@@ -1,5 +1,6 @@
 package View;
 
+import Model.Sound;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -25,6 +26,8 @@ public class MainProgramView extends Application {
 
     public void setStage(Stage stage) {
         Image icon = new Image(getClass().getResource("/Images/logo.png").toExternalForm());
+        Sound sound = new Sound("/Sounds/BackMusic.mp3", "mainSound");
+        sound.playSound();
         stage.getIcons().add(icon);
         stage.setTitle("Yu-Gi-Oh!");
         stage.setWidth(1200);
