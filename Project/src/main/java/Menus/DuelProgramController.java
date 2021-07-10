@@ -540,7 +540,6 @@ public class DuelProgramController {
         if (!isSummonAndSetValid(position)) return "summon is not valid";
         Monster selectedMonster = (Monster) selectedCard;
         if (selectedMonster.getLevel() <= 4) {
-            System.out.println("summoned successfully");
             monsterPowersController.setTurn(turn);
             monsterPowersController.monsterPowersWhenSummon(selectedCard);
             activateOrDeactivateFieldCardForAll(-1);
@@ -549,12 +548,13 @@ public class DuelProgramController {
             gameDecks.get(turn).getInHandCards().remove(position - 1);
             activateOrDeactivateFieldCardForAll(1);
             deselect();
-        } else if (selectedMonster.getLevel() == 5 || selectedMonster.getLevel() == 6) summonWithOneTribute(position);
-        else if (selectedMonster.getLevel() == 7 || selectedMonster.getLevel() == 8) summonWithTwoTribute(position);
-        return "summoned successfully";
+            return ("summoned successfully");
+        } else if (selectedMonster.getLevel() == 5 || selectedMonster.getLevel() == 6) return summonWithOneTribute(position);
+        else if (selectedMonster.getLevel() == 7 || selectedMonster.getLevel() == 8) return summonWithTwoTribute(position);
+        else return "invalid summon";
     }
 
-    private void summonWithOneTribute(int position) {
+    private String summonWithOneTribute(int position) {
         HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(turn).getMonsterZones();
         int numberOfEmptyMonsterZones = 0;
         for (int i = 1; i <= 5; i++) {
@@ -562,31 +562,29 @@ public class DuelProgramController {
                 numberOfEmptyMonsterZones = numberOfEmptyMonsterZones + 1;
         }
         if (numberOfEmptyMonsterZones == 5) {
-            System.out.println("there are not enough cards for tribute");
-            return;
+            return("there are not enough cards for tribute");
         }
         System.out.println("enter position of tribute monster in monster zone:");
         int monsterZonePosition = 0;
         if (isAI == 1) {
             monsterZonePosition = firstTributeIndex();
         } else {
-            monsterZonePosition = CommonTools.scan.nextInt();
-            CommonTools.scan.nextLine();
+            String string = JOptionPane.showInputDialog("Enter position of tribute monster in monster zone:");
+            if (!string.matches("\\d+")) return "Wrong input";
+            monsterZonePosition = Integer.parseInt(string);
         }
         if (monsterZonePosition < 1 || monsterZonePosition > 5) {
-            System.out.println("there no monsters on this address");
-            return;
+            return ("there no monsters on this address");
         }
         if (monsterZones.get(monsterZonePosition).getCurrentMonster() == null) {
-            System.out.println("there no monsters on this address");
-            return;
+            return ("there no monsters on this address");
         }
-        System.out.println("summoned successfully");
         isSummoned = 1;
         gameDecks.get(turn).tributeCardFromMonsterZone(monsterZonePosition);
         gameDecks.get(turn).getInHandCards().remove(position - 1);
         enteredMonsterCardIndex = gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
         deselect();
+        return "summoned successfully";
     }
 
     private int firstTributeIndex() {
@@ -611,7 +609,7 @@ public class DuelProgramController {
         return 2;
     }
 
-    private void summonWithTwoTribute(int position) {
+    private String summonWithTwoTribute(int position) {
         HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(turn).getMonsterZones();
         int numberOfEmptyMonsterZones = 0;
         for (int i = 1; i <= 5; i++) {
@@ -619,10 +617,8 @@ public class DuelProgramController {
                 numberOfEmptyMonsterZones = numberOfEmptyMonsterZones + 1;
         }
         if (numberOfEmptyMonsterZones == 5 || numberOfEmptyMonsterZones == 4) {
-            System.out.println("there are not enough cards for tribute");
-            return;
+            return "there are not enough cards for tribute";
         }
-        System.out.println("enter positions of tribute monster in monster zone:");
         int firstMonster = 0;
         int secondMonster = 0;
         if (isAI == 1) {
@@ -630,27 +626,26 @@ public class DuelProgramController {
             secondMonster = secondTributeIndex();
 
         } else {
-            firstMonster = CommonTools.scan.nextInt();
-            CommonTools.scan.nextLine();
-            secondMonster = CommonTools.scan.nextInt();
-            CommonTools.scan.nextLine();
+            String string1 = JOptionPane.showInputDialog("Enter position of first tribute monster in monster zone:");
+            String string2 = JOptionPane.showInputDialog("Enter position of second tribute monster in monster zone:");
+            if (!string1.matches("\\d+") || !string2.matches("\\d+")) return "Wrong input";
+            firstMonster = Integer.parseInt(string1);
+            secondMonster = Integer.parseInt(string2);
         }
         if (firstMonster < 1 || firstMonster > 5 || secondMonster < 1 || secondMonster > 5) {
-            System.out.println("there are no monsters on one of this addresses");
-            return;
+            return ("there are no monsters on one of this addresses");
         }
         if (monsterZones.get(firstMonster).getCurrentMonster() == null ||
                 monsterZones.get(firstMonster).getCurrentMonster() == null) {
-            System.out.println("there are no monsters on one of this addresses");
-            return;
+            return ("there are no monsters on one of this addresses");
         }
-        System.out.println("summoned successfully");
         isSummoned = 1;
         gameDecks.get(turn).tributeCardFromMonsterZone(firstMonster);
         gameDecks.get(turn).tributeCardFromMonsterZone(secondMonster);
         gameDecks.get(turn).getInHandCards().remove(position - 1);
         enteredMonsterCardIndex = gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
         deselect();
+        return "summoned successfully";
     }
 
     private String set() {
