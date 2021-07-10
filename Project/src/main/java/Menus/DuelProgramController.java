@@ -115,20 +115,24 @@ public class DuelProgramController {
                 if (!gameDecks.get(changeTurn(turn)).getMonsterZones().get(6 - i - 1).isEmpty() && i1 == 1){
                     Image image = cardView(gameDecks.get(changeTurn(turn)).getMonsterZones().get(6 - i - 1).getCurrentMonster().getName());
                     rectangle1.setFill(new ImagePattern(image));
+                    if (!gameDecks.get(changeTurn(turn)).getMonsterZones().get(6 - i - 1).getStatus().equals("OO")){
+                        image = cardView("Unknown");
+                        rectangle1.setFill(new ImagePattern(image));
+                    }
                 } else if (!gameDecks.get(changeTurn(turn)).getSpellZones().get(6 - i - 1).isEmpty() && i1 == 0){
                     Image image = cardView("Unknown");
                     rectangle1.setFill(new ImagePattern(image));
                 }
                 int finalI1 = i1;
                 rectangle.setOnMouseClicked(EventHandler->{
-                    if (finalI1 == 0) {
+                    if (finalI1 == 0 && selectedCard.getType().equals("Monster")) {
                         String[] buttons = {"Set", "Summon"};
                         int returnValue = JOptionPane.showOptionDialog(null, "Summon or Set Monster", "Summon or Set Monster",
                                 JOptionPane.OK_OPTION, 1, null, buttons, buttons[0]);
                         if (returnValue == 0) set();
                         else if (returnValue == 1) summonMonster();
                     }
-                    else if (selectedCard.getType().equals("Spell") || selectedCard.getType().equals("Trap")){
+                    else if (finalI1 == 1 && (selectedCard.getType().equals("Spell") || selectedCard.getType().equals("Trap"))){
                         set();
                     }
                     setField();
