@@ -28,22 +28,42 @@
                 <Font name="Gabriola" size="26.0" />
             </font>
         </Label>
-        <Label fx:id="name" alignment="CENTER_LEFT" layoutX="606.0" layoutY="50.0" prefHeight="35.0" prefWidth="523.0" text="" textFill="#ddd78a">
+        <Label fx:id="one" alignment="CENTER_LEFT" layoutX="606.0" layoutY="50.0" prefHeight="35.0" prefWidth="523.0" text="" textFill="#ddd78a">
             <font>
                 <Font name="Gabriola" size="26.0" />
             </font>
         </Label>
-        <Label fx:id="level" alignment="CENTER_LEFT" layoutX="606.0" layoutY="100.0" prefHeight="35.0" prefWidth="523.0" text="" textFill="#ddd78a">
+        <Label fx:id="two" alignment="CENTER_LEFT" layoutX="606.0" layoutY="100.0" prefHeight="35.0" prefWidth="523.0" text="" textFill="#ddd78a">
             <font>
                 <Font name="Gabriola" size="26.0" />
             </font>
         </Label>
-        <Label fx:id="attribute" alignment="CENTER_LEFT" layoutX="606.0" layoutY="150.0" prefHeight="35.0" prefWidth="523.0" text="" textFill="#ddd78a">
+        <Label fx:id="three" alignment="CENTER_LEFT" layoutX="606.0" layoutY="150.0" prefHeight="35.0" prefWidth="523.0" text="" textFill="#ddd78a">
             <font>
                 <Font name="Gabriola" size="26.0" />
             </font>
         </Label>
-        <Label fx:id="MonsterType" alignment="CENTER_LEFT" layoutX="606.0" layoutY="200.0" prefHeight="35.0" prefWidth="523.0" text="" textFill="#ddd78a">
+        <Label fx:id="four" alignment="CENTER_LEFT" layoutX="606.0" layoutY="200.0" prefHeight="35.0" prefWidth="523.0" text="" textFill="#ddd78a">
+            <font>
+                <Font name="Gabriola" size="26.0" />
+            </font>
+        </Label>
+        <Label fx:id="five" alignment="CENTER_LEFT" layoutX="606.0" layoutY="250.0" prefHeight="35.0" prefWidth="523.0" text="" textFill="#ddd78a">
+            <font>
+                <Font name="Gabriola" size="26.0" />
+            </font>
+        </Label>
+        <Label fx:id="six" alignment="CENTER_LEFT" layoutX="606.0" layoutY="300.0" prefHeight="35.0" prefWidth="523.0" text="" textFill="#ddd78a">
+            <font>
+                <Font name="Gabriola" size="26.0" />
+            </font>
+        </Label>
+        <Label fx:id="seven" alignment="CENTER_LEFT" layoutX="606.0" layoutY="350.0" prefHeight="35.0" prefWidth="523.0" text="" textFill="#ddd78a">
+            <font>
+                <Font name="Gabriola" size="26.0" />
+            </font>
+        </Label>
+        <Label fx:id="eight" alignment="CENTER_LEFT" layoutX="606.0" layoutY="400.0" prefHeight="35.0" prefWidth="523.0" text="" textFill="#ddd78a">
             <font>
                 <Font name="Gabriola" size="26.0" />
             </font>

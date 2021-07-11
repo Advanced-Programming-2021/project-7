@@ -20,6 +20,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ImportController {
     private Stage stage;
@@ -28,15 +29,40 @@ public class ImportController {
 
     @FXML
     private Label commandLabel;
+    @FXML
+    private Label one;
+    @FXML
+    private Label two;
+    @FXML
+    private Label three;
+    @FXML
+    private Label four;
+    @FXML
+    private Label five;
+    @FXML
+    private Label six;
+    @FXML
+    private Label seven;
+    @FXML
+    private Label eight;
 
     private FileChooser fileChooser;
     private File file;
+    private ArrayList<Label> labels = new ArrayList<>();
 
     {
         fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("CSV files", "*CSV")
         );
+        labels.add(one);
+        labels.add(two);
+        labels.add(three);
+        labels.add(four);
+        labels.add(five);
+        labels.add(six);
+        labels.add(seven);
+        labels.add(eight);
     }
 
     public void back(ActionEvent event) throws IOException {
@@ -73,7 +99,19 @@ public class ImportController {
 
         }
         try {
-
+            commandLabel.setText("Card name: " + data[ 0 ]);
+            one.setText(data[ 1 ]);
+            two.setText(data[ 2 ]);
+            three.setText(data[ 3 ]);
+            four.setText(data[ 4 ]);
+            five.setText(data[ 5 ]);
+            six.setText(data[ 6 ]);
+            seven.setText(data[ 7 ]);
+            eight.setText(data[ 8 ]);
+            for (Label label : labels) {
+                label.getStylesheets().add(getClass().getResource("/CSS/Main.css").toExternalForm());
+                label.getStyleClass().add("score-lab");
+            }
         } catch (Exception e) {
 
         }
