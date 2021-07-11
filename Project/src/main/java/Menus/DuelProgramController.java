@@ -196,8 +196,13 @@ public class DuelProgramController {
                 rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
+                        JOptionPane.showMessageDialog(null, selectSpell(finalI + 1));
                         if (phase != Phase.battle && finalI1 == 1) {
-                            JOptionPane.showMessageDialog(null, selectSpell(finalI + 1));
+                            if (gameDecks.get(turn).getSpellZones().get(finalI).getCurrentCard().getType().equals("Spell")) {
+                                activateSpellErrorCheck();
+                            } else {
+                                activateTrap();
+                            }
                         } else if (phase == Phase.battle) {
                             if (finalI1 == 0) {
                                 String message = selectMonster(finalI + 1);
