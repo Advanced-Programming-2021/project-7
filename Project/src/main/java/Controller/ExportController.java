@@ -16,6 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class ExportController{
@@ -83,6 +84,7 @@ public class ExportController{
 
     public void export(ActionEvent event) {
         new ImportExportMenu().exportCard("export card " + card.name);
+        JOptionPane.showMessageDialog(null, "card exported successfully");
     }
 
     public void back(ActionEvent event) throws IOException {
