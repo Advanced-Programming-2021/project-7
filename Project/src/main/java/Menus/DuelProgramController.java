@@ -320,7 +320,7 @@ public class DuelProgramController {
         }
     }
 
-    private void runCommand(String command){
+    private void runCommand(String command) {
         if (command.matches("^show graveyard$")) showGraveyard(turn);
         else if (command.matches("^surrender$")) surrender(turn);
         else if (command.matches("^select --hand --force$")) inHandCardCheat();
@@ -1490,7 +1490,7 @@ public class DuelProgramController {
         } else if (spell.getName().equals("Dark Hole")) {
             return darkHole();
         } else if (spell.getName().equals("Twin Twisters")) {
-           return TwinTwisters();
+            return TwinTwisters();
         } else if (spell.getName().equals("Mystical space typhoon")) {
             return mysticalTyphoon();
         } else if (spell.getName().equals("Change of Heart")) {
@@ -1529,14 +1529,15 @@ public class DuelProgramController {
         }
         if (isSummoned == 0) isRitualSummonPossible++;
         if (isRitualSummonPossible == 3) {
-            return ritualSummon();
+            return "";
+//            return ritualSummon();
         } else {
             System.out.println("there is no way you could ritual summon a monster");
             return "there is no way you could ritual summon a monster";
         }
     }
 
-    private String ritualSummon() {
+    private void ritualSummon() {
         while (true) {
             System.out.println("please select a ritual monster to summon");
             String command = CommonTools.scan.nextLine();
@@ -1600,6 +1601,7 @@ public class DuelProgramController {
             }
         }
     }
+
 
     private String Terraforming() {
         GameDeck myDeck = gameDecks.get(turn);

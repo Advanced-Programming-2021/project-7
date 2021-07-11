@@ -1,8 +1,10 @@
 package Controller;
 
+import Menus.DuelProgramController;
 import Menus.RockPaperScissors;
 import Model.Player;
 import Model.Sound;
+import View.MainProgramView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -33,6 +35,31 @@ public class DuelMenuController {
         if (!getSecondPlayerName()) return;
         RockPaperScissors rockPaperScissors = new RockPaperScissors();
         rockPaperScissors.run(firstPlayer, secondPlayer);
+    }
+
+    public void battleWithAi(ActionEvent event) throws IOException {
+        Sound.getSoundByName("button").playSoundOnce();
+        String player1 = Player.getActivePlayer().getUsername();
+        if (Player.getActiveDeckByUsername(player1) == null) {
+            JOptionPane.showMessageDialog(null, player1 + " has no active deck");
+            return;
+        }
+        if (!Player.getActiveDeckByUsername(player1).isDeckValid()) {
+            JOptionPane.showMessageDialog(null, player1 + "'s deck is invalid");
+            return;
+        }
+        DuelProgramController.firstPlayer = player1;
+        DuelProgramController.secondPlayer = "ai";
+        root = FXMLLoader.load(getClass().getResource("/FXML/game_board.fxml"));
+        stage = MainProgramView.stage;
+        stage.setResizable(true);
+        stage.setMaximized(true);
+        stage.setWidth(1020);
+        stage.setHeight(820);
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.sizeToScene();
+        stage.show();
     }
 
     public boolean getSecondPlayerName() {
