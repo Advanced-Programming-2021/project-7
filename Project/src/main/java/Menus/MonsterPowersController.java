@@ -37,7 +37,7 @@ public class MonsterPowersController {
     }
 
     public void setSelectedCardIndex(int selectedCardIndex) {
-        this.selectedCard = selectedCard;
+        this.selectedCardIndex = selectedCardIndex;
     }
 
     public void setPhase(Phase phase) {

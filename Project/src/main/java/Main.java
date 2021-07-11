@@ -1,5 +1,4 @@
 import Menus.Initialize;
-import View.GameBoardView;
 import View.MainProgramView;
 
 import java.io.IOException;

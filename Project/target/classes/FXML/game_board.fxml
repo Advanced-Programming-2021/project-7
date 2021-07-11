@@ -16,7 +16,7 @@
                         <Font name="Gabriola" size="32.0" />
                     </font>
                 </Label>
-                <Label fx:id="myName" alignment="CENTER" layoutX="58.0" layoutY="684.0" prefHeight="46.0" prefWidth="183.0" text="Label" textFill="#1fba1d">
+                <Label fx:id="myName" alignment="CENTER" layoutX="58.0" layoutY="684.0" prefHeight="46.0" prefWidth="183.0" text="Label" textFill="#239721">
                     <font>
                         <Font name="Gabriola" size="32.0" />
                     </font>
