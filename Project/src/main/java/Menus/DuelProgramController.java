@@ -167,6 +167,7 @@ public class DuelProgramController {
                             }
                         } else {
                             JOptionPane.showMessageDialog(null, selectSpell(finalI + 1));
+                            
                         }
                     }
                 });
@@ -1053,7 +1054,7 @@ public class DuelProgramController {
 
     }
 
-    private void activateTrap() { // todo complete commands
+    private void activateTrap() {
         if (!selectedDeck.equals("spell")) {
             System.out.println("invalid deck or card");
             return;
@@ -1067,7 +1068,7 @@ public class DuelProgramController {
         if (selectedCard.getName().equals("Mind Crush")) activateTrapMindCrush();
         else if (selectedCard.getName().equals("Torrential Tribute")) activateTrapTorrentialTribute();
         else if (selectedCard.getName().equals("Time Seal")) activateTrapTimeSeal();
-        moveToGraveyard(turn, "SpellZone", selectedCardIndex);
+        //moveToGraveyard(turn, "SpellZone", selectedCardIndex);
     }
 
     private String setSpell() {
@@ -1774,7 +1775,7 @@ public class DuelProgramController {
     private void activateTrapMindCrush() {
         System.out.println("trap 'Mind Crush' activated");
         System.out.println("enter name of a card:");
-        String cardName = CommonTools.scan.nextLine();
+        String cardName = JOptionPane.showInputDialog("enter name of a card:");
         int opponentTurn = changeTurn(turn);
         int size = gameDecks.get(opponentTurn).getInHandCards().size();
         boolean doesCardExist = false;
