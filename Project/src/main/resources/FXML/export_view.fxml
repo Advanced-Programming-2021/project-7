@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" styleClass="import-menu-back" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ExportController">
+
+    <stylesheets>
+        <URL value="@../CSS/Main.css" />
+    </stylesheets>
+    <children>
+        <ScrollPane fx:id="scroll" layoutX="458.0" layoutY="28.0" prefHeight="644.0" prefWidth="651.0" style="-fx-background-color: rgba(255,255,255,0); -fx-background: rgba(255,255,255,0);">
+            <content>
+                <GridPane fx:id="gridPane" prefHeight="0.0" prefWidth="0.0">
+                </GridPane>
+            </content>
+        </ScrollPane>
+        <Pane layoutX="46.0" layoutY="96.0" prefHeight="571.0" prefWidth="393.0" style="-fx-background-color: rgba(255,255,255,0.5); -fx-background-radius: 25px;">
+            <children>
+                <ImageView fx:id="selectedImage" fitHeight="405.0" fitWidth="335.0" layoutX="29.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" />
+                <Button fx:id="exportButton" alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="47.0" layoutY="493.0" mnemonicParsing="false" onAction="#export" prefHeight="51.0" prefWidth="300.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Export" textAlignment="CENTER" textFill="#ddd78a">
+                    <font>
+                        <Font name="Algerian" size="22.0" />
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+            </children>
+        </Pane>
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="450.0" layoutY="635.0" mnemonicParsing="false" onAction="#back" prefHeight="51.0" prefWidth="300.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Back" textAlignment="CENTER" textFill="#ddd78a">
+            <font>
+                <Font name="Algerian" size="22.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+    </children>
+</AnchorPane>

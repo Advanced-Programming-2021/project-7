@@ -26,6 +26,12 @@ public class ImportMenuController {
         makeStage(event);
     }
 
+    public void exportCard(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/export_view.fxml"));
+        root = loader.load();
+        makeStage(event);
+    }
+
     public void makeStage(ActionEvent event) {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
