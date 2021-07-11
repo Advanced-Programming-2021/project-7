@@ -4,7 +4,6 @@ import Model.Cards.Card;
 import Model.CommonTools;
 import Model.FileHandler;
 import Model.Player;
-import Model.Sound;
 import View.CardView;
 import View.ItemController;
 import View.MainProgramView;
@@ -149,7 +148,6 @@ public class Shop extends Application{
     }
 
     public void buy(MouseEvent mouseEvent) {
-        Sound.getSoundByName("button").playSoundOnce();
         String command = "shop buy " + card.name;
         try {
             buyCard(username, command);
@@ -163,7 +161,6 @@ public class Shop extends Application{
     }
 
     public void back(MouseEvent mouseEvent) throws IOException {
-        Sound.getSoundByName("button").playSoundOnce();
         Parent root = FXMLLoader.load(getClass().getResource("/FXML/main_menu_view.fxml"));
         Stage stage = MainProgramView.stage;
         Scene scene = new Scene(root);

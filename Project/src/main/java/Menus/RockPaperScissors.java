@@ -1,6 +1,5 @@
 package Menus;
 
-import Model.Sound;
 import View.MainProgramView;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -61,7 +60,6 @@ public class RockPaperScissors extends Application {
         paper.setText("Paper");
         scissors.setText("Scissors");
         rock.setOnAction(actionEvent -> {
-            Sound.getSoundByName("button").playSoundOnce();
             if (turn == 0){
                 this.firstPlayerChoice = "rock";
                 turn = changeTurn(turn);
@@ -77,7 +75,6 @@ public class RockPaperScissors extends Application {
             title.setText("\n It's " + players.get(turn) + "'s turn");
         });
         paper.setOnAction(actionEvent -> {
-            Sound.getSoundByName("button").playSoundOnce();
             if (turn == 0){
                 this.firstPlayerChoice = "paper";
                 turn = changeTurn(turn);
@@ -93,7 +90,6 @@ public class RockPaperScissors extends Application {
             title.setText("\n It's " + players.get(turn) + "'s Turn");
         });
         scissors.setOnAction(actionEvent -> {
-            Sound.getSoundByName("button").playSoundOnce();
             if (turn == 0){
                 this.firstPlayerChoice = "scissors";
                 turn = changeTurn(turn);
@@ -157,14 +153,14 @@ public class RockPaperScissors extends Application {
             stage.setScene(scene);
             stage.show();
             button.setOnAction(actionEvent -> {
-                DuelProgramController.firstPlayer = firstPlayer;
-                DuelProgramController.secondPlayer = secondPlayer;
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/game_board.fxml"));
                 try {
                     root = loader.load();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                DuelProgramController.firstPlayer = firstPlayer;
+                DuelProgramController.secondPlayer = secondPlayer;
                 makeStage();
             });
         } else if (secondPlayerChoice.equals("paper") && firstPlayerChoice.equals("rock") ||
@@ -177,13 +173,13 @@ public class RockPaperScissors extends Application {
             stage.setScene(scene);
             stage.show();
             button.setOnAction(actionEvent -> {
-                DuelProgramController.firstPlayer = secondPlayer;
-                DuelProgramController.secondPlayer = firstPlayer;
                 try {
                     root = FXMLLoader.load(getClass().getResource("/FXML/game_board.fxml"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                DuelProgramController.firstPlayer = secondPlayer;
+                DuelProgramController.secondPlayer = firstPlayer;
                 makeStage();
             });
         } else {

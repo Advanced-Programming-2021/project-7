@@ -5,10 +5,18 @@ import Model.Cards.*;
 import Model.CommonTools;
 import Model.Deck;
 import Model.Player;
+import View.CardView;
+import javafx.beans.Observable;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.NumberBinding;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ObservableDoubleValue;
+import javafx.event.Event;
 import Model.Sound;
 import View.MainProgramView;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Bounds;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
@@ -17,7 +25,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -29,6 +39,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import javax.swing.*;
+import java.awt.dnd.DragSourceContext;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -94,11 +105,13 @@ public class DuelProgramController {
 
     @FXML
     public void initialize() {
+        firstPlayer = "Mohsen";
+        secondPlayer = "Mohsen";
         attackSign = new Circle(20);
         attackSign.setFill(new ImagePattern(new Image("/Images/Attack.png")));
         inHandCards.setSpacing(20);
         enemyHand.setSpacing(20);
-        setGameDecks(firstPlayer, secondPlayer);
+        setGameDecks("Mohsen", "Mohsen");
         for (int j = 0; j < 5; j++) {
             gameDecks.get(turn).drawCard();
             gameDecks.get(changeTurn(turn)).drawCard();
@@ -200,11 +213,23 @@ public class DuelProgramController {
                 rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
-                        
-                        if (phase != Phase.battle && finalI1 == 1) {
-                            JOptionPane.showMessageDialog(null, selectSpell(finalI + 1));
-                            if (gameDecks.get(turn).getSpellZones().get(finalI + 1).getCurrentCard().getType().equals("Spell")) {
-                                activateSpellErrorCheck();
+                        if (phase != Phase.battle && finalI1 == 0) {
+                            String[] buttons = {"attack", "defense", "flip"};
+                            int returnValue = JOptionPane.showOptionDialog(null, "Change Position", "Change Position",
+                                    JOptionPane.OK_OPTION, 1, null, buttons, buttons[0]);
+                            if (returnValue == 0) {
+                                JOptionPane.showMessageDialog(null, setPositionMonster("set --position attack"));
+                            } else if (returnValue == 1) {
+                                JOptionPane.showMessageDialog(null, setPositionMonster("set --position defense"));
+                            } else if (returnValue == 2) {
+                                selectMonster(finalI + 1);
+                                JOptionPane.showMessageDialog(null, flipSummon());
+                            }
+                        } else if (phase != Phase.battle && finalI1 == 1) {
+                            if (gameDecks.get(turn).getSpellZones().get(finalI).getCurrentCard().getType().equals("Spell")) {
+                                String message = activateSpellErrorCheck();
+                                if (!message.equals(""))
+                                    JOptionPane.showMessageDialog(null, message);
                             } else {
                                 activateTrap();
                             }
@@ -304,17 +329,18 @@ public class DuelProgramController {
                 public void handle(MouseEvent mouseEvent) {
                     if (phase == Phase.battle)
                         return;
-                    for (int i1 = 0; i1 < enemyGrid.getChildren().size(); i1++) {
-                        if (enemyGrid.getChildren().get(i1).getBoundsInLocal().intersects(rectangle.getBoundsInLocal())) {
-                            Node node = enemyGrid.getChildren().get(i1);
-                            checkForSetOrSummon(GridPane.getColumnIndex(node), GridPane.getRowIndex(node));
-                            break;
-                        }
-                    }
 
+                    Bounds bounds = enemyGrid.sceneToLocal(rectangle.localToScene(rectangle.getBoundsInLocal()));
+                    System.out.println(enemyGrid.sceneToLocal(rectangle.localToScene(rectangle.getBoundsInLocal())));
+                    if (bounds.getMinX() > -20 &&
+                            bounds.getMinX() < 450 &&
+                            bounds.getMinY() > -20 &&
+                            bounds.getMinY() < 150)
+                        checkForSetOrSummon();
 
                     rectangle.setTranslateX(0);
                     rectangle.setTranslateY(0);
+                    setField();
                 }
             });
         }
@@ -355,10 +381,9 @@ public class DuelProgramController {
         else System.out.println("invalid command");
     }
 
-    public void checkForSetOrSummon(int finalI, int finalI1) {
-        System.out.println(finalI + " " + finalI1);
+    public void checkForSetOrSummon() {
         if (phase != Phase.battle && selectedCard != null) {
-            if (finalI1 == 0 && selectedCard.getType().equals("Monster")) {
+            if (selectedCard.getType().equals("Monster")) {
                 String[] buttons = {"Set", "Summon"};
                 int returnValue = JOptionPane.showOptionDialog(null, "Summon or Set Monster", "Summon or Set Monster",
                         JOptionPane.OK_OPTION, 1, null, buttons, buttons[0]);
@@ -865,34 +890,35 @@ public class DuelProgramController {
         return true;
     }
 
-    private void setPositionMonster(String command) {
+    private String setPositionMonster(String command) {
         HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(turn).getMonsterZones();
-        if (!isSetPositionValid()) return;
+        if (!isSetPositionValid()) return "change is invalid";
         if (command.matches("set --position attack")) {
             if (!monsterZones.get(selectedCardIndex).getStatus().equals("DO")) {
                 System.out.println("this card is already in the wanted position");
-                return;
+                return "this card is already in the wanted position";
             }
             if (enteredMonsterCardIndex == selectedCardIndex || changedPositionMonsterIndex == selectedCardIndex) {
                 System.out.println("you already changed this card position in this turn");
-                return;
+                return "you already changed this card position in this turn";
             }
             Card card = monsterZones.get(selectedCardIndex).getCurrentMonster();
             gameDecks.get(turn).getMonsterZones().get(selectedCardIndex).setCardAttack(card);
         } else {
             if (!monsterZones.get(selectedCardIndex).getStatus().equals("OO")) {
                 System.out.println("this card is already in the wanted position");
-                return;
+                return "this card is already in the wanted position";
             }
             if (changedPositionMonsterIndex == selectedCardIndex) {
                 System.out.println("you already changed this card position in this turn");
-                return;
+                return "you already changed this card position in this turn";
             }
             Card card = monsterZones.get(selectedCardIndex).getCurrentMonster();
             gameDecks.get(turn).getMonsterZones().get(selectedCardIndex).setCardDefense(card);
         }
         System.out.println("monster card position changed successfully");
         changedPositionMonsterIndex = selectedCardIndex;
+        return "monster card position changed successfully";
     }
 
     private boolean isSetPositionValid() {
@@ -911,14 +937,14 @@ public class DuelProgramController {
         return true;
     }
 
-    private void flipSummon() {
+    private String flipSummon() {
         HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(turn).getMonsterZones();
-        if (!isFlipSummonValid()) return;
+        if (!isFlipSummonValid()) return "flip is invalid";
         if (changedPositionMonsterIndex == selectedCardIndex ||
                 enteredMonsterCardIndex == selectedCardIndex ||
                 !monsterZones.get(selectedCardIndex).getStatus().equals("DH")) {
             System.out.println("you can’t flip summon this card");
-            return;
+            return "you can’t flip summon this card";
         }
         Card card = monsterZones.get(selectedCardIndex).getCurrentMonster();
         gameDecks.get(turn).getMonsterZones().get(selectedCardIndex).setCardAttack(card);
@@ -926,6 +952,7 @@ public class DuelProgramController {
         changedPositionMonsterIndex = selectedCardIndex;
         monsterPowersController.setTurn(turn);
         monsterPowersController.monsterPowersWhenFlipsummon(selectedCard);
+        return "flip summoned successfully";
     }
 
     private boolean isFlipSummonValid() {
@@ -1567,8 +1594,7 @@ public class DuelProgramController {
         }
         if (isSummoned == 0) isRitualSummonPossible++;
         if (isRitualSummonPossible == 3) {
-            return "";
-//            return ritualSummon();
+            return ritualSummon();
         } else {
             System.out.println("there is no way you could ritual summon a monster");
             return "there is no way you could ritual summon a monster";
