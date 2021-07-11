@@ -1,5 +1,6 @@
 package Menus;
 
+import Model.Sound;
 import View.MainProgramView;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -60,6 +61,7 @@ public class RockPaperScissors extends Application {
         paper.setText("Paper");
         scissors.setText("Scissors");
         rock.setOnAction(actionEvent -> {
+            Sound.getSoundByName("button").playSoundOnce();
             if (turn == 0){
                 this.firstPlayerChoice = "rock";
                 turn = changeTurn(turn);
@@ -75,6 +77,7 @@ public class RockPaperScissors extends Application {
             title.setText("\n It's " + players.get(turn) + "'s turn");
         });
         paper.setOnAction(actionEvent -> {
+            Sound.getSoundByName("button").playSoundOnce();
             if (turn == 0){
                 this.firstPlayerChoice = "paper";
                 turn = changeTurn(turn);
@@ -90,6 +93,7 @@ public class RockPaperScissors extends Application {
             title.setText("\n It's " + players.get(turn) + "'s Turn");
         });
         scissors.setOnAction(actionEvent -> {
+            Sound.getSoundByName("button").playSoundOnce();
             if (turn == 0){
                 this.firstPlayerChoice = "scissors";
                 turn = changeTurn(turn);
