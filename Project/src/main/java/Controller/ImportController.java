@@ -73,6 +73,7 @@ public class ImportController {
 
     public void importCard(ActionEvent event) throws IOException {
         file = fileChooser.showOpenDialog(stage);
+        if (file == null) return;
         BufferedReader csvReader = new BufferedReader(new FileReader(file));
         csvReader.readLine();
         String line = csvReader.readLine();
