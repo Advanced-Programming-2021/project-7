@@ -1456,6 +1456,8 @@ public class DuelProgramController {
             gameDecks.get(turn).getMonsterZones().get(i).resetAttack();
         }
         System.out.println("its " + gameDecks.get(turn).getPlayerNickName() + "'s turn");
+        JOptionPane.showMessageDialog(null, winnerUsername + " won the game and the score is: "
+                + firstScore + "-" + secondScore);
         round++;
     }
 
