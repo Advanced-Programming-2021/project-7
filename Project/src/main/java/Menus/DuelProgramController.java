@@ -150,11 +150,13 @@ public class DuelProgramController {
                             String[] buttons = {"Set", "Summon"};
                             int returnValue = JOptionPane.showOptionDialog(null, "Summon or Set Monster", "Summon or Set Monster",
                                     JOptionPane.OK_OPTION, 1, null, buttons, buttons[0]);
-                            if (returnValue == 0) JOptionPane.showMessageDialog(null, set());
-                            else if (returnValue == 1) JOptionPane.showMessageDialog(null, summonMonster());
-                        } else if (finalI1 == 1 && (selectedCard.getType().equals("Spell")
-                                || selectedCard.getType().equals("Trap"))) {
-                            JOptionPane.showMessageDialog(null, set());
+                            if (returnValue == 0) set();
+                            else if (returnValue == 1) summonMonster();
+                        } else if (finalI1 == 1) {
+                            if (!gameDecks.get(turn).getSpellZones().get(finalI+1).isEmpty()) {
+                                JOptionPane.showMessageDialog(null, selectSpell(finalI + 1));
+                            } else if ((selectedCard.getType().equals("Spell") || selectedCard.getType().equals("Trap")))
+                                set();
                         }
                         setField();
                     } else if (phase == Phase.battle) {
@@ -165,9 +167,6 @@ public class DuelProgramController {
                                 enemyGrid.getChildren().remove(attackSign);
                                 enemyGrid.add(attackSign, finalI, finalI1);
                             }
-                        } else {
-                            JOptionPane.showMessageDialog(null, selectSpell(finalI + 1));
-                            
                         }
                     }
                 });
@@ -176,6 +175,15 @@ public class DuelProgramController {
                     public void handle(MouseEvent mouseEvent) {
                         if (rectangle.getFill() instanceof ImagePattern) {
                             Image image = ((ImagePattern) rectangle.getFill()).getImage();
+                            selectedCardShow.setImage(image);
+                        }
+                    }
+                });
+                rectangle1.setOnMouseMoved(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        if (rectangle1.getFill() instanceof ImagePattern) {
+                            Image image = ((ImagePattern) rectangle1.getFill()).getImage();
                             selectedCardShow.setImage(image);
                         }
                     }
@@ -541,6 +549,7 @@ public class DuelProgramController {
         if (!isSummonAndSetValid(position)) return "summon is not valid";
         Monster selectedMonster = (Monster) selectedCard;
         if (selectedMonster.getLevel() <= 4) {
+            System.out.println("summoned successfully");
             monsterPowersController.setTurn(turn);
             monsterPowersController.monsterPowersWhenSummon(selectedCard);
             activateOrDeactivateFieldCardForAll(-1);
@@ -549,13 +558,12 @@ public class DuelProgramController {
             gameDecks.get(turn).getInHandCards().remove(position - 1);
             activateOrDeactivateFieldCardForAll(1);
             deselect();
-            return ("summoned successfully");
-        } else if (selectedMonster.getLevel() == 5 || selectedMonster.getLevel() == 6) return summonWithOneTribute(position);
-        else if (selectedMonster.getLevel() == 7 || selectedMonster.getLevel() == 8) return summonWithTwoTribute(position);
-        else return "invalid summon";
+        } else if (selectedMonster.getLevel() == 5 || selectedMonster.getLevel() == 6) summonWithOneTribute(position);
+        else if (selectedMonster.getLevel() == 7 || selectedMonster.getLevel() == 8) summonWithTwoTribute(position);
+        return "summoned successfully";
     }
 
-    private String summonWithOneTribute(int position) {
+    private void summonWithOneTribute(int position) {
         HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(turn).getMonsterZones();
         int numberOfEmptyMonsterZones = 0;
         for (int i = 1; i <= 5; i++) {
@@ -563,29 +571,31 @@ public class DuelProgramController {
                 numberOfEmptyMonsterZones = numberOfEmptyMonsterZones + 1;
         }
         if (numberOfEmptyMonsterZones == 5) {
-            return("there are not enough cards for tribute");
+            System.out.println("there are not enough cards for tribute");
+            return;
         }
         System.out.println("enter position of tribute monster in monster zone:");
         int monsterZonePosition = 0;
         if (isAI == 1) {
             monsterZonePosition = firstTributeIndex();
         } else {
-            String string = JOptionPane.showInputDialog("Enter position of tribute monster in monster zone:");
-            if (!string.matches("\\d+")) return "Wrong input";
-            monsterZonePosition = Integer.parseInt(string);
+            monsterZonePosition = CommonTools.scan.nextInt();
+            CommonTools.scan.nextLine();
         }
         if (monsterZonePosition < 1 || monsterZonePosition > 5) {
-            return ("there no monsters on this address");
+            System.out.println("there no monsters on this address");
+            return;
         }
         if (monsterZones.get(monsterZonePosition).getCurrentMonster() == null) {
-            return ("there no monsters on this address");
+            System.out.println("there no monsters on this address");
+            return;
         }
+        System.out.println("summoned successfully");
         isSummoned = 1;
         gameDecks.get(turn).tributeCardFromMonsterZone(monsterZonePosition);
         gameDecks.get(turn).getInHandCards().remove(position - 1);
         enteredMonsterCardIndex = gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
         deselect();
-        return "summoned successfully";
     }
 
     private int firstTributeIndex() {
@@ -610,7 +620,7 @@ public class DuelProgramController {
         return 2;
     }
 
-    private String summonWithTwoTribute(int position) {
+    private void summonWithTwoTribute(int position) {
         HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(turn).getMonsterZones();
         int numberOfEmptyMonsterZones = 0;
         for (int i = 1; i <= 5; i++) {
@@ -618,8 +628,10 @@ public class DuelProgramController {
                 numberOfEmptyMonsterZones = numberOfEmptyMonsterZones + 1;
         }
         if (numberOfEmptyMonsterZones == 5 || numberOfEmptyMonsterZones == 4) {
-            return "there are not enough cards for tribute";
+            System.out.println("there are not enough cards for tribute");
+            return;
         }
+        System.out.println("enter positions of tribute monster in monster zone:");
         int firstMonster = 0;
         int secondMonster = 0;
         if (isAI == 1) {
@@ -627,27 +639,27 @@ public class DuelProgramController {
             secondMonster = secondTributeIndex();
 
         } else {
-            String string1 = JOptionPane.showInputDialog("Enter position of first tribute monster in monster zone:");
-            String string2 = JOptionPane.showInputDialog("Enter position of second tribute monster in monster zone:");
-            if (!string1.matches("\\d+") || !string2.matches("\\d+")) return "Wrong input";
-            if (string2.equals(string1)) return "Wrong input";
-            firstMonster = Integer.parseInt(string1);
-            secondMonster = Integer.parseInt(string2);
+            firstMonster = CommonTools.scan.nextInt();
+            CommonTools.scan.nextLine();
+            secondMonster = CommonTools.scan.nextInt();
+            CommonTools.scan.nextLine();
         }
         if (firstMonster < 1 || firstMonster > 5 || secondMonster < 1 || secondMonster > 5) {
-            return ("there are no monsters on one of this addresses");
+            System.out.println("there are no monsters on one of this addresses");
+            return;
         }
         if (monsterZones.get(firstMonster).getCurrentMonster() == null ||
-                monsterZones.get(secondMonster).getCurrentMonster() == null) {
-            return ("there are no monsters on one of this addresses");
+                monsterZones.get(firstMonster).getCurrentMonster() == null) {
+            System.out.println("there are no monsters on one of this addresses");
+            return;
         }
+        System.out.println("summoned successfully");
         isSummoned = 1;
         gameDecks.get(turn).tributeCardFromMonsterZone(firstMonster);
         gameDecks.get(turn).tributeCardFromMonsterZone(secondMonster);
         gameDecks.get(turn).getInHandCards().remove(position - 1);
         enteredMonsterCardIndex = gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
         deselect();
-        return "summoned successfully";
     }
 
     private String set() {
