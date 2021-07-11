@@ -61,6 +61,7 @@ public class DuelProgramController {
     private int isGameStart = 2;
     private boolean messengerChecked = false;
     private int isAI = 0;
+    private AI ai = new AI();
     private boolean controlPressed = false;
     private boolean shiftPressed = false;
     private boolean cPressed = false;
@@ -81,6 +82,8 @@ public class DuelProgramController {
 
     @FXML
     public void initialize() {
+        firstPlayer = "Mohsen";
+        secondPlayer = "Mohsen";
         attackSign = new Circle(20);
         attackSign.setFill(new ImagePattern(new Image("/Images/Attack.png")));
         inHandCards.setSpacing(20);
@@ -261,7 +264,34 @@ public class DuelProgramController {
             rectangle.setFill(new ImagePattern(new Image(getClass().getResource("/Images/Cards/Unknown.jpg").toExternalForm())));
             enemyHand.getChildren().add(rectangle);
         }
+        if (secondPlayer.equals("ai") && turn == 1) {
+            ai.updateAI(gameDecks.get(1), gameDecks.get(0), phase);
+            String command = ai.decision();
+            runCommand(command);
+            setField();
+        }
+    }
 
+    private void runCommand(String command){
+        if (command.matches("^show graveyard$")) showGraveyard(turn);
+        else if (command.matches("^surrender$")) surrender(turn);
+        else if (command.matches("^select --hand --force$")) inHandCardCheat();
+        else if (command.matches("^select -d$")) deselect();
+        else if (command.matches("^show card$")) showCard();
+        else if (command.matches("^select .*$")) selectCard(command);
+        else if (command.matches("^summon$")) summonMonster();
+        else if (command.matches("^activate effect$")) activateSpellErrorCheck();
+        else if (command.matches("^activate trap$")) activateTrap();
+        else if (command.matches("^attack (\\d+)")) attackCard(command);
+        else if (command.matches("^attack direct")) directAttack();
+        else if (command.matches("^set$")) set();
+        else if (command.matches("^card show --selected$")) cardShow();
+        else if (command.matches("^increase --LP (\\d+)$")) increasePlayerLPCheat(command);
+        else if (command.matches("^duel set-winner \\S+$")) setWinnerCheat(command);
+        else if (command.matches("^set --position (attack|defence)$")) setPositionMonster(command);
+        else if (command.matches("^flip-summon$")) flipSummon();
+        else if (command.matches("^next phase$")) changePhase();
+        else System.out.println("invalid command");
     }
 
     public void run(String firstPlayer, String secondPlayer, int round) {
