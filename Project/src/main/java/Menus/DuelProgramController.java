@@ -46,6 +46,7 @@ enum Phase {
 public class DuelProgramController {
     public static String firstPlayer;
     public static String secondPlayer;
+    public static int round;
     private ArrayList<GameDeck> gameDecks = new ArrayList<>(2);
     private MonsterPowersController monsterPowersController = new MonsterPowersController(gameDecks, this);
     private int turn = 0; //0 : firstPlayer, 1 : secondPlayer
@@ -57,7 +58,6 @@ public class DuelProgramController {
     private String selectedDeck = null; // hand, monster, spell, field,
     // opponentMonster, opponentSpell, opponentField
     private Phase phase = Phase.draw;
-    private int round = 1;
     private int timeSealTrap = 0;
     private int isCardDrawn = 0;
     private int isGameStart = 2;

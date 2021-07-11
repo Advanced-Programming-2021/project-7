@@ -26,6 +26,7 @@ public class DuelMenuController {
     public void newRound(ActionEvent event) throws Exception {
         Sound.getSoundByName("button").playSoundOnce();
         if (!getSecondPlayerName()) return;
+        DuelProgramController.round = 1;
         RockPaperScissors rockPaperScissors = new RockPaperScissors();
         rockPaperScissors.run(firstPlayer, secondPlayer);
     }
@@ -33,6 +34,7 @@ public class DuelMenuController {
     public void newMatch(ActionEvent event) throws Exception {
         Sound.getSoundByName("button").playSoundOnce();
         if (!getSecondPlayerName()) return;
+        DuelProgramController.round = 3;
         RockPaperScissors rockPaperScissors = new RockPaperScissors();
         rockPaperScissors.run(firstPlayer, secondPlayer);
     }
