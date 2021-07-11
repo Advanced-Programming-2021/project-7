@@ -28,8 +28,8 @@ public class Sound {
         sound.setCycleCount(-1);
         activeSounds.add(this);
         if (isSoundMuted) return;
+        sound.setVolume(0.1);
         sound.play();
-
     }
 
     public void playSoundOnce() {
