@@ -5,13 +5,6 @@ import Model.Cards.*;
 import Model.CommonTools;
 import Model.Deck;
 import Model.Player;
-import View.CardView;
-import javafx.beans.Observable;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.NumberBinding;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.value.ObservableDoubleValue;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
@@ -20,9 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -33,7 +24,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import javax.swing.*;
-import java.awt.dnd.DragSourceContext;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -94,13 +84,11 @@ public class DuelProgramController {
 
     @FXML
     public void initialize() {
-        firstPlayer = "Mohsen";
-        secondPlayer = "Mohsen";
         attackSign = new Circle(20);
         attackSign.setFill(new ImagePattern(new Image("/Images/Attack.png")));
         inHandCards.setSpacing(20);
         enemyHand.setSpacing(20);
-        setGameDecks("Mohsen", "Mohsen");
+        setGameDecks(firstPlayer, secondPlayer);
         for (int j = 0; j < 5; j++) {
             gameDecks.get(turn).drawCard();
             gameDecks.get(changeTurn(turn)).drawCard();
