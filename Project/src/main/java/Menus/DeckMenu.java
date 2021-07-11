@@ -6,7 +6,6 @@ import View.CardView;
 import View.MainProgramView;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -331,6 +330,7 @@ public class DeckMenu extends Application {
             mainStage.setScene(mainScene);
         });
         seeCards.setOnAction(actionEvent -> {
+            Sound.getSoundByName("button").playSoundOnce();
             try {
                 seeCards(stage);
             } catch (IOException e) {
@@ -338,6 +338,7 @@ public class DeckMenu extends Application {
             }
         });
         seeDecks.setOnAction(actionEvent -> {
+            Sound.getSoundByName("button").playSoundOnce();
             try {
                 seeDecks(stage);
             } catch (IOException e) {
@@ -345,6 +346,7 @@ public class DeckMenu extends Application {
             }
         });
         createDeck.setOnAction(actionEvent -> {
+            Sound.getSoundByName("button").playSoundOnce();
             try {
                 createDeck(stage);
             } catch (IOException e) {
@@ -377,6 +379,7 @@ public class DeckMenu extends Application {
         back.setText("Back");
         register.setText("Register");
         back.setOnAction(actionEvent -> {
+            Sound.getSoundByName("button").playSoundOnce();
             try {
                 start(stage);
             } catch (Exception e) {
@@ -384,6 +387,7 @@ public class DeckMenu extends Application {
             }
         });
         register.setOnAction(actionEvent -> {
+            Sound.getSoundByName("button").playSoundOnce();
             try {
                 createDeck(logged, "deck create " + passwordTextField.getText());
                 start(stage);
@@ -483,6 +487,7 @@ public class DeckMenu extends Application {
         setActivate.setText("Set As Active");
         deleteDeck.setText("Delete Deck");
         seeCards.setOnAction(actionEvent -> {
+            Sound.getSoundByName("button").playSoundOnce();
             try {
                 choseCard(stage, deckName);
             } catch (Exception e) {
@@ -490,6 +495,7 @@ public class DeckMenu extends Application {
             }
         });
         setActivate.setOnAction(actionEvent -> {
+            Sound.getSoundByName("button").playSoundOnce();
             try {
                 setActiveDeck(logged, "deck set-activate " + deckName);
                 seeDecks(stage);
@@ -498,6 +504,7 @@ public class DeckMenu extends Application {
             }
         });
         deleteDeck.setOnAction(actionEvent -> {
+            Sound.getSoundByName("button").playSoundOnce();
             try {
                 deleteDeck(logged, "deck delete " + deckName);
                 seeDecks(stage);
@@ -510,6 +517,7 @@ public class DeckMenu extends Application {
         Button back = getButton();
         back.setText("Back");
         back.setOnAction(actionEvent -> {
+            Sound.getSoundByName("button").playSoundOnce();
             try {
                 seeDecks(stage);
             } catch (Exception e) {
@@ -595,6 +603,7 @@ public class DeckMenu extends Application {
         Button back = getButton();
         back.setText("Back");
         back.setOnAction(actionEvent -> {
+            Sound.getSoundByName("button").playSoundOnce();
             try {
                 deckMenu(stage, deckName);
             } catch (Exception e) {
@@ -603,6 +612,7 @@ public class DeckMenu extends Application {
         });
         delete.setOnAction(actionEvent -> {
             if (!cardName[0].equals("")) {
+                Sound.getSoundByName("button").playSoundOnce();
                 try {
                     removeCardFromDeck(logged, "deck rm-card --card " + cardName[0] + " --deck " + deckName);
                     choseCard(stage, deckName);
@@ -719,6 +729,7 @@ public class DeckMenu extends Application {
                 button.setFont(Font.font(20));
                 int finalNumber1 = number;
                 button.setOnAction(actionEvent -> {
+                    Sound.getSoundByName("button").playSoundOnce();
                     try {
                         error.setText("\nError: " + addCardToDeckOperator(cardName, decks.get(finalNumber1).getDeckName(), "", stage));
                     } catch (IOException e) {
@@ -741,6 +752,7 @@ public class DeckMenu extends Application {
         Button back = getButton();
         back.setText("Back");
         back.setOnAction(actionEvent -> {
+            Sound.getSoundByName("button").playSoundOnce();
             try {
                 seeCards(stage);
             } catch (IOException e) {
