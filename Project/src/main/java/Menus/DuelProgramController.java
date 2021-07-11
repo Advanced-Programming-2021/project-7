@@ -226,6 +226,7 @@ public class DuelProgramController {
                                 JOptionPane.showMessageDialog(null, flipSummon());
                             }
                         } else if (phase != Phase.battle && finalI1 == 1) {
+                            JOptionPane.showMessageDialog(null, selectSpell(finalI + 1));
                             if (gameDecks.get(turn).getSpellZones().get(finalI).getCurrentCard().getType().equals("Spell")) {
                                 String message = activateSpellErrorCheck();
                                 if (!message.equals(""))
