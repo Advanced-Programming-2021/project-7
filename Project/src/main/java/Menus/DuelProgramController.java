@@ -10,14 +10,19 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ObservableDoubleValue;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -28,6 +33,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import javax.swing.*;
+import java.awt.dnd.DragSourceContext;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -120,6 +126,8 @@ public class DuelProgramController {
                 rectangle.setFill(Color.TRANSPARENT); // TODO optional
                 Rectangle rectangle1 = new Rectangle(60, 90);
                 rectangle1.setFill(Color.TRANSPARENT); // TODO optional
+                rectangle.setCursor(Cursor.HAND);
+                rectangle1.setCursor(Cursor.HAND);
                 if (!gameDecks.get(turn).getMonsterZones().get(i + 1).isEmpty() && i1 == 0) {
                     Image image = cardView(gameDecks.get(turn).getMonsterZones().get(i + 1).getCurrentMonster().getName());
                     rectangle.setFill(new ImagePattern(image));
@@ -144,28 +152,20 @@ public class DuelProgramController {
                 }
                 int finalI1 = i1;
                 int finalI = i;
-                rectangle.setOnMouseClicked(EventHandler->{
-                    if (phase != Phase.battle && selectedCard != null) {
-                        if (finalI1 == 0 && selectedCard.getType().equals("Monster")) {
-                            String[] buttons = {"Set", "Summon"};
-                            int returnValue = JOptionPane.showOptionDialog(null, "Summon or Set Monster", "Summon or Set Monster",
-                                    JOptionPane.OK_OPTION, 1, null, buttons, buttons[0]);
-                            if (returnValue == 0) set();
-                            else if (returnValue == 1) summonMonster();
-                        } else if (finalI1 == 1) {
-                            if (!gameDecks.get(turn).getSpellZones().get(finalI+1).isEmpty()) {
-                                JOptionPane.showMessageDialog(null, selectSpell(finalI + 1));
-                            } else if ((selectedCard.getType().equals("Spell") || selectedCard.getType().equals("Trap")))
-                                set();
-                        }
-                        setField();
-                    } else if (phase == Phase.battle) {
-                        if (finalI1 == 0) {
-                            String message = selectMonster(finalI + 1);
-                            JOptionPane.showMessageDialog(null, message);
-                            if (message.equals("card selected")) {
-                                enemyGrid.getChildren().remove(attackSign);
-                                enemyGrid.add(attackSign, finalI, finalI1);
+
+                rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        if (phase != Phase.battle && finalI1 == 1) {
+                            JOptionPane.showMessageDialog(null, selectSpell(finalI + 1));
+                        } else if (phase == Phase.battle) {
+                            if (finalI1 == 0) {
+                                String message = selectMonster(finalI + 1);
+                                JOptionPane.showMessageDialog(null, message);
+                                if (message.equals("card selected")) {
+                                    enemyGrid.getChildren().remove(attackSign);
+                                    enemyGrid.add(attackSign, finalI, finalI1);
+                                }
                             }
                         }
                     }
@@ -206,13 +206,10 @@ public class DuelProgramController {
         inHandCards.getChildren().clear();
         for (int i = 0; i < gameDecks.get(turn).getInHandCards().size(); i++) {
             Rectangle rectangle = new Rectangle(60, 90);
+            rectangle.setCursor(Cursor.HAND);
             rectangle.setFill(new ImagePattern(cardView(gameDecks.get(turn).getInHandCards().get(i).getName())));
             inHandCards.getChildren().add(rectangle);
             int finalI = i;
-            rectangle.setOnMouseClicked(actionEvent -> {
-                selectHand(finalI + 1);
-                System.out.println(selectedCard.getName());
-            });
             rectangle.setOnMouseMoved(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
@@ -220,6 +217,54 @@ public class DuelProgramController {
                         Image image = ((ImagePattern) rectangle.getFill()).getImage();
                         selectedCardShow.setImage(image);
                     }
+                }
+            });
+            final double[] oldX = new double[1];
+            final double[] oldY = new double[1];
+
+            rectangle.setOnMousePressed(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    if (phase == Phase.battle) {
+                        JOptionPane.showMessageDialog(null, "can't do that in this this phase");
+                        return;
+                    }
+                    rectangle.setMouseTransparent(true);
+                    selectHand(finalI + 1);
+                    System.out.println(selectedCard);
+                    oldX[0] = mouseEvent.getSceneX();
+                    oldY[0] = mouseEvent.getSceneY();
+                }
+            });
+
+            rectangle.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    if (phase == Phase.battle)
+                        return;
+
+                    Node node = (Node) mouseEvent.getSource();
+                    node.setTranslateX(mouseEvent.getSceneX() - oldX[0]);
+                    node.setTranslateY(mouseEvent.getSceneY() - oldY[0]);
+                }
+            });
+
+            rectangle.setOnMouseReleased(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    if (phase == Phase.battle)
+                        return;
+                    for (int i1 = 0; i1 < enemyGrid.getChildren().size(); i1++) {
+                        if (enemyGrid.getChildren().get(i1).getBoundsInLocal().intersects(rectangle.getBoundsInLocal())) {
+                            Node node = enemyGrid.getChildren().get(i1);
+                            checkForSetOrSummon(GridPane.getColumnIndex(node), GridPane.getRowIndex(node));
+                            break;
+                        }
+                    }
+
+
+                    rectangle.setTranslateX(0);
+                    rectangle.setTranslateY(0);
                 }
             });
         }
@@ -231,6 +276,23 @@ public class DuelProgramController {
             enemyHand.getChildren().add(rectangle);
         }
 
+    }
+
+    public void checkForSetOrSummon(int finalI, int finalI1) {
+        System.out.println(finalI + " " + finalI1);
+        if (phase != Phase.battle && selectedCard != null) {
+            if (finalI1 == 0 && selectedCard.getType().equals("Monster")) {
+                String[] buttons = {"Set", "Summon"};
+                int returnValue = JOptionPane.showOptionDialog(null, "Summon or Set Monster", "Summon or Set Monster",
+                        JOptionPane.OK_OPTION, 1, null, buttons, buttons[0]);
+                if (returnValue == 0)
+                    JOptionPane.showMessageDialog(null, set());
+                else if (returnValue == 1) summonMonster();
+            } else if ((selectedCard.getType().equals("Spell") || selectedCard.getType().equals("Trap"))) {
+                JOptionPane.showMessageDialog(null, set());
+            }
+            setField();
+        }
     }
 
     public void run(String firstPlayer, String secondPlayer, int round) {
@@ -492,12 +554,13 @@ public class DuelProgramController {
         System.out.println("card selected");
     }
 
-    private void selectHand(int position) {
+    private String selectHand(int position) {
         ArrayList<Card> inHandCards = gameDecks.get(turn).getInHandCards();
         selectedCard = inHandCards.get(position - 1);
         selectedCardIndex = position;
         selectedDeck = "hand";
         System.out.println("card selected");
+        return "card selected";
 //        monsterPowersController.setSelectedCardIndex(selectedCardIndex);
 //        monsterPowersController.setSelectedCard(selectedCard);
 //        monsterPowersController.setTurn(turn);
@@ -982,22 +1045,30 @@ public class DuelProgramController {
         GameDeck enemyDeck = gameDecks.get(changeTurn(turn));
         if (selectedCard == null) {
             System.out.println("no card is selected yet");
+            JOptionPane.showMessageDialog(null, "no card is selected yet");
         } else if (!(selectedCard instanceof Monster)) {
             System.out.println("you can’t attack with this card");
+            JOptionPane.showMessageDialog(null, "you can’t attack with this card");
         } else if (phase != Phase.battle) {
             System.out.println("you can’t do this action in this phase");
+            JOptionPane.showMessageDialog(null, "you can’t do this action in this phase");
         } else if (!myDeck.getMonsterZones().get(selectedCardIndex).getStatus().equals("OO")) {
             System.out.println("This card is not in attacking position");
+            JOptionPane.showMessageDialog(null, "This card is not in attacking position");
         } else if (messengerOfPeaceBlocks(((Monster) selectedCard).getAttackPoint())) {
             System.out.println("An Spell Card Stops this monster from attacking");
+            JOptionPane.showMessageDialog(null, "An Spell Card Stops this monster from attacking");
         } else if (myDeck.getMonsterZones().get(selectedCardIndex).getHasAttackedThisRound()) {
             System.out.println("this card already attacked");
+            JOptionPane.showMessageDialog(null, "this card already attacked");
         } else {
             gameDecks.get(turn).getMonsterZones().get(selectedCardIndex).attack();
             Monster selectedMonster = (Monster) selectedCard;
             int attackerDamage = selectedMonster.getAttackPoint();
             enemyDeck.takeDamage(attackerDamage);
             System.out.println("you opponent receives " + attackerDamage + " battle damage");
+            JOptionPane.showMessageDialog(null, "you opponent receives " + attackerDamage + " battle damage");
+            setField();
         }
     }
 
@@ -1176,56 +1247,6 @@ public class DuelProgramController {
         }
     }
 
-    private void activateSpellTerraforming() {
-        System.out.println("enter number of selected field spell card:");
-        while (true) {
-            int index = CommonTools.scan.nextInt();
-            Spell spell = (Spell) gameDecks.get(turn).getDeck().get(index - 1);
-            if (index > gameDecks.get(turn).getDeck().size()) {
-                System.out.println("entered index is bigger than deck's size");
-            } else if (!spell.getSpellIcon().equals("Field")) {
-                System.out.println("selected card is not a field spell");
-            } else {
-                index = index - 1;
-                Card card = gameDecks.get(turn).getDeck().get(index);
-                gameDecks.get(turn).getInHandCards().add(card);
-                gameDecks.get(turn).getDeck().remove(index);
-                System.out.println("card successfully added to your hand");
-                break;
-            }
-        }
-    }
-
-    private void activateSpellPotOfGreed() {
-        int size = gameDecks.get(turn).getDeck().size();
-        if (size >= 2) {
-            Card card1 = gameDecks.get(turn).getDeck().get(size - 1);
-            Card card2 = gameDecks.get(turn).getDeck().get(size - 2);
-            gameDecks.get(turn).getInHandCards().add(card1);
-            gameDecks.get(turn).getInHandCards().add(card2);
-            gameDecks.get(turn).getDeck().remove(size - 1);
-            gameDecks.get(turn).getDeck().remove(size - 2);
-            System.out.println("cards added to your hand successfully");
-        }
-        if (size == 1) {
-            Card card1 = gameDecks.get(turn).getDeck().get(0);
-            gameDecks.get(turn).getInHandCards().add(card1);
-            gameDecks.get(turn).getDeck().remove(0);
-            System.out.println("card added to your hand successfully");
-        } else {
-            System.out.println("there is no card in your deck");
-        }
-    }
-
-    private void activateSpellRaigeki() {
-        int opponentTurn = changeTurn(turn);
-        for (int i = 1; i < 5; i++) {
-            gameDecks.get(opponentTurn).getMonsterZones().get(i).removeCard();
-            //todo move to graveyard
-        }
-        System.out.println("all the monsters controlled by your enemy destroyed");
-    }
-
     private void spellActivateChangeOfHeart() {
         int opponentTurn = changeTurn(turn);
         if (gameDecks.get(opponentTurn).isMonsterZoneEmpty()) {
@@ -1250,79 +1271,6 @@ public class DuelProgramController {
                 gameDecks.get(opponentTurn).getMonsterZones().get(position).removeCard();
                 gameDecks.get(turn).getMonsterZones().get(index).hasBeenChanged = true;
                 System.out.println("opponent's monster added to your monster zone");
-                break;
-            }
-        }
-    }
-
-    private void spellActivateHarpiesFeatherDuster() {
-        int opponentTurn = changeTurn(turn);
-        for (int i = 1; i < 5; i++) {
-            gameDecks.get(opponentTurn).getSpellZones().get(i).removeCard();
-            //todo move to graveyard
-        }
-        System.out.println("all the spells and traps controlled by your enemy destroyed");
-    }
-
-    private void spellActivateDarkHole() {
-        for (int i = 1; i <= 5; i++) {
-            gameDecks.get(turn).getMonsterZones().get(i).removeCard();
-            //todo move to graveyard
-        }
-        int opponentTurn = changeTurn(turn);
-        for (int i = 1; i <= 5; i++) {
-            gameDecks.get(opponentTurn).getMonsterZones().get(i).removeCard();
-            //todo move to graveyard
-        }
-        System.out.println("all the monsters on the game board destroyed");
-    }
-
-    private void TwinTwisters() {
-        if (gameDecks.get(turn).getInHandCards().size() == 0) {
-            System.out.println("your hand is empty");
-            return;
-        }
-        if (gameDecks.get(turn).isSpellZoneEmpty()) {
-            System.out.println("opponent's spellZone is empty");
-            return;
-        }
-        System.out.println("select a card to remove from your hand");
-        int removePosition;
-        while (true) {
-            removePosition = CommonTools.scan.nextInt();
-            if (removePosition > gameDecks.get(turn).getInHandCards().size()) {
-                System.out.println("entered index more than in hand cards");
-            } else {
-                moveToGraveyard(turn, "inHand", removePosition - 1);
-                break;
-            }
-        }
-        int destroyedPosition1;
-        int destroyedPosition2;
-        int opponentTurn = changeTurn(turn);
-        while (true) {
-            destroyedPosition1 = CommonTools.scan.nextInt();
-            if (destroyedPosition1 > 5 || destroyedPosition1 < 1) {
-                System.out.println("entered index more than 5 or less than 1");
-            } else if (gameDecks.get(opponentTurn).getSpellZones().get(destroyedPosition1).isEmpty()) {
-                System.out.println("entered position is empty");
-            } else {
-                moveToGraveyard(changeTurn(turn), "SpellZone", destroyedPosition1);
-                System.out.println("first card removed");
-                break;
-            }
-        }
-        while (true) {
-            destroyedPosition2 = CommonTools.scan.nextInt();
-            if (destroyedPosition2 > 5 || destroyedPosition2 < 1) {
-                System.out.println("entered index more than 5 or less than 1");
-            } else if (gameDecks.get(opponentTurn).getSpellZones().get(destroyedPosition2).isEmpty()) {
-                System.out.println("entered position is empty");
-            } else {
-                //Todo move to graveyard
-                moveToGraveyard(changeTurn(turn), "SpellZone", destroyedPosition2);
-                gameDecks.get(opponentTurn).getSpellZones().get(destroyedPosition2).removeCard();
-                System.out.println("second card removed");
                 break;
             }
         }
@@ -1635,6 +1583,7 @@ public class DuelProgramController {
             if ((!spellZone.isEmpty()) && spellZone.getCurrentCard().getName().equals("Supply Squad")
                     && spellZone.getStatus().equals("O")) {
                 System.out.println("Supply Squad for " + gameDecks.get(turn).getPlayerNickName());
+                JOptionPane.showMessageDialog(null, "Supply Squad for " + gameDecks.get(turn).getPlayerNickName());
                 gameDecks.get(turn).drawCard();
             }
         }
@@ -1650,6 +1599,7 @@ public class DuelProgramController {
                 if (deck.getSpellZones().get(i1).getCurrentCard().getName().equals("Spell Absorption")) {
                     deck.increaseLP(500);
                     System.out.println(deck.getPlayerNickName() + " Gained health from spell absorption +500");
+                    JOptionPane.showMessageDialog(null, deck.getPlayerNickName() + " Gained health from spell absorption +500");
                 }
             }
         }
@@ -1677,13 +1627,17 @@ public class DuelProgramController {
             if ((!myDeck.getSpellZones().get(i).isEmpty()) &&
                     myDeck.getSpellZones().get(i).getCurrentCard().getName().equals("Messenger of peace")) {
                 System.out.println("Do you want to keep Messenger of peace for the cost of 100 LP yes/no");
-                String answer = CommonTools.scan.nextLine();
-                if (answer.equals("yes")) {
+                String[] buttons = {"yes", "no"};
+                int returnValue = JOptionPane.showOptionDialog(null, "Do you want to keep Messenger of peace for the cost of 100 LP"
+                        , "Messenger of peace", JOptionPane.OK_OPTION, 1, null, buttons, buttons[0]);
+                if (returnValue == 0) {
                     myDeck.decreaseLP(100);
                     System.out.println("You lost 100 LP");
-                } else if (answer.equals("no")) {
+                    JOptionPane.showMessageDialog(null, "You lost 100 LP");
+                } else if (returnValue == 1) {
                     moveToGraveyard(turn, "SpellZone", i);
                     System.out.println("You lost Messenger of Peace");
+                    JOptionPane.showMessageDialog(null, "You lost Messenger of Peace");
                 } else {
                     System.out.println("invalid answer");
                     keepMessengerOfPeace();
@@ -1693,44 +1647,97 @@ public class DuelProgramController {
         }
     }
 
-    private void twinTwisters() {
-        GameDeck myDeck = gameDecks.get(turn);
-        GameDeck enemyDeck = gameDecks.get(changeTurn(turn));
-        System.out.println("Choose which card you want to discard");
+    private void mysticalTyphoon() {
+        if (gameDecks.get(turn).isSpellZoneEmpty()) {
+            System.out.println("opponent's spellZone is empty");
+            return;
+        }
         while (true) {
-            int index = CommonTools.scan.nextInt();
-            if (index < 1 || index > myDeck.getInHandCards().size() + 1) {
-                System.out.println("index is not valid");
+            String response = JOptionPane.showInputDialog("Enter the index of the enemy card you want to destroy");
+            int index;
+            try {
+                index = Integer.parseInt(response);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "entered number is not valid");
                 continue;
             }
-            moveToGraveyard(turn, "inHand", index - 1);
-            break;
-        }
-        System.out.println("choose index of 2 cards you want to destroy (in 2 separate lines)");
-        int[] enemyCardIndexes = new int[2];
-        enemyCardIndexes[0] = CommonTools.scan.nextInt();
-        enemyCardIndexes[1] = CommonTools.scan.nextInt();
-        for (int i = 0; i < 2; i++) {
-            if (enemyCardIndexes[i] >= 1 && enemyCardIndexes[i] <= 5) {
-                if (!(enemyDeck.getSpellZones().get(enemyCardIndexes[i]).isEmpty())) {
-                    moveToGraveyard(changeTurn(turn), "SpellZone", enemyCardIndexes[i]);
-                }
-            }
-        }
-        System.out.println("Chosen cards were destroyed");
-    }
-
-    private void mysticalTyphoon() {
-        System.out.println("Enter the index of the enemy card you want to destroy");
-        while (true) {
-            int index = CommonTools.scan.nextInt();
             if (index < 1 || index > 5 || !gameDecks.get(changeTurn(turn)).getSpellZones().get(index).isEmpty()) {
                 System.out.println("This square is not valid");
                 continue;
             }
             System.out.println("Enemy card destroyed");
+            JOptionPane.showMessageDialog(null, "Enemy card destroyed");
             moveToGraveyard(changeTurn(turn), "SpellZone", index);
             break;
+        }
+    }
+
+    private void TwinTwisters() {
+        if (gameDecks.get(turn).getInHandCards().size() == 0) {
+            System.out.println("your hand is empty");
+            return;
+        }
+        if (gameDecks.get(turn).isSpellZoneEmpty()) {
+            System.out.println("opponent's spellZone is empty");
+            return;
+        }
+        System.out.println("select a card to remove from your hand");
+        int removePosition;
+        while (true) {
+            String response = JOptionPane.showInputDialog("choose a card index to discard from your hand");
+            try {
+                removePosition = Integer.parseInt(response);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "entered number is not valid");
+                continue;
+            }
+            if (removePosition > gameDecks.get(turn).getInHandCards().size()) {
+                System.out.println("entered index more than in hand cards");
+                JOptionPane.showMessageDialog(null, "entered index more than in hand cards");
+            } else {
+                moveToGraveyard(turn, "inHand", removePosition - 1);
+                break;
+            }
+        }
+        int destroyedPosition1;
+        int destroyedPosition2;
+        int opponentTurn = changeTurn(turn);
+        while (true) {
+            String response = JOptionPane.showInputDialog("choose an enemy card index to destroy");
+            try {
+                destroyedPosition1 = Integer.parseInt(response);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "entered number is not valid");
+                continue;
+            }
+            if (destroyedPosition1 > 5 || destroyedPosition1 < 1) {
+                System.out.println("entered index more than 5 or less than 1");
+            } else if (gameDecks.get(opponentTurn).getSpellZones().get(destroyedPosition1).isEmpty()) {
+                System.out.println("entered position is empty");
+            } else {
+                moveToGraveyard(changeTurn(turn), "SpellZone", destroyedPosition1);
+                System.out.println("first card removed");
+                JOptionPane.showMessageDialog(null, "first card removed");
+                break;
+            }
+        }
+        while (true) {
+            String response = JOptionPane.showInputDialog("choose an enemy card index to destroy");
+            try {
+                destroyedPosition2 = Integer.parseInt(response);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "entered number is not valid");
+                continue;
+            }
+            if (destroyedPosition2 > 5 || destroyedPosition2 < 1) {
+                System.out.println("entered index more than 5 or less than 1");
+            } else {
+                moveToGraveyard(changeTurn(turn), "SpellZone", destroyedPosition2);
+                gameDecks.get(opponentTurn).getSpellZones().get(destroyedPosition2).removeCard();
+                System.out.println("second card removed");
+                JOptionPane.showMessageDialog(null, "second card removed");
+                break;
+            }
         }
     }
 
