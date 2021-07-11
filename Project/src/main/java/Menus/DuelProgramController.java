@@ -143,8 +143,8 @@ public class DuelProgramController {
     }
 
     public void setField() {
-        if (isGameOver(round)) gameOver(round);
         if (isRoundOver()) roundOver(turn);
+        if (isGameOver(round)) gameOver(round);
         if (phase == Phase.standby && !messengerChecked) {
             keepMessengerOfPeace();
             messengerChecked = true;
