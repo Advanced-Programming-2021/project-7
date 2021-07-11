@@ -6,15 +6,19 @@ import Model.CommonTools;
 import Model.Deck;
 import Model.Player;
 import Model.Sound;
+import View.MainProgramView;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -25,6 +29,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -82,6 +87,10 @@ public class DuelProgramController {
     public Circle attackSign;
     public Label enemyName;
     public Label myName;
+
+    private Stage stage;
+    private Scene scene;
+    private AnchorPane root;
 
     @FXML
     public void initialize() {
@@ -1429,6 +1438,18 @@ public class DuelProgramController {
         secondPlayer.increaseMoney(secondMoney);
         System.out.println(winnerUsername + " won the game and the score is: "
                 + firstScore + "-" + secondScore);
+        JOptionPane.showMessageDialog(null, winnerUsername + " won the game and the score is: "
+                + firstScore + "-" + secondScore);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_menu_view.fxml"));
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage = MainProgramView.stage;
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     private int changeTurn(int turn) {
@@ -1462,9 +1483,6 @@ public class DuelProgramController {
             gameDecks.get(turn).getMonsterZones().get(i).resetAttack();
         }
         System.out.println("its " + gameDecks.get(turn).getPlayerNickName() + "'s turn");
-        JOptionPane.showMessageDialog(null, winnerUsername + " won the game and the score is: "
-                + firstScore + "-" + secondScore);
-        round++;
     }
 
     private void drawCard() {
