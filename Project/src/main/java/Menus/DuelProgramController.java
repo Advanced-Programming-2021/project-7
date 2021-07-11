@@ -5,19 +5,12 @@ import Model.Cards.*;
 import Model.CommonTools;
 import Model.Deck;
 import Model.Player;
-import View.CardView;
-import javafx.beans.Observable;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.NumberBinding;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.value.ObservableDoubleValue;
-import javafx.event.Event;
 import Model.Sound;
 import View.MainProgramView;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Bounds;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Bounds;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -25,9 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -39,7 +30,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import javax.swing.*;
-import java.awt.dnd.DragSourceContext;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -1602,16 +1592,17 @@ public class DuelProgramController {
         }
     }
 
-    private void ritualSummon() {
+    private String ritualSummon() {
         while (true) {
             System.out.println("please select a ritual monster to summon");
-            String command = CommonTools.scan.nextLine();
+            String command = JOptionPane.showInputDialog("Enter your opponent's nickname:");
             if (command.matches("^cancel$")) break;
             Matcher matcher = CommonTools.getMatcher(command, "^select --hand (\\d+)$");
             matcher.find();
             int position = Integer.parseInt(matcher.group(1));
             if (position < 1 || position > 5) {
                 System.out.println("invalid selection");
+                JOptionPane.showMessageDialog(null,  "invalid selection");
                 continue;
             }
             ArrayList<Card> inHandCards = gameDecks.get(turn).getInHandCards();
@@ -1621,9 +1612,11 @@ public class DuelProgramController {
             if (!(inHandCards.get(position - 1).getName().equals("Crab Turtle")
                     || inHandCards.get(position - 1).getName().equals("Skull Guardian"))) {
                 System.out.println("you should ritual summon right now");
+                JOptionPane.showMessageDialog(null,  "you should ritual summon right now");
                 continue;
             }
             System.out.println("card selected");
+            JOptionPane.showMessageDialog(null,  "card selected");
             while (true) {
                 System.out.println("enter positions of tribute monster in monster zone:");
                 boolean isSummonSuccessful = false;
@@ -1631,21 +1624,23 @@ public class DuelProgramController {
                 ArrayList<Integer> positionOfTributeMonsters = new ArrayList<>();
                 while (true) {
                     int monsterZonePosition = 0;
-                    monsterZonePosition = CommonTools.scan.nextInt();
-                    CommonTools.scan.nextLine();
+                    monsterZonePosition = Integer.parseInt(JOptionPane.showInputDialog("enter positions of tribute monster in monster zone:"));
                     if (monsterZonePosition < 1 || monsterZonePosition > 5) {
                         System.out.println("there no monsters on this address");
+                        JOptionPane.showMessageDialog(null,  "there no monsters on this address");
                         continue;
                     }
                     Monster tributeMonster = (Monster) gameDecks.get(turn).getMonsterZones().get(monsterZonePosition).getCurrentMonster();
                     if (tributeMonster == null) {
                         System.out.println("there no monsters on this address");
+                        JOptionPane.showMessageDialog(null,  "there no monsters on this address");
                         continue;
                     }
                     positionOfTributeMonsters.add(monsterZonePosition);
                     sumOfLevels += tributeMonster.getLevel();
                     if (sumOfLevels > 7) {
                         System.out.println("selected monsters levels don't match with ritual monster");
+                        JOptionPane.showMessageDialog(null,  "selected monsters levels don't match with ritual monster");
                         break;
                     } else if (sumOfLevels == 7) {
                         isSummonSuccessful = true;
@@ -1654,6 +1649,7 @@ public class DuelProgramController {
                 }
                 if (isSummonSuccessful) {
                     System.out.println("summoned successfully");
+                    JOptionPane.showMessageDialog(null,  "summoned successfully");
                     isSummoned = 1;
                     for (int monsterZonePosition : positionOfTributeMonsters) {
                         gameDecks.get(turn).tributeCardFromMonsterZone(monsterZonePosition);
@@ -1661,10 +1657,10 @@ public class DuelProgramController {
                     gameDecks.get(turn).getInHandCards().remove(position - 1);
                     enteredMonsterCardIndex = gameDecks.get(turn).summonCardToMonsterZone(selectedCard.getName());
                     deselect();
-                    break;
                 }
             }
         }
+        return "summoned successfully";
     }
 
 
