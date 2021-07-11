@@ -19,10 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -88,6 +85,9 @@ public class DuelProgramController {
     public Circle attackSign;
     public Label enemyName;
     public Label myName;
+    public ImageView myField;
+    public ImageView enemyFiled;
+    public AnchorPane field;
 
     private Stage stage;
     private Scene scene;
@@ -158,6 +158,24 @@ public class DuelProgramController {
         if (phase == Phase.standby && !messengerChecked) {
             keepMessengerOfPeace();
             messengerChecked = true;
+        }
+        if (!gameDecks.get(turn).isFieldZoneEmpty()){
+            myField.setImage(cardView(gameDecks.get(turn).getFieldZone().getName()));
+            String name = gameDecks.get(turn).getFieldZone().getName();
+            BackgroundFill backgroundFill;
+            if (name.equals("Yami")) {
+                backgroundFill = new BackgroundFill(new ImagePattern(new Image("/Images/Field/fie_yami.bmp")),null,null);
+            } else if (name.equals("Forest"))
+                backgroundFill = new BackgroundFill(new ImagePattern(new Image("/Images/Field/fie_sougen.bmp")),null,null);
+            else if (name.equals("Closed Forest"))
+                backgroundFill = new BackgroundFill(new ImagePattern(new Image("/Images/Field/fie_gaia.bmp")),null,null);
+            else
+                backgroundFill = new BackgroundFill(new ImagePattern(new Image("/Images/Field/fie_umi.bmp")),null,null);
+            Background background = new Background(backgroundFill);
+            field.setBackground(background);
+        }
+        if (!gameDecks.get(changeTurn(turn)).isFieldZoneEmpty()){
+            enemyFiled.setImage(cardView(gameDecks.get(changeTurn(turn)).getFieldZone().getName()));
         }
         if (phase == Phase.draw && isCardDrawn == 0 && isGameStart == 0 && timeSealTrap == 0) drawCard();
         nextPhaseButton.setText("next phase. current phase : " + phase);
