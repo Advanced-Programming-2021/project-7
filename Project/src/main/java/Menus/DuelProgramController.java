@@ -85,6 +85,8 @@ public class DuelProgramController {
     public Circle attackSign;
     public Label enemyName;
     public Label myName;
+    public Rectangle enemyProfile;
+    public Rectangle myProfile;
     public ImageView myField;
     public ImageView enemyFiled;
     public AnchorPane field;
@@ -183,6 +185,10 @@ public class DuelProgramController {
         myGrid.getChildren().clear();
         enemyName.setText(gameDecks.get(changeTurn(turn)).getPlayerNickName() + " : " + gameDecks.get(changeTurn(turn)).getPlayerLP());
         myName.setText(gameDecks.get((turn)).getPlayerNickName() + " : " + gameDecks.get((turn)).getPlayerLP());
+        int enemyProfileNumber = Player.getPlayerByUsername(gameDecks.get(changeTurn(turn)).getPlayerUserName()).getProfile();
+        int myProfileNumber = Player.getPlayerByUsername(gameDecks.get(turn).getPlayerUserName()).getProfile();
+        enemyProfile.setFill(new ImagePattern(new Image(getClass().getResource("/Images/Profiles/profile" + enemyProfileNumber + ".png").toExternalForm())));
+        myProfile.setFill(new ImagePattern(new Image(getClass().getResource("/Images/Profiles/profile" + myProfileNumber + ".png").toExternalForm())));
         for (int i = 0; i < 5; i++) {
             for (int i1 = 0; i1 < 2; i1++) {
                 Rectangle rectangle = new Rectangle(60, 90);

@@ -3,6 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <BorderPane fx:id="myBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1043.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Menus.DuelProgramController">
@@ -11,16 +12,18 @@
             <children>
                 <ImageView fx:id="selectedCardShow" fitHeight="428.0" fitWidth="283.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true" />
                 <Button fx:id="nextPhaseButton" layoutX="14.0" layoutY="589.0" text="next phase" />
-                <Label fx:id="enemyName" alignment="CENTER" layoutX="48.0" layoutY="72.0" onMouseClicked="#directAttack" prefHeight="46.0" prefWidth="203.0" style="-fx-cursor: Hand" text="Label" textFill="#1fba1d">
+                <Label fx:id="enemyName" alignment="CENTER" layoutX="79.0" layoutY="38.0" onMouseClicked="#directAttack" prefHeight="46.0" prefWidth="203.0" style="-fx-cursor: Hand" text="Label" textFill="#1fba1d">
                     <font>
                         <Font name="Gabriola" size="32.0" />
                     </font>
                 </Label>
-                <Label fx:id="myName" alignment="CENTER" layoutX="58.0" layoutY="652.0" prefHeight="46.0" prefWidth="183.0" text="Label" textFill="#239721">
+                <Label fx:id="myName" alignment="CENTER" layoutX="98.0" layoutY="714.0" prefHeight="46.0" prefWidth="183.0" text="Label" textFill="#239721">
                     <font>
                         <Font name="Gabriola" size="32.0" />
                     </font>
                 </Label>
+                <Rectangle fx:id="enemyProfile" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="123.0" stroke="BLACK" strokeType="INSIDE" width="123.0" />
+                <Rectangle fx:id="myProfile" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="123.0" layoutY="675.0" stroke="BLACK" strokeType="INSIDE" width="123.0" />
             </children>
         </AnchorPane>
     </left>
