@@ -28,6 +28,8 @@ public class MainProgramView extends Application {
         Image icon = new Image(getClass().getResource("/Images/logo.png").toExternalForm());
         Sound sound = new Sound("/Sounds/BackMusic.mp3", "mainSound");
         Sound buttonSound = new Sound("/Sounds/buttonSound.wav", "button");
+        Sound setSound = new Sound("/Sounds/setCard.mp3", "set");
+        Sound attackSound = new Sound("/Sounds/attackSound.mp3", "attack");
         sound.playSound();
         stage.getIcons().add(icon);
         stage.setTitle("Yu-Gi-Oh!");
