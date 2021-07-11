@@ -1,5 +1,6 @@
 package Menus;
 
+import Controller.CheatMenuController;
 import Model.Cards.*;
 import Model.CommonTools;
 import Model.Deck;
@@ -17,15 +18,14 @@ import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -73,8 +73,13 @@ public class DuelProgramController {
     private int isGameStart = 2;
     private boolean messengerChecked = false;
     private int isAI = 0;
+    private AI ai = new AI();
+    private boolean controlPressed = false;
+    private boolean shiftPressed = false;
+    private boolean cPressed = false;
 
     @FXML
+    public BorderPane myBorderPane;
     public GridPane enemyGrid;
     public GridPane myGrid;
     public ImageView selectedCardShow;
@@ -89,6 +94,8 @@ public class DuelProgramController {
 
     @FXML
     public void initialize() {
+        firstPlayer = "Mohsen";
+        secondPlayer = "Mohsen";
         attackSign = new Circle(20);
         attackSign.setFill(new ImagePattern(new Image("/Images/Attack.png")));
         inHandCards.setSpacing(20);
@@ -111,6 +118,39 @@ public class DuelProgramController {
         myGrid.setHgap(44);
         myGrid.setVgap(30);
         setField();
+        makeCheatMenu();
+    }
+
+    public void makeCheatMenu() {
+        myBorderPane.setOnKeyPressed(keyEvent -> {
+            switch (keyEvent.getCode()) {
+                case CONTROL:
+                    controlPressed = true;
+                    break;
+                case SHIFT:
+                    shiftPressed = true;
+                    break;
+                case C:
+                    cPressed = true;
+                    break;
+                default:
+                    controlPressed = false;
+                    shiftPressed = false;
+                    cPressed = false;
+                    break;
+            }
+            if (controlPressed && shiftPressed && cPressed) {
+                controlPressed = false;
+                shiftPressed = false;
+                cPressed = false;
+                CheatMenuController.setDuelProgramController(this);
+                try {
+                    new CheatMenu().start(new Stage());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public void setField() {
@@ -275,7 +315,34 @@ public class DuelProgramController {
             rectangle.setFill(new ImagePattern(new Image(getClass().getResource("/Images/Cards/Unknown.jpg").toExternalForm())));
             enemyHand.getChildren().add(rectangle);
         }
+        if (secondPlayer.equals("ai") && turn == 1) {
+            ai.updateAI(gameDecks.get(1), gameDecks.get(0), phase);
+            String command = ai.decision();
+            runCommand(command);
+            setField();
+        }
+    }
 
+    private void runCommand(String command){
+        if (command.matches("^show graveyard$")) showGraveyard(turn);
+        else if (command.matches("^surrender$")) surrender(turn);
+        else if (command.matches("^select --hand --force$")) inHandCardCheat();
+        else if (command.matches("^select -d$")) deselect();
+        else if (command.matches("^show card$")) showCard();
+        else if (command.matches("^select .*$")) selectCard(command);
+        else if (command.matches("^summon$")) summonMonster();
+        else if (command.matches("^activate effect$")) activateSpellErrorCheck();
+        else if (command.matches("^activate trap$")) activateTrap();
+        else if (command.matches("^attack (\\d+)")) attackCard(command);
+        else if (command.matches("^attack direct")) directAttack();
+        else if (command.matches("^set$")) set();
+        else if (command.matches("^card show --selected$")) cardShow();
+        else if (command.matches("^increase --LP (\\d+)$")) increasePlayerLPCheat(command);
+        else if (command.matches("^duel set-winner \\S+$")) setWinnerCheat(command);
+        else if (command.matches("^set --position (attack|defence)$")) setPositionMonster(command);
+        else if (command.matches("^flip-summon$")) flipSummon();
+        else if (command.matches("^next phase$")) changePhase();
+        else System.out.println("invalid command");
     }
 
     public void checkForSetOrSummon(int finalI, int finalI1) {
@@ -1281,7 +1348,7 @@ public class DuelProgramController {
         gameDecks.get(changeTurn(turn)).increaseWinRounds();
     }
 
-    private void increasePlayerLPCheat(String command) {
+    public void increasePlayerLPCheat(String command) {
         Matcher matcher = CommonTools.getMatcher(command, "^increase --LP (\\d+)$");
         matcher.find();
         int amountOfLP = Integer.parseInt(matcher.group(1));
@@ -1289,7 +1356,7 @@ public class DuelProgramController {
         myDeck.increaseLP(amountOfLP);
     }
 
-    private void setWinnerCheat(String command) {
+    public void setWinnerCheat(String command) {
         Matcher matcher = CommonTools.getMatcher(command, "^duel set-winner (\\S+)$");
         matcher.find();
         String playerNickname = matcher.group(1);
@@ -1392,7 +1459,7 @@ public class DuelProgramController {
         gameDecks.get(turn).drawCard();
     }
 
-    private void inHandCardCheat() {
+    public void inHandCardCheat() {
         ArrayList<Card> deck = gameDecks.get(turn).getDeck();
         if (deck.size() == 0) return;
         isCardDrawn = 1;

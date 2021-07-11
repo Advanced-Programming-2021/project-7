@@ -137,30 +137,34 @@
           {
             "@type": "Model.Cards.Monster",
             "@val": {
-              "attackPoint": 1000,
-              "defensePoint": 0,
-              "level": 3,
-              "attribute": "EARTH",
-              "monsterType": "Dragon",
-              "cardType": "Effect",
-              "name": "Exploder Dragon",
-              "description": "If this card is destroyed by battle and sent to the Graveyard: Destroy the monster that destroyed it. Neither player takes any battle damage from attacks involving this attacking card.",
+              "attackPoint": 1300,
+              "defensePoint": 1400,
+              "level": 4,
+              "attribute": "DARK",
+              "monsterType": "Fiend",
+              "cardType": "Normal",
+              "name": "Feral Imp",
+              "description": "\"A playful little fiend that lurks in the dark, waiting to attack an unwary enemy.\"",
               "type": "Monster",
-              "price": 1000
+              "price": 2800
             }
           },
           0
         ],
         [
           {
-            "@type": "Model.Cards.Spell",
+            "@type": "Model.Cards.Monster",
             "@val": {
-              "icon": "Quick-play",
-              "playedRound": 0,
-              "name": "Mystical space typhoon",
-              "description": "Target 1 Spell/Trap on the field; destroy that target.",
-              "type": "Spell",
-              "price": 3500
+              "attackPoint": 900,
+              "defensePoint": 1000,
+              "level": 3,
+              "attribute": "FIRE",
+              "monsterType": "Spellcaster",
+              "cardType": "Normal",
+              "name": "Flame Manipulator",
+              "description": "\"This Spellcaster attacks enemies with fire-related spells such as \"\"Sea of Flames\"\" and \"\"Wall of Fire\"\".\"",
+              "type": "Monster",
+              "price": 1500
             }
           },
           0
@@ -187,42 +191,6 @@
           {
             "@type": "Model.Cards.Monster",
             "@val": {
-              "attackPoint": 1700,
-              "defensePoint": 1000,
-              "level": 4,
-              "attribute": "EARTH",
-              "monsterType": "Beast-Warrior",
-              "cardType": "Normal",
-              "name": "Battle OX",
-              "description": "\"A monster with tremendous power, it destroys enemies with a swing of its axe.\"",
-              "type": "Monster",
-              "price": 2900
-            }
-          },
-          0
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 700,
-              "defensePoint": 1000,
-              "level": 3,
-              "attribute": "EARTH",
-              "monsterType": "Warrior",
-              "cardType": "Normal",
-              "name": "Battle warrior",
-              "description": "A warrior that fights with his bare hands!!!",
-              "type": "Monster",
-              "price": 1300
-            }
-          },
-          0
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
               "attackPoint": 1800,
               "defensePoint": 1200,
               "level": 4,
@@ -241,46 +209,14 @@
           {
             "@type": "Model.Cards.Monster",
             "@val": {
-              "attackPoint": 900,
-              "defensePoint": 1000,
+              "attackPoint": 1000,
+              "defensePoint": 0,
               "level": 3,
-              "attribute": "FIRE",
-              "monsterType": "Spellcaster",
-              "cardType": "Normal",
-              "name": "Flame Manipulator",
-              "description": "\"This Spellcaster attacks enemies with fire-related spells such as \"\"Sea of Flames\"\" and \"\"Wall of Fire\"\".\"",
-              "type": "Monster",
-              "price": 1500
-            }
-          },
-          0
-        ],
-        [
-          {
-            "@type": "Model.Cards.Trap",
-            "@val": {
-              "trapType": "Unlimited",
-              "icon": "Continuous",
-              "name": "Call of The Haunted",
-              "description": "\"Activate this card by targeting 1 monster in your GY; Special Summon that target in Attack Position. When this card leaves the field, destroy that monster. When that monster is destroyed, destroy this card.\"",
-              "type": "Trap",
-              "price": 3500
-            }
-          },
-          0
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 200,
-              "defensePoint": 2000,
-              "level": 2,
               "attribute": "EARTH",
-              "monsterType": "Cyberse",
-              "cardType": "Normal",
-              "name": "Bitron",
-              "description": "A new species found in electronic space. There's not much information on it.",
+              "monsterType": "Dragon",
+              "cardType": "Effect",
+              "name": "Exploder Dragon",
+              "description": "If this card is destroyed by battle and sent to the Graveyard: Destroy the monster that destroyed it. Neither player takes any battle damage from attacks involving this attacking card.",
               "type": "Monster",
               "price": 1000
             }
@@ -291,106 +227,16 @@
           {
             "@type": "Model.Cards.Monster",
             "@val": {
-              "attackPoint": 1200,
-              "defensePoint": 700,
-              "level": 3,
-              "attribute": "WIND",
-              "monsterType": "Dragon",
-              "cardType": "Normal",
-              "name": "Baby dragon",
-              "description": "\"Much more than just a child, this dragon is gifted with untapped power.\"",
-              "type": "Monster",
-              "price": 1600
-            }
-          },
-          0
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 1100,
-              "defensePoint": 1000,
-              "level": 3,
-              "attribute": "EARTH",
-              "monsterType": "Warrior",
-              "cardType": "Normal",
-              "name": "Hero of the east",
-              "description": "Feel da strength ah dis sword-swinging samurai from da Far East.",
-              "type": "Monster",
-              "price": 1700
-            }
-          },
-          0
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 1300,
-              "defensePoint": 1400,
-              "level": 4,
-              "attribute": "DARK",
-              "monsterType": "Fiend",
-              "cardType": "Normal",
-              "name": "Feral Imp",
-              "description": "\"A playful little fiend that lurks in the dark, waiting to attack an unwary enemy.\"",
-              "type": "Monster",
-              "price": 2800
-            }
-          },
-          0
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 500,
-              "defensePoint": 500,
-              "level": 2,
-              "attribute": "EARTH",
-              "monsterType": "Rock",
-              "cardType": "Normal",
-              "name": "Haniwa",
-              "description": "An earthen figure that protects the tomb of an ancient ruler.",
-              "type": "Monster",
-              "price": 600
-            }
-          },
-          0
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 1300,
+              "attackPoint": 1700,
               "defensePoint": 1000,
               "level": 4,
-              "attribute": "DARK",
-              "monsterType": "Fiend",
-              "cardType": "Normal",
-              "name": "Horn Imp",
-              "description": "\"A small fiend that dwells in the dark, its single horn makes it a formidable opponent.\"",
-              "type": "Monster",
-              "price": 2500
-            }
-          },
-          0
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 450,
-              "defensePoint": 600,
-              "level": 2,
               "attribute": "EARTH",
-              "monsterType": "Insect",
-              "cardType": "Effect",
-              "name": "Man-Eater Bug",
-              "description": "FLIP: Target 1 monster on the field; destroy that target.",
+              "monsterType": "Beast-Warrior",
+              "cardType": "Normal",
+              "name": "Battle OX",
+              "description": "\"A monster with tremendous power, it destroys enemies with a swing of its axe.\"",
               "type": "Monster",
-              "price": 600
+              "price": 2900
             }
           },
           0
@@ -417,6 +263,24 @@
           {
             "@type": "Model.Cards.Monster",
             "@val": {
+              "attackPoint": 500,
+              "defensePoint": 500,
+              "level": 2,
+              "attribute": "EARTH",
+              "monsterType": "Rock",
+              "cardType": "Normal",
+              "name": "Haniwa",
+              "description": "An earthen figure that protects the tomb of an ancient ruler.",
+              "type": "Monster",
+              "price": 600
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
               "attackPoint": 2000,
               "defensePoint": 100,
               "level": 4,
@@ -427,6 +291,24 @@
               "description": "\"Many of the czars' lost jewels can be found in the scales of this priceless dragon. Its creator remains a mystery, along with how they acquired the imperial treasures. But whosoever finds this dragon has hit the jackpot... whether they know it or not.\"",
               "type": "Monster",
               "price": 2600
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 200,
+              "defensePoint": 2000,
+              "level": 2,
+              "attribute": "EARTH",
+              "monsterType": "Cyberse",
+              "cardType": "Normal",
+              "name": "Bitron",
+              "description": "A new species found in electronic space. There's not much information on it.",
+              "type": "Monster",
+              "price": 1000
             }
           },
           0
@@ -444,6 +326,124 @@
             }
           },
           0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 700,
+              "defensePoint": 1000,
+              "level": 3,
+              "attribute": "EARTH",
+              "monsterType": "Warrior",
+              "cardType": "Normal",
+              "name": "Battle warrior",
+              "description": "A warrior that fights with his bare hands!!!",
+              "type": "Monster",
+              "price": 1300
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 450,
+              "defensePoint": 600,
+              "level": 2,
+              "attribute": "EARTH",
+              "monsterType": "Insect",
+              "cardType": "Effect",
+              "name": "Man-Eater Bug",
+              "description": "FLIP: Target 1 monster on the field; destroy that target.",
+              "type": "Monster",
+              "price": 600
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1100,
+              "defensePoint": 1000,
+              "level": 3,
+              "attribute": "EARTH",
+              "monsterType": "Warrior",
+              "cardType": "Normal",
+              "name": "Hero of the east",
+              "description": "Feel da strength ah dis sword-swinging samurai from da Far East.",
+              "type": "Monster",
+              "price": 1700
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1200,
+              "defensePoint": 700,
+              "level": 3,
+              "attribute": "WIND",
+              "monsterType": "Dragon",
+              "cardType": "Normal",
+              "name": "Baby dragon",
+              "description": "\"Much more than just a child, this dragon is gifted with untapped power.\"",
+              "type": "Monster",
+              "price": 1600
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Trap",
+            "@val": {
+              "trapType": "Unlimited",
+              "icon": "Continuous",
+              "name": "Call of The Haunted",
+              "description": "\"Activate this card by targeting 1 monster in your GY; Special Summon that target in Attack Position. When this card leaves the field, destroy that monster. When that monster is destroyed, destroy this card.\"",
+              "type": "Trap",
+              "price": 3500
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1300,
+              "defensePoint": 1000,
+              "level": 4,
+              "attribute": "DARK",
+              "monsterType": "Fiend",
+              "cardType": "Normal",
+              "name": "Horn Imp",
+              "description": "\"A small fiend that dwells in the dark, its single horn makes it a formidable opponent.\"",
+              "type": "Monster",
+              "price": 2500
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Quick-play",
+              "playedRound": 0,
+              "name": "Mystical space typhoon",
+              "description": "Target 1 Spell/Trap on the field; destroy that target.",
+              "type": "Spell",
+              "price": 3500
+            }
+          },
+          0
         ]
       ],
       "decks": [
@@ -453,16 +453,16 @@
               {
                 "@type": "Model.Cards.Monster",
                 "@val": {
-                  "attackPoint": 200,
-                  "defensePoint": 2000,
-                  "level": 2,
-                  "attribute": "EARTH",
-                  "monsterType": "Cyberse",
+                  "attackPoint": 900,
+                  "defensePoint": 1000,
+                  "level": 3,
+                  "attribute": "FIRE",
+                  "monsterType": "Spellcaster",
                   "cardType": "Normal",
-                  "name": "Bitron",
-                  "description": "A new species found in electronic space. There's not much information on it.",
+                  "name": "Flame Manipulator",
+                  "description": "\"This Spellcaster attacks enemies with fire-related spells such as \"\"Sea of Flames\"\" and \"\"Wall of Fire\"\".\"",
                   "type": "Monster",
-                  "price": 1000
+                  "price": 1500
                 }
               },
               3
@@ -489,16 +489,16 @@
               {
                 "@type": "Model.Cards.Monster",
                 "@val": {
-                  "attackPoint": 1300,
-                  "defensePoint": 1000,
-                  "level": 4,
+                  "attackPoint": 600,
+                  "defensePoint": 500,
+                  "level": 2,
                   "attribute": "DARK",
-                  "monsterType": "Fiend",
+                  "monsterType": "Spellcaster",
                   "cardType": "Normal",
-                  "name": "Horn Imp",
-                  "description": "\"A small fiend that dwells in the dark, its single horn makes it a formidable opponent.\"",
+                  "name": "Curtain of the dark ones",
+                  "description": "\"A curtain that a spellcaster made, it is said to raise a dark power.\"",
                   "type": "Monster",
-                  "price": 2500
+                  "price": 700
                 }
               },
               3
@@ -507,16 +507,30 @@
               {
                 "@type": "Model.Cards.Monster",
                 "@val": {
-                  "attackPoint": 1800,
-                  "defensePoint": 1200,
-                  "level": 4,
+                  "attackPoint": 700,
+                  "defensePoint": 1000,
+                  "level": 3,
                   "attribute": "EARTH",
                   "monsterType": "Warrior",
-                  "cardType": "Effect",
-                  "name": "\"Terratiger, the Empowered Warrior\"",
-                  "description": "When this card is Normal Summoned: You can Special Summon 1 Level 4 or lower Normal Monster from your hand in Defense Position.",
+                  "cardType": "Normal",
+                  "name": "Battle warrior",
+                  "description": "A warrior that fights with his bare hands!!!",
                   "type": "Monster",
-                  "price": 3200
+                  "price": 1300
+                }
+              },
+              3
+            ],
+            [
+              {
+                "@type": "Model.Cards.Trap",
+                "@val": {
+                  "trapType": "Unlimited",
+                  "icon": "Continuous",
+                  "name": "Call of The Haunted",
+                  "description": "\"Activate this card by targeting 1 monster in your GY; Special Summon that target in Attack Position. When this card leaves the field, destroy that monster. When that monster is destroyed, destroy this card.\"",
+                  "type": "Trap",
+                  "price": 3500
                 }
               },
               3
@@ -535,6 +549,20 @@
                   "description": "\"Much more than just a child, this dragon is gifted with untapped power.\"",
                   "type": "Monster",
                   "price": 1600
+                }
+              },
+              3
+            ],
+            [
+              {
+                "@type": "Model.Cards.Spell",
+                "@val": {
+                  "icon": "Normal",
+                  "playedRound": 0,
+                  "name": "Harpie's Feather Duster",
+                  "description": "Destroy all Spells and Traps your opponent controls.",
+                  "type": "Spell",
+                  "price": 2500
                 }
               },
               3
@@ -561,16 +589,16 @@
               {
                 "@type": "Model.Cards.Monster",
                 "@val": {
-                  "attackPoint": 1100,
-                  "defensePoint": 1000,
-                  "level": 3,
+                  "attackPoint": 1800,
+                  "defensePoint": 1200,
+                  "level": 4,
                   "attribute": "EARTH",
                   "monsterType": "Warrior",
-                  "cardType": "Normal",
-                  "name": "Hero of the east",
-                  "description": "Feel da strength ah dis sword-swinging samurai from da Far East.",
+                  "cardType": "Effect",
+                  "name": "\"Terratiger, the Empowered Warrior\"",
+                  "description": "When this card is Normal Summoned: You can Special Summon 1 Level 4 or lower Normal Monster from your hand in Defense Position.",
                   "type": "Monster",
-                  "price": 1700
+                  "price": 3200
                 }
               },
               3
@@ -579,48 +607,16 @@
               {
                 "@type": "Model.Cards.Monster",
                 "@val": {
-                  "attackPoint": 600,
-                  "defensePoint": 500,
-                  "level": 2,
-                  "attribute": "DARK",
-                  "monsterType": "Spellcaster",
+                  "attackPoint": 2000,
+                  "defensePoint": 100,
+                  "level": 4,
+                  "attribute": "LIGHT",
+                  "monsterType": "Dragon",
                   "cardType": "Normal",
-                  "name": "Curtain of the dark ones",
-                  "description": "\"A curtain that a spellcaster made, it is said to raise a dark power.\"",
+                  "name": "Alexandrite Dragon",
+                  "description": "\"Many of the czars' lost jewels can be found in the scales of this priceless dragon. Its creator remains a mystery, along with how they acquired the imperial treasures. But whosoever finds this dragon has hit the jackpot... whether they know it or not.\"",
                   "type": "Monster",
-                  "price": 700
-                }
-              },
-              3
-            ],
-            [
-              {
-                "@type": "Model.Cards.Spell",
-                "@val": {
-                  "icon": "Normal",
-                  "playedRound": 0,
-                  "name": "Harpie's Feather Duster",
-                  "description": "Destroy all Spells and Traps your opponent controls.",
-                  "type": "Spell",
-                  "price": 2500
-                }
-              },
-              3
-            ],
-            [
-              {
-                "@type": "Model.Cards.Monster",
-                "@val": {
-                  "attackPoint": 500,
-                  "defensePoint": 500,
-                  "level": 2,
-                  "attribute": "EARTH",
-                  "monsterType": "Rock",
-                  "cardType": "Normal",
-                  "name": "Haniwa",
-                  "description": "An earthen figure that protects the tomb of an ancient ruler.",
-                  "type": "Monster",
-                  "price": 600
+                  "price": 2600
                 }
               },
               3
@@ -661,74 +657,6 @@
               {
                 "@type": "Model.Cards.Monster",
                 "@val": {
-                  "attackPoint": 450,
-                  "defensePoint": 600,
-                  "level": 2,
-                  "attribute": "EARTH",
-                  "monsterType": "Insect",
-                  "cardType": "Effect",
-                  "name": "Man-Eater Bug",
-                  "description": "FLIP: Target 1 monster on the field; destroy that target.",
-                  "type": "Monster",
-                  "price": 600
-                }
-              },
-              3
-            ],
-            [
-              {
-                "@type": "Model.Cards.Trap",
-                "@val": {
-                  "trapType": "Unlimited",
-                  "icon": "Continuous",
-                  "name": "Call of The Haunted",
-                  "description": "\"Activate this card by targeting 1 monster in your GY; Special Summon that target in Attack Position. When this card leaves the field, destroy that monster. When that monster is destroyed, destroy this card.\"",
-                  "type": "Trap",
-                  "price": 3500
-                }
-              },
-              3
-            ],
-            [
-              {
-                "@type": "Model.Cards.Monster",
-                "@val": {
-                  "attackPoint": 700,
-                  "defensePoint": 1000,
-                  "level": 3,
-                  "attribute": "EARTH",
-                  "monsterType": "Warrior",
-                  "cardType": "Normal",
-                  "name": "Battle warrior",
-                  "description": "A warrior that fights with his bare hands!!!",
-                  "type": "Monster",
-                  "price": 1300
-                }
-              },
-              3
-            ],
-            [
-              {
-                "@type": "Model.Cards.Monster",
-                "@val": {
-                  "attackPoint": 2000,
-                  "defensePoint": 100,
-                  "level": 4,
-                  "attribute": "LIGHT",
-                  "monsterType": "Dragon",
-                  "cardType": "Normal",
-                  "name": "Alexandrite Dragon",
-                  "description": "\"Many of the czars' lost jewels can be found in the scales of this priceless dragon. Its creator remains a mystery, along with how they acquired the imperial treasures. But whosoever finds this dragon has hit the jackpot... whether they know it or not.\"",
-                  "type": "Monster",
-                  "price": 2600
-                }
-              },
-              3
-            ],
-            [
-              {
-                "@type": "Model.Cards.Monster",
-                "@val": {
                   "attackPoint": 1000,
                   "defensePoint": 0,
                   "level": 3,
@@ -747,16 +675,88 @@
               {
                 "@type": "Model.Cards.Monster",
                 "@val": {
-                  "attackPoint": 900,
+                  "attackPoint": 500,
+                  "defensePoint": 500,
+                  "level": 2,
+                  "attribute": "EARTH",
+                  "monsterType": "Rock",
+                  "cardType": "Normal",
+                  "name": "Haniwa",
+                  "description": "An earthen figure that protects the tomb of an ancient ruler.",
+                  "type": "Monster",
+                  "price": 600
+                }
+              },
+              3
+            ],
+            [
+              {
+                "@type": "Model.Cards.Monster",
+                "@val": {
+                  "attackPoint": 1100,
                   "defensePoint": 1000,
                   "level": 3,
-                  "attribute": "FIRE",
-                  "monsterType": "Spellcaster",
+                  "attribute": "EARTH",
+                  "monsterType": "Warrior",
                   "cardType": "Normal",
-                  "name": "Flame Manipulator",
-                  "description": "\"This Spellcaster attacks enemies with fire-related spells such as \"\"Sea of Flames\"\" and \"\"Wall of Fire\"\".\"",
+                  "name": "Hero of the east",
+                  "description": "Feel da strength ah dis sword-swinging samurai from da Far East.",
                   "type": "Monster",
-                  "price": 1500
+                  "price": 1700
+                }
+              },
+              3
+            ],
+            [
+              {
+                "@type": "Model.Cards.Monster",
+                "@val": {
+                  "attackPoint": 200,
+                  "defensePoint": 2000,
+                  "level": 2,
+                  "attribute": "EARTH",
+                  "monsterType": "Cyberse",
+                  "cardType": "Normal",
+                  "name": "Bitron",
+                  "description": "A new species found in electronic space. There's not much information on it.",
+                  "type": "Monster",
+                  "price": 1000
+                }
+              },
+              3
+            ],
+            [
+              {
+                "@type": "Model.Cards.Monster",
+                "@val": {
+                  "attackPoint": 1300,
+                  "defensePoint": 1000,
+                  "level": 4,
+                  "attribute": "DARK",
+                  "monsterType": "Fiend",
+                  "cardType": "Normal",
+                  "name": "Horn Imp",
+                  "description": "\"A small fiend that dwells in the dark, its single horn makes it a formidable opponent.\"",
+                  "type": "Monster",
+                  "price": 2500
+                }
+              },
+              3
+            ],
+            [
+              {
+                "@type": "Model.Cards.Monster",
+                "@val": {
+                  "attackPoint": 450,
+                  "defensePoint": 600,
+                  "level": 2,
+                  "attribute": "EARTH",
+                  "monsterType": "Insect",
+                  "cardType": "Effect",
+                  "name": "Man-Eater Bug",
+                  "description": "FLIP: Target 1 monster on the field; destroy that target.",
+                  "type": "Monster",
+                  "price": 600
                 }
               },
               3
@@ -790,17 +790,7 @@
           0
         ],
         [
-          {
-            "@type": "Model.Cards.Spell",
-            "@val": {
-              "icon": "Equip",
-              "playedRound": 0,
-              "name": "Black Pendant",
-              "description": "The equipped monster gains 500 ATK. When this card is sent from the field to the Graveyard: Inflict 500 damage to your opponent.",
-              "type": "Spell",
-              "price": 4300
-            }
-          },
+          "@root.4.decks.0.mainDeck.2-key",
           0
         ],
         [
@@ -822,26 +812,6 @@
           0
         ],
         [
-          "@root.4.decks.0.mainDeck.3-key",
-          0
-        ],
-        [
-          "@root.4.decks.0.mainDeck.4-key",
-          0
-        ],
-        [
-          "@root.4.decks.0.mainDeck.6-key",
-          0
-        ],
-        [
-          "@root.4.decks.0.mainDeck.7-key",
-          0
-        ],
-        [
-          "@root.4.decks.0.mainDeck.9-key",
-          0
-        ],
-        [
           {
             "@type": "Model.Cards.Monster",
             "@val": {
@@ -860,37 +830,15 @@
           0
         ],
         [
-          "@root.4.decks.0.mainDeck.11-key",
+          "@root.4.decks.0.mainDeck.5-key",
           0
         ],
         [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
-              "attackPoint": 300,
-              "defensePoint": 500,
-              "level": 3,
-              "attribute": "LIGHT",
-              "monsterType": "Fairy",
-              "cardType": "Effect",
-              "name": "Marshmallon",
-              "description": "\"Cannot be destroyed by battle. After damage calculation, if this card was attacked, and was face-down at the start of the Damage Step: The attacking player takes 1000 damage.\"",
-              "type": "Monster",
-              "price": 700
-            }
-          },
+          "@root.4.decks.0.mainDeck.8-key",
           0
         ],
         [
-          "@root.4.decks.0.mainDeck.12-key",
-          0
-        ],
-        [
-          "@root.4.decks.0.mainDeck.15-key",
-          0
-        ],
-        [
-          "@root.4.decks.0.mainDeck.16-key",
+          "@root.4.decks.0.mainDeck.9-key",
           0
         ],
         [
@@ -912,6 +860,58 @@
           0
         ],
         [
+          "@root.4.decks.0.mainDeck.11-key",
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Equip",
+              "playedRound": 0,
+              "name": "Black Pendant",
+              "description": "The equipped monster gains 500 ATK. When this card is sent from the field to the Graveyard: Inflict 500 damage to your opponent.",
+              "type": "Spell",
+              "price": 4300
+            }
+          },
+          0
+        ],
+        [
+          "@root.4.decks.0.mainDeck.12-key",
+          0
+        ],
+        [
+          "@root.4.decks.0.mainDeck.13-key",
+          0
+        ],
+        [
+          "@root.4.decks.0.mainDeck.14-key",
+          0
+        ],
+        [
+          "@root.4.decks.0.mainDeck.15-key",
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 300,
+              "defensePoint": 500,
+              "level": 3,
+              "attribute": "LIGHT",
+              "monsterType": "Fairy",
+              "cardType": "Effect",
+              "name": "Marshmallon",
+              "description": "\"Cannot be destroyed by battle. After damage calculation, if this card was attacked, and was face-down at the start of the Damage Step: The attacking player takes 1000 damage.\"",
+              "type": "Monster",
+              "price": 700
+            }
+          },
+          0
+        ],
+        [
           "@root.4.decks.0.mainDeck.17-key",
           0
         ]
@@ -919,6 +919,74 @@
       "decks": [
         {
           "mainDeck": [
+            [
+              {
+                "@type": "Model.Cards.Monster",
+                "@val": {
+                  "attackPoint": 450,
+                  "defensePoint": 600,
+                  "level": 2,
+                  "attribute": "EARTH",
+                  "monsterType": "Insect",
+                  "cardType": "Effect",
+                  "name": "Man-Eater Bug",
+                  "description": "FLIP: Target 1 monster on the field; destroy that target.",
+                  "type": "Monster",
+                  "price": 600
+                }
+              },
+              3
+            ],
+            [
+              {
+                "@type": "Model.Cards.Monster",
+                "@val": {
+                  "attackPoint": 2000,
+                  "defensePoint": 0,
+                  "level": 4,
+                  "attribute": "EARTH",
+                  "monsterType": "Cyberse",
+                  "cardType": "Normal",
+                  "name": "Leotron",
+                  "description": "A territorial electronic monster that guards its own domain.",
+                  "type": "Monster",
+                  "price": 2500
+                }
+              },
+              3
+            ],
+            [
+              {
+                "@type": "Model.Cards.Monster",
+                "@val": {
+                  "attackPoint": 900,
+                  "defensePoint": 1000,
+                  "level": 3,
+                  "attribute": "FIRE",
+                  "monsterType": "Spellcaster",
+                  "cardType": "Normal",
+                  "name": "Flame Manipulator",
+                  "description": "\"This Spellcaster attacks enemies with fire-related spells such as \"\"Sea of Flames\"\" and \"\"Wall of Fire\"\".\"",
+                  "type": "Monster",
+                  "price": 1500
+                }
+              },
+              3
+            ],
+            [
+              {
+                "@type": "Model.Cards.Spell",
+                "@val": {
+                  "icon": "Equip",
+                  "playedRound": 0,
+                  "name": "Black Pendant",
+                  "description": "The equipped monster gains 500 ATK. When this card is sent from the field to the Graveyard: Inflict 500 damage to your opponent.",
+                  "type": "Spell",
+                  "price": 4300
+                }
+              },
+              3
+            ],
             [
               {
                 "@type": "Model.Cards.Monster",
@@ -941,34 +1009,34 @@
               {
                 "@type": "Model.Cards.Monster",
                 "@val": {
-                  "attackPoint": 1800,
-                  "defensePoint": 1500,
-                  "level": 4,
-                  "attribute": "DARK",
-                  "monsterType": "Warrior",
-                  "cardType": "Normal",
-                  "name": "Dark Blade",
-                  "description": "\"They say he is a dragon-manipulating warrior from the dark world. His attack is tremendous, using his great swords with vicious power.\"",
+                  "attackPoint": 0,
+                  "defensePoint": 0,
+                  "level": 1,
+                  "attribute": "LIGHT",
+                  "monsterType": "Machine",
+                  "cardType": "Effect",
+                  "name": "Scanner",
+                  "description": "\"Once per turn, you can select 1 of your opponent's monsters that is removed from play. Until the End Phase, this card's name is treated as the selected monster's name, and this card has the same Attribute, Level, ATK, and DEF as the selected monster. If this card is removed from the field while this effect is applied, remove it from play.\"",
                   "type": "Monster",
-                  "price": 3500
+                  "price": 8000
                 }
               },
-              3
+              1
             ],
             [
               {
                 "@type": "Model.Cards.Monster",
                 "@val": {
-                  "attackPoint": 1000,
-                  "defensePoint": 1000,
+                  "attackPoint": 2000,
+                  "defensePoint": 100,
                   "level": 4,
-                  "attribute": "FIRE",
-                  "monsterType": "Warrior",
-                  "cardType": "Effect",
-                  "name": "Command Knight",
-                  "description": "\"All Warrior-Type monsters you control gain 400 ATK. If you control another monster, monsters your opponent controls cannot target this card for an attack.\"",
+                  "attribute": "LIGHT",
+                  "monsterType": "Dragon",
+                  "cardType": "Normal",
+                  "name": "Alexandrite Dragon",
+                  "description": "\"Many of the czars' lost jewels can be found in the scales of this priceless dragon. Its creator remains a mystery, along with how they acquired the imperial treasures. But whosoever finds this dragon has hit the jackpot... whether they know it or not.\"",
                   "type": "Monster",
-                  "price": 2100
+                  "price": 2600
                 }
               },
               3
@@ -995,16 +1063,34 @@
               {
                 "@type": "Model.Cards.Monster",
                 "@val": {
-                  "attackPoint": 2000,
-                  "defensePoint": 0,
+                  "attackPoint": 1800,
+                  "defensePoint": 1200,
                   "level": 4,
                   "attribute": "EARTH",
-                  "monsterType": "Cyberse",
-                  "cardType": "Normal",
-                  "name": "Leotron",
-                  "description": "A territorial electronic monster that guards its own domain.",
+                  "monsterType": "Warrior",
+                  "cardType": "Effect",
+                  "name": "\"Terratiger, the Empowered Warrior\"",
+                  "description": "When this card is Normal Summoned: You can Special Summon 1 Level 4 or lower Normal Monster from your hand in Defense Position.",
                   "type": "Monster",
-                  "price": 2500
+                  "price": 3200
+                }
+              },
+              3
+            ],
+            [
+              {
+                "@type": "Model.Cards.Monster",
+                "@val": {
+                  "attackPoint": 300,
+                  "defensePoint": 500,
+                  "level": 3,
+                  "attribute": "LIGHT",
+                  "monsterType": "Fairy",
+                  "cardType": "Effect",
+                  "name": "Marshmallon",
+                  "description": "\"Cannot be destroyed by battle. After damage calculation, if this card was attacked, and was face-down at the start of the Damage Step: The attacking player takes 1000 damage.\"",
+                  "type": "Monster",
+                  "price": 700
                 }
               },
               3
@@ -1039,24 +1125,6 @@
                   "cardType": "Normal",
                   "name": "Haniwa",
                   "description": "An earthen figure that protects the tomb of an ancient ruler.",
-                  "type": "Monster",
-                  "price": 600
-                }
-              },
-              3
-            ],
-            [
-              {
-                "@type": "Model.Cards.Monster",
-                "@val": {
-                  "attackPoint": 450,
-                  "defensePoint": 600,
-                  "level": 2,
-                  "attribute": "EARTH",
-                  "monsterType": "Insect",
-                  "cardType": "Effect",
-                  "name": "Man-Eater Bug",
-                  "description": "FLIP: Target 1 monster on the field; destroy that target.",
                   "type": "Monster",
                   "price": 600
                 }
@@ -1103,19 +1171,19 @@
               {
                 "@type": "Model.Cards.Monster",
                 "@val": {
-                  "attackPoint": 0,
-                  "defensePoint": 0,
-                  "level": 1,
-                  "attribute": "LIGHT",
-                  "monsterType": "Machine",
+                  "attackPoint": 1000,
+                  "defensePoint": 1000,
+                  "level": 4,
+                  "attribute": "FIRE",
+                  "monsterType": "Warrior",
                   "cardType": "Effect",
-                  "name": "Scanner",
-                  "description": "\"Once per turn, you can select 1 of your opponent's monsters that is removed from play. Until the End Phase, this card's name is treated as the selected monster's name, and this card has the same Attribute, Level, ATK, and DEF as the selected monster. If this card is removed from the field while this effect is applied, remove it from play.\"",
+                  "name": "Command Knight",
+                  "description": "\"All Warrior-Type monsters you control gain 400 ATK. If you control another monster, monsters your opponent controls cannot target this card for an attack.\"",
                   "type": "Monster",
-                  "price": 8000
+                  "price": 2100
                 }
               },
-              1
+              3
             ],
             [
               {
@@ -1139,84 +1207,16 @@
               {
                 "@type": "Model.Cards.Monster",
                 "@val": {
-                  "attackPoint": 300,
-                  "defensePoint": 500,
-                  "level": 3,
-                  "attribute": "LIGHT",
-                  "monsterType": "Fairy",
-                  "cardType": "Effect",
-                  "name": "Marshmallon",
-                  "description": "\"Cannot be destroyed by battle. After damage calculation, if this card was attacked, and was face-down at the start of the Damage Step: The attacking player takes 1000 damage.\"",
-                  "type": "Monster",
-                  "price": 700
-                }
-              },
-              3
-            ],
-            [
-              {
-                "@type": "Model.Cards.Monster",
-                "@val": {
                   "attackPoint": 1800,
-                  "defensePoint": 1200,
+                  "defensePoint": 1500,
                   "level": 4,
-                  "attribute": "EARTH",
+                  "attribute": "DARK",
                   "monsterType": "Warrior",
-                  "cardType": "Effect",
-                  "name": "\"Terratiger, the Empowered Warrior\"",
-                  "description": "When this card is Normal Summoned: You can Special Summon 1 Level 4 or lower Normal Monster from your hand in Defense Position.",
-                  "type": "Monster",
-                  "price": 3200
-                }
-              },
-              3
-            ],
-            [
-              {
-                "@type": "Model.Cards.Monster",
-                "@val": {
-                  "attackPoint": 900,
-                  "defensePoint": 1000,
-                  "level": 3,
-                  "attribute": "FIRE",
-                  "monsterType": "Spellcaster",
                   "cardType": "Normal",
-                  "name": "Flame Manipulator",
-                  "description": "\"This Spellcaster attacks enemies with fire-related spells such as \"\"Sea of Flames\"\" and \"\"Wall of Fire\"\".\"",
+                  "name": "Dark Blade",
+                  "description": "\"They say he is a dragon-manipulating warrior from the dark world. His attack is tremendous, using his great swords with vicious power.\"",
                   "type": "Monster",
-                  "price": 1500
-                }
-              },
-              3
-            ],
-            [
-              {
-                "@type": "Model.Cards.Monster",
-                "@val": {
-                  "attackPoint": 2000,
-                  "defensePoint": 100,
-                  "level": 4,
-                  "attribute": "LIGHT",
-                  "monsterType": "Dragon",
-                  "cardType": "Normal",
-                  "name": "Alexandrite Dragon",
-                  "description": "\"Many of the czars' lost jewels can be found in the scales of this priceless dragon. Its creator remains a mystery, along with how they acquired the imperial treasures. But whosoever finds this dragon has hit the jackpot... whether they know it or not.\"",
-                  "type": "Monster",
-                  "price": 2600
-                }
-              },
-              3
-            ],
-            [
-              {
-                "@type": "Model.Cards.Spell",
-                "@val": {
-                  "icon": "Equip",
-                  "playedRound": 0,
-                  "name": "Black Pendant",
-                  "description": "The equipped monster gains 500 ATK. When this card is sent from the field to the Graveyard: Inflict 500 damage to your opponent.",
-                  "type": "Spell",
-                  "price": 4300
+                  "price": 3500
                 }
               },
               3
@@ -1336,24 +1336,6 @@
           {
             "@type": "Model.Cards.Monster",
             "@val": {
-              "attackPoint": 1800,
-              "defensePoint": 1200,
-              "level": 4,
-              "attribute": "EARTH",
-              "monsterType": "Warrior",
-              "cardType": "Effect",
-              "name": "\"Terratiger, the Empowered Warrior\"",
-              "description": "When this card is Normal Summoned: You can Special Summon 1 Level 4 or lower Normal Monster from your hand in Defense Position.",
-              "type": "Monster",
-              "price": 3200
-            }
-          },
-          3
-        ],
-        [
-          {
-            "@type": "Model.Cards.Monster",
-            "@val": {
               "attackPoint": 1700,
               "defensePoint": 1150,
               "level": 4,
@@ -1367,6 +1349,24 @@
             }
           },
           12
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1800,
+              "defensePoint": 1200,
+              "level": 4,
+              "attribute": "EARTH",
+              "monsterType": "Warrior",
+              "cardType": "Effect",
+              "name": "\"Terratiger, the Empowered Warrior\"",
+              "description": "When this card is Normal Summoned: You can Special Summon 1 Level 4 or lower Normal Monster from your hand in Defense Position.",
+              "type": "Monster",
+              "price": 3200
+            }
+          },
+          3
         ]
       ],
       "decks": [
@@ -1398,6 +1398,288 @@
         }
       ],
       "activeDeck": "@root.13.decks.0"
+    }
+  },
+  {
+    "@type": "Model.Player",
+    "@val": {
+      "username": "ai",
+      "password": "ai",
+      "nickname": "ai",
+      "score": 0,
+      "money": 5200,
+      "profile": 1,
+      "cards": [
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 600,
+              "defensePoint": 500,
+              "level": 2,
+              "attribute": "DARK",
+              "monsterType": "Spellcaster",
+              "cardType": "Normal",
+              "name": "Curtain of the dark ones",
+              "description": "\"A curtain that a spellcaster made, it is said to raise a dark power.\"",
+              "type": "Monster",
+              "price": 700
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 700,
+              "defensePoint": 1000,
+              "level": 3,
+              "attribute": "EARTH",
+              "monsterType": "Warrior",
+              "cardType": "Normal",
+              "name": "Battle warrior",
+              "description": "A warrior that fights with his bare hands!!!",
+              "type": "Monster",
+              "price": 1300
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1300,
+              "defensePoint": 1000,
+              "level": 4,
+              "attribute": "DARK",
+              "monsterType": "Fiend",
+              "cardType": "Normal",
+              "name": "Horn Imp",
+              "description": "\"A small fiend that dwells in the dark, its single horn makes it a formidable opponent.\"",
+              "type": "Monster",
+              "price": 2500
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1800,
+              "defensePoint": 1500,
+              "level": 4,
+              "attribute": "DARK",
+              "monsterType": "Warrior",
+              "cardType": "Normal",
+              "name": "Dark Blade",
+              "description": "\"They say he is a dragon-manipulating warrior from the dark world. His attack is tremendous, using his great swords with vicious power.\"",
+              "type": "Monster",
+              "price": 3500
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1700,
+              "defensePoint": 1000,
+              "level": 4,
+              "attribute": "EARTH",
+              "monsterType": "Beast-Warrior",
+              "cardType": "Normal",
+              "name": "Battle OX",
+              "description": "\"A monster with tremendous power, it destroys enemies with a swing of its axe.\"",
+              "type": "Monster",
+              "price": 2900
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1200,
+              "defensePoint": 700,
+              "level": 3,
+              "attribute": "WIND",
+              "monsterType": "Dragon",
+              "cardType": "Normal",
+              "name": "Baby dragon",
+              "description": "\"Much more than just a child, this dragon is gifted with untapped power.\"",
+              "type": "Monster",
+              "price": 1600
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 200,
+              "defensePoint": 2000,
+              "level": 2,
+              "attribute": "EARTH",
+              "monsterType": "Cyberse",
+              "cardType": "Normal",
+              "name": "Bitron",
+              "description": "A new species found in electronic space. There's not much information on it.",
+              "type": "Monster",
+              "price": 1000
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 2000,
+              "defensePoint": 100,
+              "level": 4,
+              "attribute": "LIGHT",
+              "monsterType": "Dragon",
+              "cardType": "Normal",
+              "name": "Alexandrite Dragon",
+              "description": "\"Many of the czars' lost jewels can be found in the scales of this priceless dragon. Its creator remains a mystery, along with how they acquired the imperial treasures. But whosoever finds this dragon has hit the jackpot... whether they know it or not.\"",
+              "type": "Monster",
+              "price": 2600
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1700,
+              "defensePoint": 1150,
+              "level": 4,
+              "attribute": "EARTH",
+              "monsterType": "Warrior",
+              "cardType": "Normal",
+              "name": "Axe Raider",
+              "description": "An axe-wielding monster of tremendous strength and agility.",
+              "type": "Monster",
+              "price": 3100
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Spell",
+            "@val": {
+              "icon": "Ritual",
+              "playedRound": 0,
+              "name": "Advanced Ritual Art",
+              "description": "This card can be used to Ritual Summon any 1 Ritual Monster. You must also send Normal Monsters from your Deck to the Graveyard whose total Levels equal the Level of that Ritual Monster.",
+              "type": "Spell",
+              "price": 3000
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1000,
+              "defensePoint": 1000,
+              "level": 4,
+              "attribute": "FIRE",
+              "monsterType": "Warrior",
+              "cardType": "Effect",
+              "name": "Command Knight",
+              "description": "\"All Warrior-Type monsters you control gain 400 ATK. If you control another monster, monsters your opponent controls cannot target this card for an attack.\"",
+              "type": "Monster",
+              "price": 2100
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Trap",
+            "@val": {
+              "trapType": "Unlimited",
+              "icon": "Continuous",
+              "name": "Call of The Haunted",
+              "description": "\"Activate this card by targeting 1 monster in your GY; Special Summon that target in Attack Position. When this card leaves the field, destroy that monster. When that monster is destroyed, destroy this card.\"",
+              "type": "Trap",
+              "price": 3500
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 1800,
+              "defensePoint": 1200,
+              "level": 4,
+              "attribute": "EARTH",
+              "monsterType": "Warrior",
+              "cardType": "Effect",
+              "name": "\"Terratiger, the Empowered Warrior\"",
+              "description": "When this card is Normal Summoned: You can Special Summon 1 Level 4 or lower Normal Monster from your hand in Defense Position.",
+              "type": "Monster",
+              "price": 3200
+            }
+          },
+          0
+        ],
+        [
+          {
+            "@type": "Model.Cards.Monster",
+            "@val": {
+              "attackPoint": 500,
+              "defensePoint": 500,
+              "level": 2,
+              "attribute": "EARTH",
+              "monsterType": "Rock",
+              "cardType": "Normal",
+              "name": "Haniwa",
+              "description": "An earthen figure that protects the tomb of an ancient ruler.",
+              "type": "Monster",
+              "price": 600
+            }
+          },
+          0
+        ]
+      ],
+      "decks": [
+        {
+          "mainDeck": {
+            "@root.14.cards.0-key": 3,
+            "@root.14.cards.1-key": 3,
+            "@root.14.cards.2-key": 3,
+            "@root.14.cards.3-key": 3,
+            "@root.14.cards.4-key": 3,
+            "@root.14.cards.5-key": 3,
+            "@root.14.cards.6-key": 3,
+            "@root.14.cards.7-key": 3,
+            "@root.14.cards.8-key": 3,
+            "@root.14.cards.9-key": 3,
+            "@root.14.cards.10-key": 3,
+            "@root.14.cards.11-key": 3,
+            "@root.14.cards.12-key": 3,
+            "@root.14.cards.13-key": 3
+          },
+          "sideDeck": {},
+          "deckIsValid": false,
+          "deckName": "mydeck",
+          "playerName": "ai"
+        }
+      ],
+      "activeDeck": "@root.14.decks.0"
     }
   }
 ]
