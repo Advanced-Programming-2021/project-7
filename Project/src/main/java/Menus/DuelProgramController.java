@@ -4,23 +4,16 @@ import Model.Cards.*;
 import Model.CommonTools;
 import Model.Deck;
 import Model.Player;
-import View.CardView;
-import javafx.beans.Observable;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.NumberBinding;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.value.ObservableDoubleValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -67,8 +60,12 @@ public class DuelProgramController {
     private int isGameStart = 2;
     private boolean messengerChecked = false;
     private int isAI = 0;
+    private boolean controlPressed = false;
+    private boolean shiftPressed = false;
+    private boolean cPressed = false;
 
     @FXML
+    public BorderPane myBorderPane;
     public GridPane enemyGrid;
     public GridPane myGrid;
     public ImageView selectedCardShow;
@@ -105,6 +102,39 @@ public class DuelProgramController {
         myGrid.setHgap(44);
         myGrid.setVgap(30);
         setField();
+        makeCheatMenu();
+    }
+
+    public void makeCheatMenu() {
+        myBorderPane.setOnKeyPressed(keyEvent -> {
+            System.out.println(keyEvent.getCode());
+            switch (keyEvent.getCode()) {
+                case CONTROL:
+                    controlPressed = true;
+                    break;
+                case SHIFT:
+                    shiftPressed = true;
+                    break;
+                case C:
+                    cPressed = true;
+                    break;
+                default:
+                    controlPressed = false;
+                    shiftPressed = false;
+                    cPressed = false;
+                    break;
+            }
+            if (controlPressed && shiftPressed && cPressed) {
+                controlPressed = false;
+                shiftPressed = false;
+                cPressed = false;
+                try {
+                    new CheatMenu().start(new Stage());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public void setField() {
