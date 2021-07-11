@@ -1,6 +1,7 @@
 package Controller;
 
 import Menus.DuelProgramController;
+import Model.Sound;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -21,6 +22,7 @@ public class CheatMenuController {
     private Label commandLabel;
 
     public void submit(ActionEvent event) {
+        Sound.getSoundByName("button").playSoundOnce();
         String command = commandField.getText();
         if (command.matches("^increase --LP (\\d+)$")) duelProgramController.increasePlayerLPCheat(command);
         else if (command.matches("^duel set-winner \\S+$")) duelProgramController.setWinnerCheat(command);

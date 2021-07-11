@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Player;
+import Model.Sound;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,18 +54,21 @@ public class ProfileMenuController {
     }
 
     public void changePassword(ActionEvent event) throws IOException {
+        Sound.getSoundByName("button").playSoundOnce();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/change_password_view.fxml"));
         root = loader.load();
         makeStage(event);
     }
 
     public void changeNickname(ActionEvent event) throws IOException {
+        Sound.getSoundByName("button").playSoundOnce();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/change_nickname_view.fxml"));
         root = loader.load();
         makeStage(event);
     }
 
     public void changeProfile(ActionEvent event) throws IOException {
+        Sound.getSoundByName("button").playSoundOnce();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/change_profile_view.fxml"));
         root = loader.load();
         RegisterProfileController registerProfileController = loader.getController();
@@ -82,6 +86,7 @@ public class ProfileMenuController {
     }
 
     public void back(ActionEvent event) throws IOException {
+        Sound.getSoundByName("button").playSoundOnce();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_menu_view.fxml"));
         root = loader.load();
         makeStage(event);

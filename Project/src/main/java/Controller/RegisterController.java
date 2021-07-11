@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Player;
+import Model.Sound;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +29,7 @@ public class RegisterController {
     private AnchorPane root;
 
     public void registerAction(ActionEvent event) throws IOException {
+        Sound.getSoundByName("button").playSoundOnce();
         String username = usernameTextField.getText();
         String password = passwordTextField.getText();
         String nickname = nicknameTextField.getText();
@@ -60,6 +62,7 @@ public class RegisterController {
     }
 
     public void back(ActionEvent event) throws IOException {
+        Sound.getSoundByName("button").playSoundOnce();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_program_view.fxml"));
         root = loader.load();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

@@ -2,6 +2,7 @@ package Controller;
 
 import Model.FileHandler;
 import Model.Player;
+import Model.Sound;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -146,6 +147,7 @@ public class RegisterProfileController {
     }
 
     public void select(ActionEvent event) throws IOException {
+        Sound.getSoundByName("button").playSoundOnce();
         if (mainProfile.isVisible() == false) {
             commandLabel.setText("You have not selected any picture!");
             return;

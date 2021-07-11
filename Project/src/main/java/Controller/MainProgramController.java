@@ -1,21 +1,17 @@
 package Controller;
 
+import Model.Sound;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class MainProgramController {
     @FXML
@@ -26,6 +22,7 @@ public class MainProgramController {
     private AnchorPane root;
 
     public void exitGame(ActionEvent event) {
+        Sound.getSoundByName("button").playSoundOnce();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Exit Game");
         alert.setHeaderText("You're about to close the game");
@@ -37,6 +34,7 @@ public class MainProgramController {
     }
 
     public void login(ActionEvent event) throws IOException {
+        Sound.getSoundByName("button").playSoundOnce();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/login_view.fxml"));
         root = loader. load();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -46,6 +44,7 @@ public class MainProgramController {
     }
 
     public void register(ActionEvent event) throws IOException {
+        Sound.getSoundByName("button").playSoundOnce();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/register_view.fxml"));
         root = loader.load();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

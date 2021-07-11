@@ -2,6 +2,7 @@ package Controller;
 
 import Menus.DeckMenu;
 import Model.Player;
+import Model.Sound;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -17,6 +18,7 @@ public class MainMenuController {
     private AnchorPane root;
 
     public void scoreboard(ActionEvent event) throws IOException {
+        Sound.getSoundByName("button").playSoundOnce();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/score_board_view.fxml"));
         root = loader.load();
         ScoreboardController scoreboardController = loader.getController();
@@ -25,6 +27,7 @@ public class MainMenuController {
     }
 
     public void shop(ActionEvent event) throws IOException {
+        Sound.getSoundByName("button").playSoundOnce();
         Shop shop = new Shop();
         try {
             shop.run(Player.getActivePlayer().getUsername());
@@ -34,12 +37,14 @@ public class MainMenuController {
     }
 
     public void logout(ActionEvent event) throws IOException {
+        Sound.getSoundByName("button").playSoundOnce();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_program_view.fxml"));
         root = loader.load();
         makeStage(event);
     }
 
     public void makeStage(ActionEvent event) {
+        Sound.getSoundByName("button").playSoundOnce();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -47,18 +52,21 @@ public class MainMenuController {
     }
 
     public void newDuel(ActionEvent event) throws IOException {
+        Sound.getSoundByName("button").playSoundOnce();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/duel_menu_view.fxml"));
         root = loader.load();
         makeStage(event);
     }
 
     public void importMenu(ActionEvent event) throws  IOException {
+        Sound.getSoundByName("button").playSoundOnce();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/import_menu_view.fxml"));
         root = loader.load();
         makeStage(event);
     }
 
     public void profile(ActionEvent event) throws IOException {
+        Sound.getSoundByName("button").playSoundOnce();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/profile_menu_view.fxml"));
         root = loader.load();
         ProfileMenuController profileMenuController = loader.getController();
@@ -67,6 +75,7 @@ public class MainMenuController {
     }
 
     public void deck(){
+        Sound.getSoundByName("button").playSoundOnce();
         DeckMenu deckMenu = new DeckMenu();
         try {
             deckMenu.run(Player.getActivePlayer().getUsername());

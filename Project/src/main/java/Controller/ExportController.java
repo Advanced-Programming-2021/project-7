@@ -1,6 +1,7 @@
 package Controller;
 
 import Menus.ImportExportMenu;
+import Model.Sound;
 import View.CardView;
 import View.ItemController;
 import javafx.event.ActionEvent;
@@ -83,11 +84,13 @@ public class ExportController{
     }
 
     public void export(ActionEvent event) {
+        Sound.getSoundByName("button").playSoundOnce();
         new ImportExportMenu().exportCard("export card " + card.name);
         JOptionPane.showMessageDialog(null, "card exported successfully");
     }
 
     public void back(ActionEvent event) throws IOException {
+        Sound.getSoundByName("button").playSoundOnce();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/import_menu_view.fxml"));
         root = loader.load();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

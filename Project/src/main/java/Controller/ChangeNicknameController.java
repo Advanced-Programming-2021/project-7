@@ -2,6 +2,7 @@ package Controller;
 
 import Model.FileHandler;
 import Model.Player;
+import Model.Sound;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +27,7 @@ public class ChangeNicknameController {
     private Label commandLabel;
 
     public void change(ActionEvent event) throws IOException {
+        Sound.getSoundByName("button").playSoundOnce();
         String nickname = nicknameField.getText();
         if (nickname.equals("")) {
             commandLabel.setText("You have not entered your new nickname!");
@@ -41,6 +43,7 @@ public class ChangeNicknameController {
     }
 
     public void back(ActionEvent event) throws IOException {
+        Sound.getSoundByName("button").playSoundOnce();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/profile_menu_view.fxml"));
         root = loader.load();
         ProfileMenuController profileMenuController = loader.getController();

@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Sound;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -15,18 +16,21 @@ public class ImportMenuController {
     private AnchorPane root;
 
     public void back(ActionEvent event) throws IOException {
+        Sound.getSoundByName("button").playSoundOnce();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_menu_view.fxml"));
         root = loader.load();
         makeStage(event);
     }
 
     public void importCard(ActionEvent event) throws IOException {
+        Sound.getSoundByName("button").playSoundOnce();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/import_view.fxml"));
         root = loader.load();
         makeStage(event);
     }
 
     public void exportCard(ActionEvent event) throws IOException {
+        Sound.getSoundByName("button").playSoundOnce();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/export_view.fxml"));
         root = loader.load();
         makeStage(event);

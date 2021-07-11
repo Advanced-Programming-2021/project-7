@@ -2,6 +2,7 @@ package Controller;
 
 import Menus.RockPaperScissors;
 import Model.Player;
+import Model.Sound;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -21,12 +22,14 @@ public class DuelMenuController {
     private Parent root;
 
     public void newRound(ActionEvent event) throws Exception {
+        Sound.getSoundByName("button").playSoundOnce();
         if (!getSecondPlayerName()) return;
         RockPaperScissors rockPaperScissors = new RockPaperScissors();
         rockPaperScissors.run(firstPlayer, secondPlayer);
     }
 
     public void newMatch(ActionEvent event) throws Exception {
+        Sound.getSoundByName("button").playSoundOnce();
         if (!getSecondPlayerName()) return;
         RockPaperScissors rockPaperScissors = new RockPaperScissors();
         rockPaperScissors.run(firstPlayer, secondPlayer);
@@ -62,6 +65,7 @@ public class DuelMenuController {
     }
 
     public void back(ActionEvent event) throws IOException {
+        Sound.getSoundByName("button").playSoundOnce();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_menu_view.fxml"));
         root = loader.load();
         makeStage(event);
