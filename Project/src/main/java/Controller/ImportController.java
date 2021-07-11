@@ -9,21 +9,19 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ImportMenuController {
+public class ImportController {
     private Stage stage;
     private Scene scene;
     private AnchorPane root;
 
     public void back(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_menu_view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/import_menu_view.fxml"));
         root = loader.load();
         makeStage(event);
     }
 
     public void importCard(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/import_view.fxml"));
-        root = loader.load();
-        makeStage(event);
+
     }
 
     public void makeStage(ActionEvent event) {

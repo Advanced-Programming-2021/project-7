@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700" prefWidth="1200" styleClass="import-menu-back" stylesheets="@../CSS/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ImportController">
+    <children>
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="378.0" layoutY="621.0" mnemonicParsing="false" onAction="#back" prefHeight="51.0" prefWidth="417.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Back" textAlignment="CENTER" textFill="#ddd78a">
+            <font>
+                <Font name="Algerian" size="22.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="378.0" layoutY="547.0" mnemonicParsing="false" onAction="#importCard" prefHeight="51.0" prefWidth="417.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Import" textAlignment="CENTER" textFill="#ddd78a">
+            <font>
+                <Font name="Algerian" size="22.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+    </children>
+</AnchorPane>
