@@ -29,6 +29,7 @@ public class ImportMenuController {
     public void makeStage(ActionEvent event) {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
+        ImportController.root = root;
         stage.setScene(scene);
         stage.show();
     }

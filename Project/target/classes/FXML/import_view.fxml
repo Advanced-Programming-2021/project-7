@@ -23,5 +23,10 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
+        <Label fx:id="commandLabel" alignment="CENTER" layoutX="325.0" layoutY="29.0" prefHeight="35.0" prefWidth="523.0" text="" textFill="#ddd78a">
+            <font>
+                <Font name="Gabriola" size="26.0" />
+            </font>
+        </Label>
     </children>
 </AnchorPane>
