@@ -143,7 +143,8 @@ public class DuelProgramController {
     }
 
     public void setField() {
-        if (isRoundOver()) gameOver(1);
+        if (isGameOver(round)) gameOver(round);
+        if (isRoundOver()) roundOver(turn);
         if (phase == Phase.standby && !messengerChecked) {
             keepMessengerOfPeace();
             messengerChecked = true;
@@ -436,9 +437,13 @@ public class DuelProgramController {
     }
 
     private boolean isGameOver(int round) {
-        if (round < 3) return false;
-        if (gameDecks.get(0).getWinRounds() > 1) return true;
-        if (gameDecks.get(1).getWinRounds() > 1) return true;
+        if (round == 3) {
+            if (gameDecks.get(0).getWinRounds() > 1) return true;
+            if (gameDecks.get(1).getWinRounds() > 1) return true;
+        } else {
+            if (gameDecks.get(0).getWinRounds() == 1) return true;
+            if (gameDecks.get(1).getWinRounds() == 1) return true;
+        }
         return false;
     }
 
