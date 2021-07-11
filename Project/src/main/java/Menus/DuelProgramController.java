@@ -1353,6 +1353,7 @@ public class DuelProgramController {
         int amountOfLP = Integer.parseInt(matcher.group(1));
         GameDeck myDeck = gameDecks.get(turn);
         myDeck.increaseLP(amountOfLP);
+        setField();
     }
 
     public void setWinnerCheat(String command) {
@@ -1364,6 +1365,7 @@ public class DuelProgramController {
         } else if (gameDecks.get(1).getPlayerNickName().equals(playerNickname)) {
             surrender(0);
         } else System.out.println("There is no player with this nickname!");
+        setField();
     }
 
     private void roundOver(int turn) { // 0 : firstPlayer losses , 1 : secondPlayer losses
@@ -1463,6 +1465,7 @@ public class DuelProgramController {
         if (deck.size() == 0) return;
         isCardDrawn = 1;
         gameDecks.get(turn).drawCard();
+        setField();
     }
 
     private void changePhase() {
