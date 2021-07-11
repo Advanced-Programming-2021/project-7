@@ -1,5 +1,6 @@
 package Menus;
 
+import Controller.CheatMenuController;
 import Model.Cards.*;
 import Model.CommonTools;
 import Model.Deck;
@@ -107,7 +108,6 @@ public class DuelProgramController {
 
     public void makeCheatMenu() {
         myBorderPane.setOnKeyPressed(keyEvent -> {
-            System.out.println(keyEvent.getCode());
             switch (keyEvent.getCode()) {
                 case CONTROL:
                     controlPressed = true;
@@ -128,6 +128,7 @@ public class DuelProgramController {
                 controlPressed = false;
                 shiftPressed = false;
                 cPressed = false;
+                CheatMenuController.setDuelProgramController(this);
                 try {
                     new CheatMenu().start(new Stage());
                 } catch (Exception e) {
@@ -1363,7 +1364,7 @@ public class DuelProgramController {
         gameDecks.get(changeTurn(turn)).increaseWinRounds();
     }
 
-    private void increasePlayerLPCheat(String command) {
+    public void increasePlayerLPCheat(String command) {
         Matcher matcher = CommonTools.getMatcher(command, "^increase --LP (\\d+)$");
         matcher.find();
         int amountOfLP = Integer.parseInt(matcher.group(1));
@@ -1371,7 +1372,7 @@ public class DuelProgramController {
         myDeck.increaseLP(amountOfLP);
     }
 
-    private void setWinnerCheat(String command) {
+    public void setWinnerCheat(String command) {
         Matcher matcher = CommonTools.getMatcher(command, "^duel set-winner (\\S+)$");
         matcher.find();
         String playerNickname = matcher.group(1);
@@ -1474,7 +1475,7 @@ public class DuelProgramController {
         gameDecks.get(turn).drawCard();
     }
 
-    private void inHandCardCheat() {
+    public void inHandCardCheat() {
         ArrayList<Card> deck = gameDecks.get(turn).getDeck();
         if (deck.size() == 0) return;
         isCardDrawn = 1;

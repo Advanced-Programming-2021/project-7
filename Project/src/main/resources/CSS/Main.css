@@ -118,6 +118,13 @@
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
 }
 
+.cheat-menu-back {
+    -fx-background-image: url("../Images/CheatBack.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 600 600;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
+
 .game-board{
     -fx-background-image: url("../Images/Field/fie_normal.bmp");
     -fx-background-repeat: no-repeat;
