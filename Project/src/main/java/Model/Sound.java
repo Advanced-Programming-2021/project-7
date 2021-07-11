@@ -13,6 +13,7 @@ public class Sound {
 
     public Sound(String path, String name) {
         this.sound = new AudioClip(getClass().getResource(path).toExternalForm());
+        this.sound.setVolume(0.1);
         this.soundName = name;
         sounds.add(this);
     }
