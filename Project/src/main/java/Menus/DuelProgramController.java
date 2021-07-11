@@ -198,7 +198,7 @@ public class DuelProgramController {
                     public void handle(MouseEvent mouseEvent) {
                         JOptionPane.showMessageDialog(null, selectSpell(finalI + 1));
                         if (phase != Phase.battle && finalI1 == 1) {
-                            if (gameDecks.get(turn).getSpellZones().get(finalI).getCurrentCard().getType().equals("Spell")) {
+                            if (gameDecks.get(turn).getSpellZones().get(finalI + 1).getCurrentCard().getType().equals("Spell")) {
                                 activateSpellErrorCheck();
                             } else {
                                 activateTrap();
