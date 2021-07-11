@@ -5,6 +5,7 @@ import Model.Cards.*;
 import Model.CommonTools;
 import Model.Deck;
 import Model.Player;
+import Model.Sound;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
@@ -688,6 +689,7 @@ public class DuelProgramController {
             deselect();
         } else if (selectedMonster.getLevel() == 5 || selectedMonster.getLevel() == 6) summonWithOneTribute(position);
         else if (selectedMonster.getLevel() == 7 || selectedMonster.getLevel() == 8) summonWithTwoTribute(position);
+        Sound.getSoundByName("set").playSoundOnce();
         return "summoned successfully";
     }
 
@@ -718,6 +720,7 @@ public class DuelProgramController {
             System.out.println("there no monsters on this address");
             return;
         }
+        Sound.getSoundByName("set").playSoundOnce();
         System.out.println("summoned successfully");
         isSummoned = 1;
         gameDecks.get(turn).tributeCardFromMonsterZone(monsterZonePosition);
@@ -781,6 +784,7 @@ public class DuelProgramController {
             System.out.println("there are no monsters on one of this addresses");
             return;
         }
+        Sound.getSoundByName("set").playSoundOnce();
         System.out.println("summoned successfully");
         isSummoned = 1;
         gameDecks.get(turn).tributeCardFromMonsterZone(firstMonster);
@@ -825,6 +829,7 @@ public class DuelProgramController {
         isSummoned = 1;
         activateOrDeactivateFieldCardForAll(1);
         deselect();
+        Sound.getSoundByName("set").playSoundOnce();
         return "set successfully";
     }
 
@@ -956,6 +961,7 @@ public class DuelProgramController {
             return "there is no card to attack here";
         } else {
             if (!checkTrap()) {
+                Sound.getSoundByName("attack").playSoundOnce();
                 enemyGrid.getChildren().remove(attackSign);
                 gameDecks.get(turn).getMonsterZones().get(selectedCardIndex).attack();
                 if (enemyDeck.getMonsterZones().get(selectDefender).getStatus().equals("OO")) {
@@ -1244,6 +1250,7 @@ public class DuelProgramController {
             }
             gameDecks.get(turn).getInHandCards().remove(selectedCardIndex - 1);
             deselect();
+            Sound.getSoundByName("set").playSoundOnce();
             return "set successfully";
         }
     }
@@ -1275,6 +1282,7 @@ public class DuelProgramController {
             }
             gameDecks.get(turn).getInHandCards().remove(selectedCardIndex - 1);
             deselect();
+            Sound.getSoundByName("set").playSoundOnce();
             return "set successfully";
         }
     }
