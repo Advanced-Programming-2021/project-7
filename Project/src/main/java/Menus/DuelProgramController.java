@@ -95,13 +95,11 @@ public class DuelProgramController {
 
     @FXML
     public void initialize() {
-        firstPlayer = "Mohsen";
-        secondPlayer = "Mohsen";
         attackSign = new Circle(20);
         attackSign.setFill(new ImagePattern(new Image("/Images/Attack.png")));
         inHandCards.setSpacing(20);
         enemyHand.setSpacing(20);
-        setGameDecks("Mohsen", "Mohsen");
+        setGameDecks(firstPlayer, secondPlayer);
         for (int j = 0; j < 5; j++) {
             gameDecks.get(turn).drawCard();
             gameDecks.get(changeTurn(turn)).drawCard();

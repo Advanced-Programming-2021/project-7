@@ -154,13 +154,13 @@ public class RockPaperScissors extends Application {
             stage.show();
             button.setOnAction(actionEvent -> {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/game_board.fxml"));
+                DuelProgramController.firstPlayer = firstPlayer;
+                DuelProgramController.secondPlayer = secondPlayer;
                 try {
                     root = loader.load();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                DuelProgramController.firstPlayer = firstPlayer;
-                DuelProgramController.secondPlayer = secondPlayer;
                 makeStage();
             });
         } else if (secondPlayerChoice.equals("paper") && firstPlayerChoice.equals("rock") ||
@@ -173,13 +173,13 @@ public class RockPaperScissors extends Application {
             stage.setScene(scene);
             stage.show();
             button.setOnAction(actionEvent -> {
+                DuelProgramController.firstPlayer = secondPlayer;
+                DuelProgramController.secondPlayer = firstPlayer;
                 try {
                     root = FXMLLoader.load(getClass().getResource("/FXML/game_board.fxml"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                DuelProgramController.firstPlayer = secondPlayer;
-                DuelProgramController.secondPlayer = firstPlayer;
                 makeStage();
             });
         } else {
