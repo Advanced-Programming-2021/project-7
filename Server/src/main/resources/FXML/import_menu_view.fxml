@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700" prefWidth="1200" styleClass="import-menu-back" stylesheets="@../CSS/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ImportMenuController">
+    <children>
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="133.0" layoutY="450.0" mnemonicParsing="false" onAction="#importCard" prefHeight="51.0" prefWidth="417.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Import card" textAlignment="CENTER" textFill="#ddd78a">
+            <font>
+                <Font name="Algerian" size="22.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="650" layoutY="450" mnemonicParsing="false" onAction="#exportCard" prefHeight="51.0" prefWidth="417.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="export card" textAlignment="CENTER" textFill="#ddd78a">
+            <font>
+                <Font name="Algerian" size="22.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="378.0" layoutY="530.0" mnemonicParsing="false" onAction="#back" prefHeight="51.0" prefWidth="417.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Back" textAlignment="CENTER" textFill="#ddd78a">
+            <font>
+                <Font name="Algerian" size="22.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="378.0" layoutY="370.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="417.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Create new card" textAlignment="CENTER" textFill="#ddd78a">
+            <font>
+                <Font name="Algerian" size="22.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+    </children>
+</AnchorPane>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700" prefWidth="1200" styleClass="import-menu-back" stylesheets="@../CSS/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ImportController">
+    <children>
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="378.0" layoutY="621.0" mnemonicParsing="false" onAction="#back" prefHeight="51.0" prefWidth="417.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Back" textAlignment="CENTER" textFill="#ddd78a">
+            <font>
+                <Font name="Algerian" size="22.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="378.0" layoutY="547.0" mnemonicParsing="false" onAction="#importCard" prefHeight="51.0" prefWidth="417.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Import" textAlignment="CENTER" textFill="#ddd78a">
+            <font>
+                <Font name="Algerian" size="22.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Label fx:id="commandLabel" alignment="CENTER" layoutX="325.0" layoutY="29.0" prefHeight="35.0" prefWidth="523.0" text="" textFill="#ddd78a">
+            <font>
+                <Font name="Gabriola" size="26.0" />
+            </font>
+        </Label>
+        <Label fx:id="one" alignment="CENTER_LEFT" layoutX="606.0" layoutY="50.0" prefHeight="35.0" prefWidth="523.0" text="" textFill="#ddd78a">
+            <font>
+                <Font name="Gabriola" size="26.0" />
+            </font>
+        </Label>
+        <Label fx:id="two" alignment="CENTER_LEFT" layoutX="606.0" layoutY="100.0" prefHeight="35.0" prefWidth="523.0" text="" textFill="#ddd78a">
+            <font>
+                <Font name="Gabriola" size="26.0" />
+            </font>
+        </Label>
+        <Label fx:id="three" alignment="CENTER_LEFT" layoutX="606.0" layoutY="150.0" prefHeight="35.0" prefWidth="523.0" text="" textFill="#ddd78a">
+            <font>
+                <Font name="Gabriola" size="26.0" />
+            </font>
+        </Label>
+        <Label fx:id="four" alignment="CENTER_LEFT" layoutX="606.0" layoutY="200.0" prefHeight="35.0" prefWidth="523.0" text="" textFill="#ddd78a">
+            <font>
+                <Font name="Gabriola" size="26.0" />
+            </font>
+        </Label>
+        <Label fx:id="five" alignment="CENTER_LEFT" layoutX="606.0" layoutY="250.0" prefHeight="35.0" prefWidth="523.0" text="" textFill="#ddd78a">
+            <font>
+                <Font name="Gabriola" size="26.0" />
+            </font>
+        </Label>
+        <Label fx:id="six" alignment="CENTER_LEFT" layoutX="606.0" layoutY="300.0" prefHeight="35.0" prefWidth="523.0" text="" textFill="#ddd78a">
+            <font>
+                <Font name="Gabriola" size="26.0" />
+            </font>
+        </Label>
+        <Label fx:id="seven" alignment="CENTER_LEFT" layoutX="606.0" layoutY="350.0" prefHeight="35.0" prefWidth="523.0" text="" textFill="#ddd78a">
+            <font>
+                <Font name="Gabriola" size="26.0" />
+            </font>
+        </Label>
+        <Label fx:id="eight" alignment="CENTER_LEFT" layoutX="606.0" layoutY="400.0" prefHeight="35.0" prefWidth="523.0" text="" textFill="#ddd78a">
+            <font>
+                <Font name="Gabriola" size="26.0" />
+            </font>
+        </Label>
+
+    </children>
+</AnchorPane>

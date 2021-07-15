@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Controller/Shop.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Menus/DeckMenu.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Menus/DuelProgramController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Menus/GameDeck.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Menus/LoginMenu.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Menus/MainMenu.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Menus/PlayMenu.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Menus/Profile.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Menus/Scoreboard.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Model/Cards/Card.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

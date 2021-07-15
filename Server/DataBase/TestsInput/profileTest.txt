@@ -1,0 +1,12 @@
+user login --password ramz --username ali
+menu enter profile
+menu show-current
+menu enter deck
+profile change --nickname jenab
+profile change --nickname ali2
+profile change --password --current ramz1 --new ramz
+profile change --password --current ramz --new ramz
+profile change --password --current ramz --new ramz1
+menu exit
+menu exit
+menu exit

@@ -1,0 +1,10 @@
+user logged in successfully!
+profile
+menu navigation is not possible
+user with nickname jenab already exists
+nickname changed successfully!
+current password is invalid
+please enter a new password
+password changed successfully!
+user logged out successfully!
+GoodBye

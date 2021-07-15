@@ -1,0 +1,7 @@
+user logged in successfully!
+Welcome to Shop
+menu navigation is not possible
+there is no card with this name
+Card bought!
+user logged out successfully!
+GoodBye

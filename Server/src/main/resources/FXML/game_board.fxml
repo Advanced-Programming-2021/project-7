@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="myBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1043.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Menus.DuelProgramController">
+    <left>
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="281.0" styleClass="wall" stylesheets="@../CSS/Main.css" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fx:id="selectedCardShow" fitHeight="428.0" fitWidth="283.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true" />
+                <Button fx:id="nextPhaseButton" layoutX="14.0" layoutY="589.0" text="next phase" />
+                <Label fx:id="enemyName" alignment="CENTER_RIGHT" layoutX="79.0" layoutY="38.0" onMouseClicked="#directAttack" prefHeight="46.0" prefWidth="190.0" style="-fx-cursor: Hand" text="Label" textFill="#1fba1d">
+                    <font>
+                        <Font name="Gabriola" size="32.0" />
+                    </font>
+                </Label>
+                <Label fx:id="myName" alignment="CENTER_RIGHT" layoutX="98.0" layoutY="714.0" prefHeight="46.0" prefWidth="174.0" text="Label" textFill="#239721">
+                    <font>
+                        <Font name="Gabriola" size="32.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="enemyProfile" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="123.0" stroke="BLACK" strokeType="INSIDE" width="123.0" />
+                <Rectangle fx:id="myProfile" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="123.0" layoutY="675.0" stroke="BLACK" strokeType="INSIDE" width="123.0" />
+            </children>
+        </AnchorPane>
+    </left>
+    <center>
+        <AnchorPane fx:id="field" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="761.0" styleClass="game-board" stylesheets="@../CSS/Main.css" BorderPane.alignment="CENTER">
+            <children>
+                <GridPane fx:id="myGrid" layoutX="153.0" layoutY="148.0" prefHeight="221.0" prefWidth="449.0">
+
+                </GridPane>
+                <GridPane fx:id="enemyGrid" layoutX="153.0" layoutY="436.0" prefHeight="221.0" prefWidth="449.0" />
+                <HBox fx:id="enemyHand" layoutX="115.0" layoutY="17.0" prefHeight="100.0" prefWidth="524.0" />
+                <HBox fx:id="inHandCards" layoutX="127.0" layoutY="691.0" prefHeight="100.0" prefWidth="524.0" />
+                <ImageView fx:id="myGrave" fitHeight="108.0" fitWidth="71.0" layoutX="44.0" layoutY="420.0" onMouseClicked="#showMyGrave" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: Hand" />
+                <ImageView fx:id="enemyGrave" fitHeight="108.0" fitWidth="71.0" layoutX="675.0" layoutY="277.0" onMouseClicked="#showEnemyGrave" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: Hand" />
+            <ImageView fx:id="myField" fitHeight="108.0" fitWidth="71.0" layoutX="44.0" layoutY="566.0" onMouseClicked="#showMyGrave" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: Hand" />
+            <ImageView fx:id="enemyFiled" fitHeight="108.0" fitWidth="71.0" layoutX="675.0" layoutY="124.0" onMouseClicked="#showMyGrave" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: Hand" />
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>
