@@ -4,7 +4,7 @@ import Model.Player;
 
 public class RegisterController {
 
-    public static String register(String username, String nickname, String password) {
+    public static synchronized String register(String username, String nickname, String password) {
         if (username.equals("")) {
             return "You have not entered your username!";
         }

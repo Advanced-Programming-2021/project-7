@@ -72,7 +72,7 @@ public class ProfileMenuController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/change_profile_view.fxml"));
         root = loader.load();
         RegisterProfileController registerProfileController = loader.getController();
-        registerProfileController.show(root, Player.getActivePlayer());
+//        registerProfileController.show(root, Player.getActivePlayer());
         makeStage(event);
     }
 

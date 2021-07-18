@@ -24,7 +24,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.Socket;
 import java.util.HashMap;
 
 
@@ -43,6 +46,10 @@ public class RegisterProfileController {
     @FXML
     private Label commandLabel;
 
+    private static Socket socket;
+    private static DataInputStream dataInputStream;
+    private static DataOutputStream dataOutputStream;
+
     {
         mainProfile.setWidth(350);
         mainProfile.setHeight(350);
@@ -52,6 +59,19 @@ public class RegisterProfileController {
         mainProfile.setStroke(Color.BLACK);
         mainProfile.setStrokeWidth(2);
         makeMainProfileEffect(mainProfile);
+    }
+
+    public static void initializeNetwork() {
+        try {
+            socket = new Socket("localhost", 7755);
+            dataInputStream = new DataInputStream(socket.getInputStream());
+            dataOutputStream = new DataOutputStream(socket.getOutputStream());
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Network");
+            alert.setHeaderText("You have not connected to any server!");
+            alert.showAndWait();
+        }
     }
 
     public void makeProfiles() {
@@ -152,9 +172,16 @@ public class RegisterProfileController {
             commandLabel.setText("You have not selected any picture!");
             return;
         }
-        commandLabel.setText("User created successfully!");
-        createdPlayer.setProfile(counter);
-        FileHandler.updatePlayers();
+        String result = "";
+        try {
+            dataOutputStream.writeUTF("RegisterProfileController#selcet#" + counter + "#" + createdPlayer.getUsername());
+            dataOutputStream.flush();
+            result = dataInputStream.readUTF();
+            System.out.println(result);
+        } catch (Exception e) {
+
+        }
+        commandLabel.setText(result);
         alertUserCreated();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_program_view.fxml"));
         root = loader.load();

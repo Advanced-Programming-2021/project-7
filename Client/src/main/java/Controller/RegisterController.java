@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -41,7 +42,10 @@ public class RegisterController {
             dataInputStream = new DataInputStream(socket.getInputStream());
             dataOutputStream = new DataOutputStream(socket.getOutputStream());
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Network");
+            alert.setHeaderText("You have not connected to any server!");
+            alert.showAndWait();
         }
     }
 
@@ -50,7 +54,7 @@ public class RegisterController {
         String username = usernameTextField.getText();
         String password = passwordTextField.getText();
         String nickname = nicknameTextField.getText();
-        String result = "wow";
+        String result = "";
         try {
             dataOutputStream.writeUTF("RegisterController#register#" + username + "#" + nickname + "#" + password);
             dataOutputStream.flush();
@@ -62,6 +66,7 @@ public class RegisterController {
         commandLabel.setText(result);
         if (!result.equals("User created successfully!")) return;
         Player player = new Player(username, password, nickname);
+        RegisterProfileController.initializeNetwork();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/register_profile_view.fxml"));
         root = loader.load();
         RegisterProfileController registerProfileController = loader.getController();

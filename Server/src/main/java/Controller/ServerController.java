@@ -58,7 +58,10 @@ public class ServerController {
         if (command.matches("^RegisterController#register.+")) {
             String[] inputs = command.split("#");
             return RegisterController.register(inputs[ 2 ], inputs[ 3 ], inputs[ 4 ]);
+        } else if (command.matches("^RegisterProfileController#selcet#.+")) {
+            String[] inputs = command.split("#");
+            return RegisterProfileController.select(Integer.parseInt(inputs[ 2 ]), inputs[ 3 ]);
         }
-        return "wow";
+        return "";
     }
 }
