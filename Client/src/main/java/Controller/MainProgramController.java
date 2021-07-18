@@ -34,6 +34,7 @@ public class MainProgramController {
     }
 
     public void login(ActionEvent event) throws IOException {
+        LoginController.initializeNetwork();
         Sound.getSoundByName("button").playSoundOnce();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/login_view.fxml"));
         root = loader. load();
