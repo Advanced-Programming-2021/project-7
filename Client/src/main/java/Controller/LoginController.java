@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Player;
 import Model.Sound;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -61,6 +62,7 @@ public class LoginController {
         }
         commandLabel.setText(result);
         if (!result.equals("Login was successful!")) return;
+        Player.setActivePlayer(Player.getPlayerByUsername(username));
         loadMainMenu(event);
     }
 
