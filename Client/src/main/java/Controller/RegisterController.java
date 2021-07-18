@@ -12,7 +12,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.Socket;
 
 public class RegisterController {
     @FXML
@@ -28,28 +31,36 @@ public class RegisterController {
     private Scene scene;
     private AnchorPane root;
 
+    private static Socket socket;
+    private static DataInputStream dataInputStream;
+    private static DataOutputStream dataOutputStream;
+
+    public static void initializeNetwork() {
+        try {
+            socket = new Socket("localhost", 7755);
+            dataInputStream = new DataInputStream(socket.getInputStream());
+            dataOutputStream = new DataOutputStream(socket.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void registerAction(ActionEvent event) throws IOException {
         Sound.getSoundByName("button").playSoundOnce();
         String username = usernameTextField.getText();
         String password = passwordTextField.getText();
         String nickname = nicknameTextField.getText();
-        if (username.equals("")) {
-            commandLabel.setText("You have not entered your username!");
-            return;
+        String result = "wow";
+        try {
+            dataOutputStream.writeUTF("RegisterController#register#" + username + "#" + nickname + "#" + password);
+            dataOutputStream.flush();
+            result = dataInputStream.readUTF();
+            System.out.println(result);
+        } catch (Exception e) {
+
         }
-        if (password.equals("")) {
-            commandLabel.setText("You have not entered your password!");
-            return;
-        }
-        if (nickname.equals("")) {
-            commandLabel.setText("You have not entered your nickname!");
-            return;
-        }
-        if (Player.getPlayerByUsername(username) != null) {
-            commandLabel.setText("A user exists with this username!");
-            return;
-        }
-        commandLabel.setText("User created successfully!");
+        commandLabel.setText(result);
+        if (!result.equals("User created successfully!")) return;
         Player player = new Player(username, password, nickname);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/register_profile_view.fxml"));
         root = loader.load();

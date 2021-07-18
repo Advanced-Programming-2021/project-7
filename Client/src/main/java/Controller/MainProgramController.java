@@ -44,6 +44,7 @@ public class MainProgramController {
     }
 
     public void register(ActionEvent event) throws IOException {
+        RegisterController.initializeNetwork();
         Sound.getSoundByName("button").playSoundOnce();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/register_view.fxml"));
         root = loader.load();

@@ -47,9 +47,18 @@ public class ServerController {
             } catch (Exception e) {
                 break;
             }
-            String output = "";
+            String output = processCommands(command);
             outputStream.writeUTF(output);
             outputStream.flush();
         }
+    }
+
+    private String processCommands(String command) {
+        System.out.println(command);
+        if (command.matches("^RegisterController#register.+")) {
+            String[] inputs = command.split("#");
+            return RegisterController.register(inputs[ 2 ], inputs[ 3 ], inputs[ 4 ]);
+        }
+        return "wow";
     }
 }

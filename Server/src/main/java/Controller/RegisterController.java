@@ -1,73 +1,23 @@
 package Controller;
 
 import Model.Player;
-import Model.Sound;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class RegisterController {
-    @FXML
-    private TextField usernameTextField;
-    @FXML
-    private TextField passwordTextField;
-    @FXML
-    private TextField nicknameTextField;
-    @FXML
-    private Label commandLabel;
 
-    private Stage stage;
-    private Scene scene;
-    private AnchorPane root;
-
-    public void registerAction(ActionEvent event) throws IOException {
-        Sound.getSoundByName("button").playSoundOnce();
-        String username = usernameTextField.getText();
-        String password = passwordTextField.getText();
-        String nickname = nicknameTextField.getText();
+    public static String register(String username, String nickname, String password) {
         if (username.equals("")) {
-            commandLabel.setText("You have not entered your username!");
-            return;
+            return "You have not entered your username!";
         }
         if (password.equals("")) {
-            commandLabel.setText("You have not entered your password!");
-            return;
+            return "You have not entered your password!";
         }
         if (nickname.equals("")) {
-            commandLabel.setText("You have not entered your nickname!");
-            return;
+            return "You have not entered your nickname!";
         }
         if (Player.getPlayerByUsername(username) != null) {
-            commandLabel.setText("A user exists with this username!");
-            return;
+            return "A user exists with this username!";
         }
-        commandLabel.setText("User created successfully!");
         Player player = new Player(username, password, nickname);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/register_profile_view.fxml"));
-        root = loader.load();
-        RegisterProfileController registerProfileController = loader.getController();
-        registerProfileController.show(root, player);
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void back(ActionEvent event) throws IOException {
-        Sound.getSoundByName("button").playSoundOnce();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_program_view.fxml"));
-        root = loader.load();
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        return "User created successfully!";
     }
 }
