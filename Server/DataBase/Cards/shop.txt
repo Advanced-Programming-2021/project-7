@@ -1,0 +1,309 @@
+{
+  "@type": "java.util.HashMap",
+  "@val": {
+    "Sword of dark destruction": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Axe Raider": {
+      "@type": "java.lang.Integer",
+      "@val": 3
+    },
+    "The Tricky": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Raigeki": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Twin Twisters": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Terraforming": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Dark Blade": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Magnum Shield": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Marshmallon": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Alexandrite Dragon": {
+      "@type": "java.lang.Integer",
+      "@val": 4
+    },
+    "Mystical space typhoon": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Exploder Dragon": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Vanity's Emptiness": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Call of The Haunted": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Trap Hole": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Curtain of the dark ones": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Supply Squad": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Dark Hole": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Black Pendant": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Gate Guardian": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Magic Cylinder": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Mind Crush": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Harpie's Feather Duster": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Ring of defense": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Closed Forest": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Baby dragon": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Haniwa": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Wall of Revealing Light": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Crawling dragon": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Skull Guardian": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Mirage Dragon": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Wattkid": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Scanner": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Warrior Dai Grepher": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Pot of Greed": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Beast King Barbaros": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Umiiruka": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Change of Heart": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Solemn Warning": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Suijin": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Blue-Eyes white dragon": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Command Knight": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Spell Absorption": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Monster Reborn": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Leotron": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Silver Fang": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Flame Manipulator": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Dark magician": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Slot Machine": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Negate Attack": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Hero of the east": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Bitron": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "United We Stand": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Yomi Ship": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Horn Imp": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Messenger of peace": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Herald of Creation": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Battle warrior": {
+      "@type": "java.lang.Integer",
+      "@val": 4
+    },
+    "Battle OX": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Man-Eater Bug": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Texchanger": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Time Seal": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Spiral Serpent": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Yami": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Advanced Ritual Art": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Wattaildragon": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "\"Terratiger, the Empowered Warrior\"": {
+      "@type": "java.lang.Integer",
+      "@val": 4
+    },
+    "Feral Imp": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Fireyarou": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "The Calculator": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Mirror Force": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Magic Jammer": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Torrential Tribute": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Crab Turtle": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Forest": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    },
+    "Swords of Revealing Light": {
+      "@type": "java.lang.Integer",
+      "@val": 5
+    }
+  }
+}

@@ -27,13 +27,7 @@ public class MainMenuController {
     }
 
     public void shop(ActionEvent event) throws IOException {
-        Sound.getSoundByName("button").playSoundOnce();
-        Shop shop = new Shop();
-        try {
-            shop.run(Player.getActivePlayer().getUsername());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
     }
 
     public void logout(ActionEvent event) throws IOException {

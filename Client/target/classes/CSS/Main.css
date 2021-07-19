@@ -4,6 +4,11 @@
     background-size: auto;
 }
 
+.admin{
+    -fx-background-image: url("../Images/Admin.png");
+    background-size: auto;
+}
+
 .shopButton{
     -fx-background-color: #d7c751;
     -fx-background-radius: 25px;

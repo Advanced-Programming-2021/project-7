@@ -1,10 +1,16 @@
 package Controller;
 
+import Menus.Shop;
+import Model.CommonTools;
+import Model.Player;
+import Model.ShopInfo;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.regex.Matcher;
 
 public class ServerController {
     private static ServerController instance;
@@ -64,7 +70,97 @@ public class ServerController {
         } else if (command.matches("^LoginController#login#.+")) {
             String[] inputs = command.split("#");
             return LoginController.login(inputs[2], inputs[3]);
-        }
+        } else if (command.startsWith("Player"))
+            return playerCommandProcess(command);
+        else if (command.startsWith("shop"))
+            return shopCommandProcess(command);
         return "";
+    }
+
+    private String shopCommandProcess(String command) {
+        Matcher matcher;
+        if ((matcher = CommonTools.getMatcher(command, "shop (\\S+) buy (.+)")).matches())
+            return buyCard(matcher);
+        else if ((matcher = CommonTools.getMatcher(command, "shop ban (.+)")).matches())
+            return banCard(matcher);
+        else if ((matcher = CommonTools.getMatcher(command, "shop unban (.+)")).matches())
+            return unbanCard(matcher);
+        else if ((matcher = CommonTools.getMatcher(command, "shop stock (.+)")).matches())
+            return getStock(matcher);
+        else if ((matcher = CommonTools.getMatcher(command, "shop isBanned (.+)")).matches())
+            return isBanned(matcher);
+        else if ((matcher = CommonTools.getMatcher(command, "shop increase (.+)")).matches())
+            return increase(matcher);
+        else if ((matcher = CommonTools.getMatcher(command, "shop decrease (.+)")).matches())
+            return decrease(matcher);
+        else return "";
+    }
+
+    private String decrease(Matcher matcher) {
+        String cardName = matcher.group(1);
+        return ShopInfo.decrease(cardName);
+    }
+
+    private String increase(Matcher matcher) {
+        String cardName = matcher.group(1);
+        return ShopInfo.increase(cardName);
+    }
+
+    private String isBanned(Matcher matcher) {
+        String cardName = matcher.group(1);
+        return String.valueOf(ShopInfo.isBanned(cardName));
+    }
+
+    private String getStock(Matcher matcher) {
+        String cardName = matcher.group(1);
+        return String.valueOf(ShopInfo.getStock(cardName));
+    }
+
+    private String unbanCard(Matcher matcher) {
+        String cardName = matcher.group(1);
+        ShopInfo.unbanCard(cardName);
+        return "Success";
+    }
+
+    private String banCard(Matcher matcher) {
+        String cardName = matcher.group(1);
+        ShopInfo.banCard(cardName);
+        return "Success";
+    }
+
+    private String buyCard(Matcher matcher) {
+        String player = matcher.group(1);
+        String cardName = matcher.group(2);
+        String command = "shop buy " + cardName;
+        try {
+            return Shop.buyCard(player, command);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    private String playerCommandProcess(String command) {
+        Matcher matcher;
+        if ((matcher = CommonTools.getMatcher(command, "Player (\\S+) Money")).matches())
+           return sendMoney(matcher);
+        else if ((matcher = CommonTools.getMatcher(command, "Player (\\S+) Card (.+)")).matches())
+            return sendCardNum(matcher);
+        else return "";
+    }
+
+    private String sendCardNum(Matcher matcher) {
+        String player = matcher.group(1);
+        String cardName = matcher.group(2);
+        if (Player.getPlayerByUsername(player) != null)
+            return String.valueOf(Player.getPlayerByUsername(player).getNumberOfCards(cardName));
+        else return "";
+    }
+
+    private String sendMoney(Matcher matcher) {
+        String player = matcher.group(1);
+        if (Player.getPlayerByUsername(player) != null)
+            return String.valueOf(Player.getPlayerByUsername(player).getMoney());
+        else return "";
     }
 }

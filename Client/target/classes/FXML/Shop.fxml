@@ -6,55 +6,55 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1200.0" styleClass="shop" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Shop">
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" styleClass="shop" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Shop">
 
     <stylesheets>
-        <URL value="@../CSS/Main.css"/>
+        <URL value="@../CSS/Main.css" />
     </stylesheets>
     <children>
-        <ScrollPane fx:id="scroll" layoutX="458.0" layoutY="28.0" prefHeight="644.0" prefWidth="651.0"
-                    style="-fx-background-color: rgba(255,255,255,0); -fx-background: rgba(255,255,255,0);">
+        <ScrollPane fx:id="scroll" layoutX="458.0" layoutY="28.0" prefHeight="644.0" prefWidth="651.0" style="-fx-background-color: rgba(255,255,255,0); -fx-background: rgba(255,255,255,0);">
             <content>
                 <GridPane fx:id="gridPane" prefHeight="0.0" prefWidth="0.0">
                 </GridPane>
             </content>
         </ScrollPane>
-        <Pane layoutX="46.0" layoutY="96.0" prefHeight="571.0" prefWidth="393.0"
-              style="-fx-background-color: rgba(255,255,255,0.5); -fx-background-radius: 25px;">
+        <Pane layoutX="46.0" layoutY="32.0" prefHeight="635.0" prefWidth="394.0" style="-fx-background-color: rgba(255,255,255,0.5); -fx-background-radius: 25px;">
             <children>
 
-                <ImageView fx:id="selectedImage" fitHeight="405.0" fitWidth="335.0" layoutX="29.0" layoutY="63.0"
-                           pickOnBounds="true" preserveRatio="true"/>
+                <ImageView fx:id="selectedImage" fitHeight="405.0" fitWidth="335.0" layoutX="25.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" />
 
 
-                <Label fx:id="Money" alignment="CENTER" layoutX="68.0" layoutY="14.0" prefHeight="60.0"
-                       prefWidth="279.0" textFill="#f0ff00">
+                <Label fx:id="Money" alignment="CENTER" layoutX="143.0" layoutY="26.0" prefHeight="60.0" prefWidth="229.0" textFill="#f0ff00">
                     <font>
-                        <Font name="Albertus Medium" size="20.0"/>
+                        <Font name="Albertus Medium" size="20.0" />
                     </font>
                 </Label>
-                <Button fx:id="buyButton" layoutX="234.0" layoutY="474.0" mnemonicParsing="false" onMouseClicked="#buy"
-                        onMouseEntered="#mouseEnter" onMouseExited="#mouseExited" prefHeight="60.0" prefWidth="118.0"
-                        styleClass="shopButton" text="Buy" textFill="#ff0707">
+                <Button fx:id="buyButton" layoutX="219.0" layoutY="491.0" mnemonicParsing="false" onMouseClicked="#buy" onMouseEntered="#mouseEnter" onMouseExited="#mouseExited" prefHeight="60.0" prefWidth="118.0" styleClass="shopButton" text="Buy" textFill="#ff0707">
                     <font>
-                        <Font name="Algerian" size="22.0"/>
+                        <Font name="Algerian" size="22.0" />
                     </font>
                 </Button>
-                <Label fx:id="Amount" alignment="CENTER" layoutX="36.0" layoutY="474.0" prefHeight="60.0"
-                       prefWidth="171.0" style="-fx-background-radius: 25px;" textFill="RED">
+                <Label fx:id="Amount" alignment="CENTER" layoutX="21.0" layoutY="491.0" prefHeight="60.0" prefWidth="171.0" style="-fx-background-radius: 25px;" textFill="RED">
                     <font>
-                        <Font name="Albertus Medium" size="21.0"/>
+                        <Font name="Albertus Medium" size="21.0" />
                     </font>
                 </Label>
+                <Label fx:id="Stock" alignment="CENTER" layoutX="21.0" layoutY="551.0" prefHeight="60.0" prefWidth="171.0" style="-fx-background-radius: 25px;" textFill="RED">
+                    <font>
+                        <Font name="Albertus Medium" size="21.0" />
+                    </font>
+                </Label>
+                <Button fx:id="admin" layoutX="219.0" layoutY="561.0" mnemonicParsing="false" onMouseClicked="#admin" onMouseEntered="#mouseEnter" onMouseExited="#mouseExited" prefHeight="60.0" prefWidth="118.0" styleClass="shopButton" text="Admin" textFill="#ff0707">
+                    <font>
+                        <Font name="Algerian" size="22.0" />
+                    </font>
+                </Button>
+              <Button fx:id="back" layoutX="14.0" layoutY="26.0" mnemonicParsing="false" onMouseClicked="#back" onMouseEntered="#mouseEnter" onMouseExited="#mouseExited" prefHeight="60.0" prefWidth="118.0" styleClass="shopButton" text="Back" textFill="#ff0707">
+                  <font>
+                      <Font name="Algerian" size="22.0" />
+                  </font>
+              </Button>
             </children>
         </Pane>
-        <Button fx:id="back" layoutX="183.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#back"
-                onMouseEntered="#mouseEnter" onMouseExited="#mouseExited" prefHeight="60.0" prefWidth="118.0"
-                styleClass="shopButton" text="Back" textFill="#ff0707">
-            <font>
-                <Font name="Algerian" size="22.0"/>
-            </font>
-        </Button>
     </children>
 </AnchorPane>

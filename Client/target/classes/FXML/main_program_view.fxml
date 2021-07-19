@@ -6,54 +6,70 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="scenePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700" prefWidth="1200" styleClass="main-back" stylesheets="@../CSS/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainProgramController">
-   <children>
-      <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="650" layoutY="380" mnemonicParsing="false" onAction="#register" prefHeight="41.0" prefWidth="274.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Register" textAlignment="CENTER" textFill="#ddd78a">
-         <font>
-            <Font name="Algerian" size="22.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <effect>
-            <Lighting bumpInput="$null">
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
-         </effect></Button>
-      <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="276" layoutY="380" mnemonicParsing="false" onAction="#login" prefHeight="41.0" prefWidth="274.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Login" textAlignment="CENTER" textFill="#ddd78a">
-         <font>
-            <Font name="Algerian" size="22.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <effect>
-            <Lighting bumpInput="$null">
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
-         </effect></Button>
-      <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="450" layoutY="450" mnemonicParsing="false" onAction="#exitGame" prefHeight="41.0" prefWidth="274.0" style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Exit" textAlignment="CENTER" textFill="#ddd78a">
-         <font>
-            <Font name="Algerian" size="22.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <effect>
-            <Lighting bumpInput="$null">
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
-         </effect></Button>
-      <Label fx:id="commandLabel" alignment="CENTER" layoutX="338.0" layoutY="128.0" prefHeight="35.0" prefWidth="523.0" text="Welcome to the game" textFill="#ddd78a">
-         <font>
-            <Font name="Algerian" size="30.0" />
-         </font>
-      </Label>
-   </children>
+<AnchorPane fx:id="scenePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="700" prefWidth="1200" styleClass="main-back" stylesheets="@../CSS/Main.css"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controller.MainProgramController">
+    <children>
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="650" layoutY="380"
+                mnemonicParsing="false" onAction="#register" prefHeight="41.0" prefWidth="274.0"
+                style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Register"
+                textAlignment="CENTER" textFill="#ddd78a">
+            <font>
+                <Font name="Algerian" size="22.0"/>
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+            <effect>
+                <Lighting bumpInput="$null">
+                    <light>
+                        <Light.Distant/>
+                    </light>
+                </Lighting>
+            </effect>
+        </Button>
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="276" layoutY="380"
+                mnemonicParsing="false" onAction="#login" prefHeight="41.0" prefWidth="274.0"
+                style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Login"
+                textAlignment="CENTER" textFill="#ddd78a">
+            <font>
+                <Font name="Algerian" size="22.0"/>
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+            <effect>
+                <Lighting bumpInput="$null">
+                    <light>
+                        <Light.Distant/>
+                    </light>
+                </Lighting>
+            </effect>
+        </Button>
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="450" layoutY="450"
+                mnemonicParsing="false" onAction="#exitGame" prefHeight="41.0" prefWidth="274.0"
+                style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Exit"
+                textAlignment="CENTER" textFill="#ddd78a">
+            <font>
+                <Font name="Algerian" size="22.0"/>
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+            <effect>
+                <Lighting bumpInput="$null">
+                    <light>
+                        <Light.Distant/>
+                    </light>
+                </Lighting>
+            </effect>
+        </Button>
+        <Label fx:id="commandLabel" alignment="CENTER" layoutX="338.0" layoutY="128.0" prefHeight="35.0"
+               prefWidth="523.0" text="Welcome to the game" textFill="#ddd78a">
+            <font>
+                <Font name="Algerian" size="30.0"/>
+            </font>
+        </Label>
+    </children>
 </AnchorPane>

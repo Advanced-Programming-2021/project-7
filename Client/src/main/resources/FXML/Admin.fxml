@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" styleClass="shop" stylesheets="@../CSS/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Admin">
+    <ScrollPane fx:id="scroll" layoutX="491.0" layoutY="28.0" prefHeight="644.0" prefWidth="676.0" style="-fx-background-color: rgba(255,255,255,0); -fx-background: rgba(255,255,255,0.1);">
+        <content>
+            <GridPane fx:id="gridPane" prefHeight="0.0" prefWidth="0.0">
+            </GridPane>
+        </content>
+    </ScrollPane>
+
+    <Pane layoutX="46.0" layoutY="36.0" prefHeight="631.0" prefWidth="394.0" style="-fx-background-color: rgba(255,255,255,0.5); -fx-background-radius: 25px;">
+        <children>
+            <ImageView fx:id="selectedImage" fitHeight="405.0" fitWidth="335.0" layoutX="33.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
+
+            <Button fx:id="decrease" layoutX="15.0" layoutY="543.0" mnemonicParsing="false" onMouseClicked="#decrease" onMouseEntered="#mouseEnter" onMouseExited="#mouseExited" prefHeight="60.0" prefWidth="118.0" styleClass="shopButton" text="Decrease" textFill="#ff0707">
+                <font>
+                    <Font name="Algerian" size="16.0" />
+                </font>
+            </Button>
+            <Label fx:id="Stock" alignment="CENTER" layoutX="133.0" layoutY="543.0" prefHeight="60.0" prefWidth="129.0" style="-fx-background-radius: 25px;" textFill="RED">
+                <font>
+                    <Font name="Albertus Medium" size="21.0" />
+                </font>
+            </Label>
+            <Button fx:id="increase" layoutX="262.0" layoutY="543.0" mnemonicParsing="false" onMouseClicked="#increase" onMouseEntered="#mouseEnter" onMouseExited="#mouseExited" prefHeight="60.0" prefWidth="118.0" styleClass="shopButton" text="Increase" textFill="#ff0707">
+                <font>
+                    <Font name="Algerian" size="16.0" />
+                </font>
+            </Button>
+         <Button fx:id="ban" layoutX="55.0" layoutY="463.0" mnemonicParsing="false" onMouseClicked="#ban" onMouseEntered="#mouseEnter" onMouseExited="#mouseExited" prefHeight="60.0" prefWidth="129.0" styleClass="shopButton" text="Ban" textFill="#ff0707">
+            <font>
+               <Font name="Algerian" size="22.0" />
+            </font>
+         </Button>
+         <Button fx:id="unban" layoutX="209.0" layoutY="463.0" mnemonicParsing="false" onMouseClicked="#unban" onMouseEntered="#mouseEnter" onMouseExited="#mouseExited" prefHeight="60.0" prefWidth="129.0" styleClass="shopButton" text="Unban" textFill="#ff0707">
+            <font>
+               <Font name="Algerian" size="22.0" />
+            </font>
+         </Button>
+      
+          <Button fx:id="back" layoutX="-44.0" layoutY="-30.0" mnemonicParsing="false" onMouseClicked="#back" onMouseEntered="#mouseEnter" onMouseExited="#mouseExited" prefHeight="60.0" prefWidth="118.0" styleClass="shopButton" text="Back" textFill="#ff0707">
+              <font>
+                  <Font name="Algerian" size="22.0" />
+              </font>
+          </Button>
+        </children>
+    </Pane>
+
+</AnchorPane>

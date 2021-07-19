@@ -5,6 +5,7 @@ import Model.Cards.Card;
 import Model.CommonTools;
 import Model.FileHandler;
 import Model.Player;
+import Model.ShopInfo;
 import View.CardView;
 import View.ItemController;
 import View.MainProgramView;
@@ -27,7 +28,7 @@ import javafx.scene.control.Label;
 import java.io.IOException;
 import java.util.regex.Matcher;
 
-public class Shop extends Application{
+public class Shop {
 
     private static String username;
     public Label Money;
@@ -39,63 +40,8 @@ public class Shop extends Application{
     @FXML
     public Button buyButton;
 
-    @FXML
-    public void initialize() {
-        buyButton.setDisable(true);
-        scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        Money.setText("Money: " + Player.getPlayerByUsername(username).getMoney());
-        int column = 0;
-        int row = 0;
-        for (int i = 0; i < CardView.cardViews.size(); i++) {
-            if (column == 3){
-                column = 0;
-                row++;
-            }
-            AnchorPane pane = null;
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            try {
-                fxmlLoader.setLocation(getClass().getResource("/FXML/Item.fxml"));
-                pane = fxmlLoader.load();
-                ItemController itemController = fxmlLoader.getController();
-                itemController.setImage(CardView.cardViews.get(i).imageView);
-                itemController.setCardView(CardView.cardViews.get(i));
-                itemController.setItemListener(new ItemListener() {
-                    @Override
-                    public void onClick(CardView cardView) {
-                        setCard(itemController.getCardView());
-                    }
-                });
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-
-            gridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
-            gridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-            gridPane.setMaxWidth(Region.USE_PREF_SIZE);
-
-            gridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
-            gridPane.setPrefHeight(Region.USE_COMPUTED_SIZE);
-            gridPane.setMaxHeight(Region.USE_PREF_SIZE);
-
-            gridPane.add(pane,column++,row);
-        }
-
-    }
-
-    private void setCard(CardView cardView) {
-        card = cardView;
-        selectedImage.setImage(cardView.imageView.getImage());
-        Amount.setText("You have: " + String.valueOf(Player.getPlayerByUsername(username).getNumberOfCards(cardView.name)));
-        if (Card.getCardByName(cardView.name).getPrice() <= Player.getPlayerByUsername(username).getMoney())
-            buyButton.setDisable(false);
-    }
-
     public void run(String username) throws Exception {
         Shop.username = username;
-        start(MainProgramView.stage);
-        System.out.println("Welcome to Shop");
     }
 
     public void increaseMoney(String command, String playerName) {
@@ -105,67 +51,34 @@ public class Shop extends Application{
         Player.getPlayerByUsername(playerName).increaseMoney(amountOfMoney);
     }
 
-    public static void buyCard(String username, String command) throws IOException {
+    public static String buyCard(String username, String command) throws IOException {
         String card = command.substring(9);
         if (Card.getCardByName(card) == null) {
-            System.out.println("there is no card with this name");
+            return "there is no card with this name";
         } else {
             int money = Player.getPlayerByUsername(username).getMoney();
             if (money < Card.getPriceByUsername(card)) {
-                System.out.println("not enough money");
+                return "not enough money";
+            } else if (ShopInfo.getStock(card) == 0) {
+                return "shop out of stock";
+            }  else if (ShopInfo.cardBanned(card)) {
+                return "card is banned";
             } else {
-                System.out.println("Card bought!");
                 Card addingCard = Card.getCardByName(card);
                 Player player = Player.getPlayerByUsername(username);
                 player.addCard(addingCard);
                 player.decreaseMoney(Card.getPriceByUsername(card));
+
+                ShopInfo.decrease(card);
+
                 FileHandler.updatePlayers();
+                FileHandler.updateShop();
+                return "Card bought!";
             }
         }
     }
 
     public static void showAll() {
         Card.showCards();
-    }
-
-    @Override
-    public void start(Stage stage) throws Exception {
-        CardView.init();
-        Parent root = FXMLLoader.load(getClass().getResource("/FXML/Shop.fxml"));
-        Scene scene = new Scene(root, 1200, 700);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-
-    public void mouseEnter(MouseEvent mouseEvent) {
-        Button button = (Button) mouseEvent.getSource();
-        button.setCursor(Cursor.HAND);
-    }
-
-    public void mouseExited(MouseEvent mouseEvent) {
-        Button button = (Button) mouseEvent.getSource();
-        button.setCursor(Cursor.NONE);
-    }
-
-    public void buy(MouseEvent mouseEvent) {
-        String command = "shop buy " + card.name;
-        try {
-            buyCard(username, command);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Amount.setText("You have: " + String.valueOf(Player.getPlayerByUsername(username).getNumberOfCards(card.name)));
-        Money.setText("Money: " + Player.getPlayerByUsername(username).getMoney());
-        if (Card.getCardByName(card.name).getPrice() > Player.getPlayerByUsername(username).getMoney())
-            buyButton.setDisable(true);
-    }
-
-    public void back(MouseEvent mouseEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/FXML/main_menu_view.fxml"));
-        Stage stage = MainProgramView.stage;
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
     }
 }

@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.RegisterProfileController;
 import Model.Cards.Card;
 
 import java.io.IOException;
@@ -198,7 +199,16 @@ public class Player implements Comparable<Player> {
         }
     }
 
-    public int getMoney() {
+    public static int getMoney() {
+        int money = -1;
+        try {
+            RegisterProfileController.dataOutputStream.writeUTF("Player " + Player.getActivePlayer().getUsername() + " Money");
+            RegisterProfileController.dataOutputStream.flush();
+            String result = RegisterProfileController.dataInputStream.readUTF();
+            money = Integer.parseInt(result);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return money;
     }
 
@@ -260,13 +270,18 @@ public class Player implements Comparable<Player> {
         return decks;
     }
 
-    public int getNumberOfCards(String name) {
-        for (Map.Entry<Card, Integer> cardIntegerEntry : cards.entrySet()) {
-            if (cardIntegerEntry.getKey().getName().equals(name)) {
-                return cardIntegerEntry.getValue();
-            }
+    public static int getNumberOfCards(String name) {
+        int num = -1;
+        try {
+            RegisterProfileController.dataOutputStream.writeUTF("Player " +
+                    Player.getActivePlayer().getUsername() + " Card " + name);
+            RegisterProfileController.dataOutputStream.flush();
+            String result = RegisterProfileController.dataInputStream.readUTF();
+            num = Integer.parseInt(result);
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        return 0;
+        return num;
     }
 
     public static void sortPlayers() {

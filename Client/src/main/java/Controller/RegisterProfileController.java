@@ -46,9 +46,9 @@ public class RegisterProfileController {
     @FXML
     private Label commandLabel;
 
-    private static Socket socket;
-    private static DataInputStream dataInputStream;
-    private static DataOutputStream dataOutputStream;
+    public static Socket socket;
+    public static DataInputStream dataInputStream;
+    public static DataOutputStream dataOutputStream;
 
     {
         mainProfile.setWidth(350);

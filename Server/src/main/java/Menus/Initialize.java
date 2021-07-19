@@ -5,6 +5,7 @@ import Model.Cards.Monster;
 import Model.Cards.Spell;
 import Model.Cards.Trap;
 import Model.Player;
+import Model.ShopInfo;
 import View.CardView;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
@@ -18,6 +19,7 @@ import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Initialize {
 
@@ -26,6 +28,22 @@ public class Initialize {
         initializePlayers();
         importMonsterCardDate();
         importSpellTrapCardData();
+        initShop();
+    }
+
+    private void initShop() throws IOException {
+        Path path = Path.of("DataBase//Cards//shop.txt");
+        YaGson yaGson = new YaGson();
+        String playersData = Files.readString(path);
+        Type arraylistOfPlayer = new TypeToken<HashMap<String, Integer>>() {
+        }.getType();
+        ShopInfo.setAvailableStock(yaGson.fromJson(playersData, arraylistOfPlayer));
+
+        path = Path.of("DataBase//Cards//shopBanned.txt");
+        playersData = Files.readString(path);
+        arraylistOfPlayer = new TypeToken<ArrayList<String>>() {
+        }.getType();
+        ShopInfo.setBannedCards(yaGson.fromJson(playersData, arraylistOfPlayer));
     }
 
     public void makeFolders() {
