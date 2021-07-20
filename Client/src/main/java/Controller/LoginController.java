@@ -58,7 +58,6 @@ public class LoginController {
             dataOutputStream.writeUTF("LoginController#login#" + username + "#" + password);
             dataOutputStream.flush();
             result = dataInputStream.readUTF();
-            System.out.println(result);
         } catch (Exception e) {
 
         }
