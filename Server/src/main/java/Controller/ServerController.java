@@ -55,6 +55,7 @@ public class ServerController {
                 break;
             }
             String output = processCommands(command);
+            System.out.println(output);
             outputStream.writeUTF(output);
             outputStream.flush();
         }

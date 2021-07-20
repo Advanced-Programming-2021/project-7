@@ -23,7 +23,6 @@ public class ScoreboardController {
             Player player = (Player) e.getValue();
             activePlayerNicknames.add(player.getNickname());
         }
-        System.out.println(playerNicknames.toString() + "#" + activePlayerNicknames.toString() + "#" + playerScores.toString());
         return playerNicknames.toString() + "#" + activePlayerNicknames.toString() + "#" + playerScores.toString();
     }
 }

@@ -34,10 +34,11 @@ public class ScoreboardController {
         } catch (Exception e) {
 
         }
+        result = result.replace("[", "").replace("]", "");
         String[] arrays = result.split("#");
-        ArrayList<String> playerNicknames = new ArrayList<String>(Arrays.asList(arrays[ 0 ].split(",")));
-        ArrayList<String> activePlayerNicknames = new ArrayList<String>(Arrays.asList(arrays[ 1 ].split(",")));
-        ArrayList<String> playerScores = new ArrayList<String>(Arrays.asList(arrays[ 2 ].split(",")));
+        ArrayList<String> playerNicknames = new ArrayList<String>(Arrays.asList(arrays[ 0 ].split(", ")));
+        ArrayList<String> activePlayerNicknames = new ArrayList<String>(Arrays.asList(arrays[ 1 ].split(", ")));
+        ArrayList<String> playerScores = new ArrayList<String>(Arrays.asList(arrays[ 2 ].split(", ")));
         makeScoreLabels(playerNicknames, activePlayerNicknames, playerScores);
     }
 

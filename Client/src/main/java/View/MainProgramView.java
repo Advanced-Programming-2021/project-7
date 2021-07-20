@@ -1,5 +1,7 @@
 package View;
 
+import Model.CommonTools;
+import Model.Player;
 import Model.Sound;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -48,6 +50,14 @@ public class MainProgramView extends Application {
         alert.setHeaderText("You're about to close the game");
         alert.setContentText("Do you want to exit?");
         if (alert.showAndWait().get() == ButtonType.OK) {
+            String result = "";
+            try {
+                CommonTools.dataOutputStream.writeUTF("MainMenuController#logout#" + Player.getToken());
+                CommonTools.dataOutputStream.flush();
+                result = CommonTools.dataInputStream.readUTF();
+            } catch (Exception e) {
+
+            }
             stage.close();
         }
     }
