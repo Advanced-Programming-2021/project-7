@@ -14,6 +14,7 @@ import java.util.regex.Matcher;
 
 public class ServerController {
     private static ServerController instance;
+    private static String chats = "";
 
     private ServerController() {}
 
@@ -74,6 +75,10 @@ public class ServerController {
             return playerCommandProcess(command);
         else if (command.startsWith("shop"))
             return shopCommandProcess(command);
+        else if (command.startsWith("chat"))
+            return chatCommandProcess(command);
+        else if (command.startsWith("get chats"))
+            return getChats(command);
         return "";
     }
 
@@ -147,6 +152,16 @@ public class ServerController {
         else if ((matcher = CommonTools.getMatcher(command, "Player (\\S+) Card (.+)")).matches())
             return sendCardNum(matcher);
         else return "";
+    }
+
+    private String chatCommandProcess(String command){
+        chats = chats + "\n" + command.substring(5);
+        System.out.println(command.substring(5));
+        return "message added successfully";
+    }
+
+    private String getChats(String command){
+        return chats;
     }
 
     private String sendCardNum(Matcher matcher) {
