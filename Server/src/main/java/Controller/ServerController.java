@@ -64,13 +64,18 @@ public class ServerController {
         System.out.println(command);
         if (command.matches("^RegisterController#register.+")) {
             String[] inputs = command.split("#");
-            return RegisterController.register(inputs[ 2 ], inputs[ 3 ], inputs[ 4 ]);
+            if (inputs.length < 5) return RegisterController.register("", "", "");
+            else return RegisterController.register(inputs[ 2 ], inputs[ 3 ], inputs[ 4 ]);
         } else if (command.matches("^RegisterProfileController#selcet#.+")) {
             String[] inputs = command.split("#");
             return RegisterProfileController.select(Integer.parseInt(inputs[ 2 ]), inputs[ 3 ]);
         } else if (command.matches("^LoginController#login#.+")) {
             String[] inputs = command.split("#");
-            return LoginController.login(inputs[2], inputs[3]);
+            if (inputs.length < 4) return LoginController.login("", "");
+            else return LoginController.login(inputs[2], inputs[3]);
+        } else if (command.matches("^MainMenuController#logout#.+")) {
+                String[] inputs = command.split("#");
+                return MainMenuController.logout(inputs[ 2 ]);
         } else if (command.startsWith("Player"))
             return playerCommandProcess(command);
         else if (command.startsWith("shop"))

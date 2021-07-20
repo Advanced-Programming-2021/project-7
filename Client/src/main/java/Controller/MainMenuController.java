@@ -1,12 +1,14 @@
 package Controller;
 
 import Menus.DeckMenu;
+import Model.CommonTools;
 import Model.Player;
 import Model.Sound;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -38,6 +40,18 @@ public class MainMenuController {
 
     public void logout(ActionEvent event) throws IOException {
         Sound.getSoundByName("button").playSoundOnce();
+        String result = "";
+        try {
+            CommonTools.dataOutputStream.writeUTF("MainMenuController#logout#" + Player.getToken());
+            CommonTools.dataOutputStream.flush();
+            result = CommonTools.dataInputStream.readUTF();
+        } catch (Exception e) {
+
+        }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Logout");
+        alert.setHeaderText(result);
+        alert.showAndWait();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_program_view.fxml"));
         root = loader.load();
         makeStage(event);

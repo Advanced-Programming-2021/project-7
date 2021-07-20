@@ -57,6 +57,10 @@ public class Player implements Comparable<Player> {
         activePlayers.put(token, player);
     }
 
+    public static void removePlayerInActivePlayers(String token) {
+        activePlayers.remove(token);
+    }
+
     public static boolean isPasswordCorrect(String username, String password) {
         if (getPlayerByUsername(username).password.equals(password)) {
             return true;
