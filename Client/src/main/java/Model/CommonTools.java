@@ -1,7 +1,6 @@
 package Model;
 
-import javafx.scene.control.Alert;
-
+import javax.swing.*;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -21,10 +20,7 @@ public class CommonTools {
             dataInputStream = new DataInputStream(socket.getInputStream());
             dataOutputStream = new DataOutputStream(socket.getOutputStream());
         } catch (IOException e) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Network");
-            alert.setHeaderText("You have not connected to any server!");
-            alert.showAndWait();
+            JOptionPane.showMessageDialog(null, "You have not connected to any server!");
         }
     }
 
