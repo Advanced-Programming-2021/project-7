@@ -17,6 +17,9 @@ public class RegisterController {
         if (Player.getPlayerByUsername(username) != null) {
             return "A user exists with this username!";
         }
+        if (Player.getPlayerByNick(nickname) != null) {
+            return "A user exists with this nickname!";
+        }
         Player player = new Player(username, password, nickname);
         return "User created successfully!";
     }

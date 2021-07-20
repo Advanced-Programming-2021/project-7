@@ -1,6 +1,6 @@
 package Controller;
 
-import Model.Player;
+import Model.CommonTools;
 import Model.Sound;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ScoreboardController {
     private int yPosition = 230;
@@ -25,8 +26,22 @@ public class ScoreboardController {
     private AnchorPane root;
 
     public void makeLabels() {
-        Player.sortPlayers();
-        ArrayList<Player> players = Player.getPlayers();
+        String result = "";
+        try {
+            CommonTools.dataOutputStream.writeUTF("ScoreboardController#players#");
+            CommonTools.dataOutputStream.flush();
+            result = CommonTools.dataInputStream.readUTF();
+        } catch (Exception e) {
+
+        }
+        String[] arrays = result.split("#");
+        ArrayList<String> playerNicknames = new ArrayList<String>(Arrays.asList(arrays[ 0 ].split(",")));
+        ArrayList<String> activePlayerNicknames = new ArrayList<String>(Arrays.asList(arrays[ 1 ].split(",")));
+        ArrayList<String> playerScores = new ArrayList<String>(Arrays.asList(arrays[ 2 ].split(",")));
+        makeScoreLabels(playerNicknames, activePlayerNicknames, playerScores);
+    }
+
+    public void makeScoreLabels(ArrayList<String> playerNicknames, ArrayList<String> activePlayerNicknames, ArrayList<String> playerScores) {
         for (int i = 0; i < 20; i++) {
             Label label = new Label();
             label.setPrefWidth(250);
@@ -42,14 +57,20 @@ public class ScoreboardController {
             label.getStylesheets().add(getClass().getResource("/CSS/Main.css").toExternalForm());
             label.getStyleClass().add("score-lab");
             if (i % 4 == 3) yPosition += 50;
-            if (i < players.size()) {
-                Player player = players.get(i);
-                if (player.equals(Player.getActivePlayer())) label.setTextFill(Color.valueOf("#dddddd"));
-                label.setText(counter + ". " + player.getNickname() + "     Score: " + player.getScore());
+            if (i < playerNicknames.size()) {
+                if (isPlayerActive(playerNicknames.get(i), activePlayerNicknames)) label.setTextFill(Color.valueOf("#dddddd"));
+                label.setText(counter + ". " + playerNicknames.get(i) + "     Score: " + playerScores.get(i));
             }
             counter++;
             root.getChildren().add(label);
         }
+    }
+
+    public boolean isPlayerActive(String nickname, ArrayList<String> activePlayerNicknames) {
+        for (String activeNickname : activePlayerNicknames) {
+            if (nickname.equals(activeNickname)) return true;
+        }
+        return false;
     }
 
     public void show(AnchorPane root) {

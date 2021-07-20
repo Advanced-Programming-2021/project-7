@@ -61,6 +61,10 @@ public class Player implements Comparable<Player> {
         activePlayers.remove(token);
     }
 
+    public static HashMap<String, Player> getActivePlayers() {
+        return activePlayers;
+    }
+
     public static boolean isPasswordCorrect(String username, String password) {
         if (getPlayerByUsername(username).password.equals(password)) {
             return true;

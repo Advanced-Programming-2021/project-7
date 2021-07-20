@@ -74,8 +74,10 @@ public class ServerController {
             if (inputs.length < 4) return LoginController.login("", "");
             else return LoginController.login(inputs[2], inputs[3]);
         } else if (command.matches("^MainMenuController#logout#.+")) {
-                String[] inputs = command.split("#");
-                return MainMenuController.logout(inputs[ 2 ]);
+            String[] inputs = command.split("#");
+            return MainMenuController.logout(inputs[2]);
+        } else if (command.matches("^ScoreboardController#players#$")) {
+                return ScoreboardController.scoreBoardPlayers();
         } else if (command.startsWith("Player"))
             return playerCommandProcess(command);
         else if (command.startsWith("shop"))
