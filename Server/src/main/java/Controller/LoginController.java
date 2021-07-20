@@ -2,6 +2,8 @@ package Controller;
 
 import Model.Player;
 
+import java.util.UUID;
+
 public class LoginController {
     public static synchronized String login(String username, String password) {
         if (username.equals("")) {
@@ -17,7 +19,9 @@ public class LoginController {
         if (!password.equals(player.getPassword())) {
             return "Password is wrong!";
         }
+        String token = UUID.randomUUID().toString();
         Player.setActivePlayer(player);
-        return "Login was successful!";
+        Player.setPlayerInActivePlayers(token, player);
+        return "Login was successful!#" + token;
     }
 }

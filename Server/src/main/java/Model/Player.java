@@ -8,6 +8,7 @@ import java.util.*;
 public class Player implements Comparable<Player> {
     private static ArrayList<Player> players = new ArrayList<Player>();
     private static Player activePlayer;
+    private static HashMap<String, Player> activePlayers = new HashMap<>();
     private String username;
     private String password;
     private String nickname;
@@ -50,6 +51,10 @@ public class Player implements Comparable<Player> {
             }
         }
         return null;
+    }
+
+    public static void setPlayerInActivePlayers(String token, Player player) {
+        activePlayers.put(token, player);
     }
 
     public static boolean isPasswordCorrect(String username, String password) {

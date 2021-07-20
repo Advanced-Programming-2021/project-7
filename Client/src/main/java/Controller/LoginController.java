@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.CommonTools;
 import Model.Player;
 import Model.Sound;
 import javafx.event.ActionEvent;
@@ -17,6 +18,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.regex.Matcher;
 
 public class LoginController {
     @FXML
@@ -61,7 +63,11 @@ public class LoginController {
 
         }
         commandLabel.setText(result);
-        if (!result.equals("Login was successful!")) return;
+        if (!result.matches("^Login was successful!#.*")) return;
+        Matcher matcher = CommonTools.getMatcher(result, "^Login was successful!#(.+)");
+        matcher.find();
+        String token = matcher.group(1);
+        Player.setToken(token);
         Player.setActivePlayer(Player.getPlayerByUsername(username));
         loadMainMenu(event);
     }

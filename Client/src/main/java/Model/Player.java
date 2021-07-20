@@ -9,6 +9,7 @@ import java.util.*;
 public class Player implements Comparable<Player> {
     private static ArrayList<Player> players = new ArrayList<Player>();
     private static Player activePlayer;
+    private static String token;
     private String username;
     private String password;
     private String nickname;
@@ -40,6 +41,14 @@ public class Player implements Comparable<Player> {
             }
         }
         return null;
+    }
+
+    public static String getToken() {
+        return token;
+    }
+
+    public static void setToken(String toBeToken) {
+        token = toBeToken;
     }
 
     public static Player getPlayerByNick(String nickname) {
