@@ -53,4 +53,26 @@ public class DuelMenuController {
         }
         return "waiting";
     }
+
+    public static String refreshRequest(String player) {
+        StringBuilder string = new StringBuilder();
+        string.append(player).append(" has challenged you to a new ");
+        for (Map.Entry e : newRoundRequest.entrySet()) {
+            if (e.getValue().equals(player)) {
+                String player1 = (String) e.getKey();
+                newRoundAccepted.put(player, player1);
+                string.append("Round.\nWould you like to accept");
+                return string.toString();
+            }
+        }
+        for (Map.Entry e : newMatchRequest.entrySet()) {
+            if (e.getValue().equals(player)) {
+                String player1 = (String) e.getKey();
+                newRoundAccepted.put(player, player1);
+                string.append("Match.\nWould you like to accept");
+                return string.toString();
+            }
+        }
+        return "nothing new";
+    }
 }

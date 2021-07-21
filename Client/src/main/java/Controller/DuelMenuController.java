@@ -25,6 +25,7 @@ import java.util.ResourceBundle;
 public class DuelMenuController implements Initializable {
     public static String firstPlayer = Player.getActivePlayer().getUsername();
     public static String secondPlayer;
+    private long time;
 
     private Stage stage;
     private Scene scene;
@@ -133,5 +134,24 @@ public class DuelMenuController implements Initializable {
             alert.setHeaderText("You have not connected to any server!");
             alert.showAndWait();
         }
+        time = System.currentTimeMillis();
+        new Thread(() -> {
+            while (true) {
+                if (time + 4000 < System.currentTimeMillis()) {
+                    time = System.currentTimeMillis();
+                    String result = "";
+                    try {
+                        dataOutputStream.writeUTF("WaitMenu#refresh#" + Player.getActivePlayer().getUsername());
+                        dataOutputStream.flush();
+                        result = dataInputStream.readUTF();
+                    } catch (Exception e) {
+                    }
+                    if (!result.equals("nothing new")) {
+                        JOptionPane.showMessageDialog(null, result);
+                        break;
+                    }
+                }
+            }
+        }).start();
     }
 }

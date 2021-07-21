@@ -18,6 +18,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class WaitMenuController implements Initializable {
+    private long time;
+
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -43,17 +45,21 @@ public class WaitMenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        time = System.currentTimeMillis();
         new Thread(() -> {
             while (true) {
-                String result = "";
-                try {
-                    dataOutputStream.writeUTF("WaitMenu#wait#" + Player.getActivePlayer().getUsername());
-                    dataOutputStream.flush();
-                    result = dataInputStream.readUTF();
-                } catch (Exception e) {}
-                if (result.equals("your challenge accepted")) {
-                    JOptionPane.showMessageDialog(null, result);
-                    break;
+                if (time + 4000 < System.currentTimeMillis()) {
+                    time = System.currentTimeMillis();
+                    String result = "";
+                    try {
+                        dataOutputStream.writeUTF("WaitMenu#wait#" + Player.getActivePlayer().getUsername());
+                        dataOutputStream.flush();
+                        result = dataInputStream.readUTF();
+                    } catch (Exception e) {}
+                    if (result.equals("your challenge accepted")) {
+                        JOptionPane.showMessageDialog(null, result);
+                        break;
+                    }
                 }
             }
         }).start();
