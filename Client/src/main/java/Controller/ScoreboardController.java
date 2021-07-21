@@ -3,6 +3,7 @@ package Controller;
 import Model.CommonTools;
 import Model.Sound;
 import View.MainProgramView;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -21,7 +22,8 @@ import java.util.Arrays;
 public class ScoreboardController {
     private int yPosition = 230;
     private int counter = 1;
-//    private long time = System.currentTimeMillis();
+    private long time = System.currentTimeMillis();
+    public static boolean isPlayerInScoreboardMenu;
 
     private Stage stage;
     private Scene scene;
@@ -99,6 +101,7 @@ public class ScoreboardController {
     }
 
     public void back(ActionEvent event) throws IOException {
+        isPlayerInScoreboardMenu = false;
         Sound.getSoundByName("button").playSoundOnce();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_menu_view.fxml"));
         root = loader.load();
@@ -108,19 +111,26 @@ public class ScoreboardController {
         stage.show();
     }
 
-//    public void makeRefreshThread() {
-//        new Thread(() -> {
-//            while (true) {
-//                if (time + 2000 < System.currentTimeMillis()) {
-//                    time = System.currentTimeMillis();
-//                    try {
-//                        refreshBoard();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                    System.out.println("woww");
-//                }
-//            }
-//        }).start();
-//    }
+    public void makeRefreshThread() {
+        new Thread(() -> {
+            while (isPlayerInScoreboardMenu) {
+                if (time + 5000 < System.currentTimeMillis()) {
+                    time = System.currentTimeMillis();
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (!isPlayerInScoreboardMenu) {
+                                return;
+                            }
+                            try {
+                                refreshBoard();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
+            }
+        }).start();
+    }
 }

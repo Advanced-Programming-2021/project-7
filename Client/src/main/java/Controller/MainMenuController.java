@@ -24,6 +24,8 @@ public class MainMenuController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/score_board_view.fxml"));
         root = loader.load();
         ScoreboardController scoreboardController = loader.getController();
+        scoreboardController.makeRefreshThread();
+        scoreboardController.isPlayerInScoreboardMenu = true;
         scoreboardController.show(root);
         makeStage(event);
     }
