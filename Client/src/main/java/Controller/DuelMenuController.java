@@ -25,6 +25,7 @@ import java.util.ResourceBundle;
 public class DuelMenuController implements Initializable {
     public static String firstPlayer = Player.getActivePlayer().getUsername();
     public static String secondPlayer;
+    public static boolean isPlayerInLobby;
     private long time;
 
     private Stage stage;
@@ -47,8 +48,14 @@ public class DuelMenuController implements Initializable {
         } catch (Exception e) {
 
         }
-        if (result.equals("everything ok")) System.out.println("salam");
-        else JOptionPane.showMessageDialog(null, result);
+        if (result.equals("everything ok")) {
+            isPlayerInLobby = false;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/wait_menu_view.fxml"));
+            root = loader.load();
+            makeStage(event);
+        } else {
+            JOptionPane.showMessageDialog(null, result);
+        }
 //        DuelProgramController.round = 1;
 //        RockPaperScissors rockPaperScissors = new RockPaperScissors();
 //        rockPaperScissors.run(firstPlayer, secondPlayer);
@@ -66,8 +73,14 @@ public class DuelMenuController implements Initializable {
         } catch (Exception e) {
 
         }
-        if (result.equals("everything ok")) System.out.println("salam");
-        else JOptionPane.showMessageDialog(null, result);
+        if (result.equals("everything ok")) {
+            isPlayerInLobby = false;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/wait_menu_view.fxml"));
+            root = loader.load();
+            makeStage(event);
+        } else {
+            JOptionPane.showMessageDialog(null, result);
+        }
 //        DuelProgramController.round = 3;
 //        RockPaperScissors rockPaperScissors = new RockPaperScissors();
 //        rockPaperScissors.run(firstPlayer, secondPlayer);
@@ -75,6 +88,7 @@ public class DuelMenuController implements Initializable {
 
     public void startChatroom(ActionEvent event) {
         Sound.getSoundByName("button").playSoundOnce();
+        isPlayerInLobby = false;
         ChatRoom chatRoom = new ChatRoom();
         try {
             chatRoom.run();
@@ -85,6 +99,7 @@ public class DuelMenuController implements Initializable {
 
     public void battleWithAi(ActionEvent event) throws IOException {
         Sound.getSoundByName("button").playSoundOnce();
+        isPlayerInLobby = false;
         String player1 = Player.getActivePlayer().getUsername();
         if (Player.getActiveDeckByUsername(player1) == null) {
             JOptionPane.showMessageDialog(null, player1 + " has no active deck");
@@ -110,6 +125,7 @@ public class DuelMenuController implements Initializable {
 
     public void back(ActionEvent event) throws IOException {
         Sound.getSoundByName("button").playSoundOnce();
+        isPlayerInLobby = false;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_menu_view.fxml"));
         root = loader.load();
         makeStage(event);
@@ -135,8 +151,9 @@ public class DuelMenuController implements Initializable {
             alert.showAndWait();
         }
         time = System.currentTimeMillis();
+        isPlayerInLobby = true;
         new Thread(() -> {
-            while (true) {
+            while (isPlayerInLobby) {
                 if (time + 4000 < System.currentTimeMillis()) {
                     time = System.currentTimeMillis();
                     String result = "";

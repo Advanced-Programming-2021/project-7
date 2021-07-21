@@ -107,7 +107,7 @@ public class ChatRoom extends Application {
         });
         back.setOnAction(actionEvent -> {
             Sound.getSoundByName("button").playSoundOnce();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_menu_view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/duel_menu_view.fxml"));
             try {
                 root = loader.load();
             } catch (IOException e) {
