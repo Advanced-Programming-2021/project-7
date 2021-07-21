@@ -17,6 +17,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class ChatRoom extends Application {
@@ -63,7 +65,7 @@ public class ChatRoom extends Application {
         Text chats = new Text();
         chats.setFont(Font.font(30));
         ScrollPane scrollPane = new ScrollPane();
-        VBox vBox = new VBox(chats);
+        VBox vBox = new VBox();
         vBox.setAlignment(Pos.CENTER);
         scrollPane.setContent(vBox);
         scrollPane.setMaxWidth(600);
@@ -74,7 +76,17 @@ public class ChatRoom extends Application {
         LoginController.dataOutputStream.writeUTF("get chats");
         LoginController.dataOutputStream.flush();
         String chatContent = LoginController.dataInputStream.readUTF();
+        String[] messages = chatContent.split("\n");
+        System.out.println(messages.length);
+        for (int i = 0; i < messages.length; i++){
+            Button mess = getMessageButton(i);
+            mess.setText(messages[i]);
+            vBox.getChildren().add(mess);
+            mess.setMinWidth(600);
+            mess.setFont(Font.font(20));
+        }
         chats.setText(chatContent);
+        vBox.setSpacing(5);
         borderPane.setBackground(background);
         register.setOnAction(actionEvent -> {
             try {
@@ -86,7 +98,16 @@ public class ChatRoom extends Application {
                 LoginController.dataOutputStream.writeUTF("get chats");
                 LoginController.dataOutputStream.flush();
                 String result = LoginController.dataInputStream.readUTF();
-                chats.setText(result);
+                String[] messages1 = result.split("\n");
+                VBox vBox1 = new VBox();
+                for (int i = 0; i < messages1.length; i++){
+                    Button mess = getMessageButton(i);
+                    mess.setText(messages1[i]);
+                    vBox1.getChildren().add(mess);
+                    mess.setMinWidth(600);
+                }
+                vBox1.setSpacing(5);
+                scrollPane.setContent(vBox1);
                 scrollPane.setVvalue(1.5);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -98,7 +119,16 @@ public class ChatRoom extends Application {
                 LoginController.dataOutputStream.writeUTF("get chats");
                 LoginController.dataOutputStream.flush();
                 String result = LoginController.dataInputStream.readUTF();
-                chats.setText(result);
+                String[] messages1 = result.split("\n");
+                VBox vBox1 = new VBox();
+                for (int i = 0; i < messages1.length; i++){
+                    Button mess = getMessageButton(i);
+                    mess.setText(messages1[i]);
+                    vBox1.getChildren().add(mess);
+                    mess.setMinWidth(600);
+                }
+                vBox1.setSpacing(5);
+                scrollPane.setContent(vBox1);
                 scrollPane.setVvalue(1);
                 chatBox.clear();
             } catch (IOException e) {
@@ -132,5 +162,22 @@ public class ChatRoom extends Application {
         BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(1, 1, true, true, false, false));
         Background background = new Background(backgroundImage);
         return background;
+    }
+
+    private Button getMessageButton(int i) throws FileNotFoundException {
+        Button button = DeckMenu.getButton();
+        button.setOnAction(actionEvent -> {
+            String[] buttons = {"delete", "edit", "pin"};
+            int returnValue = JOptionPane.showOptionDialog(null, "message options", "message options",
+                    JOptionPane.OK_OPTION, 1, null, buttons, buttons[0]);
+            if (returnValue == 0){
+
+            } else if (returnValue == 1){
+
+            } else if (returnValue == 2){
+                
+            }
+        });
+        return button;
     }
 }
