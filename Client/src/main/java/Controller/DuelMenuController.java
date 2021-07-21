@@ -2,21 +2,27 @@ package Controller;
 
 import Menus.ChatRoom;
 import Menus.DuelProgramController;
-import Menus.RockPaperScissors;
 import Model.Player;
 import Model.Sound;
 import View.MainProgramView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import javax.swing.*;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.Socket;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class DuelMenuController {
+public class DuelMenuController implements Initializable {
     public static String firstPlayer = Player.getActivePlayer().getUsername();
     public static String secondPlayer;
 
@@ -24,20 +30,46 @@ public class DuelMenuController {
     private Scene scene;
     private Parent root;
 
+    public static Socket socket;
+    public static DataInputStream dataInputStream;
+    public static DataOutputStream dataOutputStream;
+
     public void newRound(ActionEvent event) throws Exception {
         Sound.getSoundByName("button").playSoundOnce();
-        if (!getSecondPlayerName()) return;
-        DuelProgramController.round = 1;
-        RockPaperScissors rockPaperScissors = new RockPaperScissors();
-        rockPaperScissors.run(firstPlayer, secondPlayer);
+        secondPlayer = JOptionPane.showInputDialog("Enter your opponent's username:");
+        if (secondPlayer == null) return;
+        String result = "";
+        try {
+            dataOutputStream.writeUTF("Lobby#newRound#" + firstPlayer + "#" + secondPlayer);
+            dataOutputStream.flush();
+            result = dataInputStream.readUTF();
+        } catch (Exception e) {
+
+        }
+        if (result.equals("everything ok")) System.out.println("salam");
+        else JOptionPane.showMessageDialog(null, result);
+//        DuelProgramController.round = 1;
+//        RockPaperScissors rockPaperScissors = new RockPaperScissors();
+//        rockPaperScissors.run(firstPlayer, secondPlayer);
     }
 
     public void newMatch(ActionEvent event) throws Exception {
         Sound.getSoundByName("button").playSoundOnce();
-        if (!getSecondPlayerName()) return;
-        DuelProgramController.round = 3;
-        RockPaperScissors rockPaperScissors = new RockPaperScissors();
-        rockPaperScissors.run(firstPlayer, secondPlayer);
+        secondPlayer = JOptionPane.showInputDialog("Enter your opponent's username:");
+        if (secondPlayer == null) return;
+        String result = "";
+        try {
+            dataOutputStream.writeUTF("Lobby#newMatch#" + firstPlayer + "#" + secondPlayer);
+            dataOutputStream.flush();
+            result = dataInputStream.readUTF();
+        } catch (Exception e) {
+
+        }
+        if (result.equals("everything ok")) System.out.println("salam");
+        else JOptionPane.showMessageDialog(null, result);
+//        DuelProgramController.round = 3;
+//        RockPaperScissors rockPaperScissors = new RockPaperScissors();
+//        rockPaperScissors.run(firstPlayer, secondPlayer);
     }
 
     public void startChatroom(ActionEvent event) {
@@ -75,35 +107,6 @@ public class DuelMenuController {
         stage.show();
     }
 
-    public boolean getSecondPlayerName() {
-        secondPlayer = JOptionPane.showInputDialog("Enter your opponent's nickname:");
-        return isDuelValid(firstPlayer, secondPlayer);
-    }
-
-    private boolean isDuelValid(String player1, String player2){
-        if (Player.getPlayerByUsername(player2) == null) {
-            JOptionPane.showMessageDialog(null, "there is no player with this username");
-            return false;
-        }
-        if (Player.getActiveDeckByUsername(player1) == null) {
-            JOptionPane.showMessageDialog(null, player1 + " has no active deck");
-            return false;
-        }
-        if (Player.getActiveDeckByUsername(player2) == null) {
-            JOptionPane.showMessageDialog(null, player2 + " has no active deck");
-            return false;
-        }
-        if (!Player.getActiveDeckByUsername(player1).isDeckValid()) {
-            JOptionPane.showMessageDialog(null, player1 + "'s deck is invalid");
-            return false;
-        }
-        if (!Player.getActiveDeckByUsername(player2).isDeckValid()) {
-            JOptionPane.showMessageDialog(null, player2 + "'s deck is invalid");
-            return false;
-        }
-        return true;
-    }
-
     public void back(ActionEvent event) throws IOException {
         Sound.getSoundByName("button").playSoundOnce();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_menu_view.fxml"));
@@ -116,5 +119,19 @@ public class DuelMenuController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            socket = new Socket("localhost", 7755);
+            dataInputStream = new DataInputStream(socket.getInputStream());
+            dataOutputStream = new DataOutputStream(socket.getOutputStream());
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Network");
+            alert.setHeaderText("You have not connected to any server!");
+            alert.showAndWait();
+        }
     }
 }

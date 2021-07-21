@@ -78,7 +78,10 @@ public class ServerController {
             String[] inputs = command.split("#");
             return MainMenuController.logout(inputs[2]);
         } else if (command.matches("^ScoreboardController#players#$")) {
-                return ScoreboardController.scoreBoardPlayers();
+            return ScoreboardController.scoreBoardPlayers();
+        }  else if (command.matches("^Lobby#[a-zA-Z]+#.+")) {
+                String[] inputs = command.split("#");
+                return DuelMenuController.isDuelValid(inputs[ 1 ], inputs[ 2 ], inputs[ 3 ]);
         } else if (command.startsWith("Player"))
             return playerCommandProcess(command);
         else if (command.startsWith("shop"))
