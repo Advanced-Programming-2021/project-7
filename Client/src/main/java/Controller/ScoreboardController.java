@@ -21,6 +21,7 @@ import java.util.Arrays;
 public class ScoreboardController {
     private int yPosition = 230;
     private int counter = 1;
+//    private long time = System.currentTimeMillis();
 
     private Stage stage;
     private Scene scene;
@@ -106,4 +107,20 @@ public class ScoreboardController {
         stage.setScene(scene);
         stage.show();
     }
+
+//    public void makeRefreshThread() {
+//        new Thread(() -> {
+//            while (true) {
+//                if (time + 2000 < System.currentTimeMillis()) {
+//                    time = System.currentTimeMillis();
+//                    try {
+//                        refreshBoard();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    System.out.println("woww");
+//                }
+//            }
+//        }).start();
+//    }
 }
