@@ -60,7 +60,7 @@ public class ServerController {
                 break;
             }
             String output = processCommands(command);
-            System.out.println(output);
+            if (output.length() < 100) System.out.println(output);
             outputStream.writeUTF(output);
             outputStream.flush();
         }
