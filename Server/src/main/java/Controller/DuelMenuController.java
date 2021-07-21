@@ -11,7 +11,7 @@ public class DuelMenuController {
     public static HashMap<String, String> newRoundAccepted = new HashMap<>();
     public static HashMap<String, String> newMatchAccepted = new HashMap<>();
 
-    public static String isDuelValid(String matchType, String player1, String player2) {
+    public static synchronized String isDuelValid(String matchType, String player1, String player2) {
         if (Player.getPlayerByUsername(player2) == null) {
             return "there is no player with this username";
         }
@@ -38,13 +38,13 @@ public class DuelMenuController {
         return "everything ok";
     }
 
-    public static String cancelRequest(String player) {
+    public static synchronized String cancelRequest(String player) {
         newMatchRequest.remove(player);
         newRoundRequest.remove(player);
         return "Challenge canceled successfully";
     }
 
-    public static String waitRequest(String player) {
+    public static synchronized String waitRequest(String player) {
         for (Map.Entry e : newMatchAccepted.entrySet()) {
             if (e.getValue().equals(player)) return "your challenge accepted";
         }
@@ -54,7 +54,7 @@ public class DuelMenuController {
         return "waiting";
     }
 
-    public static String refreshRequest(String player) {
+    public static synchronized String refreshRequest(String player) {
         StringBuilder string = new StringBuilder();
         string.append(player).append(" has challenged you to a new ");
         for (Map.Entry e : newRoundRequest.entrySet()) {

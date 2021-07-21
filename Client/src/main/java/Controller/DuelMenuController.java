@@ -164,7 +164,14 @@ public class DuelMenuController implements Initializable {
                     } catch (Exception e) {
                     }
                     if (!result.equals("nothing new")) {
-                        JOptionPane.showMessageDialog(null, result);
+                        String[] buttons = {"Yes", "No"};
+                        int returnValue = JOptionPane.showOptionDialog(null, result, "New challenge",
+                                JOptionPane.OK_OPTION, 1, null, buttons, buttons[0]);
+                        if (returnValue == 0) {
+                            System.out.println("yes");
+                        } else {
+                            System.out.println("no");
+                        }
                         break;
                     }
                 }

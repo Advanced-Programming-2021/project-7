@@ -18,6 +18,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class WaitMenuController implements Initializable {
+    public static boolean isPlayerInWaitMenu;
     private long time;
 
     private Stage stage;
@@ -35,6 +36,7 @@ public class WaitMenuController implements Initializable {
         dataOutputStream.flush();
         result = dataInputStream.readUTF();
         JOptionPane.showMessageDialog(null, result);
+        isPlayerInWaitMenu = false;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/duel_menu_view.fxml"));
         root = loader.load();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -46,8 +48,9 @@ public class WaitMenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         time = System.currentTimeMillis();
+        isPlayerInWaitMenu = true;
         new Thread(() -> {
-            while (true) {
+            while (isPlayerInWaitMenu) {
                 if (time + 4000 < System.currentTimeMillis()) {
                     time = System.currentTimeMillis();
                     String result = "";
