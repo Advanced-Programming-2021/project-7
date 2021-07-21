@@ -299,7 +299,7 @@ public class Player implements Comparable<Player> {
         if (this.score > player.score) {
             return true;
         } else if (this.score == player.score) {
-            if (this.username.compareTo(player.username) > 0) return false;
+            if (this.nickname.toLowerCase(Locale.ROOT).compareTo(player.nickname.toLowerCase(Locale.ROOT)) > 0) return false;
             else return true;
         } else {
             return false;

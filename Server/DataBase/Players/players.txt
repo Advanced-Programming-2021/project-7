@@ -5,7 +5,7 @@
       "username": "Ali",
       "password": "123",
       "nickname": "123",
-      "score": 0,
+      "score": 2000,
       "money": 96800,
       "profile": 2,
       "cards": [
@@ -37,7 +37,7 @@
       "username": "Alireza",
       "password": "1234",
       "nickname": "Ali",
-      "score": 0,
+      "score": 4000,
       "money": 0,
       "profile": 2,
       "cards": [
@@ -122,7 +122,7 @@
       "username": "Lale",
       "password": "1234",
       "nickname": "Lale",
-      "score": 0,
+      "score": 6000,
       "money": 100000,
       "profile": 0,
       "cards": {},
@@ -161,7 +161,7 @@
       "username": "Mohsen",
       "password": "1234",
       "nickname": "Mohsen",
-      "score": 0,
+      "score": 6000,
       "money": 200,
       "profile": 8,
       "cards": [
@@ -808,7 +808,7 @@
     "@val": {
       "username": "Reza",
       "password": "1234",
-      "nickname": "reza",
+      "nickname": "Reza",
       "score": 0,
       "money": 800,
       "profile": 6,
@@ -1282,7 +1282,7 @@
       "username": "Sara",
       "password": "1234",
       "nickname": "Sara",
-      "score": 0,
+      "score": 10000,
       "money": 100000,
       "profile": 7,
       "cards": {},
@@ -1654,7 +1654,7 @@
     "@val": {
       "username": "ali",
       "password": "ramz",
-      "nickname": "agha",
+      "nickname": "Agha",
       "score": 0,
       "money": 0,
       "profile": 1,
