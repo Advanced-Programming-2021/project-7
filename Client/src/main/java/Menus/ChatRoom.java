@@ -1,6 +1,7 @@
 package Menus;
 
 import Controller.LoginController;
+import Model.Player;
 import Model.Sound;
 import View.MainProgramView;
 import javafx.application.Application;
@@ -22,7 +23,7 @@ public class ChatRoom extends Application {
     public Stage stage;
     private Scene scene;
     private AnchorPane root;
-    private String username = "Mohsen";
+    private String username = Player.getActivePlayer().getUsername();
 
     public void run() {
         this.stage = MainProgramView.stage;
