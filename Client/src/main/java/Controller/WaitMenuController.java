@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import javax.swing.*;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -37,6 +38,17 @@ public class WaitMenuController implements Initializable {
     public void cancel(ActionEvent event) throws Exception {
         Sound.getSoundByName("button").playSoundOnce();
         fail();
+        backToLobby();
+    }
+
+    public void backToLobby() throws IOException {
+        isPlayerInWaitMenu = false;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/duel_menu_view.fxml"));
+        root = loader.load();
+        stage = MainProgramView.stage;
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void fail() throws Exception {
@@ -45,13 +57,6 @@ public class WaitMenuController implements Initializable {
         dataOutputStream.flush();
         result = dataInputStream.readUTF();
         JOptionPane.showMessageDialog(null, result);
-        isPlayerInWaitMenu = false;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/duel_menu_view.fxml"));
-        root = loader.load();
-        stage = MainProgramView.stage;
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
     }
 
     @Override
@@ -95,6 +100,12 @@ public class WaitMenuController implements Initializable {
                 try {
                     rockPaperScissors.run(firstPlayer, secondPlayer);
                 } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                try {
+                    backToLobby();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
