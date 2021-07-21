@@ -1,10 +1,8 @@
 package Menus;
 
 import Controller.CheatMenuController;
-import Controller.RegisterProfileController;
 import Model.Cards.*;
 import Model.CommonTools;
-import Model.Deck;
 import Model.Player;
 import Model.Sound;
 import View.MainProgramView;
@@ -36,8 +34,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 
-import static Controller.RegisterProfileController.dataOutputStream;
-import static Controller.RegisterProfileController.dataInputStream;
+import static Controller.DuelMenuController.dataInputStream;
+import static Controller.DuelMenuController.dataOutputStream;
 
 enum Phase {
     draw,
@@ -55,8 +53,6 @@ enum Phase {
 
 
 public class DuelProgramController {
-    public static String firstPlayer;
-    public static String secondPlayer;
     public static int round;
     private ArrayList<GameDeck> gameDecks = new ArrayList<>(2);
     private MonsterPowersController monsterPowersController = new MonsterPowersController(gameDecks, this);
@@ -108,11 +104,6 @@ public class DuelProgramController {
         attackSign.setFill(new ImagePattern(new Image("/Images/Attack.png")));
         inHandCards.setSpacing(20);
         enemyHand.setSpacing(20);
-        setGameDecks(firstPlayer, secondPlayer);
-        for (int j = 0; j < 5; j++) {
-            gameDecks.get(turn).drawCard();
-            gameDecks.get(changeTurn(turn)).drawCard();
-        }
         nextPhaseButton.setOnAction(actionEvent -> {
             changePhase();
             enemyGrid.getChildren().remove(attackSign);
@@ -125,7 +116,8 @@ public class DuelProgramController {
         enemyGrid.setVgap(35);
         myGrid.setHgap(44);
         myGrid.setVgap(30);
-        setField();
+        refresh();
+//        setField();
         makeCheatMenu();
     }
 
@@ -374,12 +366,12 @@ public class DuelProgramController {
             rectangle.setFill(new ImagePattern(new Image(getClass().getResource("/Images/Cards/Unknown.jpg").toExternalForm())));
             enemyHand.getChildren().add(rectangle);
         }
-        if (secondPlayer.equals("ai") && turn == 1) {
-            ai.updateAI(gameDecks.get(1), gameDecks.get(0), phase);
-            String command = ai.decision();
-            runCommand(command);
-            setField();
-        }
+//        if (secondPlayer.equals("ai") && turn == 1) {
+//            ai.updateAI(gameDecks.get(1), gameDecks.get(0), phase);
+//            String command = ai.decision();
+//            runCommand(command);
+//            setField();
+//        }
     }
 
     private void runCommand(String command) {
@@ -422,7 +414,7 @@ public class DuelProgramController {
 
     public void run(String firstPlayer, String secondPlayer, int round) {
         for (int i = 1; i <= round; i++) {
-            setGameDecks(firstPlayer, secondPlayer);
+//            setGameDecks(firstPlayer, secondPlayer);
             // methods to be set after each round
             for (int j = 0; j < 5; j++) {
                 gameDecks.get(turn).drawCard();
@@ -503,19 +495,6 @@ public class DuelProgramController {
             if (gameDecks.get(1).getWinRounds() == 1) return true;
         }
         return false;
-    }
-
-    private void setGameDecks(String firstPlayer, String secondPlayer) {
-        String firstNick = Player.getPlayerByUsername(firstPlayer).getNickname();
-        String secondNick = Player.getPlayerByUsername(secondPlayer).getNickname();
-        Deck activeDeck1 = Player.getActiveDeckByUsername(firstPlayer);
-        Deck activeDeck2 = Player.getActiveDeckByUsername(secondPlayer);
-        GameDeck gameDeckFirst = new GameDeck(firstNick, firstPlayer,
-                Deck.getMainDeckByDeck(activeDeck1));
-        GameDeck gameDeckSecond = new GameDeck(secondNick, secondPlayer,
-                Deck.getMainDeckByDeck(activeDeck2));
-        gameDecks.add(gameDeckFirst);
-        gameDecks.add(gameDeckSecond);
     }
 
     private void showGameDeck(int turn) {

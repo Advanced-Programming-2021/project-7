@@ -119,6 +119,8 @@ public class ServerController {
     private String refreshDuel(String command) {
         YaGson yaGson = new YaGsonBuilder().setPrettyPrinting().create();
         String toWrite = yaGson.toJson(duelProgramController.getGameDecks());
+        System.out.println(duelProgramController);
+        System.out.println(duelProgramController.getGameDecks());
         return toWrite;
     }
 

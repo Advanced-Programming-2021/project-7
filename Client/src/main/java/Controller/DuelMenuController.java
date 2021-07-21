@@ -1,7 +1,6 @@
 package Controller;
 
 import Menus.ChatRoom;
-import Menus.DuelProgramController;
 import Model.Player;
 import Model.Sound;
 import View.MainProgramView;
@@ -111,8 +110,8 @@ public class DuelMenuController implements Initializable {
             JOptionPane.showMessageDialog(null, player1 + "'s deck is invalid");
             return;
         }
-        DuelProgramController.firstPlayer = player1;
-        DuelProgramController.secondPlayer = "ai";
+//        DuelProgramController.firstPlayer = player1;
+//        DuelProgramController.secondPlayer = "ai";
         root = FXMLLoader.load(getClass().getResource("/FXML/game_board.fxml"));
         stage = MainProgramView.stage;
         stage.setResizable(true);
@@ -210,8 +209,6 @@ public class DuelMenuController implements Initializable {
                 @Override
                 public void run() {
                     if (isChallengeAccepted) {
-                        DuelProgramController.firstPlayer = firstPlayer;
-                        DuelProgramController.secondPlayer = secondPlayer;
                         try {
                             root = FXMLLoader.load(getClass().getResource("/FXML/game_board.fxml"));
                         } catch (IOException e) {

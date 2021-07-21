@@ -1,6 +1,5 @@
 package Controller;
 
-import Menus.DuelProgramController;
 import Model.Player;
 import Model.Sound;
 import View.MainProgramView;
@@ -100,8 +99,6 @@ public class WaitMenuController implements Initializable {
                 @Override
                 public void run() {
                     if (isChallengeAccepted) {
-                        DuelProgramController.firstPlayer = firstPlayer;
-                        DuelProgramController.secondPlayer = secondPlayer;
                         try {
                             root = FXMLLoader.load(getClass().getResource("/FXML/game_board.fxml"));
                         } catch (IOException e) {

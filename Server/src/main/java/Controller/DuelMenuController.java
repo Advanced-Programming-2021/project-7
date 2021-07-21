@@ -51,7 +51,6 @@ public class DuelMenuController {
         for (Map.Entry e : newMatchAccepted.entrySet()) {
             if (e.getValue().equals(player)) {
                 newMatchAccepted.remove(e.getKey());
-                ServerController.duelProgramController = new DuelProgramController();
                 return "your challenge accepted";
             }
         }
@@ -64,7 +63,6 @@ public class DuelMenuController {
         for (Map.Entry e : newRoundAccepted.entrySet()) {
             if (e.getValue().equals(player)) {
                 newRoundAccepted.remove(e.getKey());
-                ServerController.duelProgramController = new DuelProgramController();
                 return "your challenge accepted";
             }
         }
@@ -123,6 +121,7 @@ public class DuelMenuController {
             if (e.getValue().equals(player)) {
                 String player1 = (String) e.getKey();
                 newRoundAccepted.put(player, player1);
+                ServerController.duelProgramController = new DuelProgramController();
                 return "Challenge accepted";
             }
         }
@@ -130,6 +129,7 @@ public class DuelMenuController {
             if (e.getValue().equals(player)) {
                 String player1 = (String) e.getKey();
                 newMatchAccepted.put(player, player1);
+                ServerController.duelProgramController = new DuelProgramController();
                 return "Challenge accepted";
             }
         }
