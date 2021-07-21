@@ -26,6 +26,7 @@ public class ChatRoom extends Application {
     private Scene scene;
     private AnchorPane root;
     private String username = Player.getActivePlayer().getUsername();
+    private ScrollPane scrollPane;
 
     public void run() {
         this.stage = MainProgramView.stage;
@@ -39,8 +40,11 @@ public class ChatRoom extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Text titleText = new Text("Chat Room");
-        titleText.setFont(Font.font(50));
+        LoginController.dataOutputStream.writeUTF("number of online");
+        LoginController.dataOutputStream.flush();
+        String numberOfOnline = LoginController.dataInputStream.readUTF();
+        Text titleText = new Text("number of Online: " + numberOfOnline);
+        titleText.setFont(Font.font(40));
         Button back = DeckMenu.getButton();
         back.setText("back");
         VBox title = new VBox(titleText);
@@ -71,6 +75,7 @@ public class ChatRoom extends Application {
         scrollPane.setMaxWidth(600);
         scrollPane.setStyle("-fx-background: transparent; -fx-background-color: rgba(86,132,205,0.5);");
         scrollPane.setVvalue(1);
+        this.scrollPane = scrollPane;
         VBox chatVbox = new VBox(scrollPane);
         chatVbox.setAlignment(Pos.CENTER);
         LoginController.dataOutputStream.writeUTF("get chats");
@@ -83,7 +88,6 @@ public class ChatRoom extends Application {
             mess.setText(messages[i]);
             vBox.getChildren().add(mess);
             mess.setMinWidth(600);
-            mess.setFont(Font.font(20));
         }
         chats.setText(chatContent);
         vBox.setSpacing(5);
@@ -95,19 +99,7 @@ public class ChatRoom extends Application {
                 LoginController.dataOutputStream.flush();
                 LoginController.dataInputStream.readUTF();
                 chatBox.clear();
-                LoginController.dataOutputStream.writeUTF("get chats");
-                LoginController.dataOutputStream.flush();
-                String result = LoginController.dataInputStream.readUTF();
-                String[] messages1 = result.split("\n");
-                VBox vBox1 = new VBox();
-                for (int i = 0; i < messages1.length; i++){
-                    Button mess = getMessageButton(i);
-                    mess.setText(messages1[i]);
-                    vBox1.getChildren().add(mess);
-                    mess.setMinWidth(600);
-                }
-                vBox1.setSpacing(5);
-                scrollPane.setContent(vBox1);
+                scrollPane.setContent(refresh());
                 scrollPane.setVvalue(1.5);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -166,18 +158,53 @@ public class ChatRoom extends Application {
 
     private Button getMessageButton(int i) throws FileNotFoundException {
         Button button = DeckMenu.getButton();
+        button.setFont(Font.font(20));
         button.setOnAction(actionEvent -> {
-            String[] buttons = {"delete", "edit", "pin"};
+            String[] buttons = {"delete", "edit", "pin", "profile"};
             int returnValue = JOptionPane.showOptionDialog(null, "message options", "message options",
                     JOptionPane.OK_OPTION, 1, null, buttons, buttons[0]);
-            if (returnValue == 0){
-
-            } else if (returnValue == 1){
-
-            } else if (returnValue == 2){
-                
+            try{
+                if (returnValue == 3){
+                    LoginController.dataOutputStream.writeUTF("profileChat#" + i);
+                    LoginController.dataOutputStream.flush();
+                    String chatContent = LoginController.dataInputStream.readUTF();
+                } else if (returnValue == 2){
+                    LoginController.dataOutputStream.writeUTF("pinChat#" + i);
+                    LoginController.dataOutputStream.flush();
+                    String chatContent = LoginController.dataInputStream.readUTF();
+                } else if (returnValue == 1) {
+                    String newMessage = JOptionPane.showInputDialog("new message");
+                    if (newMessage != null) {
+                        LoginController.dataOutputStream.writeUTF("editChat#" + i + "#" + username + ": " + newMessage);
+                        LoginController.dataOutputStream.flush();
+                        String chatContent = LoginController.dataInputStream.readUTF();
+                    }
+                } else if (returnValue == 0) {
+                    LoginController.dataOutputStream.writeUTF("deleteChat#" + i);
+                    LoginController.dataOutputStream.flush();
+                    String chatContent = LoginController.dataInputStream.readUTF();
+                }
+                //scrollPane.setContent(refresh());
+            } catch (IOException e){
+                e.printStackTrace();
             }
         });
         return button;
+    }
+
+    private VBox refresh() throws IOException {
+        LoginController.dataOutputStream.writeUTF("get chats");
+        LoginController.dataOutputStream.flush();
+        String result = LoginController.dataInputStream.readUTF();
+        String[] messages1 = result.split("\n");
+        VBox vBox1 = new VBox();
+        for (int i = 0; i < messages1.length; i++){
+            Button mess = getMessageButton(i);
+            mess.setText(messages1[i]);
+            vBox1.getChildren().add(mess);
+            mess.setMinWidth(600);
+        }
+        vBox1.setSpacing(5);
+        return vBox1;
     }
 }
