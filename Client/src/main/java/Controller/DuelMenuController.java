@@ -27,6 +27,7 @@ public class DuelMenuController implements Initializable {
     public static String firstPlayer = Player.getActivePlayer().getUsername();
     public static String secondPlayer;
     public static boolean isPlayerInLobby;
+    public static boolean isChallengeAccepted;
     private long time;
 
     private Stage stage;
@@ -139,6 +140,7 @@ public class DuelMenuController implements Initializable {
     }
 
     public void accept() {
+        isChallengeAccepted = true;
         String result = "";
         try {
             dataOutputStream.writeUTF("WaitMenu#accept#" + Player.getActivePlayer().getUsername());
@@ -147,15 +149,10 @@ public class DuelMenuController implements Initializable {
         } catch (Exception e) {
         }
         JOptionPane.showMessageDialog(null, result);
-        RockPaperScissors rockPaperScissors = new RockPaperScissors();
-        try {
-            rockPaperScissors.run(firstPlayer, secondPlayer);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public void reject() {
+        isChallengeAccepted = false;
         String result = "";
         try {
             dataOutputStream.writeUTF("WaitMenu#reject#" + Player.getActivePlayer().getUsername());
@@ -168,6 +165,7 @@ public class DuelMenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        isChallengeAccepted = false;
         try {
             socket = new Socket("localhost", 7755);
             dataInputStream = new DataInputStream(socket.getInputStream());
@@ -202,6 +200,14 @@ public class DuelMenuController implements Initializable {
                             reject();
                         }
                     }
+                }
+            }
+            if (isChallengeAccepted) {
+                RockPaperScissors rockPaperScissors = new RockPaperScissors();
+                try {
+                    rockPaperScissors.run(firstPlayer, secondPlayer);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         }).start();
