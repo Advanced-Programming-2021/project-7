@@ -1,6 +1,6 @@
 package Controller;
 
-import Menus.RockPaperScissors;
+import Menus.DuelProgramController;
 import Model.Player;
 import Model.Sound;
 import View.MainProgramView;
@@ -100,12 +100,14 @@ public class WaitMenuController implements Initializable {
                 @Override
                 public void run() {
                     if (isChallengeAccepted) {
-                        RockPaperScissors rockPaperScissors = new RockPaperScissors();
+                        DuelProgramController.firstPlayer = firstPlayer;
+                        DuelProgramController.secondPlayer = secondPlayer;
                         try {
-                            rockPaperScissors.run(firstPlayer, secondPlayer);
-                        } catch (Exception e) {
+                            root = FXMLLoader.load(getClass().getResource("/FXML/game_board.fxml"));
+                        } catch (IOException e) {
                             e.printStackTrace();
                         }
+                        makeStage();
                     } else {
                         try {
                             backToLobby();
@@ -116,5 +118,17 @@ public class WaitMenuController implements Initializable {
                 }
             });
         }).start();
+    }
+
+    public void makeStage() {
+        stage = MainProgramView.stage;
+        stage.setResizable(true);
+        stage.setMaximized(true);
+        stage.setWidth(1020);
+        stage.setHeight(820);
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.sizeToScene();
+        stage.show();
     }
 }

@@ -2,7 +2,6 @@ package Controller;
 
 import Menus.ChatRoom;
 import Menus.DuelProgramController;
-import Menus.RockPaperScissors;
 import Model.Player;
 import Model.Sound;
 import View.MainProgramView;
@@ -197,6 +196,8 @@ public class DuelMenuController implements Initializable {
                         int returnValue = JOptionPane.showOptionDialog(null, result, "New challenge",
                                 JOptionPane.OK_OPTION, 1, null, buttons, buttons[0]);
                         if (returnValue == 0) {
+                            String[] results = result.split(" ");
+                            secondPlayer = results[ 0 ];
                             accept();
                             break;
                         } else {
@@ -209,15 +210,29 @@ public class DuelMenuController implements Initializable {
                 @Override
                 public void run() {
                     if (isChallengeAccepted) {
-                        RockPaperScissors rockPaperScissors = new RockPaperScissors();
+                        DuelProgramController.firstPlayer = firstPlayer;
+                        DuelProgramController.secondPlayer = secondPlayer;
                         try {
-                            rockPaperScissors.run(firstPlayer, secondPlayer);
-                        } catch (Exception e) {
+                            root = FXMLLoader.load(getClass().getResource("/FXML/game_board.fxml"));
+                        } catch (IOException e) {
                             e.printStackTrace();
                         }
+                        makeScene();
                     }
                 }
             });
         }).start();
+    }
+
+    public void makeScene() {
+        stage = MainProgramView.stage;
+        stage.setResizable(true);
+        stage.setMaximized(true);
+        stage.setWidth(1020);
+        stage.setHeight(820);
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.sizeToScene();
+        stage.show();
     }
 }
