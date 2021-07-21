@@ -312,18 +312,45 @@ public class ServerController {
     }
 
     private String numberOfOnline(){
-        return "";
+        int number = Player.getActivePlayers().size();
+        return number + "";
     }
 
     private String deleteChat(String command){
-        return "";
+        String[] input = command.split("#");
+        int index = Integer.parseInt(input[1]);
+        String[] messages = chats.split("\n");
+        String newChats = "";
+        for (int i = 1; i < messages.length; i++){
+            if (i != index){
+                newChats = newChats + "\n" + messages[i];
+                System.out.println(index);
+                System.out.println(i);
+            }
+        }
+        chats = newChats;
+        return "message deleted successfully";
     }
 
     private String editChat(String command){
-        return "";
+        String[] input = command.split("#");
+        int index = Integer.parseInt(input[1]);
+        String[] messages = chats.split("\n");
+        String newChats = "";
+        for (int i = 1; i < messages.length; i++){
+            if (i != index){
+                newChats = newChats + "\n" + messages[i];
+            } else {
+                newChats = newChats + "\n" + input[2];
+            }
+        }
+        chats = newChats;
+        return "message edited successfully";
     }
 
     private String pinChat(String command){
+        String[] input = command.split("#");
+        int index = Integer.parseInt(input[1]);
         return "";
     }
 
