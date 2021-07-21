@@ -13,6 +13,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -27,6 +28,7 @@ public class ChatRoom extends Application {
     private AnchorPane root;
     private String username = Player.getActivePlayer().getUsername();
     private ScrollPane scrollPane;
+    private static Text titleText = new Text();
 
     public void run() {
         this.stage = MainProgramView.stage;
@@ -43,8 +45,12 @@ public class ChatRoom extends Application {
         LoginController.dataOutputStream.writeUTF("number of online");
         LoginController.dataOutputStream.flush();
         String numberOfOnline = LoginController.dataInputStream.readUTF();
-        Text titleText = new Text("number of Online: " + numberOfOnline);
+        LoginController.dataOutputStream.writeUTF("getPinnedChat");
+        LoginController.dataOutputStream.flush();
+        String pinnedMessage = LoginController.dataInputStream.readUTF();
+        this.titleText.setText("number of Online: " + numberOfOnline + "\npinned message: " + pinnedMessage);
         titleText.setFont(Font.font(40));
+        titleText.setFill(Color.YELLOWGREEN);
         Button back = DeckMenu.getButton();
         back.setText("back");
         VBox title = new VBox(titleText);
@@ -205,6 +211,13 @@ public class ChatRoom extends Application {
             mess.setMinWidth(600);
         }
         vBox1.setSpacing(5);
+        LoginController.dataOutputStream.writeUTF("number of online");
+        LoginController.dataOutputStream.flush();
+        String numberOfOnline = LoginController.dataInputStream.readUTF();
+        LoginController.dataOutputStream.writeUTF("getPinnedChat");
+        LoginController.dataOutputStream.flush();
+        String pinnedMessage = LoginController.dataInputStream.readUTF();
+        this.titleText.setText("number of Online: " + numberOfOnline + "\npinned message: " + pinnedMessage);
         return vBox1;
     }
 }
