@@ -27,7 +27,7 @@ public class Sound {
 
     public void playSound() {
         sound.setCycleCount(-1);
-        sound.setVolume(0);
+        sound.setVolume(0.1);
         activeSounds.add(this);
         if (isSoundMuted) return;
         sound.play();

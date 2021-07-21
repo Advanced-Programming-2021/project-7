@@ -6,6 +6,7 @@ import Menus.RockPaperScissors;
 import Model.Player;
 import Model.Sound;
 import View.MainProgramView;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -204,14 +205,19 @@ public class DuelMenuController implements Initializable {
                     }
                 }
             }
-            if (isChallengeAccepted) {
-                RockPaperScissors rockPaperScissors = new RockPaperScissors();
-                try {
-                    rockPaperScissors.run(firstPlayer, secondPlayer);
-                } catch (Exception e) {
-                    e.printStackTrace();
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    if (isChallengeAccepted) {
+                        RockPaperScissors rockPaperScissors = new RockPaperScissors();
+                        try {
+                            rockPaperScissors.run(firstPlayer, secondPlayer);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
-            }
+            });
         }).start();
     }
 }
