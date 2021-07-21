@@ -144,7 +144,69 @@ public class ServerController {
             return duelProgramController.activateSpellErrorCheck();
         else if ((CommonTools.getMatcher(command, "duel summon")).matches())
             return duelProgramController.summonMonster();
-        else return "";
+        else if ((CommonTools.getMatcher(command, "duel set")).matches())
+            return duelProgramController.set();
+        else if ((CommonTools.getMatcher(command, "duel summonOrSet")).matches())
+            duelProgramController.checkForSetOrSummon();
+        else if ((CommonTools.getMatcher(command, "duel flip")).matches())
+            return duelProgramController.flipSummon();
+        else if ((CommonTools.getMatcher(command, "duel deselect")).matches())
+            duelProgramController.deselect();
+        else if ((CommonTools.getMatcher(command, "duel draw card")).matches())
+            duelProgramController.drawCard();
+        else if ((CommonTools.getMatcher(command, "duel activateTrap")).matches())
+            duelProgramController.activateTrap();
+        else if ((matcher = CommonTools.getMatcher(command, "duel selectMonster (\\d+)")).matches())
+            return selectMonster(matcher);
+        else if ((matcher = CommonTools.getMatcher(command, "duel selectSpell (\\d+)")).matches())
+            return selectSpell(matcher);
+        else if ((matcher = CommonTools.getMatcher(command, "duel selectHand (\\d+)")).matches())
+            return selectHand(matcher);
+        else if ((matcher = CommonTools.getMatcher(command, "duel set --position (attack|defense)")).matches())
+            return setPosition(matcher);
+        else if ((CommonTools.getMatcher(command, "duel isRoundOver")).matches())
+            return String.valueOf(duelProgramController.isRoundOver());
+        else if ((CommonTools.getMatcher(command, "duel isGame")).matches())
+            return String.valueOf(duelProgramController.isGameOver());
+        else if ((matcher = CommonTools.getMatcher(command, "duel roundOver (\\d+)")).matches())
+            return roundOver(matcher);
+        else if ((matcher = CommonTools.getMatcher(command, "duel gameOver (\\d+)")).matches())
+            return gameOver(matcher);
+        else if ((CommonTools.getMatcher(command, "duel changePhase")).matches())
+            duelProgramController.changePhase();
+        return "";
+    }
+
+    private String gameOver(Matcher matcher) {
+        int turn = Integer.parseInt(matcher.group(1));
+        duelProgramController.gameOver(turn);
+        return "";
+    }
+
+    private String roundOver(Matcher matcher) {
+        int turn = Integer.parseInt(matcher.group(1));
+        duelProgramController.roundOver(turn);
+        return "";
+    }
+
+    private String setPosition(Matcher matcher) {
+        String command = "set --position " + matcher.group(1);
+        return duelProgramController.setPositionMonster(command);
+    }
+
+    private String selectHand(Matcher matcher) {
+        int index = Integer.parseInt(matcher.group(1));
+        return duelProgramController.selectHand(index);
+    }
+
+    private String selectSpell(Matcher matcher) {
+        int index = Integer.parseInt(matcher.group(1));
+        return duelProgramController.selectSpell(index);
+    }
+
+    private String selectMonster(Matcher matcher) {
+        int index = Integer.parseInt(matcher.group(1));
+        return duelProgramController.selectMonster(index);
     }
 
     private String attack(Matcher matcher) {

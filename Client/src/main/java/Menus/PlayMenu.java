@@ -2,6 +2,8 @@ package Menus;
 
 import Model.CommonTools;
 import Model.Player;
+import View.GameBoardView;
+import View.MainProgramView;
 
 class PlayMenu {
     private Player loggedInUser;
@@ -40,7 +42,11 @@ class PlayMenu {
         }
         int round = Integer.parseInt(rounds);
         DuelProgramController duelProgramController = new DuelProgramController();
-        duelProgramController.run(player1, player2, round);
+        try {
+            new GameBoardView().start(MainProgramView.stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private boolean isDuelValid(String player1, String player2, String rounds){

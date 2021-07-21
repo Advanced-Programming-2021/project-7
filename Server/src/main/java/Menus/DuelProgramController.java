@@ -156,7 +156,7 @@ public class DuelProgramController {
 
     public void setField() {
         if (isRoundOver()) roundOver(turn);
-        if (isGameOver(round)) gameOver(round);
+        if (isGameOver()) gameOver(round);
         if (phase == Phase.standby && !messengerChecked) {
             keepMessengerOfPeace();
             messengerChecked = true;
@@ -432,7 +432,7 @@ public class DuelProgramController {
         }
     }
 
-    private boolean isRoundOver() {
+    public boolean isRoundOver() {
         if (gameDecks.get(0).getPlayerLP() <= 0) {
             roundOver(0);
             return true;
@@ -442,7 +442,7 @@ public class DuelProgramController {
         } else return false;
     }
 
-    private boolean isGameOver(int round) {
+    public boolean isGameOver() {
         if (round == 3) {
             if (gameDecks.get(0).getWinRounds() > 1) return true;
             if (gameDecks.get(1).getWinRounds() > 1) return true;
@@ -596,7 +596,7 @@ public class DuelProgramController {
         return true;
     }
 
-    private String selectMonster(int position) {
+    public String selectMonster(int position) {
         if (gameDecks.get(turn).getMonsterZones().get(position).isEmpty()) {
             System.out.println("no card found in the given position");
             return "no card found in the given position";
@@ -608,7 +608,7 @@ public class DuelProgramController {
         return "card selected";
     }
 
-    private String selectSpell(int position) {
+    public String selectSpell(int position) {
         if (gameDecks.get(turn).getSpellZones().get(position).isEmpty()) {
             System.out.println("no card found in the given position");
             return "no card found in the given position";
@@ -631,7 +631,7 @@ public class DuelProgramController {
         System.out.println("card selected");
     }
 
-    private String selectHand(int position) {
+    public String selectHand(int position) {
         ArrayList<Card> inHandCards = gameDecks.get(turn).getInHandCards();
         selectedCard = inHandCards.get(position - 1);
         selectedCardIndex = position;
@@ -805,7 +805,7 @@ public class DuelProgramController {
         deselect();
     }
 
-    private String set() {
+    public String set() {
         int position = selectedCardIndex;
         ArrayList<Card> inHandCards = gameDecks.get(turn).getInHandCards();
         if (selectedCard == null) {
@@ -861,7 +861,7 @@ public class DuelProgramController {
         return true;
     }
 
-    private String setPositionMonster(String command) {
+    public String setPositionMonster(String command) {
         HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(turn).getMonsterZones();
         if (!isSetPositionValid()) return "change is invalid";
         if (command.matches("set --position attack")) {
@@ -908,7 +908,7 @@ public class DuelProgramController {
         return true;
     }
 
-    private String flipSummon() {
+    public String flipSummon() {
         HashMap<Integer, MonsterZone> monsterZones = gameDecks.get(turn).getMonsterZones();
         if (!isFlipSummonValid()) return "flip is invalid";
         if (changedPositionMonsterIndex == selectedCardIndex ||
@@ -1202,7 +1202,7 @@ public class DuelProgramController {
         return checkSpellCard();
     }
 
-    private void activateTrap() {
+    public void activateTrap() {
         if (!selectedDeck.equals("spell")) {
             System.out.println("invalid deck or card");
             return;
@@ -1216,7 +1216,6 @@ public class DuelProgramController {
         if (selectedCard.getName().equals("Mind Crush")) activateTrapMindCrush();
         else if (selectedCard.getName().equals("Torrential Tribute")) activateTrapTorrentialTribute();
         else if (selectedCard.getName().equals("Time Seal")) activateTrapTimeSeal();
-        //moveToGraveyard(turn, "SpellZone", selectedCardIndex);
     }
 
     private String setSpell() {
@@ -1371,7 +1370,7 @@ public class DuelProgramController {
         setField();
     }
 
-    private void roundOver(int turn) { // 0 : firstPlayer losses , 1 : secondPlayer losses
+    public void roundOver(int turn) { // 0 : firstPlayer losses , 1 : secondPlayer losses
         GameDeck firstDeck = gameDecks.get(0);
         GameDeck secondDeck = gameDecks.get(1);
         firstDeck.addPlayerLPAfterRound();
@@ -1382,7 +1381,7 @@ public class DuelProgramController {
         else firstDeck.increaseWinRounds();
     }
 
-    private void gameOver(int round) {
+    public void gameOver(int round) {
         String winnerUsername = "";
         int firstMoney = 0;
         int secondMoney = 0;
@@ -1464,7 +1463,7 @@ public class DuelProgramController {
         System.out.println("its " + gameDecks.get(turn).getPlayerNickName() + "'s turn");
     }
 
-    private void drawCard() {
+    public void drawCard() {
         ArrayList<Card> deck = gameDecks.get(turn).getDeck();
         if (deck.size() == 0) {
             gameDecks.get(turn).setPlayerLP(0);
@@ -1482,7 +1481,7 @@ public class DuelProgramController {
         setField();
     }
 
-    private void changePhase() {
+    public void changePhase() {
         if (phase == Phase.end) changeGameTurn();
         phase = phase.next();
         if (isGameStart == 2 && phase == Phase.battle) {
