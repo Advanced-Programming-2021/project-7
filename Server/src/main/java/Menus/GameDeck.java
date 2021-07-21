@@ -14,7 +14,7 @@ class GameDeck {
     private HashMap<Integer, MonsterZone> monsterZones = new HashMap<>();
     private HashMap<Integer, SpellZone> spellZones = new HashMap<>();
     private ArrayList<Card> inHandCards = new ArrayList<>();
-    private ArrayList<Card> deck = new ArrayList<>();
+    private transient ArrayList<Card> deck = new ArrayList<>();
     private Card fieldZone;
     private String fieldZoneStatus = "E";
     private ArrayList<Card> graveyardCards = new ArrayList<>();
@@ -170,10 +170,6 @@ class GameDeck {
         playerLP -= damage;
     }
 
-    public void heal(int amount) {
-        playerLP += amount;
-    }
-
     public void drawCard() {
         Card card = deck.get(deck.size() - 1);
         inHandCards.add(card);
@@ -226,18 +222,6 @@ class GameDeck {
         }
     }
 
-    public void activateCard(String cardName) {
-
-    }
-
-    public void destroyCard(String cardName) {
-
-    }
-
-    public void decreaseCardHP(String cardName) {
-
-    }
-
     public void decreaseLP(int value) {
         this.playerLP -= value;
     }
@@ -266,72 +250,9 @@ class GameDeck {
         return Collections.max(playerLPsAfterRound);
     }
 
-    public void editBoardCell(int position) {
-
-    }
-
-    public void showBoard() {
-
-    }
-
-    public void setPosition(Card card, String position) {
-
-    }
-
-    public void setMat() {
-
-    }
-
     public String getPlayerUserName() {
         return this.playerUserName;
     }
 
 
-//    public String getBoardCellByPosition(int position) {
-//
-//    }
-//
-//    public String getPlayerName() {
-//
-//    }
-//
-//    public ArrayList<Card> getActiveCards() {
-//
-//    }
-//
-//    public ArrayList<Card> getInHandCards() {
-//
-//    }
-//
-//    public ArrayList<Card> getDestroyedCards() {
-//
-//    }
-//
-//    public Card getSelectedCard() {
-//
-//    }
-//
-//    public int getNumberOfDeckCards() {
-//
-//    }
-//
-//    public int getNumberOfGraveCards() {
-//
-//    }
-//
-//    public int getNumberOfFieldCards() {
-//
-//    }
-//
-//    public String getMonsterState(int position) {
-//
-//    }
-//
-//    public String getSpellState(int position) {
-//
-//    }
-//
-//    public int getNumberOfHandCards() {
-//
-//    }
 }

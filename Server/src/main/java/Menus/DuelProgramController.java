@@ -161,22 +161,22 @@ public class DuelProgramController {
             keepMessengerOfPeace();
             messengerChecked = true;
         }
-        if (!gameDecks.get(turn).isFieldZoneEmpty()){
+        if (!gameDecks.get(turn).isFieldZoneEmpty()) {
             myField.setImage(cardView(gameDecks.get(turn).getFieldZone().getName()));
             String name = gameDecks.get(turn).getFieldZone().getName();
             BackgroundFill backgroundFill;
             if (name.equals("Yami")) {
-                backgroundFill = new BackgroundFill(new ImagePattern(new Image("/Images/Field/fie_yami.bmp")),null,null);
+                backgroundFill = new BackgroundFill(new ImagePattern(new Image("/Images/Field/fie_yami.bmp")), null, null);
             } else if (name.equals("Forest"))
-                backgroundFill = new BackgroundFill(new ImagePattern(new Image("/Images/Field/fie_sougen.bmp")),null,null);
+                backgroundFill = new BackgroundFill(new ImagePattern(new Image("/Images/Field/fie_sougen.bmp")), null, null);
             else if (name.equals("Closed Forest"))
-                backgroundFill = new BackgroundFill(new ImagePattern(new Image("/Images/Field/fie_gaia.bmp")),null,null);
+                backgroundFill = new BackgroundFill(new ImagePattern(new Image("/Images/Field/fie_gaia.bmp")), null, null);
             else
-                backgroundFill = new BackgroundFill(new ImagePattern(new Image("/Images/Field/fie_umi.bmp")),null,null);
+                backgroundFill = new BackgroundFill(new ImagePattern(new Image("/Images/Field/fie_umi.bmp")), null, null);
             Background background = new Background(backgroundFill);
             field.setBackground(background);
         }
-        if (!gameDecks.get(changeTurn(turn)).isFieldZoneEmpty()){
+        if (!gameDecks.get(changeTurn(turn)).isFieldZoneEmpty()) {
             enemyFiled.setImage(cardView(gameDecks.get(changeTurn(turn)).getFieldZone().getName()));
         }
         if (phase == Phase.draw && isCardDrawn == 0 && isGameStart == 0 && timeSealTrap == 0) drawCard();
@@ -239,7 +239,7 @@ public class DuelProgramController {
                             }
                         } else if (phase != Phase.battle && finalI1 == 1) {
                             JOptionPane.showMessageDialog(null, selectSpell(finalI + 1));
-                            if (gameDecks.get(turn).getSpellZones().get(finalI).getCurrentCard().getType().equals("Spell")) {
+                            if (gameDecks.get(turn).getSpellZones().get(finalI + 1).getCurrentCard().getType().equals("Spell")) {
                                 String message = activateSpellErrorCheck();
                                 if (!message.equals(""))
                                     JOptionPane.showMessageDialog(null, message);
@@ -717,7 +717,7 @@ public class DuelProgramController {
         selectedDeck = "opponentField";
     }
 
-    private String summonMonster() {
+    public String summonMonster() {
         int position = selectedCardIndex;
         ArrayList<Card> inHandCards = gameDecks.get(turn).getInHandCards();
         if (selectedCard == null) {
@@ -984,7 +984,7 @@ public class DuelProgramController {
         return true;
     }
 
-    private String attackCard(String command) {
+    public String attackCard(String command) {
         int selectDefender;
         Matcher matcher = CommonTools.getMatcher(command, "(\\d+)");
         matcher.find();
@@ -1086,26 +1086,20 @@ public class DuelProgramController {
                     .get(selectDefender).getCurrentMonster());
             if (monsterPowersController.getIsEnemyTakeDamage()) enemyDeck.takeDamage(damage);
             moveToGraveyard(changeTurn(turn), "MonsterZone", selectDefender);
-            System.out.printf("your opponent’s monster is destroyed and your opponent receives"
-                    + " %d battle damage\n", damage);
-            return "your opponent’s monster is destroyed and your opponent receives " + damage + " battle damage";
+            return "your opponent’s monster is destroyed and your opponent receives " + damage + " battle damage#opponent " + damage + " 0";
         } else if (damage == 0) {
             monsterPowersController.monsterPowersWhenDestroyed(enemyDeck.getMonsterZones()
                     .get(selectDefender).getCurrentMonster());
             moveToGraveyard(turn, "MonsterZone", selectedCardIndex);
             moveToGraveyard(changeTurn(turn), "MonsterZone", selectDefender);
-            System.out.println("both you and your opponent monster cards are destroyed and no" +
-                    "one receives damage\n");
-            return "both you and your opponent monster cards are destroyed and no one receives damage";
+            return "both you and your opponent monster cards are destroyed and no one receives damage#both" + selectedCardIndex + " 0 0";
         } else {
             monsterPowersController.monsterPowersWhenDestroyed(enemyDeck.getMonsterZones()
                     .get(selectDefender).getCurrentMonster());
             Card card = myDeck.getMonsterZones().get(selectedCardIndex).removeCard();
             moveToGraveyard(turn, "MonsterZone", selectedCardIndex);
             myDeck.takeDamage(-1 * damage);
-            System.out.printf("Your monster card is destroyed and you received %d battle" +
-                    "damage", damage);
-            return "Your monster card is destroyed and you received " + damage + " damage";
+            return "Your monster card is destroyed and you received " + damage + " damage#your" + selectedCardIndex + " 0 " + damage;
         }
     }
 
@@ -1124,14 +1118,14 @@ public class DuelProgramController {
                     .get(selectDefender).getCurrentMonster());
             moveToGraveyard(changeTurn(turn), "MonsterZone", selectDefender);
             System.out.println("the defense position monster is destroyed");
-            return "the defense position monster is destroyed";
+            return "the defense position monster is destroyed#opponent 0 0";
         } else if (attackerDamage == defenderDamage) {
             System.out.println("no card is destroyed");
-            return "no card is destroyed";
+            return "no card is destroyed#none 0 0";
         } else {
             myDeck.takeDamage(-1 * damage);
             System.out.printf("no card is destroyed and you received %d battle damage\n", damage);
-            return "no card is destroyed and you received %d battle damage";
+            return "no card is destroyed and you received " + damage + " battle damage#none 0 " + damage;
         }
     }
 
@@ -1153,52 +1147,41 @@ public class DuelProgramController {
             monsterPowersController.monsterPowersWhenDestroyed(enemyDeck.getMonsterZones()
                     .get(selectDefender).getCurrentMonster());
             moveToGraveyard(changeTurn(turn), "MonsterZone", selectDefender);
-            System.out.printf("the defense position monster (%s) is destroyed\n", enemyCardName);
-            return "the defense position monster (" + enemyCardName + ") is destroyed";
+            return "the defense position monster (" + enemyCardName + ") is destroyed#opponent 0 0";
         } else if (damage == 0) {
-            System.out.printf("enemy card was %s no card is destroyed\n", enemyCardName);
-            return "enemy card was " + enemyCardName + ", no card is destroyed";
+            return "enemy card was " + enemyCardName + ", no card is destroyed#none 0 0";
         } else {
             myDeck.takeDamage(-1 * damage);
-            System.out.printf("enemy card was %s no card is destroyed and you received %d battle damage\n"
-                    , enemyCardName, damage);
-            return "enemy card was " + enemyCardName + ", no card is destroyed and you received " + damage + " battle damage";
+            return "enemy card was " + enemyCardName + ", no card is destroyed and you received " + damage + " battle damage#none 0 " + damage;
         }
     }
 
-    public void directAttack() {
+    public String directAttack() {
         GameDeck myDeck = gameDecks.get(turn);
         GameDeck enemyDeck = gameDecks.get(changeTurn(turn));
         if (selectedCard == null) {
-            System.out.println("no card is selected yet");
-            JOptionPane.showMessageDialog(null, "no card is selected yet");
+            return "no card is selected yet";
         } else if (!(selectedCard instanceof Monster)) {
-            System.out.println("you can’t attack with this card");
-            JOptionPane.showMessageDialog(null, "you can’t attack with this card");
+            return "you can’t attack with this card";
         } else if (phase != Phase.battle) {
-            System.out.println("you can’t do this action in this phase");
-            JOptionPane.showMessageDialog(null, "you can’t do this action in this phase");
+            return "you can’t do this action in this phase";
         } else if (!myDeck.getMonsterZones().get(selectedCardIndex).getStatus().equals("OO")) {
-            System.out.println("This card is not in attacking position");
-            JOptionPane.showMessageDialog(null, "This card is not in attacking position");
+            return "This card is not in attacking position";
         } else if (messengerOfPeaceBlocks(((Monster) selectedCard).getAttackPoint())) {
-            System.out.println("An Spell Card Stops this monster from attacking");
-            JOptionPane.showMessageDialog(null, "An Spell Card Stops this monster from attacking");
+            return "An Spell Card Stops this monster from attacking";
         } else if (myDeck.getMonsterZones().get(selectedCardIndex).getHasAttackedThisRound()) {
-            System.out.println("this card already attacked");
-            JOptionPane.showMessageDialog(null, "this card already attacked");
+            return "this card already attacked";
         } else {
             gameDecks.get(turn).getMonsterZones().get(selectedCardIndex).attack();
             Monster selectedMonster = (Monster) selectedCard;
             int attackerDamage = selectedMonster.getAttackPoint();
             enemyDeck.takeDamage(attackerDamage);
-            System.out.println("you opponent receives " + attackerDamage + " battle damage");
-            JOptionPane.showMessageDialog(null, "you opponent receives " + attackerDamage + " battle damage");
             setField();
+            return "your opponent receives " + attackerDamage + " battle damage";
         }
     }
 
-    private String activateSpellErrorCheck() {
+    public String activateSpellErrorCheck() {
         if (selectedCard == null) {
             System.out.println("no card is selected yet");
             return "no card is selected yet";
@@ -1258,9 +1241,7 @@ public class DuelProgramController {
             return "Field activated";
         }
         System.out.println("Spell activated");
-        deselect();
         return checkSpellCard();
-
     }
 
     private void activateTrap() {
@@ -1576,6 +1557,7 @@ public class DuelProgramController {
         } else if (spell.getName().equals("Advance Ritual Art")) {
             return advanceRitualArt();
         }
+        deselect();
         return "";
     }
 
@@ -1624,7 +1606,7 @@ public class DuelProgramController {
             int position = Integer.parseInt(matcher.group(1));
             if (position < 1 || position > 5) {
                 System.out.println("invalid selection");
-                JOptionPane.showMessageDialog(null,  "invalid selection");
+                JOptionPane.showMessageDialog(null, "invalid selection");
                 continue;
             }
             ArrayList<Card> inHandCards = gameDecks.get(turn).getInHandCards();
@@ -1634,11 +1616,11 @@ public class DuelProgramController {
             if (!(inHandCards.get(position - 1).getName().equals("Crab Turtle")
                     || inHandCards.get(position - 1).getName().equals("Skull Guardian"))) {
                 System.out.println("you should ritual summon right now");
-                JOptionPane.showMessageDialog(null,  "you should ritual summon right now");
+                JOptionPane.showMessageDialog(null, "you should ritual summon right now");
                 continue;
             }
             System.out.println("card selected");
-            JOptionPane.showMessageDialog(null,  "card selected");
+            JOptionPane.showMessageDialog(null, "card selected");
             while (true) {
                 System.out.println("enter positions of tribute monster in monster zone:");
                 boolean isSummonSuccessful = false;
@@ -1649,20 +1631,20 @@ public class DuelProgramController {
                     monsterZonePosition = Integer.parseInt(JOptionPane.showInputDialog("enter positions of tribute monster in monster zone:"));
                     if (monsterZonePosition < 1 || monsterZonePosition > 5) {
                         System.out.println("there no monsters on this address");
-                        JOptionPane.showMessageDialog(null,  "there no monsters on this address");
+                        JOptionPane.showMessageDialog(null, "there no monsters on this address");
                         continue;
                     }
                     Monster tributeMonster = (Monster) gameDecks.get(turn).getMonsterZones().get(monsterZonePosition).getCurrentMonster();
                     if (tributeMonster == null) {
                         System.out.println("there no monsters on this address");
-                        JOptionPane.showMessageDialog(null,  "there no monsters on this address");
+                        JOptionPane.showMessageDialog(null, "there no monsters on this address");
                         continue;
                     }
                     positionOfTributeMonsters.add(monsterZonePosition);
                     sumOfLevels += tributeMonster.getLevel();
                     if (sumOfLevels > 7) {
                         System.out.println("selected monsters levels don't match with ritual monster");
-                        JOptionPane.showMessageDialog(null,  "selected monsters levels don't match with ritual monster");
+                        JOptionPane.showMessageDialog(null, "selected monsters levels don't match with ritual monster");
                         break;
                     } else if (sumOfLevels == 7) {
                         isSummonSuccessful = true;
@@ -1671,7 +1653,7 @@ public class DuelProgramController {
                 }
                 if (isSummonSuccessful) {
                     System.out.println("summoned successfully");
-                    JOptionPane.showMessageDialog(null,  "summoned successfully");
+                    JOptionPane.showMessageDialog(null, "summoned successfully");
                     isSummoned = 1;
                     for (int monsterZonePosition : positionOfTributeMonsters) {
                         gameDecks.get(turn).tributeCardFromMonsterZone(monsterZonePosition);
@@ -2100,5 +2082,9 @@ public class DuelProgramController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<GameDeck> getGameDecks() {
+        return gameDecks;
     }
 }

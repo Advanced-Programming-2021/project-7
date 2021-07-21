@@ -1,9 +1,12 @@
 package Controller;
 
+import Menus.DuelProgramController;
 import Menus.Shop;
 import Model.CommonTools;
 import Model.Player;
 import Model.ShopInfo;
+import com.gilecode.yagson.YaGson;
+import com.gilecode.yagson.YaGsonBuilder;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -15,6 +18,7 @@ import java.util.regex.Matcher;
 public class ServerController {
     private static ServerController instance;
     private static String chats = "";
+    private static DuelProgramController duelProgramController;
 
     private ServerController() {}
 
@@ -96,7 +100,7 @@ public class ServerController {
             return DuelMenuController.reject(inputs[ 2 ]);
         } else if (command.matches("^WaitMenu#accept#.+")) {
             String[] inputs = command.split("#");
-            return DuelMenuController.accept(inputs[ 2 ]);
+            return DuelMenuController.refreshRequest(inputs[ 2 ]);
         } else if (command.startsWith("Player"))
             return playerCommandProcess(command);
         else if (command.startsWith("shop"))
@@ -105,7 +109,35 @@ public class ServerController {
             return chatCommandProcess(command);
         else if (command.startsWith("get chats"))
             return getChats(command);
+        else if (command.startsWith("duel"))
+            return duelProcess(command);
+        else if (command.equals("refresh"))
+            return refreshDuel(command);
         return "";
+    }
+
+    private String refreshDuel(String command) {
+        YaGson yaGson = new YaGsonBuilder().setPrettyPrinting().create();
+        String toWrite = yaGson.toJson(duelProgramController.getGameDecks());
+        return toWrite;
+    }
+
+    private String duelProcess(String command) {
+        Matcher matcher;
+        if ((matcher = CommonTools.getMatcher(command, "duel attack (\\d+)")).matches())
+            return attack(matcher);
+        else if ((CommonTools.getMatcher(command, "duel attack direct")).matches())
+            return duelProgramController.directAttack();
+        else if ((CommonTools.getMatcher(command, "duel activate effect")).matches())
+            return duelProgramController.activateSpellErrorCheck();
+        else if ((CommonTools.getMatcher(command, "duel summon")).matches())
+            return duelProgramController.summonMonster();
+        else return "";
+    }
+
+    private String attack(Matcher matcher) {
+        String num = matcher.group(1);
+        return duelProgramController.attackCard("attack " + num);
     }
 
     private String shopCommandProcess(String command) {

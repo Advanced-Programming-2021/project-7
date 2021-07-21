@@ -48,38 +48,26 @@ public class DuelMenuController {
 
     public static synchronized String waitRequest(String player) {
         for (Map.Entry e : newMatchAccepted.entrySet()) {
-            if (e.getValue().equals(player)) {
-                newMatchAccepted.remove(e.getKey());
-                return "your challenge accepted";
-            }
+            if (e.getValue().equals(player)) return "your challenge accepted";
         }
         for (Map.Entry e : newMatchRejected.entrySet()) {
-            if (e.getValue().equals(player)) {
-                newMatchRejected.remove(e.getKey());
-                return "your challenge rejected";
-            }
+            if (e.getValue().equals(player)) return "your challenge rejected";
         }
         for (Map.Entry e : newRoundAccepted.entrySet()) {
-            if (e.getValue().equals(player)) {
-                newRoundAccepted.remove(e.getKey());
-                return "your challenge accepted";
-            }
+            if (e.getValue().equals(player)) return "your challenge accepted";
         }
-        for (Map.Entry e : newRoundRejected.entrySet()) {
-            if (e.getValue().equals(player)) {
-                newRoundRejected.remove(e.getKey());
-                return "your challenge rejected";
-            }
+        for (Map.Entry e : newRoundAccepted.entrySet()) {
+            if (e.getValue().equals(player)) return "your challenge rejected";
         }
         return "waiting";
     }
 
     public static synchronized String refreshRequest(String player) {
         StringBuilder string = new StringBuilder();
+        string.append(player).append(" has challenged you to a new ");
         for (Map.Entry e : newRoundRequest.entrySet()) {
             if (e.getValue().equals(player)) {
                 String player1 = (String) e.getKey();
-                string.append(player1).append(" has challenged you to a new ");
                 string.append("Round.\nWould you like to accept");
                 return string.toString();
             }
@@ -87,7 +75,6 @@ public class DuelMenuController {
         for (Map.Entry e : newMatchRequest.entrySet()) {
             if (e.getValue().equals(player)) {
                 String player1 = (String) e.getKey();
-                string.append(player1).append(" has challenged you to a new ");
                 string.append("Match.\nWould you like to accept");
                 return string.toString();
             }
@@ -100,7 +87,6 @@ public class DuelMenuController {
             if (e.getValue().equals(player)) {
                 String player1 = (String) e.getKey();
                 newRoundRejected.put(player, player1);
-                newRoundRequest.remove(player1);
                 return "Challenge rejected";
             }
         }
@@ -108,7 +94,6 @@ public class DuelMenuController {
             if (e.getValue().equals(player)) {
                 String player1 = (String) e.getKey();
                 newMatchRejected.put(player, player1);
-                newMatchRequest.remove(player1);
                 return "Challenge rejected";
             }
         }

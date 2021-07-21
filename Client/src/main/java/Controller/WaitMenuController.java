@@ -1,6 +1,5 @@
 package Controller;
 
-import Menus.RockPaperScissors;
 import Model.Player;
 import Model.Sound;
 import View.MainProgramView;
@@ -20,11 +19,7 @@ import java.util.ResourceBundle;
 
 public class WaitMenuController implements Initializable {
     public static boolean isPlayerInWaitMenu;
-    public static boolean isChallengeAccepted;
     private long time;
-
-    public static String firstPlayer = Player.getActivePlayer().getUsername();
-    public static String secondPlayer = DuelMenuController.secondPlayer;
 
     private Stage stage;
     private Scene scene;
@@ -58,7 +53,6 @@ public class WaitMenuController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         time = System.currentTimeMillis();
         isPlayerInWaitMenu = true;
-        isChallengeAccepted = false;
         new Thread(() -> {
             while (isPlayerInWaitMenu) {
                 if (time + 4000 < System.currentTimeMillis()) {
@@ -70,16 +64,15 @@ public class WaitMenuController implements Initializable {
                         result = dataInputStream.readUTF();
                     } catch (Exception e) {}
                     if (result.equals("your challenge accepted")) {
-                        isChallengeAccepted = true;
                         JOptionPane.showMessageDialog(null, result);
                         try {
                             dataOutputStream.writeUTF("WaitMenu#cancel#" + Player.getActivePlayer().getUsername());
                             dataOutputStream.flush();
                             result = dataInputStream.readUTF();
                         } catch (Exception e) {}
+                        // rock
                         break;
                     } else if (result.equals("your challenge rejected")) {
-                        isChallengeAccepted = false;
                         JOptionPane.showMessageDialog(null, result);
                         try {
                             fail();
@@ -88,14 +81,6 @@ public class WaitMenuController implements Initializable {
                         }
                         break;
                     }
-                }
-            }
-            if (isChallengeAccepted) {
-                RockPaperScissors rockPaperScissors = new RockPaperScissors();
-                try {
-                    rockPaperScissors.run(firstPlayer, secondPlayer);
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
             }
         }).start();
