@@ -2,10 +2,10 @@ package Controller;
 
 import Model.Player;
 import Model.Sound;
+import View.MainProgramView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -31,6 +31,10 @@ public class WaitMenuController implements Initializable {
 
     public void cancel(ActionEvent event) throws Exception {
         Sound.getSoundByName("button").playSoundOnce();
+        fail();
+    }
+
+    public void fail() throws Exception {
         String result = "";
         dataOutputStream.writeUTF("WaitMenu#cancel#" + Player.getActivePlayer().getUsername());
         dataOutputStream.flush();
@@ -39,7 +43,7 @@ public class WaitMenuController implements Initializable {
         isPlayerInWaitMenu = false;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/duel_menu_view.fxml"));
         root = loader.load();
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage = MainProgramView.stage;
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -61,6 +65,14 @@ public class WaitMenuController implements Initializable {
                     } catch (Exception e) {}
                     if (result.equals("your challenge accepted")) {
                         JOptionPane.showMessageDialog(null, result);
+                        break;
+                    } else if (result.equals("your challenge rejected")) {
+                        JOptionPane.showMessageDialog(null, result);
+                        try {
+                            fail();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                         break;
                     }
                 }

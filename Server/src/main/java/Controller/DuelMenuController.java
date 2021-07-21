@@ -9,7 +9,9 @@ public class DuelMenuController {
     public static HashMap<String, String> newRoundRequest = new HashMap<>();
     public static HashMap<String, String> newMatchRequest = new HashMap<>();
     public static HashMap<String, String> newRoundAccepted = new HashMap<>();
+    public static HashMap<String, String> newRoundRejected = new HashMap<>();
     public static HashMap<String, String> newMatchAccepted = new HashMap<>();
+    public static HashMap<String, String> newMatchRejected = new HashMap<>();
 
     public static synchronized String isDuelValid(String matchType, String player1, String player2) {
         if (Player.getPlayerByUsername(player2) == null) {
@@ -48,8 +50,14 @@ public class DuelMenuController {
         for (Map.Entry e : newMatchAccepted.entrySet()) {
             if (e.getValue().equals(player)) return "your challenge accepted";
         }
+        for (Map.Entry e : newMatchRejected.entrySet()) {
+            if (e.getValue().equals(player)) return "your challenge rejected";
+        }
         for (Map.Entry e : newRoundAccepted.entrySet()) {
             if (e.getValue().equals(player)) return "your challenge accepted";
+        }
+        for (Map.Entry e : newRoundAccepted.entrySet()) {
+            if (e.getValue().equals(player)) return "your challenge rejected";
         }
         return "waiting";
     }
@@ -60,7 +68,7 @@ public class DuelMenuController {
         for (Map.Entry e : newRoundRequest.entrySet()) {
             if (e.getValue().equals(player)) {
                 String player1 = (String) e.getKey();
-                newRoundAccepted.put(player, player1);
+//                newRoundAccepted.put(player, player1);
                 string.append("Round.\nWould you like to accept");
                 return string.toString();
             }
@@ -68,7 +76,7 @@ public class DuelMenuController {
         for (Map.Entry e : newMatchRequest.entrySet()) {
             if (e.getValue().equals(player)) {
                 String player1 = (String) e.getKey();
-                newRoundAccepted.put(player, player1);
+//                newRoundAccepted.put(player, player1);
                 string.append("Match.\nWould you like to accept");
                 return string.toString();
             }
