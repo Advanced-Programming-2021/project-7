@@ -28,7 +28,7 @@ public class ServerController {
         return instance;
     }
 
-     public void runServer() {
+    public void runServer() {
         try {
             ServerSocket serverSocket = new ServerSocket(7755);
             while (true) {
@@ -90,8 +90,8 @@ public class ServerController {
             String[] inputs = command.split("#");
             return DuelMenuController.cancelRequest(inputs[2]);
         } else if (command.matches("^WaitMenu#wait#.+")) {
-                String[] inputs = command.split("#");
-                return DuelMenuController.waitRequest(inputs[ 2 ]);
+            String[] inputs = command.split("#");
+            return DuelMenuController.waitRequest(inputs[ 2 ]);
         } else if (command.matches("^WaitMenu#refresh#.+")) {
             String[] inputs = command.split("#");
             return DuelMenuController.refreshRequest(inputs[ 2 ]);
@@ -113,6 +113,16 @@ public class ServerController {
             return duelProcess(command);
         else if (command.equals("refresh"))
             return refreshDuel(command);
+        else if (command.equals("number of online"))
+            return numberOfOnline();
+        else if (command.startsWith("deleteChat"))
+            return deleteChat(command);
+        else if (command.startsWith("editChat"))
+            return editChat(command);
+        else if (command.startsWith("pinChat"))
+            return pinChat(command);
+        else if (command.startsWith("profileChat"))
+            return profileChat(command);
         return "";
     }
 
@@ -208,7 +218,7 @@ public class ServerController {
     private String playerCommandProcess(String command) {
         Matcher matcher;
         if ((matcher = CommonTools.getMatcher(command, "Player (\\S+) Money")).matches())
-           return sendMoney(matcher);
+            return sendMoney(matcher);
         else if ((matcher = CommonTools.getMatcher(command, "Player (\\S+) Card (.+)")).matches())
             return sendCardNum(matcher);
         else return "";
@@ -237,5 +247,25 @@ public class ServerController {
         if (Player.getPlayerByUsername(player) != null)
             return String.valueOf(Player.getPlayerByUsername(player).getMoney());
         else return "";
+    }
+
+    private String numberOfOnline(){
+        return "";
+    }
+
+    private String deleteChat(String command){
+        return "";
+    }
+
+    private String editChat(String command){
+        return "";
+    }
+
+    private String pinChat(String command){
+        return "";
+    }
+
+    private String profileChat(String command){
+        return "";
     }
 }
