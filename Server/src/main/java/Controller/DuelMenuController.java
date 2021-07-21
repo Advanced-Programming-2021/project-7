@@ -122,6 +122,7 @@ public class DuelMenuController {
                 String player1 = (String) e.getKey();
                 newRoundAccepted.put(player, player1);
                 ServerController.duelProgramController = new DuelProgramController();
+                ServerController.duelProgramController.run(player, player1, 1);
                 return "Challenge accepted";
             }
         }
@@ -130,6 +131,7 @@ public class DuelMenuController {
                 String player1 = (String) e.getKey();
                 newMatchAccepted.put(player, player1);
                 ServerController.duelProgramController = new DuelProgramController();
+                ServerController.duelProgramController.run(player, player1, 3);
                 return "Challenge accepted";
             }
         }

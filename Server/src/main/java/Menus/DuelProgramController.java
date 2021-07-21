@@ -411,54 +411,12 @@ public class DuelProgramController {
     }
 
     public void run(String firstPlayer, String secondPlayer, int round) {
-        for (int i = 1; i <= round; i++) {
-            setGameDecks(firstPlayer, secondPlayer);
-            // methods to be set after each round
-            for (int j = 0; j < 5; j++) {
-                gameDecks.get(turn).drawCard();
-                gameDecks.get(changeTurn(turn)).drawCard();
-            }
-            if (isGameOver(i)) break;
-            AI ai = new AI();
-            while (true) {
-                if (phase == Phase.draw && isCardDrawn == 0 && isGameStart == 0 && timeSealTrap == 0) drawCard();
-                if (isRoundOver()) break;
-                System.out.println("phase: " + phase);
-                showGameDeck(turn);
-                if (phase == Phase.standby && !messengerChecked) {
-                    keepMessengerOfPeace();
-                    messengerChecked = true;
-                }
-                String command = null;
-                if (secondPlayer.equals("ai") && turn == 1) {
-                    ai.updateAI(gameDecks.get(1), gameDecks.get(0), phase);
-                    command = ai.decision();
-                    isAI = 1;
-                } else {
-                    command = CommonTools.scan.nextLine();
-                }
-                if (command.matches("^show graveyard$")) showGraveyard(turn);
-                else if (command.matches("^surrender$")) surrender(turn);
-                else if (command.matches("^select --hand --force$")) inHandCardCheat();
-                else if (command.matches("^select -d$")) deselect();
-                else if (command.matches("^show card$")) showCard();
-                else if (command.matches("^select .*$")) selectCard(command);
-                else if (command.matches("^summon$")) summonMonster();
-                else if (command.matches("^activate effect$")) activateSpellErrorCheck();
-                else if (command.matches("^activate trap$")) activateTrap();
-                else if (command.matches("^attack (\\d+)")) attackCard(command);
-                else if (command.matches("^attack direct")) directAttack();
-                else if (command.matches("^set$")) set();
-                else if (command.matches("^card show --selected$")) cardShow();
-                else if (command.matches("^increase --LP (\\d+)$")) increasePlayerLPCheat(command);
-                else if (command.matches("^duel set-winner \\S+$")) setWinnerCheat(command);
-                else if (command.matches("^set --position (attack|defence)$")) setPositionMonster(command);
-                else if (command.matches("^flip-summon$")) flipSummon();
-                else if (command.matches("^next phase$")) changePhase();
-                else System.out.println("invalid command");
-            }
+        setGameDecks(firstPlayer, secondPlayer);
+        for (int j = 0; j < 5; j++) {
+            gameDecks.get(turn).drawCard();
+            gameDecks.get(changeTurn(turn)).drawCard();
         }
-        gameOver(round);
+
     }
 
     private void showCard() {
