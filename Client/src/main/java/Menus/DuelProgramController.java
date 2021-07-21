@@ -1,16 +1,15 @@
 package Menus;
 
 import Controller.CheatMenuController;
-import Model.Cards.*;
+import Model.Cards.Card;
+import Model.Cards.Monster;
+import Model.Cards.SpellZone;
 import Model.CommonTools;
 import Model.Player;
-import Model.Sound;
-import View.MainProgramView;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
@@ -31,7 +30,6 @@ import javax.swing.*;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.regex.Matcher;
 
 import static Controller.DuelMenuController.dataInputStream;
@@ -157,8 +155,8 @@ public class DuelProgramController {
         if (!gameDecks.get(turn).getPlayerUserName().equals(Player.getActivePlayer().getUsername())) {
             turn = changeTurn(turn); // TODO: 2021-07-21 ask shayan
         }
-        if (isRoundOver()) roundOver(turn);
-        if (isGameOver()) gameOver(round);
+//        if (isRoundOver()) roundOver(turn);
+//        if (isGameOver()) gameOver(round);
         if (phase == Phase.standby && !messengerChecked) {
             keepMessengerOfPeace();
             messengerChecked = true;
