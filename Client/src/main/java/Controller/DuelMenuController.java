@@ -2,6 +2,7 @@ package Controller;
 
 import Menus.ChatRoom;
 import Menus.DuelProgramController;
+import Menus.RockPaperScissors;
 import Model.Player;
 import Model.Sound;
 import View.MainProgramView;
@@ -26,6 +27,7 @@ public class DuelMenuController implements Initializable {
     public static String firstPlayer = Player.getActivePlayer().getUsername();
     public static String secondPlayer;
     public static boolean isPlayerInLobby;
+    public static boolean isChallengeAccepted;
     private long time;
 
     private Stage stage;
@@ -139,6 +141,7 @@ public class DuelMenuController implements Initializable {
     }
 
     public void accept() {
+        isChallengeAccepted = true;
         String result = "";
         try {
             dataOutputStream.writeUTF("WaitMenu#accept#" + Player.getActivePlayer().getUsername());
@@ -151,6 +154,7 @@ public class DuelMenuController implements Initializable {
     }
 
     public void reject() {
+        isChallengeAccepted = false;
         String result = "";
         try {
             dataOutputStream.writeUTF("WaitMenu#reject#" + Player.getActivePlayer().getUsername());
@@ -174,6 +178,7 @@ public class DuelMenuController implements Initializable {
             alert.showAndWait();
         }
         time = System.currentTimeMillis();
+        isChallengeAccepted = false;
         isPlayerInLobby = true;
         new Thread(() -> {
             while (isPlayerInLobby) {
@@ -197,6 +202,14 @@ public class DuelMenuController implements Initializable {
                             reject();
                         }
                     }
+                }
+            }
+            if (isChallengeAccepted) {
+                RockPaperScissors rockPaperScissors = new RockPaperScissors();
+                try {
+                    rockPaperScissors.run(firstPlayer, secondPlayer);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         }).start();

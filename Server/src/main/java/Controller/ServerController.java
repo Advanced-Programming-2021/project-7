@@ -100,7 +100,7 @@ public class ServerController {
             return DuelMenuController.reject(inputs[ 2 ]);
         } else if (command.matches("^WaitMenu#accept#.+")) {
             String[] inputs = command.split("#");
-            return DuelMenuController.refreshRequest(inputs[ 2 ]);
+            return DuelMenuController.accept(inputs[ 2 ]);
         } else if (command.startsWith("Player"))
             return playerCommandProcess(command);
         else if (command.startsWith("shop"))
