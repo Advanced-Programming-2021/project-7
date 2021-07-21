@@ -65,6 +65,11 @@ public class WaitMenuController implements Initializable {
                     } catch (Exception e) {}
                     if (result.equals("your challenge accepted")) {
                         JOptionPane.showMessageDialog(null, result);
+                        try {
+                            dataOutputStream.writeUTF("WaitMenu#cancel#" + Player.getActivePlayer().getUsername());
+                            dataOutputStream.flush();
+                            result = dataInputStream.readUTF();
+                        } catch (Exception e) {}
                         // rock
                         break;
                     } else if (result.equals("your challenge rejected")) {
