@@ -138,6 +138,29 @@ public class DuelMenuController implements Initializable {
         stage.show();
     }
 
+    public void accept() {
+        String result = "";
+        try {
+            dataOutputStream.writeUTF("WaitMenu#accept#" + Player.getActivePlayer().getUsername());
+            dataOutputStream.flush();
+            result = dataInputStream.readUTF();
+        } catch (Exception e) {
+        }
+        JOptionPane.showMessageDialog(null, result);
+        // Rock Papet s
+    }
+
+    public void reject() {
+        String result = "";
+        try {
+            dataOutputStream.writeUTF("WaitMenu#reject#" + Player.getActivePlayer().getUsername());
+            dataOutputStream.flush();
+            result = dataInputStream.readUTF();
+        } catch (Exception e) {
+        }
+        JOptionPane.showMessageDialog(null, result);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -168,11 +191,11 @@ public class DuelMenuController implements Initializable {
                         int returnValue = JOptionPane.showOptionDialog(null, result, "New challenge",
                                 JOptionPane.OK_OPTION, 1, null, buttons, buttons[0]);
                         if (returnValue == 0) {
-                            System.out.println("yes");
+                            accept();
+                            break;
                         } else {
-                            System.out.println("no");
+                            reject();
                         }
-                        break;
                     }
                 }
             }

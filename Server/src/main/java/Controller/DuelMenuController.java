@@ -68,7 +68,6 @@ public class DuelMenuController {
         for (Map.Entry e : newRoundRequest.entrySet()) {
             if (e.getValue().equals(player)) {
                 String player1 = (String) e.getKey();
-//                newRoundAccepted.put(player, player1);
                 string.append("Round.\nWould you like to accept");
                 return string.toString();
             }
@@ -76,11 +75,46 @@ public class DuelMenuController {
         for (Map.Entry e : newMatchRequest.entrySet()) {
             if (e.getValue().equals(player)) {
                 String player1 = (String) e.getKey();
-//                newRoundAccepted.put(player, player1);
                 string.append("Match.\nWould you like to accept");
                 return string.toString();
             }
         }
         return "nothing new";
+    }
+
+    public static synchronized String reject(String player) {
+        for (Map.Entry e : newRoundRequest.entrySet()) {
+            if (e.getValue().equals(player)) {
+                String player1 = (String) e.getKey();
+                newRoundRejected.put(player, player1);
+                return "Challenge rejected";
+            }
+        }
+        for (Map.Entry e : newMatchRequest.entrySet()) {
+            if (e.getValue().equals(player)) {
+                String player1 = (String) e.getKey();
+                newMatchRejected.put(player, player1);
+                return "Challenge rejected";
+            }
+        }
+        return "fail";
+    }
+
+    public static synchronized String accept(String player) {
+        for (Map.Entry e : newRoundRequest.entrySet()) {
+            if (e.getValue().equals(player)) {
+                String player1 = (String) e.getKey();
+                newRoundAccepted.put(player, player1);
+                return "Challenge accepted";
+            }
+        }
+        for (Map.Entry e : newMatchRequest.entrySet()) {
+            if (e.getValue().equals(player)) {
+                String player1 = (String) e.getKey();
+                newMatchAccepted.put(player, player1);
+                return "Challenge accepted";
+            }
+        }
+        return "fail";
     }
 }

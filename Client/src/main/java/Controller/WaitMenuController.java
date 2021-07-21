@@ -65,6 +65,7 @@ public class WaitMenuController implements Initializable {
                     } catch (Exception e) {}
                     if (result.equals("your challenge accepted")) {
                         JOptionPane.showMessageDialog(null, result);
+                        // rock
                         break;
                     } else if (result.equals("your challenge rejected")) {
                         JOptionPane.showMessageDialog(null, result);
