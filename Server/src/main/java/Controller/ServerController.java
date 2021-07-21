@@ -18,7 +18,7 @@ import java.util.regex.Matcher;
 public class ServerController {
     private static ServerController instance;
     private static String chats = "";
-    private static DuelProgramController duelProgramController;
+    public static DuelProgramController duelProgramController;
 
     private ServerController() {}
 
