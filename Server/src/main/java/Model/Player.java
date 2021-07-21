@@ -61,6 +61,14 @@ public class Player implements Comparable<Player> {
         activePlayers.remove(token);
     }
 
+    public static boolean isPlayerOnline(String username) {
+        for (Map.Entry e : activePlayers.entrySet()) {
+            Player player = (Player) e.getValue();
+            if (username.equals(player.username)) return true;
+        }
+        return false;
+    }
+
     public static HashMap<String, Player> getActivePlayers() {
         return activePlayers;
     }
