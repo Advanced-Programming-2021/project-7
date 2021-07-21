@@ -155,8 +155,8 @@ public class DuelProgramController {
         if (!gameDecks.get(turn).getPlayerUserName().equals(Player.getActivePlayer().getUsername())) {
             turn = changeTurn(turn); // TODO: 2021-07-21 ask shayan
         }
-//        if (isRoundOver()) roundOver(turn);
-//        if (isGameOver()) gameOver(round);
+        if (isRoundOver()) roundOver(turn);
+        if (isGameOver()) gameOver(round);
         if (phase == Phase.standby && !messengerChecked) {
             keepMessengerOfPeace();
             messengerChecked = true;
@@ -387,7 +387,6 @@ public class DuelProgramController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        refresh();
         return Boolean.parseBoolean(result);
     }
 
@@ -400,7 +399,6 @@ public class DuelProgramController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        refresh();
         return Boolean.parseBoolean(result);
 
     }
