@@ -18,6 +18,7 @@ import java.util.regex.Matcher;
 public class ServerController {
     private static ServerController instance;
     private static String chats = "";
+    private static int pinIndex = 0;
     public static DuelProgramController duelProgramController;
 
     private ServerController() {}
@@ -123,6 +124,8 @@ public class ServerController {
             return pinChat(command);
         else if (command.startsWith("profileChat"))
             return profileChat(command);
+        else if (command.equals("getPinnedChat"))
+            return getPinned();
         return "";
     }
 
@@ -351,7 +354,13 @@ public class ServerController {
     private String pinChat(String command){
         String[] input = command.split("#");
         int index = Integer.parseInt(input[1]);
-        return "";
+        pinIndex = index;
+        return "pinned message set successfully";
+    }
+
+    private String getPinned(){
+        String[] messages = chats.split("\n");
+        return messages[pinIndex];
     }
 
     private String profileChat(String command){
