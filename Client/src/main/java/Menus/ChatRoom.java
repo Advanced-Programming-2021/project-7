@@ -1,6 +1,7 @@
 package Menus;
 
 import Controller.LoginController;
+import Model.Sound;
 import View.MainProgramView;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,13 +16,23 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.IOException;
 
 public class ChatRoom extends Application {
-    public static void run() { launch(); }
-    public static Stage stage;
+    public Stage stage;
+    private Scene scene;
+    private AnchorPane root;
     private String username = "Mohsen";
+
+    public void run() {
+        this.stage = MainProgramView.stage;
+        this.stage.setResizable(true);
+        try {
+            start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -66,6 +77,7 @@ public class ChatRoom extends Application {
         borderPane.setBackground(background);
         register.setOnAction(actionEvent -> {
             try {
+                Sound.getSoundByName("button").playSoundOnce();
                 LoginController.dataOutputStream.writeUTF("chat#" + username + ": " + chatBox.getText());
                 LoginController.dataOutputStream.flush();
                 LoginController.dataInputStream.readUTF();
@@ -81,6 +93,7 @@ public class ChatRoom extends Application {
         });
         refresh.setOnAction(actionEvent -> {
             try {
+                Sound.getSoundByName("button").playSoundOnce();
                 LoginController.dataOutputStream.writeUTF("get chats");
                 LoginController.dataOutputStream.flush();
                 String result = LoginController.dataInputStream.readUTF();
@@ -91,12 +104,23 @@ public class ChatRoom extends Application {
                 e.printStackTrace();
             }
         });
+        back.setOnAction(actionEvent -> {
+            Sound.getSoundByName("button").playSoundOnce();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_menu_view.fxml"));
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            scene = new Scene(root);
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
+        });
         VBox regVbox = new VBox(chatBox, register, refresh);
         regVbox.setAlignment(Pos.CENTER);
         borderPane.setBottom(regVbox);
         borderPane.setCenter(chatVbox);
-        stage.setWidth(1200);
-        stage.setHeight(735);
         Scene scene = new Scene(borderPane);
         stage.setScene(scene);
         stage.show();

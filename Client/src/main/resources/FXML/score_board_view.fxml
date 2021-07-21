@@ -21,6 +21,18 @@
                 <Cursor fx:constant="HAND"/>
             </cursor>
         </Button>
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="378.0" layoutY="565.0"
+                         mnemonicParsing="false" onAction="#refresh" prefHeight="51.0" prefWidth="417.0"
+                         style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Refresh"
+                         textAlignment="CENTER" textFill="#ddd78a">
+        <font>
+            <Font name="Algerian" size="22.0"/>
+        </font>
+        <cursor>
+            <Cursor fx:constant="HAND"/>
+        </cursor>
+    </Button>
+
         <Label fx:id="commandLabel" alignment="CENTER" layoutX="325.0" prefHeight="35.0" prefWidth="523.0"
                text="Score board" textFill="#ddd78a">
             <font>

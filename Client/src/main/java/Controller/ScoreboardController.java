@@ -2,6 +2,7 @@ package Controller;
 
 import Model.CommonTools;
 import Model.Sound;
+import View.MainProgramView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -65,6 +66,8 @@ public class ScoreboardController {
             counter++;
             root.getChildren().add(label);
         }
+        yPosition = 230;
+        counter = 1;
     }
 
     public boolean isPlayerActive(String nickname, ArrayList<String> activePlayerNicknames) {
@@ -77,6 +80,21 @@ public class ScoreboardController {
     public void show(AnchorPane root) {
         this.root = root;
         makeLabels();
+    }
+
+    public void refresh(ActionEvent event) throws IOException {
+        Sound.getSoundByName("button").playSoundOnce();
+        refreshBoard();
+    }
+
+    public void refreshBoard() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/score_board_view.fxml"));
+        root = loader.load();
+        show(root);
+        stage = MainProgramView.stage;
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void back(ActionEvent event) throws IOException {

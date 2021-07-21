@@ -10,7 +10,7 @@
             xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="Controller.DuelMenuController">
     <children>
-        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="133.0" layoutY="370.0"
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="133.0" layoutY="290"
                 mnemonicParsing="false" onAction="#newRound" prefHeight="51.0" prefWidth="417.0"
                 style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="New Round"
                 textAlignment="CENTER" textFill="#ddd78a">
@@ -21,7 +21,7 @@
                 <Cursor fx:constant="HAND"/>
             </cursor>
         </Button>
-        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="650" layoutY="370"
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="650" layoutY="290"
                 mnemonicParsing="false" onAction="#newMatch" prefHeight="51.0" prefWidth="417.0"
                 style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="New Match"
                 textAlignment="CENTER" textFill="#ddd78a">
@@ -33,6 +33,17 @@
             </cursor>
         </Button>
         <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="378.0" layoutY="450.0"
+                mnemonicParsing="false" onAction="#startChatroom" prefHeight="51.0" prefWidth="417.0"
+                style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Chat room"
+                textAlignment="CENTER" textFill="#ddd78a">
+            <font>
+                <Font name="Algerian" size="22.0"/>
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </Button>
+        <Button alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="TOP" layoutX="378.0" layoutY="370.0"
                 mnemonicParsing="false" onAction="#battleWithAi" prefHeight="51.0" prefWidth="417.0"
                 style="-fx-background-color: &quot;black&quot;;" stylesheets="@../CSS/Main.css" text="Battle with AI"
                 textAlignment="CENTER" textFill="#ddd78a">

@@ -1,5 +1,6 @@
 package Controller;
 
+import Menus.ChatRoom;
 import Menus.DuelProgramController;
 import Menus.RockPaperScissors;
 import Model.Player;
@@ -37,6 +38,16 @@ public class DuelMenuController {
         DuelProgramController.round = 3;
         RockPaperScissors rockPaperScissors = new RockPaperScissors();
         rockPaperScissors.run(firstPlayer, secondPlayer);
+    }
+
+    public void startChatroom(ActionEvent event) {
+        Sound.getSoundByName("button").playSoundOnce();
+        ChatRoom chatRoom = new ChatRoom();
+        try {
+            chatRoom.run();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void battleWithAi(ActionEvent event) throws IOException {
