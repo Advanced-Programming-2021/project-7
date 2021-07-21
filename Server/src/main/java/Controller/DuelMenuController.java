@@ -3,6 +3,7 @@ package Controller;
 import Model.Player;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class DuelMenuController {
     public static HashMap<String, String> newRoundRequest = new HashMap<>();
@@ -35,5 +36,21 @@ public class DuelMenuController {
             newMatchRequest.put(player1, player2);
         }
         return "everything ok";
+    }
+
+    public static String cancelRequest(String player) {
+        newMatchRequest.remove(player);
+        newRoundRequest.remove(player);
+        return "Challenge canceled successfully";
+    }
+
+    public static String waitRequest(String player) {
+        for (Map.Entry e : newMatchAccepted.entrySet()) {
+            if (e.getValue().equals(player)) return "your challenge accepted";
+        }
+        for (Map.Entry e : newRoundAccepted.entrySet()) {
+            if (e.getValue().equals(player)) return "your challenge accepted";
+        }
+        return "waiting";
     }
 }
