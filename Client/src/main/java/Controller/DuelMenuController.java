@@ -2,6 +2,7 @@ package Controller;
 
 import Menus.ChatRoom;
 import Menus.DuelProgramController;
+import Menus.RockPaperScissors;
 import Model.Player;
 import Model.Sound;
 import View.MainProgramView;
@@ -82,8 +83,7 @@ public class DuelMenuController implements Initializable {
             JOptionPane.showMessageDialog(null, result);
         }
 //        DuelProgramController.round = 3;
-//        RockPaperScissors rockPaperScissors = new RockPaperScissors();
-//        rockPaperScissors.run(firstPlayer, secondPlayer);
+//
     }
 
     public void startChatroom(ActionEvent event) {
@@ -147,7 +147,12 @@ public class DuelMenuController implements Initializable {
         } catch (Exception e) {
         }
         JOptionPane.showMessageDialog(null, result);
-        // Rock Papet s
+        RockPaperScissors rockPaperScissors = new RockPaperScissors();
+        try {
+            rockPaperScissors.run(firstPlayer, secondPlayer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void reject() {

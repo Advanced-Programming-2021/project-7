@@ -1,5 +1,6 @@
 package Controller;
 
+import Menus.RockPaperScissors;
 import Model.Player;
 import Model.Sound;
 import View.MainProgramView;
@@ -20,6 +21,9 @@ import java.util.ResourceBundle;
 public class WaitMenuController implements Initializable {
     public static boolean isPlayerInWaitMenu;
     private long time;
+
+    public static String firstPlayer = Player.getActivePlayer().getUsername();
+    public static String secondPlayer = DuelMenuController.secondPlayer;
 
     private Stage stage;
     private Scene scene;
@@ -70,7 +74,12 @@ public class WaitMenuController implements Initializable {
                             dataOutputStream.flush();
                             result = dataInputStream.readUTF();
                         } catch (Exception e) {}
-                        // rock
+                        RockPaperScissors rockPaperScissors = new RockPaperScissors();
+                        try {
+                            rockPaperScissors.run(firstPlayer, secondPlayer);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                         break;
                     } else if (result.equals("your challenge rejected")) {
                         JOptionPane.showMessageDialog(null, result);
