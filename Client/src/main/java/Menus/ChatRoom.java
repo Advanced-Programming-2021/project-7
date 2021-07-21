@@ -73,6 +73,7 @@ public class ChatRoom extends Application {
         vBox.setAlignment(Pos.CENTER);
         scrollPane.setContent(vBox);
         scrollPane.setMaxWidth(600);
+        scrollPane.setMinWidth(500);
         scrollPane.setStyle("-fx-background: transparent; -fx-background-color: rgba(86,132,205,0.5);");
         scrollPane.setVvalue(1);
         this.scrollPane = scrollPane;
@@ -82,8 +83,7 @@ public class ChatRoom extends Application {
         LoginController.dataOutputStream.flush();
         String chatContent = LoginController.dataInputStream.readUTF();
         String[] messages = chatContent.split("\n");
-        System.out.println(messages.length);
-        for (int i = 0; i < messages.length; i++){
+        for (int i = 1; i < messages.length; i++){
             Button mess = getMessageButton(i);
             mess.setText(messages[i]);
             vBox.getChildren().add(mess);
@@ -113,7 +113,7 @@ public class ChatRoom extends Application {
                 String result = LoginController.dataInputStream.readUTF();
                 String[] messages1 = result.split("\n");
                 VBox vBox1 = new VBox();
-                for (int i = 0; i < messages1.length; i++){
+                for (int i = 1; i < messages1.length; i++){
                     Button mess = getMessageButton(i);
                     mess.setText(messages1[i]);
                     vBox1.getChildren().add(mess);
@@ -184,7 +184,7 @@ public class ChatRoom extends Application {
                     LoginController.dataOutputStream.flush();
                     String chatContent = LoginController.dataInputStream.readUTF();
                 }
-                //scrollPane.setContent(refresh());
+                scrollPane.setContent(refresh());
             } catch (IOException e){
                 e.printStackTrace();
             }
@@ -198,7 +198,7 @@ public class ChatRoom extends Application {
         String result = LoginController.dataInputStream.readUTF();
         String[] messages1 = result.split("\n");
         VBox vBox1 = new VBox();
-        for (int i = 0; i < messages1.length; i++){
+        for (int i = 1; i < messages1.length; i++){
             Button mess = getMessageButton(i);
             mess.setText(messages1[i]);
             vBox1.getChildren().add(mess);
