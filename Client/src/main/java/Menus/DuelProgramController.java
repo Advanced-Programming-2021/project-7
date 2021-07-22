@@ -53,15 +53,8 @@ enum Phase {
 public class DuelProgramController {
     public static int round;
     private ArrayList<GameDeck> gameDecks = new ArrayList<>(2);
-    private MonsterPowersController monsterPowersController = new MonsterPowersController(gameDecks, this);
     private int turn = 0; //0 : firstPlayer, 1 : secondPlayer
-    private int isSummoned = 0; //0 : is not summoned before, 1 : is summoned before
-    private Card selectedCard = null;
-    private int selectedCardIndex = -1; // -1 means Empty
-    private int enteredMonsterCardIndex = -1;
-    private int changedPositionMonsterIndex = -1;
-    private String selectedDeck = null; // hand, monster, spell, field,
-    // opponentMonster, opponentSpell, opponentField
+    private String turnName;
     private Phase phase = Phase.draw;
     private int timeSealTrap = 0;
     private int isCardDrawn = 0;
@@ -239,7 +232,7 @@ public class DuelProgramController {
                             }
                         } else if (phase != Phase.battle && finalI1 == 1) {
                             JOptionPane.showMessageDialog(null, selectSpell(finalI + 1));
-                            if (gameDecks.get(turn).getSpellZones().get(finalI).getCurrentCard().getType().equals("Spell")) {
+                            if (gameDecks.get(turn).getSpellZones().get(finalI + 1).getCurrentCard().getType().equals("Spell")) {
                                 String message = activateSpellErrorCheck();
                                 if (!message.equals(""))
                                     JOptionPane.showMessageDialog(null, message);
@@ -319,7 +312,6 @@ public class DuelProgramController {
                     }
                     rectangle.setMouseTransparent(true);
                     selectHand(finalI + 1);
-                    System.out.println(selectedCard);
                     oldX[0] = mouseEvent.getSceneX();
                     oldY[0] = mouseEvent.getSceneY();
                 }
@@ -367,6 +359,11 @@ public class DuelProgramController {
     }
 
     public void checkForSetOrSummon() {
+        if (!turnName.equals(Player.getActivePlayer().getUsername())){
+            JOptionPane.showMessageDialog(null, "it's not your turn");
+            refresh();
+            return;
+        }
         String result = null;
         try {
             dataOutputStream.writeUTF("duel summonOrSet");
@@ -403,18 +400,11 @@ public class DuelProgramController {
 
     }
 
-    public void deselect() {
-        try {
-            dataOutputStream.writeUTF("duel deselect" );
-            dataOutputStream.flush();
-            dataInputStream.readUTF();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        refresh();
-    }
-
     private String selectMonster(int position) {
+        if (!turnName.equals(Player.getActivePlayer().getUsername())){
+            refresh();
+            return "it's not your turn";
+        }
         String result = null;
         try {
             dataOutputStream.writeUTF("duel selectMonster " + position);
@@ -423,12 +413,15 @@ public class DuelProgramController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        refresh();
         return result;
 
     }
 
     private String selectSpell(int position) {
+        if (!turnName.equals(Player.getActivePlayer().getUsername())){
+            refresh();
+            return "it's not your turn";
+        }
         String result = null;
         try {
             dataOutputStream.writeUTF("duel selectSpell " + position);
@@ -437,12 +430,15 @@ public class DuelProgramController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        refresh();
         return result;
 
     }
 
     private String selectHand(int position) {
+        if (!turnName.equals(Player.getActivePlayer().getUsername())){
+            refresh();
+            return "it's not your turn";
+        }
         String result = null;
         try {
             dataOutputStream.writeUTF("duel selectHand " + position);
@@ -451,38 +447,15 @@ public class DuelProgramController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        refresh();
         return result;
 
-    }
-
-    private String summonMonster() {
-        String result = null;
-        try {
-            dataOutputStream.writeUTF("duel summon");
-            dataOutputStream.flush();
-            result = dataInputStream.readUTF();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        refresh();
-        return result;
-    }
-
-    private String set() {
-        String result = null;
-        try {
-            dataOutputStream.writeUTF("duel set");
-            dataOutputStream.flush();
-            result = dataInputStream.readUTF();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        refresh();
-        return result;
     }
 
     private String setPositionMonster(String command) {
+        if (!turnName.equals(Player.getActivePlayer().getUsername())){
+            refresh();
+            return "it's not your turn";
+        }
         String result = null;
         try {
             dataOutputStream.writeUTF("duel " + command);
@@ -497,6 +470,10 @@ public class DuelProgramController {
     }
 
     private String flipSummon() {
+        if (!turnName.equals(Player.getActivePlayer().getUsername())){
+            refresh();
+            return "it's not your turn";
+        }
         String result = null;
         try {
             dataOutputStream.writeUTF("duel flip");
@@ -511,6 +488,10 @@ public class DuelProgramController {
 
 
     private String attackCard(String command) {
+        if (!turnName.equals(Player.getActivePlayer().getUsername())){
+            refresh();
+            return "it's not your turn";
+        }
         int selectDefender;
         Matcher matcher = CommonTools.getMatcher(command, "(\\d+)");
         matcher.find();
@@ -529,6 +510,11 @@ public class DuelProgramController {
     }
 
     public void directAttack() {
+        if (!turnName.equals(Player.getActivePlayer().getUsername())){
+            JOptionPane.showMessageDialog(null, "it's not your turn");
+            refresh();
+            return;
+        }
         String result = null;
         try {
             dataOutputStream.writeUTF("duel attack direct");
@@ -542,6 +528,10 @@ public class DuelProgramController {
     }
 
     private String activateSpellErrorCheck() {
+        if (!turnName.equals(Player.getActivePlayer().getUsername())){
+            refresh();
+            return "it's not your turn";
+        }
         String result = null;
         try {
             dataOutputStream.writeUTF("duel activate effect");
@@ -555,6 +545,11 @@ public class DuelProgramController {
     }
 
     private void activateTrap() {
+        if (!turnName.equals(Player.getActivePlayer().getUsername())){
+            JOptionPane.showMessageDialog(null, "it's not your turn");
+            refresh();
+            return;
+        }
         try {
             dataOutputStream.writeUTF("duel activateTrap");
             dataOutputStream.flush();
@@ -565,27 +560,18 @@ public class DuelProgramController {
         refresh();
     }
 
-    public void showGraveyard(int turn) {
-        GameDeck gameDeck;
-        if (turn == 0)
-            gameDeck = gameDecks.get(0);
-        else
-            gameDeck = gameDecks.get(1);
-        ArrayList<Card> graveyardCards = gameDeck.getGraveyardCards();
-        if (graveyardCards.size() == 0)
-            System.out.println("graveyard empty");
-        else {
-            for (int i = 0; i < graveyardCards.size(); i++) {
-                Card card = graveyardCards.get(i);
-                System.out.println(++i + ". " + card);
-            }
+    private void getTurn(){
+        String result = null;
+        try {
+            dataOutputStream.writeUTF("get turn");
+            dataOutputStream.flush();
+            result = dataInputStream.readUTF();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        while (true) {
-            String command = CommonTools.scan.nextLine().trim();
-            if (command.equals("back")) return;
-            System.out.println("invalid command");
-        }
+        turnName = result;
     }
+
 
     private void surrender(int turn) {
         gameDecks.get(turn).setPlayerLP(0);
@@ -613,7 +599,7 @@ public class DuelProgramController {
         setField();
     }
 
-    private void roundOver(int turn) { // 0 : firstPlayer losses , 1 : secondPlayer losses
+    private void roundOver(int turn) {// 0 : firstPlayer losses , 1 : secondPlayer losses
         try {
             dataOutputStream.writeUTF("duel roundOver " + turn);
             dataOutputStream.flush();
@@ -661,6 +647,11 @@ public class DuelProgramController {
     }
 
     private void changePhase() {
+        if (!turnName.equals(Player.getActivePlayer().getUsername())){
+            JOptionPane.showMessageDialog(null, "it's not your turn");
+            refresh();
+            return;
+        }
         try {
             dataOutputStream.writeUTF("duel changePhase");
             dataOutputStream.flush();
@@ -799,18 +790,6 @@ public class DuelProgramController {
         activateOrDeactivateFieldCardForAll(1);
     }
 
-    public void setIsSummoned(int isSummoned) {
-        this.isSummoned = isSummoned;
-    }
-
-    public void setSelectedMonsterCardIndex(int selectedMonsterCardIndex) {
-        this.enteredMonsterCardIndex = selectedMonsterCardIndex;
-    }
-
-    public void setEnteredMonsterCardIndex(int enteredMonsterCardIndex) {
-        this.enteredMonsterCardIndex = enteredMonsterCardIndex;
-    }
-
     public void showMyGrave(MouseEvent mouseEvent) {
         GraveYardController.graveYard = gameDecks.get(turn).getGraveyardCards();
         try {
@@ -852,6 +831,19 @@ public class DuelProgramController {
         Type arraylistOfPlayer = new TypeToken<ArrayList<GameDeck>>() {
         }.getType();
         setGameDecks(yaGson.fromJson(gameDecks, arraylistOfPlayer));
+        String result = null;
+        try {
+            dataOutputStream.writeUTF("refresh phase");
+            dataOutputStream.flush();
+            result = dataInputStream.readUTF();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Type phaseType = new TypeToken<Phase>() {
+        }.getType();
+        phase = yaGson.fromJson(result, phaseType);
+        getTurn();
         setField();
     }
 

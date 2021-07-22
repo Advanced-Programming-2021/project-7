@@ -113,7 +113,11 @@ public class ServerController {
         else if (command.startsWith("duel"))
             return duelProcess(command);
         else if (command.equals("refresh"))
-            return refreshDuel(command);
+            return refreshDuel();
+        else if (command.equals("refresh phase"))
+            return refreshPhase();
+        else if (command.equals("get turn"))
+            return getTurn();
         else if (command.equals("number of online"))
             return numberOfOnline();
         else if (command.startsWith("deleteChat"))
@@ -129,12 +133,18 @@ public class ServerController {
         return "";
     }
 
-    private String refreshDuel(String command) {
+    private String getTurn() {
+        return duelProgramController.getUsernameTurn();
+    }
+
+    private String refreshPhase() {
         YaGson yaGson = new YaGsonBuilder().setPrettyPrinting().create();
-        String toWrite = yaGson.toJson(duelProgramController.getGameDecks());
-        System.out.println(duelProgramController);
-        System.out.println(duelProgramController.getGameDecks());
-        return toWrite;
+        return yaGson.toJson(duelProgramController.phase);
+    }
+
+    private String refreshDuel() {
+        YaGson yaGson = new YaGsonBuilder().setPrettyPrinting().create();
+        return yaGson.toJson(duelProgramController.getGameDecks());
     }
 
     private String duelProcess(String command) {
@@ -175,6 +185,8 @@ public class ServerController {
             return roundOver(matcher);
         else if ((matcher = CommonTools.getMatcher(command, "duel gameOver (\\d+)")).matches())
             return gameOver(matcher);
+        else if ((CommonTools.getMatcher(command, "duel changePhase")).matches())
+            duelProgramController.changePhase();
         else if ((CommonTools.getMatcher(command, "duel changePhase")).matches())
             duelProgramController.changePhase();
         return "";

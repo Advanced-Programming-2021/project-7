@@ -1,33 +1,17 @@
 package Menus;
 
-import Controller.CheatMenuController;
+
 import Model.Cards.*;
 import Model.CommonTools;
 import Model.Deck;
 import Model.Player;
-import Model.Sound;
-import View.MainProgramView;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Bounds;
-import javafx.scene.Cursor;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import javax.swing.*;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -53,7 +37,7 @@ public class DuelProgramController {
     public static int round;
     private ArrayList<GameDeck> gameDecks = new ArrayList<>(2);
     private MonsterPowersController monsterPowersController = new MonsterPowersController(gameDecks, this);
-    private int turn = 0; //0 : firstPlayer, 1 : secondPlayer
+    public int turn = 0; //0 : firstPlayer, 1 : secondPlayer
     private int isSummoned = 0; //0 : is not summoned before, 1 : is summoned before
     private Card selectedCard = null;
     private int selectedCardIndex = -1; // -1 means Empty
@@ -61,7 +45,7 @@ public class DuelProgramController {
     private int changedPositionMonsterIndex = -1;
     private String selectedDeck = null; // hand, monster, spell, field,
     // opponentMonster, opponentSpell, opponentField
-    private Phase phase = Phase.draw;
+    public Phase phase = Phase.draw;
     private int timeSealTrap = 0;
     private int isCardDrawn = 0;
     private int isGameStart = 2;
@@ -72,88 +56,6 @@ public class DuelProgramController {
     private boolean shiftPressed = false;
     private boolean cPressed = false;
 
-    @FXML
-    public BorderPane myBorderPane;
-    public GridPane enemyGrid;
-    public GridPane myGrid;
-    public ImageView selectedCardShow;
-    public ImageView myGrave;
-    public ImageView enemyGrave;
-    public HBox inHandCards;
-    public HBox enemyHand;
-    public Button nextPhaseButton;
-    public Circle attackSign;
-    public Label enemyName;
-    public Label myName;
-    public Rectangle enemyProfile;
-    public Rectangle myProfile;
-    public ImageView myField;
-    public ImageView enemyFiled;
-    public AnchorPane field;
-
-    private Stage stage;
-    private Scene scene;
-    private AnchorPane root;
-
-    @FXML
-    public void initialize() {
-        attackSign = new Circle(20);
-        attackSign.setFill(new ImagePattern(new Image("/Images/Attack.png")));
-        inHandCards.setSpacing(20);
-        enemyHand.setSpacing(20);
-        setGameDecks(firstPlayer, secondPlayer);
-        for (int j = 0; j < 5; j++) {
-            gameDecks.get(turn).drawCard();
-            gameDecks.get(changeTurn(turn)).drawCard();
-        }
-        nextPhaseButton.setOnAction(actionEvent -> {
-            changePhase();
-            enemyGrid.getChildren().remove(attackSign);
-            setField();
-        });
-        selectedCardShow.setImage(new Image(getClass().getResource("/Images/Cards/Unknown.jpg").toExternalForm()));
-        myGrave.setImage(new Image(getClass().getResource("/Images/Cards/Unknown.jpg").toExternalForm()));
-        enemyGrave.setImage(new Image(getClass().getResource("/Images/Cards/Unknown.jpg").toExternalForm()));
-        enemyGrid.setHgap(43);
-        enemyGrid.setVgap(35);
-        myGrid.setHgap(44);
-        myGrid.setVgap(30);
-        setField();
-        makeCheatMenu();
-    }
-
-    public void makeCheatMenu() {
-        myBorderPane.setOnKeyPressed(keyEvent -> {
-            switch (keyEvent.getCode()) {
-                case CONTROL:
-                    controlPressed = true;
-                    break;
-                case SHIFT:
-                    shiftPressed = true;
-                    break;
-                case C:
-                    cPressed = true;
-                    break;
-                default:
-                    controlPressed = false;
-                    shiftPressed = false;
-                    cPressed = false;
-                    break;
-            }
-            if (controlPressed && shiftPressed && cPressed) {
-                controlPressed = false;
-                shiftPressed = false;
-                cPressed = false;
-                CheatMenuController.setDuelProgramController(this);
-                try {
-                    new CheatMenu().start(new Stage());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
     public void setField() {
         if (isRoundOver()) roundOver(turn);
         if (isGameOver()) gameOver(round);
@@ -161,237 +63,7 @@ public class DuelProgramController {
             keepMessengerOfPeace();
             messengerChecked = true;
         }
-        if (!gameDecks.get(turn).isFieldZoneEmpty()) {
-            myField.setImage(cardView(gameDecks.get(turn).getFieldZone().getName()));
-            String name = gameDecks.get(turn).getFieldZone().getName();
-            BackgroundFill backgroundFill;
-            if (name.equals("Yami")) {
-                backgroundFill = new BackgroundFill(new ImagePattern(new Image("/Images/Field/fie_yami.bmp")), null, null);
-            } else if (name.equals("Forest"))
-                backgroundFill = new BackgroundFill(new ImagePattern(new Image("/Images/Field/fie_sougen.bmp")), null, null);
-            else if (name.equals("Closed Forest"))
-                backgroundFill = new BackgroundFill(new ImagePattern(new Image("/Images/Field/fie_gaia.bmp")), null, null);
-            else
-                backgroundFill = new BackgroundFill(new ImagePattern(new Image("/Images/Field/fie_umi.bmp")), null, null);
-            Background background = new Background(backgroundFill);
-            field.setBackground(background);
-        }
-        if (!gameDecks.get(changeTurn(turn)).isFieldZoneEmpty()) {
-            enemyFiled.setImage(cardView(gameDecks.get(changeTurn(turn)).getFieldZone().getName()));
-        }
         if (phase == Phase.draw && isCardDrawn == 0 && isGameStart == 0 && timeSealTrap == 0) drawCard();
-        nextPhaseButton.setText("next phase. current phase : " + phase);
-        enemyGrid.getChildren().clear();
-        myGrid.getChildren().clear();
-        enemyName.setText(gameDecks.get(changeTurn(turn)).getPlayerNickName() + " : " + gameDecks.get(changeTurn(turn)).getPlayerLP());
-        myName.setText(gameDecks.get((turn)).getPlayerNickName() + " : " + gameDecks.get((turn)).getPlayerLP());
-        int enemyProfileNumber = Player.getPlayerByUsername(gameDecks.get(changeTurn(turn)).getPlayerUserName()).getProfile();
-        int myProfileNumber = Player.getPlayerByUsername(gameDecks.get(turn).getPlayerUserName()).getProfile();
-        enemyProfile.setFill(new ImagePattern(new Image(getClass().getResource("/Images/Profiles/profile" + enemyProfileNumber + ".png").toExternalForm())));
-        myProfile.setFill(new ImagePattern(new Image(getClass().getResource("/Images/Profiles/profile" + myProfileNumber + ".png").toExternalForm())));
-        for (int i = 0; i < 5; i++) {
-            for (int i1 = 0; i1 < 2; i1++) {
-                Rectangle rectangle = new Rectangle(60, 90);
-                rectangle.setFill(Color.TRANSPARENT); // TODO optional
-                Rectangle rectangle1 = new Rectangle(60, 90);
-                rectangle1.setFill(Color.TRANSPARENT); // TODO optional
-                rectangle.setCursor(Cursor.HAND);
-                rectangle1.setCursor(Cursor.HAND);
-                if (!gameDecks.get(turn).getMonsterZones().get(i + 1).isEmpty() && i1 == 0) {
-                    Image image = cardView(gameDecks.get(turn).getMonsterZones().get(i + 1).getCurrentMonster().getName());
-                    rectangle.setFill(new ImagePattern(image));
-                    if (!gameDecks.get(turn).getMonsterZones().get(i + 1).getStatus().equals("OO"))
-                        rectangle.setRotate(90);
-                } else if (!gameDecks.get(turn).getSpellZones().get(i + 1).isEmpty() && i1 == 1) {
-                    Image image = cardView(gameDecks.get(turn).getSpellZones().get(i + 1).getCurrentCard().getName());
-                    rectangle.setFill(new ImagePattern(image));
-                }
-                if (!gameDecks.get(changeTurn(turn)).getMonsterZones().get(6 - i - 1).isEmpty() && i1 == 1) {
-                    Image image = cardView(gameDecks.get(changeTurn(turn)).getMonsterZones().get(6 - i - 1).getCurrentMonster().getName());
-                    rectangle1.setFill(new ImagePattern(image));
-                    if (gameDecks.get(changeTurn(turn)).getMonsterZones().get(6 - i - 1).getStatus().equals("DH")) {
-                        image = cardView("Unknown");
-                        rectangle1.setFill(new ImagePattern(image));
-                    }
-                    if (!gameDecks.get(changeTurn(turn)).getMonsterZones().get(6 - i - 1).getStatus().equals("OO"))
-                        rectangle1.setRotate(90);
-                } else if (!gameDecks.get(changeTurn(turn)).getSpellZones().get(6 - i - 1).isEmpty() && i1 == 0) {
-                    Image image = cardView("Unknown");
-                    rectangle1.setFill(new ImagePattern(image));
-                }
-                int finalI1 = i1;
-                int finalI = i;
-
-                rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent mouseEvent) {
-                        if (phase != Phase.battle && finalI1 == 0) {
-                            String[] buttons = {"attack", "defense", "flip"};
-                            int returnValue = JOptionPane.showOptionDialog(null, "Change Position", "Change Position",
-                                    JOptionPane.OK_OPTION, 1, null, buttons, buttons[0]);
-                            if (returnValue == 0) {
-                                JOptionPane.showMessageDialog(null, setPositionMonster("set --position attack"));
-                            } else if (returnValue == 1) {
-                                JOptionPane.showMessageDialog(null, setPositionMonster("set --position defense"));
-                            } else if (returnValue == 2) {
-                                selectMonster(finalI + 1);
-                                JOptionPane.showMessageDialog(null, flipSummon());
-                            }
-                        } else if (phase != Phase.battle && finalI1 == 1) {
-                            JOptionPane.showMessageDialog(null, selectSpell(finalI + 1));
-                            if (gameDecks.get(turn).getSpellZones().get(finalI + 1).getCurrentCard().getType().equals("Spell")) {
-                                String message = activateSpellErrorCheck();
-                                if (!message.equals(""))
-                                    JOptionPane.showMessageDialog(null, message);
-                            } else {
-                                activateTrap();
-                            }
-                        } else if (phase == Phase.battle) {
-                            if (finalI1 == 0) {
-                                String message = selectMonster(finalI + 1);
-                                JOptionPane.showMessageDialog(null, message);
-                                if (message.equals("card selected")) {
-                                    enemyGrid.getChildren().remove(attackSign);
-                                    enemyGrid.add(attackSign, finalI, finalI1);
-                                }
-                            }
-                        }
-                    }
-                });
-                rectangle.setOnMouseMoved(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent mouseEvent) {
-                        if (rectangle.getFill() instanceof ImagePattern) {
-                            Image image = ((ImagePattern) rectangle.getFill()).getImage();
-                            selectedCardShow.setImage(image);
-                        }
-                    }
-                });
-                rectangle1.setOnMouseMoved(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent mouseEvent) {
-                        if (rectangle1.getFill() instanceof ImagePattern) {
-                            Image image = ((ImagePattern) rectangle1.getFill()).getImage();
-                            selectedCardShow.setImage(image);
-                        }
-                    }
-                });
-                rectangle1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent mouseEvent) {
-                        if (phase == Phase.battle) {
-                            if (finalI1 == 1)
-                                JOptionPane.showMessageDialog(null, attackCard("attack " + (5 - finalI)));
-                            setField();
-                        }
-                    }
-                });
-                enemyGrid.add(rectangle, i, i1);
-                myGrid.add(rectangle1, i, i1);
-            }
-        }
-
-        inHandCards.getChildren().clear();
-        for (int i = 0; i < gameDecks.get(turn).getInHandCards().size(); i++) {
-            Rectangle rectangle = new Rectangle(60, 90);
-            rectangle.setCursor(Cursor.HAND);
-            rectangle.setFill(new ImagePattern(cardView(gameDecks.get(turn).getInHandCards().get(i).getName())));
-            inHandCards.getChildren().add(rectangle);
-            int finalI = i;
-            rectangle.setOnMouseMoved(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    if (rectangle.getFill() instanceof ImagePattern) {
-                        Image image = ((ImagePattern) rectangle.getFill()).getImage();
-                        selectedCardShow.setImage(image);
-                    }
-                }
-            });
-            final double[] oldX = new double[1];
-            final double[] oldY = new double[1];
-
-            rectangle.setOnMousePressed(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    if (phase == Phase.battle) {
-                        JOptionPane.showMessageDialog(null, "can't do that in this this phase");
-                        return;
-                    }
-                    rectangle.setMouseTransparent(true);
-                    selectHand(finalI + 1);
-                    System.out.println(selectedCard);
-                    oldX[0] = mouseEvent.getSceneX();
-                    oldY[0] = mouseEvent.getSceneY();
-                }
-            });
-
-            rectangle.setOnMouseDragged(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    if (phase == Phase.battle)
-                        return;
-
-                    Node node = (Node) mouseEvent.getSource();
-                    node.setTranslateX(mouseEvent.getSceneX() - oldX[0]);
-                    node.setTranslateY(mouseEvent.getSceneY() - oldY[0]);
-                }
-            });
-
-            rectangle.setOnMouseReleased(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    if (phase == Phase.battle)
-                        return;
-
-                    Bounds bounds = enemyGrid.sceneToLocal(rectangle.localToScene(rectangle.getBoundsInLocal()));
-                    System.out.println(enemyGrid.sceneToLocal(rectangle.localToScene(rectangle.getBoundsInLocal())));
-                    if (bounds.getMinX() > -20 &&
-                            bounds.getMinX() < 450 &&
-                            bounds.getMinY() > -20 &&
-                            bounds.getMinY() < 150)
-                        checkForSetOrSummon();
-
-                    rectangle.setTranslateX(0);
-                    rectangle.setTranslateY(0);
-                    setField();
-                }
-            });
-        }
-
-        enemyHand.getChildren().clear();
-        for (int i = 0; i < gameDecks.get(changeTurn(turn)).getInHandCards().size(); i++) {
-            Rectangle rectangle = new Rectangle(60, 90);
-            rectangle.setFill(new ImagePattern(new Image(getClass().getResource("/Images/Cards/Unknown.jpg").toExternalForm())));
-            enemyHand.getChildren().add(rectangle);
-        }
-        if (secondPlayer.equals("ai") && turn == 1) {
-            ai.updateAI(gameDecks.get(1), gameDecks.get(0), phase);
-            String command = ai.decision();
-            runCommand(command);
-            setField();
-        }
-    }
-
-    private void runCommand(String command) {
-        if (command.matches("^show graveyard$")) showGraveyard(turn);
-        else if (command.matches("^surrender$")) surrender(turn);
-        else if (command.matches("^select --hand --force$")) inHandCardCheat();
-        else if (command.matches("^select -d$")) deselect();
-        else if (command.matches("^show card$")) showCard();
-        else if (command.matches("^select .*$")) selectCard(command);
-        else if (command.matches("^summon$")) summonMonster();
-        else if (command.matches("^activate effect$")) activateSpellErrorCheck();
-        else if (command.matches("^activate trap$")) activateTrap();
-        else if (command.matches("^attack (\\d+)")) attackCard(command);
-        else if (command.matches("^attack direct")) directAttack();
-        else if (command.matches("^set$")) set();
-        else if (command.matches("^card show --selected$")) cardShow();
-        else if (command.matches("^increase --LP (\\d+)$")) increasePlayerLPCheat(command);
-        else if (command.matches("^duel set-winner \\S+$")) setWinnerCheat(command);
-        else if (command.matches("^set --position (attack|defence)$")) setPositionMonster(command);
-        else if (command.matches("^flip-summon$")) flipSummon();
-        else if (command.matches("^next phase$")) changePhase();
-        else System.out.println("invalid command");
     }
 
     public void checkForSetOrSummon() {
@@ -411,25 +83,15 @@ public class DuelProgramController {
     }
 
     public void run(String firstPlayer, String secondPlayer, int round) {
+        DuelProgramController.round = round;
+        DuelProgramController.firstPlayer = firstPlayer;
+        DuelProgramController.secondPlayer = secondPlayer;
         setGameDecks(firstPlayer, secondPlayer);
         for (int j = 0; j < 5; j++) {
             gameDecks.get(turn).drawCard();
             gameDecks.get(changeTurn(turn)).drawCard();
         }
 
-    }
-
-    private void showCard() {
-        if (selectedCard == null) {
-            System.out.println("No card is selected");
-            return;
-        } else {
-            System.out.println(selectedCard.toString());
-            if (selectedCard instanceof Monster) {
-                Monster monster = (Monster) selectedCard;
-                System.out.println(monster.getAttackPoint() + " : " + monster.getDefensePoint());
-            }
-        }
     }
 
     public boolean isRoundOver() {
@@ -700,7 +362,6 @@ public class DuelProgramController {
             deselect();
         } else if (selectedMonster.getLevel() == 5 || selectedMonster.getLevel() == 6) summonWithOneTribute(position);
         else if (selectedMonster.getLevel() == 7 || selectedMonster.getLevel() == 8) summonWithTwoTribute(position);
-        Sound.getSoundByName("set").playSoundOnce();
         return "summoned successfully";
     }
 
@@ -731,7 +392,6 @@ public class DuelProgramController {
             System.out.println("there no monsters on this address");
             return;
         }
-        Sound.getSoundByName("set").playSoundOnce();
         System.out.println("summoned successfully");
         isSummoned = 1;
         gameDecks.get(turn).tributeCardFromMonsterZone(monsterZonePosition);
@@ -795,7 +455,6 @@ public class DuelProgramController {
             System.out.println("there are no monsters on one of this addresses");
             return;
         }
-        Sound.getSoundByName("set").playSoundOnce();
         System.out.println("summoned successfully");
         isSummoned = 1;
         gameDecks.get(turn).tributeCardFromMonsterZone(firstMonster);
@@ -840,7 +499,6 @@ public class DuelProgramController {
         isSummoned = 1;
         activateOrDeactivateFieldCardForAll(1);
         deselect();
-        Sound.getSoundByName("set").playSoundOnce();
         return "set successfully";
     }
 
@@ -974,8 +632,6 @@ public class DuelProgramController {
             return "there is no card to attack here";
         } else {
             if (!checkTrap()) {
-                Sound.getSoundByName("attack").playSoundOnce();
-                enemyGrid.getChildren().remove(attackSign);
                 gameDecks.get(turn).getMonsterZones().get(selectedCardIndex).attack();
                 if (enemyDeck.getMonsterZones().get(selectDefender).getStatus().equals("OO")) {
                     return attackOO(selectDefender, myDeck, enemyDeck);
@@ -1243,7 +899,6 @@ public class DuelProgramController {
             }
             gameDecks.get(turn).getInHandCards().remove(selectedCardIndex - 1);
             deselect();
-            Sound.getSoundByName("set").playSoundOnce();
             return "set successfully";
         }
     }
@@ -1275,7 +930,6 @@ public class DuelProgramController {
             }
             gameDecks.get(turn).getInHandCards().remove(selectedCardIndex - 1);
             deselect();
-            Sound.getSoundByName("set").playSoundOnce();
             return "set successfully";
         }
     }
@@ -1418,16 +1072,6 @@ public class DuelProgramController {
                 + firstScore + "-" + secondScore);
         JOptionPane.showMessageDialog(null, winnerUsername + " won the game and the score is: "
                 + firstScore + "-" + secondScore);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_menu_view.fxml"));
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        stage = MainProgramView.stage;
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
     }
 
     private int changeTurn(int turn) {
@@ -2043,5 +1687,9 @@ public class DuelProgramController {
 
     public ArrayList<GameDeck> getGameDecks() {
         return gameDecks;
+    }
+
+    public String getUsernameTurn() {
+        return gameDecks.get(turn).getPlayerUserName();
     }
 }
