@@ -8,6 +8,9 @@ import Model.CommonTools;
 import Model.Player;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
@@ -25,6 +28,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -51,6 +55,12 @@ enum Phase {
 
 
 public class DuelProgramController {
+    public Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2),this::refresh));
+
+    private void refresh(ActionEvent actionEvent) {
+        refresh();
+    }
+
     public static int round;
     private ArrayList<GameDeck> gameDecks = new ArrayList<>(2);
     private int turn = 0; //0 : firstPlayer, 1 : secondPlayer
@@ -818,7 +828,7 @@ public class DuelProgramController {
         }
     }
 
-    private void refresh() {
+    public void refresh() {
         String gameDecks = null;
         try {
             dataOutputStream.writeUTF("refresh");
@@ -844,6 +854,12 @@ public class DuelProgramController {
         }.getType();
         phase = yaGson.fromJson(result, phaseType);
         getTurn();
+        if (!turnName.equals(Player.getActivePlayer().getUsername())){
+            timeline.setCycleCount(Timeline.INDEFINITE);
+            timeline.play();
+        } else {
+            timeline.stop();
+        }
         setField();
     }
 
