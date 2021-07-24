@@ -185,6 +185,7 @@ public class DuelProgramController {
             enemyFiled.setImage(cardView(gameDecks.get(changeTurn(turn)).getFieldZone().getName()));
         }
         if (phase == Phase.draw && isCardDrawn == 0 && isGameStart == 0 && timeSealTrap == 0) drawCard();
+        if (phase == Phase.draw && isGameStart != 0) isGameStart--;
         nextPhaseButton.setText("next phase. current phase : " + phase);
         enemyGrid.getChildren().clear();
         myGrid.getChildren().clear();
@@ -619,7 +620,6 @@ public class DuelProgramController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        refresh();
     }
 
     private void gameOver(int round) {
@@ -632,7 +632,6 @@ public class DuelProgramController {
             e.printStackTrace();
         }
         JOptionPane.showMessageDialog(null, result);
-        refresh();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_menu_view.fxml"));
         try {
             root = loader.load();
@@ -843,38 +842,40 @@ public class DuelProgramController {
     }
 
     public void refresh() {
-        String gameDecks = null;
-        try {
-            dataOutputStream.writeUTF("refresh");
-            dataOutputStream.flush();
-            gameDecks = dataInputStream.readUTF();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        YaGson yaGson = new YaGson();
-        Type arraylistOfPlayer = new TypeToken<ArrayList<GameDeck>>() {
-        }.getType();
-        setGameDecks(yaGson.fromJson(gameDecks, arraylistOfPlayer));
-        String result = null;
-        try {
-            dataOutputStream.writeUTF("refresh phase");
-            dataOutputStream.flush();
-            result = dataInputStream.readUTF();
+        if (!isGameOver()) {
+            String gameDecks = null;
+            try {
+                dataOutputStream.writeUTF("refresh");
+                dataOutputStream.flush();
+                gameDecks = dataInputStream.readUTF();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            YaGson yaGson = new YaGson();
+            Type arraylistOfPlayer = new TypeToken<ArrayList<GameDeck>>() {
+            }.getType();
+            setGameDecks(yaGson.fromJson(gameDecks, arraylistOfPlayer));
+            String result = null;
+            try {
+                dataOutputStream.writeUTF("refresh phase");
+                dataOutputStream.flush();
+                result = dataInputStream.readUTF();
 
-        } catch (IOException e) {
-            e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Type phaseType = new TypeToken<Phase>() {
+            }.getType();
+            phase = yaGson.fromJson(result, phaseType);
+            getTurn();
+            if (!turnName.equals(Player.getActivePlayer().getUsername())) {
+                timeline.setCycleCount(Timeline.INDEFINITE);
+                timeline.play();
+            } else {
+                timeline.stop();
+            }
+            setField();
         }
-        Type phaseType = new TypeToken<Phase>() {
-        }.getType();
-        phase = yaGson.fromJson(result, phaseType);
-        getTurn();
-        if (!turnName.equals(Player.getActivePlayer().getUsername())){
-            timeline.setCycleCount(Timeline.INDEFINITE);
-            timeline.play();
-        } else {
-            timeline.stop();
-        }
-        setField();
     }
 
     public void setGameDecks(ArrayList<GameDeck> gameDecks) {

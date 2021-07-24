@@ -179,7 +179,7 @@ public class ServerController {
             return setPosition(matcher);
         else if ((CommonTools.getMatcher(command, "duel isRoundOver")).matches())
             return String.valueOf(duelProgramController.isRoundOver());
-        else if ((CommonTools.getMatcher(command, "duel isGame")).matches())
+        else if ((CommonTools.getMatcher(command, "duel isGameOver")).matches())
             return String.valueOf(duelProgramController.isGameOver());
         else if ((matcher = CommonTools.getMatcher(command, "duel roundOver (\\d+)")).matches())
             return roundOver(matcher);
