@@ -77,6 +77,7 @@ public class DuelProgramController {
     private boolean controlPressed = false;
     private boolean shiftPressed = false;
     private boolean cPressed = false;
+    private boolean isCardDrawnd = false;
 
     @FXML
     public BorderPane myBorderPane;
@@ -184,8 +185,11 @@ public class DuelProgramController {
         if (!gameDecks.get(changeTurn(turn)).isFieldZoneEmpty()) {
             enemyFiled.setImage(cardView(gameDecks.get(changeTurn(turn)).getFieldZone().getName()));
         }
-        if (phase == Phase.draw && isCardDrawn == 0 && isGameStart == 0 && timeSealTrap == 0) drawCard();
-//        if (phase == Phase.draw && isGameStart != 0) isGameStart--;
+        if (phase == Phase.end) isCardDrawnd = false;
+        if (phase == Phase.draw && isCardDrawn == 0 && isGameStart == 0 && timeSealTrap == 0 && !isCardDrawnd) {
+            drawCard();
+            isCardDrawnd = true;
+        }
         nextPhaseButton.setText("next phase. current phase : " + phase);
         enemyGrid.getChildren().clear();
         myGrid.getChildren().clear();
@@ -867,10 +871,9 @@ public class DuelProgramController {
         }.getType();
         phase = yaGson.fromJson(result, phaseType);
         getTurn();
-        if (isGameOver()) timeline.stop();
         if (!turnName.equals(Player.getActivePlayer().getUsername())) {
             timeline.setCycleCount(Timeline.INDEFINITE);
-            timeline.play();
+            if (!isGameOver()) timeline.play();
         } else {
             timeline.stop();
         }
