@@ -7,7 +7,7 @@
     },
     "Axe Raider": {
       "@type": "java.lang.Integer",
-      "@val": 3
+      "@val": 2
     },
     "The Tricky": {
       "@type": "java.lang.Integer",
@@ -267,7 +267,7 @@
     },
     "\"Terratiger, the Empowered Warrior\"": {
       "@type": "java.lang.Integer",
-      "@val": 4
+      "@val": 3
     },
     "Feral Imp": {
       "@type": "java.lang.Integer",

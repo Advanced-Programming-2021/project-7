@@ -1,8 +1,6 @@
 package Controller;
 
 import Model.Cards.Card;
-import Model.CommonTools;
-import Model.FileHandler;
 import Model.Player;
 import View.CardView;
 import View.ItemController;
@@ -14,6 +12,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,7 +23,6 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-import javafx.scene.control.Label;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -146,9 +144,9 @@ public class Shop extends Application {
 
     public void buy(MouseEvent mouseEvent) {
         try {
-            RegisterProfileController.dataOutputStream.writeUTF("shop " + Player.getActivePlayer().getUsername() + " buy " + card.name);
-            RegisterProfileController.dataOutputStream.flush();
-            String result = RegisterProfileController.dataInputStream.readUTF();
+            LoginController.dataOutputStream.writeUTF("shop " + Player.getActivePlayer().getUsername() + " buy " + card.name);
+            LoginController.dataOutputStream.flush();
+            String result = LoginController.dataInputStream.readUTF();
             JOptionPane.showMessageDialog(null, result);
         } catch (Exception e) {
             e.printStackTrace();
@@ -164,9 +162,9 @@ public class Shop extends Application {
     public static String getStock(String name) {
         String num = null;
         try {
-            RegisterProfileController.dataOutputStream.writeUTF("shop stock " + name);
-            RegisterProfileController.dataOutputStream.flush();
-            num = RegisterProfileController.dataInputStream.readUTF();
+            LoginController.dataOutputStream.writeUTF("shop stock " + name);
+            LoginController.dataOutputStream.flush();
+            num = LoginController.dataInputStream.readUTF();
         } catch (Exception e) {
             e.printStackTrace();
         }

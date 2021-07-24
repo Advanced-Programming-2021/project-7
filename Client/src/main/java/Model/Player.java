@@ -1,7 +1,6 @@
 package Model;
 
 import Controller.LoginController;
-import Controller.RegisterProfileController;
 import Model.Cards.Card;
 
 import java.io.IOException;
@@ -283,10 +282,10 @@ public class Player implements Comparable<Player> {
     public static int getNumberOfCards(String name) {
         int num = -1;
         try {
-            RegisterProfileController.dataOutputStream.writeUTF("Player " +
+            LoginController.dataOutputStream.writeUTF("Player " +
                     Player.getActivePlayer().getUsername() + " Card " + name);
-            RegisterProfileController.dataOutputStream.flush();
-            String result = RegisterProfileController.dataInputStream.readUTF();
+            LoginController.dataOutputStream.flush();
+            String result = LoginController.dataInputStream.readUTF();
             num = Integer.parseInt(result);
         }catch (Exception e){
             e.printStackTrace();
