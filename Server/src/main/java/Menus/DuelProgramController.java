@@ -1035,7 +1035,7 @@ public class DuelProgramController {
         else firstDeck.increaseWinRounds();
     }
 
-    public void gameOver(int round) {
+    public String gameOver(int round) {
         String winnerUsername = "";
         int firstMoney = 0;
         int secondMoney = 0;
@@ -1068,10 +1068,8 @@ public class DuelProgramController {
         secondPlayer.increaseScore(secondScore);
         firstPlayer.increaseMoney(firstMoney);
         secondPlayer.increaseMoney(secondMoney);
-        System.out.println(winnerUsername + " won the game and the score is: "
-                + firstScore + "-" + secondScore);
-        JOptionPane.showMessageDialog(null, winnerUsername + " won the game and the score is: "
-                + firstScore + "-" + secondScore);
+        return winnerUsername + " won the game and the score is: "
+                + firstScore + "-" + secondScore;
     }
 
     private int changeTurn(int turn) {

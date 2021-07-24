@@ -130,9 +130,9 @@ public class Admin extends Application {
     public static boolean isBanned(String name){
         String result = null;
         try {
-            RegisterProfileController.dataOutputStream.writeUTF("shop isBanned " + name);
-            RegisterProfileController.dataOutputStream.flush();
-            result = RegisterProfileController.dataInputStream.readUTF();
+            LoginController.dataOutputStream.writeUTF("shop isBanned " + name);
+            LoginController.dataOutputStream.flush();
+            result = LoginController.dataInputStream.readUTF();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -143,9 +143,9 @@ public class Admin extends Application {
 
     public void ban(MouseEvent mouseEvent) {
         try {
-            RegisterProfileController.dataOutputStream.writeUTF("shop ban " + card.name);
-            RegisterProfileController.dataOutputStream.flush();
-            String result = RegisterProfileController.dataInputStream.readUTF();
+            LoginController.dataOutputStream.writeUTF("shop ban " + card.name);
+            LoginController.dataOutputStream.flush();
+            String result = LoginController.dataInputStream.readUTF();
             JOptionPane.showMessageDialog(null, result);
         } catch (Exception e){
             e.printStackTrace();
@@ -155,9 +155,9 @@ public class Admin extends Application {
 
     public void unban(MouseEvent mouseEvent) {
         try {
-            RegisterProfileController.dataOutputStream.writeUTF("shop unban " + card.name);
-            RegisterProfileController.dataOutputStream.flush();
-            String result = RegisterProfileController.dataInputStream.readUTF();
+            LoginController.dataOutputStream.writeUTF("shop unban " + card.name);
+            LoginController.dataOutputStream.flush();
+            String result = LoginController.dataInputStream.readUTF();
             JOptionPane.showMessageDialog(null, result);
         } catch (Exception e){
             e.printStackTrace();
@@ -167,9 +167,9 @@ public class Admin extends Application {
 
     public void decrease(MouseEvent mouseEvent) {
         try {
-            RegisterProfileController.dataOutputStream.writeUTF("shop decrease " + card.name);
-            RegisterProfileController.dataOutputStream.flush();
-            String result = RegisterProfileController.dataInputStream.readUTF();
+            LoginController.dataOutputStream.writeUTF("shop decrease " + card.name);
+            LoginController.dataOutputStream.flush();
+            String result = LoginController.dataInputStream.readUTF();
             JOptionPane.showMessageDialog(null, result);
         } catch (Exception e){
             e.printStackTrace();
@@ -179,9 +179,9 @@ public class Admin extends Application {
 
     public void increase(MouseEvent mouseEvent) {
         try {
-            RegisterProfileController.dataOutputStream.writeUTF("shop increase " + card.name);
-            RegisterProfileController.dataOutputStream.flush();
-            String result = RegisterProfileController.dataInputStream.readUTF();
+            LoginController.dataOutputStream.writeUTF("shop increase " + card.name);
+            LoginController.dataOutputStream.flush();
+            String result = LoginController.dataInputStream.readUTF();
             JOptionPane.showMessageDialog(null, result);
         } catch (Exception e){
             e.printStackTrace();

@@ -6,6 +6,7 @@ import Model.Cards.Monster;
 import Model.Cards.SpellZone;
 import Model.CommonTools;
 import Model.Player;
+import View.MainProgramView;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import javafx.animation.KeyFrame;
@@ -13,6 +14,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
@@ -621,14 +623,26 @@ public class DuelProgramController {
     }
 
     private void gameOver(int round) {
+        String result = "";
         try {
             dataOutputStream.writeUTF("duel gameOver " + round);
             dataOutputStream.flush();
-            dataInputStream.readUTF();
+            result = dataInputStream.readUTF();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        JOptionPane.showMessageDialog(null, result);
         refresh();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/main_menu_view.fxml"));
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage = MainProgramView.stage;
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     private int changeTurn(int turn) {

@@ -194,8 +194,7 @@ public class ServerController {
 
     private String gameOver(Matcher matcher) {
         int turn = Integer.parseInt(matcher.group(1));
-        duelProgramController.gameOver(turn);
-        return "";
+        return duelProgramController.gameOver(turn);
     }
 
     private String roundOver(Matcher matcher) {
